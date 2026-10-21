@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+  <html lang="zh-Hant">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Infographics</title>
+  <style>
+    :root{--ink:#1a1d23;--muted:#6b7280;--line:#e5e7eb;--accent:#2563eb;}
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:-apple-system,BlinkMacSystemFont,"PingFang TC","Microsoft 
+  JhengHei",sans-serif;background:#f6f7f9;color:var(--ink);}                     
+    header{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--line);padding:10px
+  16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;z-index:9;}
+    header h1{font-size:17px;font-weight:800;}
+    nav{display:flex;gap:6px;flex-wrap:wrap;align-items:center;}
+    nav a{font-size:13px;padding:6px 12px;border-radius:999px;text-decoration:none;color:var(--muted);border:1px solid
+  var(--line);background:#fff;}
+    nav a.on{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:700;}
+    nav a.open{border:none;color:var(--accent);font-weight:700;}
+    main{max-width:900px;margin:16px auto;padding:0 12px;}
+    iframe{width:100%;height:1250px;border:none;border-radius:16px;background:#fff;box-shadow:0 2px 16px
+  rgba(0,0,0,.08);}
+  </style>
+  </head>
+  <body>
+  <header>
+    <h1>📐 Infographics</h1>
+    <nav id="tabs"></nav>
+  </header>
+  <main><iframe id="frame" title="infographic"></iframe></main>
+  <script>
+  // ⬇️  出新圖：喺呢個 list 頂部加一行（排第一 = main page 顯示，其餘自動變 tab）
+  const PAGES = [
+    {f:"spacex-q3-2026.html", t:"SpaceX Q3 2026 業績", d:"2026-10-21"},          
+  ];
+  const tabs=document.getElementById("tabs"), frame=document.getElementById("frame"), links=[];
+  PAGES.forEach((p,i)=>{
+    const a=document.createElement("a");
+    a.href="#"+i; a.textContent=p.t+(i===0?"  ★新":"");
+    if(i===0){a.className="on"; frame.src=p.f;}
+    a.onclick=()=>{frame.src=p.f; links.forEach(x=>x.classList.remove("on")); a.classList.add("on"); s.href=p.f;};
+    tabs.appendChild(a); links.push(a);
+  });
+  const s=document.createElement("a");
+  s.className="open"; s.target="_blank"; s.textContent="↗ 開獨立頁";
+  if(PAGES.length){ s.href=PAGES[0].f; tabs.appendChild(s); } else { frame.remove(); }
+  </script>
+  </body>
+  </html>
