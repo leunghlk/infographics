@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>多元資產入息基金 · 一頁對比（A4）</title>
+<title>多元資產入息基金 · 一頁對比（A4 客用）</title>
 <style>
   :root{
     --surface:#ffffff; --page:#f2f3f5;
     --ink:#101114; --ink2:#4d5157; --ink3:#8a8d92;
-    --line:#e3e4e7; --base:#c6c8cc;
+    --line:#e3e4e7;
     --f1:#2a78d6; --f2:#eb6834; --f3:#1baf7a; --f4:#eda100;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
@@ -20,81 +20,82 @@
   }
   .sheet{
     width:297mm; min-height:209mm; margin:6mm auto; background:var(--surface);
-    padding:7mm 8mm 5mm; box-shadow:0 2px 14px rgba(0,0,0,.10);
-    display:flex; flex-direction:column; gap:2.6mm;
+    padding:8mm 9mm 6mm; box-shadow:0 2px 14px rgba(0,0,0,.10);
+    display:flex; flex-direction:column; gap:3.5mm;
   }
   @media print{
     body{background:#fff;}
     .sheet{margin:0; box-shadow:none; width:auto; min-height:auto;}
-    @page{size:A4 landscape; margin:6mm 5mm;}
+    @page{size:A4 landscape; margin:7mm 6mm;}
   }
-  @page{size:A4 landscape; margin:6mm 5mm;}
+  @page{size:A4 landscape; margin:7mm 6mm;}
 
   /* header */
-  .hd{display:flex; justify-content:space-between; align-items:flex-end; border-bottom:2px solid var(--ink); padding-bottom:2mm;}
-  .hd h1{font-size:15.5px; font-weight:800; letter-spacing:.01em;}
-  .hd .sub{font-size:8.5px; color:var(--ink2); margin-top:.8mm;}
-  .hd .asof{font-size:7.5px; color:var(--ink3); text-align:right; line-height:1.5;}
+  .hd{display:flex; justify-content:space-between; align-items:flex-end; border-bottom:2.5px solid var(--ink); padding-bottom:2.2mm;}
+  .hd h1{font-size:18px; font-weight:800;}
+  .hd .sub{font-size:9px; color:var(--ink2); margin-top:1mm;}
+  .hd .asof{font-size:8px; color:var(--ink3); text-align:right; line-height:1.55;}
 
-  /* 4 columns */
-  .cols{display:grid; grid-template-columns:repeat(4,1fr); gap:3mm; flex:1;}
-  .col{border:1px solid var(--line); border-radius:2.5mm; overflow:hidden; display:flex; flex-direction:column;}
-  .chead{background:color-mix(in srgb,var(--c) 8%,#fff); border-top:1.2mm solid var(--c); padding:2mm 2.4mm 1.6mm;}
-  .chead .house{font-size:6.8px; color:var(--ink3); text-transform:uppercase; letter-spacing:.05em;}
-  .chead .nm{font-size:11.5px; font-weight:800; line-height:1.2;}
-  .chead .meta{font-size:7.2px; color:var(--ink2); margin-top:.8mm;}
+  .cols{display:grid; grid-template-columns:repeat(4,1fr); gap:3.5mm; flex:1;}
+  .col{border:1px solid var(--line); border-radius:3mm; overflow:hidden; display:flex; flex-direction:column;}
+  .chead{background:color-mix(in srgb,var(--c) 8%,#fff); border-top:1.4mm solid var(--c); padding:2.4mm 2.8mm 2mm;}
+  .chead .house{font-size:7.2px; color:var(--ink3); text-transform:uppercase; letter-spacing:.06em;}
+  .chead .nm{font-size:13.5px; font-weight:800; line-height:1.2; margin-top:.4mm;}
+  .chead .meta{font-size:7.8px; color:var(--ink2); margin-top:1mm; line-height:1.5;}
   .chead .meta b{color:var(--ink3); font-weight:600;}
-  .tag{margin:1.4mm 2.4mm 0; font-size:8px; font-weight:700; line-height:1.4;
-    background:color-mix(in srgb,var(--c) 10%,#fff); border-radius:1.8mm; padding:1.3mm 2mm;}
-  .blk{padding:1.6mm 2.4mm 0;}
-  .blk h3{font-size:7px; font-weight:700; color:var(--ink3); text-transform:uppercase; letter-spacing:.06em; margin-bottom:.9mm;}
-  .hero{display:flex; align-items:baseline; gap:2mm;}
-  .hero .v{font-size:19px; font-weight:800;}
-  .hero .l{font-size:7.2px; color:var(--ink3); line-height:1.3;}
 
-  table.rt{width:100%; border-collapse:collapse; font-size:8.6px; font-variant-numeric:tabular-nums;}
-  table.rt td{padding:.55mm 0; border-bottom:1px solid var(--line);}
-  table.rt tr:last-child td{border-bottom:none;}
-  table.rt td.p{color:var(--ink2); width:17mm; font-size:7.6px;}
-  table.rt td.n{font-weight:700; width:12mm; text-align:right;}
-  table.rt td.b{padding-left:1mm;}
-  .minibar{height:2.1mm; border-radius:0 1mm 1mm 0; background:var(--c); display:block;}
+  .tag{margin:2mm 2.8mm 0; font-size:9px; font-weight:700; line-height:1.45;
+    background:color-mix(in srgb,var(--c) 10%,#fff); border-radius:2mm; padding:1.6mm 2.2mm;}
 
-  .chips{display:flex; gap:1.4mm; flex-wrap:wrap;}
-  .chip{font-size:7.6px; border:1px solid var(--line); border-radius:99px; padding:.5mm 1.8mm; color:var(--ink2); font-variant-numeric:tabular-nums;}
+  .blk{padding:2mm 2.8mm 0;}
+  .blk h3{font-size:7.2px; font-weight:700; color:var(--ink3); text-transform:uppercase; letter-spacing:.07em; margin-bottom:1.1mm;}
+
+  /* returns strip: 4 cells */
+  .rets{display:grid; grid-template-columns:repeat(4,1fr); gap:1.2mm; text-align:center;}
+  .ret{background:#fafafa; border:1px solid var(--line); border-radius:1.6mm; padding:1.2mm 0 1.4mm;}
+  .ret .l{font-size:6.8px; color:var(--ink3);}
+  .ret .v{font-size:12px; font-weight:800; margin-top:.4mm;}
+  .ret .v.na{color:var(--ink3); font-weight:600; font-size:10px;}
+  .ret .v.na small{display:block; font-size:6px; font-weight:400; color:var(--ink3); margin-top:.3mm;}
+
+  .chips{display:flex; gap:1.6mm;}
+  .chip{font-size:8.2px; border:1px solid var(--line); border-radius:99px; padding:.7mm 2.2mm; color:var(--ink2); font-variant-numeric:tabular-nums;}
   .chip b{color:var(--ink); font-weight:700;}
 
-  .stack{display:flex; gap:1px; height:3.4mm; border-radius:1mm; overflow:hidden;}
+  .stack{display:flex; gap:1px; height:4mm; border-radius:1.2mm; overflow:hidden;}
   .stack span{height:100%;}
-  .lg{display:flex; flex-wrap:wrap; gap:1.2mm 2.2mm; font-size:7px; color:var(--ink2); margin-top:.8mm;}
-  .lg i{display:inline-block; width:5px; height:5px; border-radius:1.5px; margin-right:.8mm;}
-  .avals{font-size:7.4px; color:var(--ink3); margin-top:.6mm; font-variant-numeric:tabular-nums;}
+  .avals{font-size:8px; color:var(--ink2); margin-top:1mm; font-variant-numeric:tabular-nums;}
+  .geo{font-size:8.6px; color:var(--ink2); font-variant-numeric:tabular-nums;}
+  .geo small{display:block; font-size:7.4px; color:var(--ink3); margin-top:.5mm;}
 
-  .krow{display:flex; justify-content:space-between; font-size:8.4px; padding:.5mm 0; border-bottom:1px solid var(--line); font-variant-numeric:tabular-nums;}
+  .krow{display:flex; justify-content:space-between; align-items:baseline; font-size:9px; padding:.7mm 0; border-bottom:1px solid var(--line); font-variant-numeric:tabular-nums;}
   .krow:last-child{border-bottom:none;}
-  .krow b{color:var(--ink2); font-weight:600; font-size:7.4px;}
-  .krow.na span{color:var(--ink3); font-weight:400; font-size:7.6px;}
+  .krow b{color:var(--ink2); font-weight:600; font-size:8px;}
+  .krow .na{color:var(--ink3); font-weight:400; font-size:8px;}
 
-  .payout{display:flex; align-items:baseline; gap:1.6mm; margin-bottom:.8mm;}
-  .payout .v{font-size:12px; font-weight:800;}
-  .payout .l{font-size:7px; color:var(--ink3);}
-  .cover{font-size:7.8px; line-height:1.45; border-radius:1.6mm; padding:1.2mm 1.8mm;}
+  /* payout */
+  .pay{display:flex; align-items:baseline; justify-content:space-between; margin-bottom:1.2mm;}
+  .pay .v{font-size:14px; font-weight:800;}
+  .pay .v small{font-size:7.6px; font-weight:600;}
+  .pay .r{font-size:8px; color:var(--ink2);}
+  .pay .r b{font-size:11px; color:var(--ink); font-weight:800;}
+  .cover{font-size:8.2px; line-height:1.5; border-radius:2mm; padding:1.4mm 2mm;}
   .cover.good{background:#e9f6e9;}
   .cover.mid{background:#fdf3dc;}
   .cover.bad{background:#fbe9e9;}
   .cover b{font-weight:800;}
 
-  ol.hold2{list-style:none; columns:2; column-gap:2.4mm; font-size:7.4px;}
-  ol.hold2 li{display:flex; gap:1.2mm; padding:.34mm 0; break-inside:avoid; align-items:baseline;}
-  ol.hold2 .rk{color:var(--ink3); font-size:6.4px; width:2.6mm; flex:none; text-align:right; font-variant-numeric:tabular-nums;}
-  ol.hold2 .nm{flex:1; min-width:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
-  ol.hold2 .wt{color:var(--ink2); font-weight:600; font-variant-numeric:tabular-nums;}
+  .top5{font-size:8.2px; line-height:1.55; color:var(--ink2); font-variant-numeric:tabular-nums;}
+  .top5 b{color:var(--ink); font-weight:600;}
 
-  .niche{font-size:7.8px; color:var(--ink2); line-height:1.45;
-    border-left:.8mm solid var(--c); padding:.6mm 0 .6mm 1.8mm; margin-top:auto;}
-  .niche b{color:var(--ink);}
+  .fit{margin-top:auto; border-top:1px solid var(--line); padding:1.8mm 2.8mm 2.4mm; font-size:8.2px; line-height:1.5;}
+  .fit div{padding:.4mm 0;}
+  .fit .lab{display:inline-block; font-weight:800; font-size:7px; border-radius:1mm; padding:.2mm 1.4mm; margin-right:1.4mm; vertical-align:.3mm;}
+  .fit .ok .lab{background:#e9f6e9; color:#0a5c0a;}
+  .fit .watch .lab{background:#fdf3dc; color:#7a5800;}
+  .fit .watch{color:var(--ink2);}
 
-  .ft{border-top:1px solid var(--line); padding-top:1.4mm; font-size:6.6px; color:var(--ink3); line-height:1.55;}
+  .ft{border-top:1px solid var(--line); padding-top:1.6mm; font-size:6.8px; color:var(--ink3); line-height:1.6;}
 </style>
 </head>
 <body>
@@ -103,9 +104,9 @@
   <div class="hd">
     <div>
       <h1>多元資產入息基金 · 一頁對比</h1>
-      <div class="sub">東方匯理收益機遇 ／ 富蘭克林入息 ／ 宏利環球多元資產入息 GMADI ／ 施羅德靈活配置總回報 · 恒生平台 HKD 月派類別</div>
+      <div class="sub">東方匯理收益機遇 ／ 富蘭克林入息 ／ 宏利 GMADI ／ 施羅德靈活配置總回報 · 恒生平台 HKD 月派類別</div>
     </div>
-    <div class="asof">表現截至 2026-09-30 · 風險指標 12 個月（至 2026-09）<br>配置／地域 2026-08-31（施羅德 2026-09-30）· 派息 2026-10 · 債券 Duration／YTM 來自 factsheet 2026-08-31</div>
+    <div class="asof">表現截至 2026-09-30 · 波動／Sharpe 為 12 個月（至 2026-09）<br>配置／地域 2026-08-31（施羅德 2026-09-30）· 債券 Duration／YTM 來自 factsheet 2026-08-31</div>
   </div>
 
   <div class="cols">
@@ -115,64 +116,57 @@
       <div class="chead">
         <div class="house">Amundi 東方匯理</div>
         <div class="nm">東方匯理收益機遇</div>
-        <div class="meta">U45769 · 風險級別 <b>2</b> · USD Moderate Allocation<br>平台類別成立 2023-02 · 規模 HK$88.2億 · NAV 56.04</div>
+        <div class="meta">U45769 · 風險級別 <b>2</b> · 規模 HK$88.2億 · NAV 56.04<br>USD Moderate Allocation · 平台類別 2023-02 成立</div>
       </div>
-      <div class="tag">增長型收息：股票＋ELN 雙引擎，月月派息之餘捕捉環球股市升浪</div>
+      <div class="tag">增長型收息：股票＋ELN 雙引擎，派息之餘捕捉環球股市升浪</div>
+
       <div class="blk">
-        <div class="hero"><span class="v">+7.18%</span><span class="l">YTD<br>1年 +21.86%</span></div>
-      </div>
-      <div class="blk">
-        <h3>回報（%）</h3>
-        <table class="rt">
-          <tr><td class="p">YTD</td><td class="n">+7.18</td><td class="b"><span class="minibar" style="width:72%"></span></td></tr>
-          <tr><td class="p">1 年</td><td class="n">+21.86</td><td class="b"><span class="minibar" style="width:100%"></span></td></tr>
-          <tr><td class="p">3 年年化</td><td class="n" style="color:var(--ink3);font-weight:400">—</td><td class="b" style="color:var(--ink3);font-size:7.4px">類別 2023-02 成立</td></tr>
-          <tr><td class="p">5 年年化</td><td class="n" style="color:var(--ink3);font-weight:400">—</td><td class="b" style="color:var(--ink3);font-size:7.4px">美元類參考：3Y +12.65／5Y +8.28</td></tr>
-        </table>
-      </div>
-      <div class="blk">
-        <h3>風險（12M）</h3>
-        <div class="chips">
-          <span class="chip">波動 <b>7.58%</b></span><span class="chip">Sharpe <b>0.59</b>（全場最高）</span>
+        <div class="rets">
+          <div class="ret"><div class="l">YTD</div><div class="v">+7.2%</div></div>
+          <div class="ret"><div class="l">1 年</div><div class="v">+21.9%</div></div>
+          <div class="ret"><div class="l">3 年年化</div><div class="v na">—<small>類別未有</small></div></div>
+          <div class="ret"><div class="l">5 年年化</div><div class="v na">—<small>美元類 +8.3%</small></div></div>
         </div>
       </div>
+
       <div class="blk">
-        <h3>資產配置（%）</h3>
+        <div class="chips"><span class="chip">波動 <b>7.6%</b></span><span class="chip">Sharpe <b>0.59</b> 全場最高</span></div>
+      </div>
+
+      <div class="blk">
+        <h3>資產配置</h3>
         <div class="stack">
           <span style="width:48.2%;background:var(--f1)"></span><span style="width:34.8%;background:var(--f2)"></span><span style="width:4.6%;background:var(--f3)"></span><span style="width:12.4%;background:var(--f4)"></span>
         </div>
-        <div class="avals">股 48.2 · 債 34.8 · 現金 4.6 · 其他（ELN）12.4</div>
+        <div class="avals">股 48 · 債 35 · 現金 5 · 其他（ELN）12</div>
       </div>
+
       <div class="blk">
-        <h3>地域 Top 3（佔基金%）</h3>
-        <div class="avals" style="font-size:8px;color:var(--ink2)">美國 25.0 · 歐元區 7.1 · 發達亞洲 5.1<br><span style="font-size:7.2px;color:var(--ink3)">真環球分散，美國僅約四分之一</span></div>
+        <h3>地域</h3>
+        <div class="geo">美國 25% · 歐元區 7% · 發達亞洲 5%<small>真環球分散；金融股為最大板塊</small></div>
       </div>
+
       <div class="blk">
-        <h3>債券部分（factsheet 08-2026）</h3>
-        <div class="krow"><b>有效存續期 Duration</b><span>6.26 年</span></div>
-        <div class="krow"><b>到期孳息率 YTM</b><span>7.51%</span></div>
+        <h3>債券部分（factsheet）</h3>
+        <div class="krow"><b>Duration</b><span>6.26 年</span></div>
+        <div class="krow"><b>YTM</b><span>7.51%</span></div>
       </div>
+
       <div class="blk">
-        <h3>派息（HKD · 每月）</h3>
-        <div class="payout"><span class="v">$0.3724<span style="font-size:7.5px;font-weight:600">／月</span></span><span class="l">年度化派息率 <b style="font-size:9px;color:var(--ink)">7.84%</b></span></div>
-        <div class="cover good"><b>覆蓋充足</b> — 1年總回報 +21.9% 遠高於派息率；債券 YTM 7.51% 貼近派息水平，暫無食本跡象（條款上仍可從資本派息）</div>
+        <h3>派息（HKD 每月）</h3>
+        <div class="pay"><span class="v">$0.3724</span><span class="r">派息率 <b>7.84%</b></span></div>
+        <div class="cover good"><b>覆蓋充足</b> — 近 1 年回報 +21.9% 遠高於派息率；債券息 7.51% 貼近派息水平，暫無食本跡象</div>
       </div>
+
       <div class="blk">
-        <h3>十大持倉（%）</h3>
-        <ol class="hold2">
-          <li><span class="rk">1</span><span class="nm">Bank of America</span><span class="wt">3.56</span></li>
-          <li><span class="rk">2</span><span class="nm">Shell PLC</span><span class="wt">1.95</span></li>
-          <li><span class="rk">3</span><span class="nm">Banco de Sabadell</span><span class="wt">1.61</span></li>
-          <li><span class="rk">4</span><span class="nm">Eversource Energy</span><span class="wt">1.41</span></li>
-          <li><span class="rk">5</span><span class="nm">Bristol-Myers Squibb</span><span class="wt">1.39</span></li>
-          <li><span class="rk">6</span><span class="nm">Huntington Bancshares</span><span class="wt">1.31</span></li>
-          <li><span class="rk">7</span><span class="nm">日本政府債 0.4%</span><span class="wt">1.17</span></li>
-          <li><span class="rk">8</span><span class="nm">Banorte</span><span class="wt">1.14</span></li>
-          <li><span class="rk">9</span><span class="nm">U.S. Bancorp</span><span class="wt">1.14</span></li>
-          <li><span class="rk">10</span><span class="nm">Wells Fargo</span><span class="wt">1.13</span></li>
-        </ol>
+        <h3>主要持倉 Top 5（%）</h3>
+        <div class="top5"><b>BofA</b> 3.6 · <b>Shell</b> 2.0 · <b>Sabadell</b> 1.6 · <b>Eversource</b> 1.4 · <b>Bristol-Myers</b> 1.4</div>
       </div>
-      <div class="niche"><b>定位：增長型收息</b> — 股本參與全場最高、幾乎零高收益債、2022 年壓測僅 −1.3%</div>
+
+      <div class="fit">
+        <div class="ok"><span class="lab">適合</span>想收息之餘參與股市升浪、接受股價起落的客（風險 2 級）</div>
+        <div class="watch"><span class="lab">留意</span>波動來源是股票：股市回落時，回報同派息來源會一齊受壓</div>
+      </div>
     </div>
 
     <!-- ============ Franklin ============ -->
@@ -180,64 +174,57 @@
       <div class="chead">
         <div class="house">Franklin Templeton 富蘭克林</div>
         <div class="nm">富蘭克林入息基金</div>
-        <div class="meta">U45104 · 風險級別 <b>2</b> · Morningstar 3★ · USD Moderate Allocation<br>平台類別成立 2019-01（策略源自 1948）· 規模 HK$140.8億 · NAV 8.83</div>
+        <div class="meta">U45104 · 風險級別 <b>2</b> · Morningstar 3★ · 規模 HK$140.8億<br>USD Moderate Allocation · 策略源自 1948 年</div>
       </div>
-      <div class="tag">跨越世代的收息錨：股債混合派月息，1948 年美國老牌入息策略傳承</div>
+      <div class="tag">跨越世代的收息錨：股債混合派月息，紀錄最長最完整</div>
+
       <div class="blk">
-        <div class="hero"><span class="v">+7.13%</span><span class="l">YTD<br>1年 +11.15%</span></div>
-      </div>
-      <div class="blk">
-        <h3>回報（%）</h3>
-        <table class="rt">
-          <tr><td class="p">YTD</td><td class="n">+7.13</td><td class="b"><span class="minibar" style="width:76%"></span></td></tr>
-          <tr><td class="p">1 年</td><td class="n">+11.15</td><td class="b"><span class="minibar" style="width:51%"></span></td></tr>
-          <tr><td class="p">3 年年化</td><td class="n">+9.47</td><td class="b"><span class="minibar" style="width:74%"></span></td></tr>
-          <tr><td class="p">5 年年化</td><td class="n">+5.24</td><td class="b"><span class="minibar" style="width:41%"></span></td></tr>
-        </table>
-      </div>
-      <div class="blk">
-        <h3>風險（12M）</h3>
-        <div class="chips">
-          <span class="chip">波動 <b>6.13%</b>（全場最低）</span><span class="chip">Sharpe <b>0.54</b></span>
+        <div class="rets">
+          <div class="ret"><div class="l">YTD</div><div class="v">+7.1%</div></div>
+          <div class="ret"><div class="l">1 年</div><div class="v">+11.2%</div></div>
+          <div class="ret"><div class="l">3 年年化</div><div class="v">+9.5%</div></div>
+          <div class="ret"><div class="l">5 年年化</div><div class="v">+5.2%</div></div>
         </div>
       </div>
+
       <div class="blk">
-        <h3>資產配置（%）</h3>
+        <div class="chips"><span class="chip">波動 <b>6.1%</b> 全場最低</span><span class="chip">Sharpe <b>0.54</b></span></div>
+      </div>
+
+      <div class="blk">
+        <h3>資產配置</h3>
         <div class="stack">
           <span style="width:24.1%;background:var(--f1)"></span><span style="width:52.1%;background:var(--f2)"></span><span style="width:5.8%;background:var(--f3)"></span><span style="width:18.1%;background:var(--f4)"></span>
         </div>
-        <div class="avals">股 24.1 · 債 52.1 · 現金 5.8 · 其他（換股債／優先證券）18.1</div>
+        <div class="avals">股 24 · 債 52 · 現金 6 · 其他（換股債等）18</div>
       </div>
+
       <div class="blk">
-        <h3>地域 Top 3（佔基金%）</h3>
-        <div class="avals" style="font-size:8px;color:var(--ink2)">美國 21.8 · 歐元區 0.8 · 英國 0.7<br><span style="font-size:7.2px;color:var(--ink3)">美國本位：美國以外地區各佔不足 1%</span></div>
+        <h3>地域</h3>
+        <div class="geo">美國 22% 為主，其餘地區各不足 1%<small>美國本位；重倉防守股（P&amp;G／PepsiCo 等）</small></div>
       </div>
+
       <div class="blk">
-        <h3>債券部分（factsheet 08-2026）</h3>
-        <div class="krow"><b>有效存續期 Duration</b><span>4.74 年</span></div>
-        <div class="krow"><b>到期孳息率 YTM</b><span>6.44%</span></div>
+        <h3>債券部分（factsheet）</h3>
+        <div class="krow"><b>Duration</b><span>4.74 年</span></div>
+        <div class="krow"><b>YTM</b><span>6.44%</span></div>
       </div>
+
       <div class="blk">
-        <h3>派息（HKD · 每月）</h3>
-        <div class="payout"><span class="v">$0.0610<span style="font-size:7.5px;font-weight:600">／月</span></span><span class="l">年度化派息率 <b style="font-size:9px;color:var(--ink)">8.30%</b></span></div>
-        <div class="cover mid"><b>邊際覆蓋</b> — 組合 YTM 6.44% 低於派息率 8.30%，差額靠股息＋資本利得；2022 年式弱市（−7.3%）派息將含資本成分</div>
+        <h3>派息（HKD 每月）</h3>
+        <div class="pay"><span class="v">$0.0610</span><span class="r">派息率 <b>8.30%</b></span></div>
+        <div class="cover mid"><b>邊際覆蓋</b> — 派息率高過債券息約 2%，差額靠股息及資本利得；弱市年份（如 2022 −7.3%）派息會含資本成分</div>
       </div>
+
       <div class="blk">
-        <h3>十大持倉（%）</h3>
-        <ol class="hold2">
-          <li><span class="rk">1</span><span class="nm">Procter &amp; Gamble</span><span class="wt">1.65</span></li>
-          <li><span class="rk">2</span><span class="nm">The Home Depot</span><span class="wt">1.39</span></li>
-          <li><span class="rk">3</span><span class="nm">PepsiCo</span><span class="wt">1.20</span></li>
-          <li><span class="rk">4</span><span class="nm">ExxonMobil</span><span class="wt">1.14</span></li>
-          <li><span class="rk">5</span><span class="nm">美國國債 4.5%</span><span class="wt">1.14</span></li>
-          <li><span class="rk">6</span><span class="nm">Wells Fargo 8.5%</span><span class="wt">1.13</span></li>
-          <li><span class="rk">7</span><span class="nm">Verizon</span><span class="wt">1.07</span></li>
-          <li><span class="rk">8</span><span class="nm">Citigroup 8%</span><span class="wt">0.92</span></li>
-          <li><span class="rk">9</span><span class="nm">UBS 優先股 8%</span><span class="wt">0.92</span></li>
-          <li><span class="rk">10</span><span class="nm">Southern Co</span><span class="wt">0.91</span></li>
-        </ol>
+        <h3>主要持倉 Top 5（%）</h3>
+        <div class="top5"><b>P&amp;G</b> 1.6 · <b>Home Depot</b> 1.4 · <b>PepsiCo</b> 1.2 · <b>ExxonMobil</b> 1.1 · <b>美國國債</b> 1.1</div>
       </div>
-      <div class="niche"><b>定位：核心收息錨</b> — 唯一具完整 3Y／5Y 紀錄；債券 52% 主導，息源為債息＋股息</div>
+
+      <div class="fit">
+        <div class="ok"><span class="lab">適合</span>要穩定月息、重視長期紀錄的核心收息客（風險 2 級）</div>
+        <div class="watch"><span class="lab">留意</span>息源部分來自高收益債＋較長存續期：利率急升或信貸轉差時會受壓</div>
+      </div>
     </div>
 
     <!-- ============ Manulife ============ -->
@@ -245,64 +232,57 @@
       <div class="chead">
         <div class="house">Manulife 宏利</div>
         <div class="nm">宏利環球多元資產入息 GMADI</div>
-        <div class="meta">U45660 · 風險級別 <b>3</b> · USD Flexible Allocation<br>成立 2025-04 · 規模 HK$31.8億 · NAV 10.4711</div>
+        <div class="meta">U45660 · 風險級別 <b>3</b> · 規模 HK$31.8億 · NAV 10.4711<br>USD Flexible Allocation · 2025-04 成立（僅 18 個月）</div>
       </div>
-      <div class="tag">10 厘級月派現金流：多元資產靈活走位，現金倉打底隨時轉防</div>
+      <div class="tag">10 厘級月派現金流：多元資產靈活走位，現金倉打底</div>
+
       <div class="blk">
-        <div class="hero"><span class="v">+4.46%</span><span class="l">YTD<br>1年 —（成立未足）</span></div>
-      </div>
-      <div class="blk">
-        <h3>回報（%）</h3>
-        <table class="rt">
-          <tr><td class="p">YTD</td><td class="n">+4.46</td><td class="b"><span class="minibar" style="width:45%"></span></td></tr>
-          <tr><td class="p">1 年</td><td class="n" style="color:var(--ink3);font-weight:400">—</td><td class="b" style="color:var(--ink3);font-size:7.4px">2025-04 成立，未有紀錄</td></tr>
-          <tr><td class="p">3 年年化</td><td class="n" style="color:var(--ink3);font-weight:400">—</td><td class="b" style="color:var(--ink3);font-size:7.4px">同上</td></tr>
-          <tr><td class="p">5 年年化</td><td class="n" style="color:var(--ink3);font-weight:400">—</td><td class="b" style="color:var(--ink3);font-size:7.4px">同上</td></tr>
-        </table>
-      </div>
-      <div class="blk">
-        <h3>風險（12M）</h3>
-        <div class="chips">
-          <span class="chip">波動 <b>7.18%</b></span><span class="chip">Sharpe <b>0.34</b></span>
+        <div class="rets">
+          <div class="ret"><div class="l">YTD</div><div class="v">+4.5%</div></div>
+          <div class="ret"><div class="l">1 年</div><div class="v na">—<small>成立未足</small></div></div>
+          <div class="ret"><div class="l">3 年年化</div><div class="v na">—<small>成立未足</small></div></div>
+          <div class="ret"><div class="l">5 年年化</div><div class="v na">—<small>成立未足</small></div></div>
         </div>
       </div>
+
       <div class="blk">
-        <h3>資產配置（%）</h3>
+        <div class="chips"><span class="chip">波動 <b>7.2%</b></span><span class="chip">Sharpe <b>0.34</b></span></div>
+      </div>
+
+      <div class="blk">
+        <h3>資產配置</h3>
         <div class="stack">
           <span style="width:39.7%;background:var(--f1)"></span><span style="width:38.6%;background:var(--f2)"></span><span style="width:17.1%;background:var(--f3)"></span><span style="width:4.6%;background:var(--f4)"></span>
         </div>
-        <div class="avals">股 39.7 · 債 38.6 · 現金 17.1 · 其他 4.6<br><span style="font-size:7px">債券簿以高收益債為主：HY 佔全基金 30.9%（factsheet）</span></div>
+        <div class="avals">股 40 · 債 39 · 現金 17 · 其他 5<small style="display:block;color:var(--ink3);margin-top:.4mm">債券簿以高收益債為主（HY 佔全基金 31%）</small></div>
       </div>
+
       <div class="blk">
-        <h3>地域 Top 3（佔基金%）</h3>
-        <div class="avals" style="font-size:8px;color:var(--ink2)">美國 28.7 · 歐元區 3.3 · 日本 1.8<br><span style="font-size:7.2px;color:var(--ink3)">美股集中度四者最高（factsheet：北美 75.6%）</span></div>
+        <h3>地域</h3>
+        <div class="geo">美國 29% · 歐元區 3% · 日本 2%<small>美股集中度四者最高（北美合計 76%）</small></div>
       </div>
+
       <div class="blk">
-        <h3>債券部分（factsheet 08-2026）</h3>
-        <div class="krow"><b>有效存續期 Duration</b><span class="na" style="color:var(--ink3)">未披露</span></div>
-        <div class="krow"><b>到期孳息率 YTM</b><span class="na" style="color:var(--ink3)">未披露</span></div>
+        <h3>債券部分（factsheet）</h3>
+        <div class="krow"><b>Duration</b><span class="na">未披露</span></div>
+        <div class="krow"><b>YTM</b><span class="na">未披露</span></div>
       </div>
+
       <div class="blk">
-        <h3>派息（HKD · 每月）</h3>
-        <div class="payout"><span class="v">$0.0883<span style="font-size:7.5px;font-weight:600">／月</span></span><span class="l">派息率 <b style="font-size:9px;color:var(--ink)">10%（固定機制）</b></span></div>
-        <div class="cover bad"><b>高食本風險</b> — F 類固定派 10%：派息保證、不代表唔食本金；YTD 年化約 5.8% 低於派 10%，缺口由資本補；債券簿七成為高收益債。2025-04 成立，僅 18 個月紀錄</div>
+        <h3>派息（HKD 每月）</h3>
+        <div class="pay"><span class="v">$0.0883</span><span class="r">派息率 <b>10%（固定）</b></span></div>
+        <div class="cover bad"><b>高食本風險</b> — 固定派 10%：派息保證，但唔代表唔食本金；今年回報追不上派息，缺口由本金補；債券簿七成為高收益債</div>
       </div>
+
       <div class="blk">
-        <h3>十大持倉（%）</h3>
-        <ol class="hold2">
-          <li><span class="rk">1</span><span class="nm">Microsoft</span><span class="wt">1.75</span></li>
-          <li><span class="rk">2</span><span class="nm">NVIDIA</span><span class="wt">1.36</span></li>
-          <li><span class="rk">3</span><span class="nm">Apple</span><span class="wt">1.17</span></li>
-          <li><span class="rk">4</span><span class="nm">Broadcom</span><span class="wt">0.90</span></li>
-          <li><span class="rk">5</span><span class="nm">台積電 ADR</span><span class="wt">0.85</span></li>
-          <li><span class="rk">6</span><span class="nm">Alphabet A</span><span class="wt">0.75</span></li>
-          <li><span class="rk">7</span><span class="nm">Amazon.com</span><span class="wt">0.73</span></li>
-          <li><span class="rk">8</span><span class="nm">KKR &amp; Co</span><span class="wt">0.61</span></li>
-          <li><span class="rk">9</span><span class="nm">美國國庫票據</span><span class="wt">0.61</span></li>
-          <li><span class="rk">10</span><span class="nm">Meta Platforms</span><span class="wt">0.55</span></li>
-        </ol>
+        <h3>主要持倉 Top 5（%）</h3>
+        <div class="top5"><b>Microsoft</b> 1.8 · <b>NVIDIA</b> 1.4 · <b>Apple</b> 1.2 · <b>Broadcom</b> 0.9 · <b>台積電</b> 0.9</div>
       </div>
-      <div class="niche"><b>定位：高息現金流</b> — 派息率全場最高；股票側重科技巨頭＋另類資產（KKR）</div>
+
+      <div class="fit">
+        <div class="ok"><span class="lab">適合</span>追求最高現金流、清楚派息可能包含本金的客（風險 3 級）</div>
+        <div class="watch"><span class="lab">留意</span>成立僅 18 個月、無長期紀錄；固定 10% 派息在回報不足時從本金支付</div>
+      </div>
     </div>
 
     <!-- ============ Schroder ============ -->
@@ -310,70 +290,63 @@
       <div class="chead">
         <div class="house">Schroders 施羅德</div>
         <div class="nm">施羅德靈活配置總回報</div>
-        <div class="meta">U45871 · 風險級別 <b>3</b> · USD Flexible Allocation<br>成立 2025-04 · 規模 HK$13.2億 · NAV 113.01</div>
+        <div class="meta">U45871 · 風險級別 <b>3</b> · 規模 HK$13.2億 · NAV 113.01<br>USD Flexible Allocation · 2025-04 成立（僅 18 個月）</div>
       </div>
-      <div class="tag">無懼逆市的絕對回報泊位：股債現金自由調配，目標「現金＋3%」</div>
+      <div class="tag">絕對回報泊位：股債現金自由調配，目標「現金＋3%」</div>
+
       <div class="blk">
-        <div class="hero"><span class="v">+5.03%</span><span class="l">YTD<br>1年 —（成立未足）</span></div>
-      </div>
-      <div class="blk">
-        <h3>回報（%）</h3>
-        <table class="rt">
-          <tr><td class="p">YTD</td><td class="n">+5.03</td><td class="b"><span class="minibar" style="width:51%"></span></td></tr>
-          <tr><td class="p">1 年</td><td class="n" style="color:var(--ink3);font-weight:400">—</td><td class="b" style="color:var(--ink3);font-size:7.4px">2025-04 成立，未有紀錄</td></tr>
-          <tr><td class="p">3 年年化</td><td class="n" style="color:var(--ink3);font-weight:400">—</td><td class="b" style="color:var(--ink3);font-size:7.4px">同上</td></tr>
-          <tr><td class="p">5 年年化</td><td class="n" style="color:var(--ink3);font-weight:400">—</td><td class="b" style="color:var(--ink3);font-size:7.4px">同上</td></tr>
-        </table>
-      </div>
-      <div class="blk">
-        <h3>風險（12M）</h3>
-        <div class="chips">
-          <span class="chip">波動 <b>12.09%</b>（全場最高）</span><span class="chip">Sharpe <b>0.36</b></span>
+        <div class="rets">
+          <div class="ret"><div class="l">YTD</div><div class="v">+5.0%</div></div>
+          <div class="ret"><div class="l">1 年</div><div class="v na">—<small>成立未足</small></div></div>
+          <div class="ret"><div class="l">3 年年化</div><div class="v na">—<small>成立未足</small></div></div>
+          <div class="ret"><div class="l">5 年年化</div><div class="v na">—<small>成立未足</small></div></div>
         </div>
       </div>
+
       <div class="blk">
-        <h3>資產配置（%）</h3>
+        <div class="chips"><span class="chip">波動 <b>12.1%</b> 全場最高</span><span class="chip">Sharpe <b>0.36</b></span></div>
+      </div>
+
+      <div class="blk">
+        <h3>資產配置</h3>
         <div class="stack">
           <span style="width:26.8%;background:var(--f1)"></span><span style="width:58.9%;background:var(--f2)"></span><span style="width:11.0%;background:var(--f3)"></span><span style="width:3.3%;background:var(--f4)"></span>
         </div>
-        <div class="avals">股 26.8 · 債 58.9 · 現金 11.0 · 其他 3.3<br><span style="font-size:7px">政府債 30%（美／澳／意）打底，債券全場最重</span></div>
+        <div class="avals">股 27 · 債 59 · 現金 11 · 其他 3<small style="display:block;color:var(--ink3);margin-top:.4mm">政府債 30%（美／澳／意）打底，債券全場最重</small></div>
       </div>
+
       <div class="blk">
-        <h3>地域 Top 3（佔基金%）</h3>
-        <div class="avals" style="font-size:8px;color:var(--ink2)">美國 12.8 · 發達亞洲 4.6 · 歐元區 2.6<br><span style="font-size:7.2px;color:var(--ink3)">美國僅 12.8%，四者中最分散</span></div>
+        <h3>地域</h3>
+        <div class="geo">美國 13% · 發達亞洲 5% · 歐元區 3%<small>美國佔比四者最低，最分散</small></div>
       </div>
+
       <div class="blk">
-        <h3>債券部分（factsheet 08-2026）</h3>
-        <div class="krow"><b>有效存續期 Duration</b><span class="na" style="color:var(--ink3)">未披露</span></div>
-        <div class="krow"><b>到期孳息率 YTM</b><span class="na" style="color:var(--ink3)">未披露</span></div>
+        <h3>債券部分（factsheet）</h3>
+        <div class="krow"><b>Duration</b><span class="na">未披露</span></div>
+        <div class="krow"><b>YTM</b><span class="na">未披露</span></div>
       </div>
+
       <div class="blk">
-        <h3>派息（HKD · 每月）</h3>
-        <div class="payout"><span class="v">$0.5740<span style="font-size:7.5px;font-weight:600">／月</span></span><span class="l">年度化派息率 <b style="font-size:9px;color:var(--ink)">5.00%</b></span></div>
-        <div class="cover mid"><b>大致貼線</b> — 派息率 5.0% 對比 YTD 5.0%（年化約 6.5%），暫時勉強覆蓋；KFS 明文經理人可從資本派息。2025-04 成立，僅 18 個月紀錄</div>
+        <h3>派息（HKD 每月）</h3>
+        <div class="pay"><span class="v">$0.5740</span><span class="r">派息率 <b>5.00%</b></span></div>
+        <div class="cover mid"><b>大致貼線</b> — 派息率 5.0% 與今年回報相若，暫時勉強覆蓋；基金文件訂明經理人可從資本派息</div>
       </div>
+
       <div class="blk">
-        <h3>十大持倉（%）</h3>
-        <ol class="hold2">
-          <li><span class="rk">1</span><span class="nm">Schroder Global Credit IG（自家）</span><span class="wt">21.80</span></li>
-          <li><span class="rk">2</span><span class="nm">Schroder ISF QEP Global Core（自家）</span><span class="wt">10.90</span></li>
-          <li><span class="rk">3</span><span class="nm">美國國庫票據</span><span class="wt">6.94</span></li>
-          <li><span class="rk">4</span><span class="nm">澳洲政府債 4.25%</span><span class="wt">6.92</span></li>
-          <li><span class="rk">5</span><span class="nm">iShares 歐元企業債 ETF</span><span class="wt">6.27</span></li>
-          <li><span class="rk">6</span><span class="nm">Schroder Global Innov（自家）</span><span class="wt">5.36</span></li>
-          <li><span class="rk">7</span><span class="nm">美國國債 4%</span><span class="wt">5.24</span></li>
-          <li><span class="rk">8</span><span class="nm">意大利政府債 3.6%</span><span class="wt">4.44</span></li>
-          <li><span class="rk">9</span><span class="nm">Schroder 亞洲 IG 信貸（自家）</span><span class="wt">3.23</span></li>
-          <li><span class="rk">10</span><span class="nm">iShares 美元企業債 ETF</span><span class="wt">2.93</span></li>
-        </ol>
+        <h3>主要持倉 Top 5（%）</h3>
+        <div class="top5"><b>Schroder 環球信貸（自家）</b> 21.8 · <b>Schroder QEP 環球核心</b> 10.9 · <b>美國國庫票據</b> 6.9 · <b>澳洲政府債</b> 6.9 · <b>iShares 歐元企業債</b> 6.3</div>
       </div>
-      <div class="niche"><b>定位：絕對回報／總回報</b> — 無基準約束、美國低配最分散；以自家基金＋ETF 建倉（首兩大 32.7%）</div>
+
+      <div class="fit">
+        <div class="ok"><span class="lab">適合</span>想要「進可攻退可守」泊位、唔想綁死傳統股債比例的客（風險 3 級）</div>
+        <div class="watch"><span class="lab">留意</span>成立僅 18 個月；實際波動 12.1% 高於其防守形象；美國佔比低，美股大升時或跑輸</div>
+      </div>
     </div>
 
   </div>
 
   <div class="ft">
-    口徑與披露 — ① 表現為恒生平台 HKD 月派（現金）類別資產淨值回報：YTD／1Y 累計，3Y／5Y 年化；宏利及施羅德 2025-04 成立，未有 1Y／3Y／5Y 紀錄；Amundi 平台類別 2023-02 成立，3Y／5Y 為同一組合美元類 factsheet（至 2026-08-31）參考值。② 波動率及 Sharpe 為過去 12 個月（至 2026-09）平台計算值。③ 資產配置／地域：Amundi／富蘭克林／宏利 2026-08-31，施羅德 2026-09-30。④ Duration／YTM 來自各基金 factsheet 2026-08-31（Amundi 為債券部分；Franklin 為基金層面；宏利／施羅德未披露）。⑤ 派息率＝年度化每月分派 ÷ 現價；四隻基金條款上均可由經理人酌情從資本中派息，正派息率不代表正回報，派息並無保證。⑥ 資料來源：恒生銀行 FSM 平台及基金 factsheet（2026-10-22 提取）。本資料僅供參考，並非投資意見或要約。
+    披露 — 表現為恒生平台 HKD 月派類別資產淨值回報（YTD／1Y 累計；3Y／5Y 年化）；Amundi 平台類別 2023-02 成立故未有 3Y／5Y（5Y 為同一組合美元類 factsheet 參考）；宏利及施羅德 2025-04 成立。波動／Sharpe 為截至 2026-09 的 12 個月平台數據。Duration／YTM 來自基金 factsheet 2026-08-31（Amundi 為債券部分、Franklin 為基金層面；宏利／施羅德未披露）。派息率＝年度化每月分派 ÷ 現價，派息並無保證；四隻基金均可由經理人酌情從資本中支付派息，正派息率不代表正回報，從資本派息可令每股淨值即時減少。資料來源：恒生銀行 FSM 平台及基金 factsheet（2026-10-22 提取）。本資料僅供參考，並非投資意見。
   </div>
 
 </div>
