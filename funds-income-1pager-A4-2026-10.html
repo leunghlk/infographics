@@ -20,15 +20,15 @@
   }
   .sheet{
     width:297mm; min-height:209mm; margin:6mm auto; background:var(--surface);
-    padding:8mm 9mm 6mm; box-shadow:0 2px 14px rgba(0,0,0,.10);
-    display:flex; flex-direction:column; gap:3.5mm;
+    padding:6mm 8mm 4.5mm; box-shadow:0 2px 14px rgba(0,0,0,.10);
+    display:flex; flex-direction:column; gap:2.6mm;
   }
   @media print{
     body{background:#fff;}
     .sheet{margin:0; box-shadow:none; width:auto; min-height:auto;}
-    @page{size:A4 landscape; margin:7mm 6mm;}
+    @page{size:A4 landscape; margin:6mm 5.5mm;}
   }
-  @page{size:A4 landscape; margin:7mm 6mm;}
+  @page{size:A4 landscape; margin:6mm 5.5mm;}
 
   /* header */
   .hd{display:flex; justify-content:space-between; align-items:flex-end; border-bottom:2.5px solid var(--ink); padding-bottom:2.2mm;}
@@ -36,23 +36,23 @@
   .hd .sub{font-size:9px; color:var(--ink2); margin-top:1mm;}
   .hd .asof{font-size:8px; color:var(--ink3); text-align:right; line-height:1.55;}
 
-  .cols{display:grid; grid-template-columns:repeat(4,1fr); gap:3.5mm; flex:1;}
+  .cols{display:grid; grid-template-columns:repeat(4,1fr); gap:3mm; flex:1;}
   .col{border:1px solid var(--line); border-radius:3mm; overflow:hidden; display:flex; flex-direction:column;}
-  .chead{background:color-mix(in srgb,var(--c) 8%,#fff); border-top:1.4mm solid var(--c); padding:2.4mm 2.8mm 2mm;}
+  .chead{background:color-mix(in srgb,var(--c) 8%,#fff); border-top:1.4mm solid var(--c); padding:1.9mm 2.8mm 1.6mm;}
   .chead .house{font-size:7.2px; color:var(--ink3); text-transform:uppercase; letter-spacing:.06em;}
   .chead .nm{font-size:13.5px; font-weight:800; line-height:1.2; margin-top:.4mm;}
   .chead .meta{font-size:7.8px; color:var(--ink2); margin-top:1mm; line-height:1.5;}
   .chead .meta b{color:var(--ink3); font-weight:600;}
 
-  .tag{margin:2mm 2.8mm 0; font-size:9px; font-weight:700; line-height:1.45;
-    background:color-mix(in srgb,var(--c) 10%,#fff); border-radius:2mm; padding:1.6mm 2.2mm;}
+   .tag{margin:1.4mm 2.8mm 0; font-size:9px; font-weight:700; line-height:1.45;
+    background:color-mix(in srgb,var(--c) 10%,#fff); border-radius:2mm; padding:1.2mm 2.2mm;}
 
-  .blk{padding:2mm 2.8mm 0;}
-  .blk h3{font-size:7.2px; font-weight:700; color:var(--ink3); text-transform:uppercase; letter-spacing:.07em; margin-bottom:1.1mm;}
+  .blk{padding:1.4mm 2.8mm 0;}
+  .blk h3{font-size:7.2px; font-weight:700; color:var(--ink3); text-transform:uppercase; letter-spacing:.07em; margin-bottom:.9mm;}
 
   /* returns strip: 4 cells */
   .rets{display:grid; grid-template-columns:repeat(4,1fr); gap:1.2mm; text-align:center;}
-  .ret{background:#fafafa; border:1px solid var(--line); border-radius:1.6mm; padding:1.2mm 0 1.4mm;}
+  .ret{background:#fafafa; border:1px solid var(--line); border-radius:1.6mm; padding:1mm 0 1.1mm;}
   .ret .l{font-size:6.8px; color:var(--ink3);}
   .ret .v{font-size:12px; font-weight:800; margin-top:.4mm;}
   .ret .v.na{color:var(--ink3); font-weight:600; font-size:10px;}
@@ -68,37 +68,46 @@
   .geo{font-size:8.6px; color:var(--ink2); font-variant-numeric:tabular-nums;}
   .geo small{display:block; font-size:7.4px; color:var(--ink3); margin-top:.5mm;}
 
-  .krow{display:flex; justify-content:space-between; align-items:baseline; font-size:9px; padding:.7mm 0; border-bottom:1px solid var(--line); font-variant-numeric:tabular-nums;}
+  .krow{display:flex; justify-content:space-between; align-items:baseline; font-size:9px; padding:.5mm 0; border-bottom:1px solid var(--line); font-variant-numeric:tabular-nums;}
   .krow:last-child{border-bottom:none;}
   .krow b{color:var(--ink2); font-weight:600; font-size:8px;}
   .krow .na{color:var(--ink3); font-weight:400; font-size:8px;}
 
   /* payout */
-  .pay{display:flex; align-items:baseline; justify-content:space-between; margin-bottom:1.2mm;}
+  .pay{display:flex; align-items:baseline; justify-content:space-between; margin-bottom:.9mm;}
   .pay .v{font-size:14px; font-weight:800;}
   .pay .v small{font-size:7.6px; font-weight:600;}
   .pay .r{font-size:8px; color:var(--ink2);}
   .pay .r b{font-size:11px; color:var(--ink); font-weight:800;}
-  .cover{font-size:8.2px; line-height:1.5; border-radius:2mm; padding:1.4mm 2mm;}
+  .cover{font-size:8.2px; line-height:1.42; border-radius:2mm; padding:1.1mm 2mm;}
   .cover.good{background:#e9f6e9;}
   .cover.mid{background:#fdf3dc;}
   .cover.bad{background:#fbe9e9;}
   .cover b{font-weight:800;}
 
-  .top5{font-size:8.2px; line-height:1.55; color:var(--ink2); font-variant-numeric:tabular-nums;}
+  .top5{font-size:8.2px; line-height:1.42; color:var(--ink2); font-variant-numeric:tabular-nums;}
   .top5 b{color:var(--ink); font-weight:600;}
 
-  .fit{margin-top:auto; border-top:1px solid var(--line); padding:1.8mm 2.8mm 2.4mm; font-size:8.2px; line-height:1.5;}
-  .fit div{padding:.4mm 0;}
+  .fit{margin-top:auto; border-top:1px solid var(--line); padding:1.4mm 2.8mm 1.8mm; font-size:8.2px; line-height:1.42;}
+  .fit div{padding:.25mm 0;}
   .fit .lab{display:inline-block; font-weight:800; font-size:7px; border-radius:1mm; padding:.2mm 1.4mm; margin-right:1.4mm; vertical-align:.3mm;}
   .fit .ok .lab{background:#e9f6e9; color:#0a5c0a;}
   .fit .watch .lab{background:#fdf3dc; color:#7a5800;}
   .fit .watch{color:var(--ink2);}
 
-  .ft{border-top:1px solid var(--line); padding-top:1.6mm; font-size:6.8px; color:var(--ink3); line-height:1.6;}
+  .ft{border-top:1px solid var(--line); padding-top:1.3mm; font-size:6.8px; color:var(--ink3); line-height:1.45;}
 </style>
 </head>
 <body>
+<div class="ig-nav" style="background:#1a1d23;padding:8px 16px;display:flex;gap:16px;align-items:center;font-family:system-ui,-apple-system,sans-serif;font-size:12.5px;flex-wrap:wrap">
+  <a href="https://leunghlk.github.io/infographics/" style="color:#9ec5f4;text-decoration:none;font-weight:700">📐 Infographics 入口</a>
+  <a href="https://leunghlk.github.io/infographics/funds-income-1pager-A4-2026-10.html" style="color:#ffffff;text-decoration:none">A4 客用版</a>
+  <a href="https://leunghlk.github.io/infographics/funds-income-compare-2026-10.html" style="color:#9ca3af;text-decoration:none">詳細版（全數據）</a>
+  <span style="color:#6b7280;margin-left:auto">2026-10-22</span>
+</div>
+<script>
+(function(){try{if(window.self!==window.top){var n=document.querySelector(".ig-nav");if(n)n.style.display="none";}}catch(e){}})();
+</script><style>@media print{.ig-nav{display:none!important}}</style>
 <div class="sheet">
 
   <div class="hd">
@@ -147,14 +156,14 @@
       </div>
 
       <div class="blk">
-        <h3>債券部分（factsheet）</h3>
-        <div class="krow"><b>Duration</b><span>6.26 年</span></div>
-        <div class="krow"><b>YTM</b><span>7.51%</span></div>
+        <h3>Duration · Portfolio Yield</h3>
+        <div class="krow"><b>Duration（債券部分）</b><span>6.26 年</span></div>
+        <div class="krow"><b>Portfolio Yield（全組合）</b><span style="color:var(--ink3);font-weight:400">未披露</span></div>
       </div>
 
       <div class="blk">
         <h3>派息（HKD 每月）</h3>
-        <div class="pay"><span class="v">$0.3724</span><span class="r">派息率 <b>7.84%</b></span></div>
+        <div class="pay"><span class="v">$0.3724</span><span class="r">全組合派息率 <b>7.84%</b></span></div>
         <div class="cover good"><b>覆蓋充足</b> — 近 1 年回報 +21.9% 遠高於派息率；債券息 7.51% 貼近派息水平，暫無食本跡象</div>
       </div>
 
@@ -205,14 +214,14 @@
       </div>
 
       <div class="blk">
-        <h3>債券部分（factsheet）</h3>
-        <div class="krow"><b>Duration</b><span>4.74 年</span></div>
-        <div class="krow"><b>YTM</b><span>6.44%</span></div>
+        <h3>Duration · Portfolio Yield</h3>
+        <div class="krow"><b>Duration（債券部分）</b><span>4.74 年</span></div>
+        <div class="krow"><b>Portfolio Yield（全組合）</b><span>6.44%</span></div>
       </div>
 
       <div class="blk">
         <h3>派息（HKD 每月）</h3>
-        <div class="pay"><span class="v">$0.0610</span><span class="r">派息率 <b>8.30%</b></span></div>
+        <div class="pay"><span class="v">$0.0610</span><span class="r">全組合派息率 <b>8.30%</b></span></div>
         <div class="cover mid"><b>邊際覆蓋</b> — 派息率高過債券息約 2%，差額靠股息及資本利得；弱市年份（如 2022 −7.3%）派息會含資本成分</div>
       </div>
 
@@ -263,14 +272,14 @@
       </div>
 
       <div class="blk">
-        <h3>債券部分（factsheet）</h3>
-        <div class="krow"><b>Duration</b><span class="na">未披露</span></div>
-        <div class="krow"><b>YTM</b><span class="na">未披露</span></div>
+        <h3>Duration · Portfolio Yield</h3>
+        <div class="krow"><b>Duration（債券部分）</b><span style="color:var(--ink3);font-weight:400">未披露</span></div>
+        <div class="krow"><b>Portfolio Yield（全組合）</b><span style="color:var(--ink3);font-weight:400">未披露</span></div>
       </div>
 
       <div class="blk">
         <h3>派息（HKD 每月）</h3>
-        <div class="pay"><span class="v">$0.0883</span><span class="r">派息率 <b>10%（固定）</b></span></div>
+        <div class="pay"><span class="v">$0.0883</span><span class="r">全組合派息率 <b>10%（固定）</b></span></div>
         <div class="cover bad"><b>高食本風險</b> — 固定派 10%：派息保證，但唔代表唔食本金；今年回報追不上派息，缺口由本金補；債券簿七成為高收益債</div>
       </div>
 
@@ -321,14 +330,14 @@
       </div>
 
       <div class="blk">
-        <h3>債券部分（factsheet）</h3>
-        <div class="krow"><b>Duration</b><span class="na">未披露</span></div>
-        <div class="krow"><b>YTM</b><span class="na">未披露</span></div>
+        <h3>Duration · Portfolio Yield</h3>
+        <div class="krow"><b>Duration（債券部分）</b><span style="color:var(--ink3);font-weight:400">未披露</span></div>
+        <div class="krow"><b>Portfolio Yield（全組合）</b><span style="color:var(--ink3);font-weight:400">未披露</span></div>
       </div>
 
       <div class="blk">
         <h3>派息（HKD 每月）</h3>
-        <div class="pay"><span class="v">$0.5740</span><span class="r">派息率 <b>5.00%</b></span></div>
+        <div class="pay"><span class="v">$0.5740</span><span class="r">全組合派息率 <b>5.00%</b></span></div>
         <div class="cover mid"><b>大致貼線</b> — 派息率 5.0% 與今年回報相若，暫時勉強覆蓋；基金文件訂明經理人可從資本派息</div>
       </div>
 
@@ -346,7 +355,7 @@
   </div>
 
   <div class="ft">
-    披露 — 表現為恒生平台 HKD 月派類別資產淨值回報（YTD／1Y 累計；3Y／5Y 年化）；Amundi 平台類別 2023-02 成立故未有 3Y／5Y（5Y 為同一組合美元類 factsheet 參考）；宏利及施羅德 2025-04 成立。波動／Sharpe 為截至 2026-09 的 12 個月平台數據。Duration／YTM 來自基金 factsheet 2026-08-31（Amundi 為債券部分、Franklin 為基金層面；宏利／施羅德未披露）。派息率＝年度化每月分派 ÷ 現價，派息並無保證；四隻基金均可由經理人酌情從資本中支付派息，正派息率不代表正回報，從資本派息可令每股淨值即時減少。資料來源：恒生銀行 FSM 平台及基金 factsheet（2026-10-22 提取）。本資料僅供參考，並非投資意見。
+    披露 — 表現為恒生平台 HKD 月派類別資產淨值回報（YTD／1Y 累計；3Y／5Y 年化）；Amundi 平台類別 2023-02 成立故未有 3Y／5Y（5Y 為同一組合美元類 factsheet 參考）；宏利及施羅德 2025-04 成立。波動／Sharpe 為截至 2026-09 的 12 個月平台數據。Duration 來自基金 factsheet 2026-08-31（Amundi／Franklin；宏利／施羅德未披露）。Portfolio Yield 為全組合口徑：僅 Franklin 披露（基金層面 YTM 6.44%），Amundi factsheet 只披露債券部分 YTM 7.51%，宏利／施羅德未披露。全組合派息率＝年度化每月分派 ÷ 現價，派息並無保證；四隻基金均可由經理人酌情從資本中支付派息，正派息率不代表正回報，從資本派息可令每股淨值即時減少。資料來源：恒生銀行 FSM 平台及基金 factsheet（2026-10-22 提取）。本資料僅供參考，並非投資意見。
   </div>
 
 </div>
