@@ -150,6 +150,19 @@
 
   .foot{margin-top:26px;border-top:1px solid var(--grid);padding-top:12px;font-size:10.8px;color:var(--text-muted);line-height:1.7;}
 
+  .bcard{background:var(--surface-1);border:1px solid var(--border);border-radius:12px;padding:13px 14px;}
+  .bcard h4{font-size:12.5px;font-weight:700;display:flex;align-items:center;gap:6px;margin-bottom:8px;}
+  .bcard h4 .sw{width:9px;height:9px;border-radius:3px;background:var(--c);}
+  .brow{display:flex;justify-content:space-between;align-items:baseline;font-size:11.8px;padding:3px 0;border-bottom:1px solid var(--grid);}
+  .brow:last-of-type{border-bottom:none;}
+  .brow b{font-weight:600;color:var(--text-secondary);font-size:10.8px;}
+  .brow span{font-variant-numeric:tabular-nums;color:var(--text-primary);font-weight:600;}
+  .verdict{margin-top:8px;font-size:11.3px;line-height:1.55;border-radius:8px;padding:7px 9px;}
+  .verdict.good{background:color-mix(in srgb,#0ca30c 10%,transparent);}
+  .verdict.mid{background:color-mix(in srgb,#fab219 13%,transparent);}
+  .verdict.bad{background:color-mix(in srgb,#d03b3b 10%,transparent);}
+  .verdict b{font-weight:700;}
+
   /* tooltip */
   #tip{position:fixed;z-index:9;pointer-events:none;background:var(--text-primary);color:var(--page);
     font-size:11.5px;padding:5px 9px;border-radius:7px;opacity:0;transition:opacity .12s;max-width:260px;line-height:1.5;}
@@ -224,6 +237,13 @@
     <div class="geogrid" id="hold"></div>
   </section>
 
+  <!-- ============ bond & income ============ -->
+  <section>
+    <h2>債券部分 · 息源與食本檢查 <span class="hint">Duration／YTM 來自各基金 factsheet（2026-08-31）· 派息為平台類別最近一次每月派息</span><span class="rule"></span></h2>
+    <div style="height:10px"></div>
+    <div class="grid4" id="bondcards"></div>
+  </section>
+
   <!-- ============ niche ============ -->
   <section>
     <h2>定位與特色 <span class="rule"></span></h2>
@@ -236,7 +256,7 @@
     ① 表現為恒生 FSM 平台 HKD 分派（現金）類別之資產淨值回報：YTD／1Y 為累計，3Y／5Y 為年度化；宏利及施羅德平台類別 2025-04 成立，1Y／3Y／5Y 未有紀錄。
     ② Amundi 平台類別 2023-02 成立，3Y／5Y 未有平台紀錄；同一組合之美元類別 factsheet（至 2026-08-31）：3Y 年化 +12.65%、5Y 年化 +8.28%，僅作參考。
     ③ 波動率、Sharpe 為過去 12 個月平台計算值；資產配置及地域：Amundi／富蘭克林／宏利 2026-08-31，施羅德 2026-09-30。
-    ④ 派息率＝過去 12 個月每單位分派 ÷ 現價，每月分派，非保證，分派有機會包含本金成分。
+    ④ 派息率＝過去 12 個月每單位分派 ÷ 現價，每月分派，非保證，分派有機會包含本金成分。⑤ Duration／YTM：Amundi 為債券部分、Franklin 為基金層面（factsheet 2026-08-31）；宏利／施羅德 factsheet／KFS 無披露；宏利 HY 30.9%、資產類型分佈為 factsheet 2026-08-31 口徑。⑥ 四隻基金條款上均可由經理人酌情從資本派息。
     ⑤ 資料來源：恒生銀行 FSM 平台基金數據（2026-10-22 提取）；本頁僅作內部參考，並非投資建議。
   </div>
 </div>
@@ -410,6 +430,37 @@ document.getElementById("hold").innerHTML = FUNDS.map(f=>`
       </li>`).join("")}
     </ul>
   </div>`).join("");
+
+/* ---------- bond & income ---------- */
+const BOND = {
+  f1:{dur:"6.26 年", durNote:"（僅債券部分）", ytm:"7.51%", ytmNote:"（僅債券部分）",
+      pay:"HK$0.3724／月 ≈ HK$4.47／年", rate:"7.84%",
+      vcls:"good", vlabel:"🟢 覆蓋充足",
+      vtext:"1Y 總回報 +21.9% 遠高於派息率 7.8%；債券 YTM 7.51% 貼近派息水平。條款上仍可從資本派息，現階段暫無食本跡象。"},
+  f2:{dur:"4.74 年", durNote:"（基金層面；加權年期 6.91 年）", ytm:"6.44%", ytmNote:"（基金層面）",
+      pay:"HK$0.0610／月 ≈ HK$0.73／年", rate:"8.30%",
+      vcls:"mid", vlabel:"🟡 邊際覆蓋",
+      vtext:"組合 YTM 6.44% 低於派息率 8.30%，差額約 1.9pp 靠股息＋資本利得補足；2022 年式弱市（−7.3%）派息將含資本成分。"},
+  f3:{dur:"未披露", durNote:"（factsheet 無披露）", ytm:"未披露", ytmNote:"（factsheet 無披露）",
+      pay:"HK$0.0883／月 ≈ HK$1.06／年", rate:"10%（固定機制）",
+      vcls:"bad", vlabel:"🔴 高食本風險",
+      vtext:"F 類為固定 10% 派息機制（派息保證、唔保證唔食本金）；YTD 年化約 5.8% < 派 10%，缺口靠資本。債券簿以高收益債為主：HY 佔全基金 30.9%（≈債券簿七成），北美佔 75.6%。factsheet 明文警告資本侵蝕。2025-04 成立。"},
+  f4:{dur:"未披露", durNote:"（KFS 無披露）", ytm:"未披露", ytmNote:"（KFS 無披露）",
+      pay:"HK$0.5740／月 ≈ HK$6.89／年", rate:"5.00%",
+      vcls:"mid", vlabel:"🟡 大致貼線",
+      vtext:"派息率 5.0% ≈ YTD 5.0%（年化約 6.5%），暫時勉強覆蓋。債券 58.9% 主導（政府債 30%：美／澳／意）＋IG 信貸基金，YTM 未有官方數。KFS 明文經理人可從資本派息。2025-04 成立。"}
+};
+document.getElementById("bondcards").innerHTML = FUNDS.map(f=>{
+  const b=BOND[f.id];
+  return `<div class="bcard" style="--c:${f.c}">
+    <h4><span class="sw"></span>${f.name}</h4>
+    <div class="brow"><b>債券部分 Duration</b><span data-tip="${b.durNote}">${b.dur}</span></div>
+    <div class="brow"><b>債券部分 YTM</b><span data-tip="${b.ytmNote}">${b.ytm}</span></div>
+    <div class="brow"><b>每月派息（HKD）</b><span>${b.pay.split("≈")[0].trim()}</span></div>
+    <div class="brow"><b>年度化派息率</b><span>${b.rate}</span></div>
+    <div class="verdict ${b.vcls}"><b>${b.vlabel}</b> — ${b.vtext}</div>
+  </div>`;
+}).join("");
 
 /* ---------- niche ---------- */
 document.getElementById("niche").innerHTML = FUNDS.map(f=>`
