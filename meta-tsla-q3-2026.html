@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>META × TESLA Q3 2026 業績·一頁對比</title>
+<style>
+  :root{
+    --ink:#1a1d23; --ink2:#4b5563; --ink3:#8a919c; --line:#e5e7eb;
+    --bg:#f6f7f9; --surface:#ffffff;
+    --good:#0ca30c; --good-bg:#e8f6e8;
+    --bad:#d03b3b;  --bad-bg:#fdeaea;
+    --mid:#b98900;  --mid-bg:#fdf4dc;
+    --meta:#2a78d6; --tsla:#eb6834;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"PingFang TC","Microsoft JhengHei","Noto Sans TC",sans-serif;
+    background:var(--bg); color:var(--ink); line-height:1.35;
+    -webkit-print-color-adjust:exact; print-color-adjust:exact;}
+  .sheet{width:297mm; margin:6mm auto; background:var(--surface); border-radius:3mm;
+    padding:6mm 8mm 4.5mm; box-shadow:0 2px 14px rgba(0,0,0,.10);
+    display:flex; flex-direction:column; gap:2.4mm;}
+  @media print{
+    .sheet{margin:0; box-shadow:none; border-radius:0; width:auto;}
+    @page{size:A4 landscape; margin:6mm 5.5mm;}
+  }
+  @page{size:A4 landscape; margin:6mm 5.5mm;}
+
+  .hd{display:flex; justify-content:space-between; align-items:flex-end; border-bottom:2.5px solid var(--ink); padding-bottom:1.8mm;}
+  .hd h1{font-size:17px; font-weight:800;}
+  .hd h1 .en{color:var(--ink3); font-weight:700;}
+  .hd .sub{font-size:8.5px; color:var(--ink2); margin-top:.8mm;}
+  .hd .asof{font-size:7.8px; color:var(--ink3); text-align:right; line-height:1.5;}
+
+  .cols{display:grid; grid-template-columns:1fr 1fr; gap:4mm; flex:1;}
+  .col{border:1px solid var(--line); border-radius:2.4mm; border-top:1.6mm solid var(--c);
+    background:color-mix(in srgb,var(--c) 3%,#fff); display:flex; flex-direction:column; gap:1.6mm; padding:2.2mm 2.6mm;}
+  .chead{display:flex; justify-content:space-between; align-items:baseline; gap:2mm;}
+  .chead .nm{font-size:13px; font-weight:800; color:var(--c);}
+  .chead .nm small{font-size:8px; color:var(--ink3); font-weight:600; margin-left:1.2mm;}
+  .chead .px{font-size:8px; color:var(--ink2); text-align:right;}
+  .chead .px b{font-size:9.5px;}
+
+  .rets{display:grid; grid-template-columns:repeat(4,1fr); gap:1.2mm; text-align:center;}
+  .ret{background:#fff; border:1px solid var(--line); border-radius:1.6mm; padding:1mm 0 1.1mm;}
+  .ret .l{font-size:6.6px; color:var(--ink3);}
+  .ret .v{font-size:11.5px; font-weight:800; margin-top:.3mm; font-variant-numeric:tabular-nums;}
+  .ret .v small{font-size:7.6px; font-weight:700;}
+  .ret .s{font-size:6.6px; margin-top:.3mm; font-weight:700;}
+  .ret .s.good{color:var(--good);} .ret .s.bad{color:var(--bad);} .ret .s.mid{color:var(--mid);}
+
+  .blk{padding:.9mm 1.6mm 0;}
+  .blk h3{font-size:7px; font-weight:700; color:var(--ink3); text-transform:uppercase; letter-spacing:.07em; margin-bottom:.7mm;}
+  .row{display:flex; justify-content:space-between; align-items:baseline; font-size:8.6px; padding:.5mm 0; border-bottom:1px dashed var(--line); gap:2mm;}
+  .row:last-child{border-bottom:none;}
+  .row b{font-weight:600; color:var(--ink2); font-size:7.8px; flex-shrink:0;}
+  .row .n{font-variant-numeric:tabular-nums; text-align:right; font-weight:700;}
+  .row .n small{font-weight:600; color:var(--ink3); font-size:7.4px;}
+  .tag{display:inline-block; font-size:6.6px; font-weight:800; border-radius:1mm; padding:.1mm 1.2mm; vertical-align:.35mm; margin-left:.8mm;}
+  .tag.good{background:var(--good-bg); color:var(--good);} .tag.bad{background:var(--bad-bg); color:var(--bad);} .tag.mid{background:var(--mid-bg); color:var(--mid);}
+
+  .bars .pair{margin:.7mm 0;}
+  .bars .pl{display:flex; justify-content:space-between; font-size:8px; font-weight:700; margin-bottom:.35mm;}
+  .bars .pl small{font-weight:600; color:var(--ink3);}
+  .bars .track{display:flex; flex-direction:column; gap:.5mm;}
+  .bars .bar{height:2.6mm; border-radius:0 1.3mm 1.3mm 0; position:relative; min-width:2mm;}
+  .bars .bar span{position:absolute; right:-1mm; top:50%; transform:translate(100%,-50%); font-size:7px; font-weight:700; color:var(--ink2); white-space:nowrap; font-variant-numeric:tabular-nums;}
+  .bars .act{background:var(--c);}
+  .bars .exp{background:#d6dae0;}
+  .bars .legend{font-size:6.8px; color:var(--ink3); margin-top:.5mm;}
+  .bars .legend i{display:inline-block; width:2.4mm; height:1.6mm; border-radius:.5mm; vertical-align:-.2mm; margin:0 .7mm 0 1.6mm;}
+  .bars .legend i.k1{background:var(--c);} .bars .legend i.k2{background:#d6dae0;}
+
+  .fit{margin-top:auto; border-top:1px solid var(--line); padding-top:1.2mm; font-size:8px; line-height:1.42;}
+  .fit div{padding:.25mm 0;}
+  .fit .lab{display:inline-block; font-weight:800; font-size:6.8px; border-radius:1mm; padding:.2mm 1.4mm; margin-right:1.2mm; vertical-align:.3mm;}
+  .fit .hi{background:var(--good-bg); color:var(--good);}
+  .fit .wa{background:var(--mid-bg); color:var(--mid);}
+
+  .quad{border:1px solid var(--line); border-radius:2.4mm; overflow:hidden;}
+  .qrow{display:grid; grid-template-columns:16mm 1fr 1fr; border-bottom:1px solid var(--line);}
+  .qrow:last-child{border-bottom:none;}
+  .qrow .qh{background:#f2f4f7; font-size:8.6px; font-weight:800; display:flex; align-items:center; justify-content:center; text-align:center; padding:1mm 0.6mm; line-height:1.3;}
+  .qcell{padding:1mm 2.2mm; font-size:8px; line-height:1.42; border-left:1px solid var(--line);}
+  .qcell b{color:var(--c); font-size:7px; letter-spacing:.04em;}
+  .qcell .g{color:var(--ink3); font-weight:600;}
+
+  .ft{border-top:1px solid var(--line); padding-top:1.1mm; font-size:6.6px; color:var(--ink3); line-height:1.45;}
+</style>
+<style>@media print{.ig-nav{display:none!important}}</style>
+</head>
+<body>
+<div class="ig-nav" style="background:#1a1d23;padding:8px 16px;display:flex;gap:16px;align-items:center;font-family:system-ui,-apple-system,sans-serif;font-size:12.5px;flex-wrap:wrap">
+  <a href="https://leunghlk.github.io/infographics/" style="color:#9ec5f4;text-decoration:none;font-weight:700">📐 Infographics 入口</a>
+  <a href="https://leunghlk.github.io/infographics/funds-income-1pager-A4-2026-10.html" style="color:#9ca3af;text-decoration:none">基金 A4 客用版</a>
+  <a href="https://leunghlk.github.io/infographics/funds-income-compare-2026-10.html" style="color:#9ca3af;text-decoration:none">基金詳細版</a>
+  <a href="https://leunghlk.github.io/infographics/spacex-q3-2026.html" style="color:#9ca3af;text-decoration:none">SpaceX Q3</a>
+  <a href="https://leunghlk.github.io/infographics/meta-tsla-q3-2026.html" style="color:#ffffff;text-decoration:none">META × TSLA Q3</a>
+  <span style="color:#6b7280;margin-left:auto">2026-10-22</span>
+</div>
+<script>(function(){try{if(window.self!==window.top){var n=document.querySelector(".ig-nav");if(n)n.style.display="none";}}catch(e){}})();</script>
+
+<div class="sheet">
+  <div class="hd">
+    <div>
+      <h1>META × TESLA <span class="en">·</span> Q3 2026 業績與指引 · 一頁對比</h1>
+      <div class="sub">Meta Platforms（META）× Tesla（TSLA）· 2026 年第三季（9 月止）· 左右並排：業績 → 指引 → 四維速讀</div>
+    </div>
+    <div class="asof">業績公布 2026-10-21（美股盤後）<br>資料＝公司財報及業績會（2026-10-22 整理）</div>
+  </div>
+
+  <div class="cols">
+    <!-- ============ META ============ -->
+    <div class="col" style="--c:var(--meta)">
+      <div class="chead">
+        <div class="nm">META 業績解讀<small>META · 廣告＋AI</small></div>
+        <div class="px">夜盤 <b style="color:var(--good)">+2.5%</b></div>
+      </div>
+      <div class="rets">
+        <div class="ret"><div class="l">Q3 營收</div><div class="v">$646億 <small>+26%</small></div><div class="s good">▲ 勝預期 634億</div></div>
+        <div class="ret"><div class="l">EPS（報表）</div><div class="v">$3.83 <small>+265%</small></div><div class="s bad">▼ 遜預期 6.8*</div></div>
+        <div class="ret"><div class="l">營益率（除訴訟）</div><div class="v">35.4%</div><div class="s mid">± 勝共識 惟低於去年40%</div></div>
+        <div class="ret"><div class="l">自由現金流</div><div class="v">−$21億</div><div class="s bad">▼ 由正轉負</div></div>
+      </div>
+
+      <div class="blk">
+        <h3>收入引擎 — 廣告連六季 20%+ 增長</h3>
+        <div class="row"><b>廣告收入</b><span class="n">$630.6億 +26% <span class="tag good">▲勝預期</span></span></div>
+        <div class="row"><b>增長動力</b><span class="n">曝光量 +10% × 廣告定價 +14% — AI 投放效率貢獻持續放大</span></div>
+        <div class="row"><b>每用戶收入 ARPP</b><span class="n">$17.72 +23% <span class="tag good">▲歷史新高</span></span></div>
+        <div class="row"><b>日活用戶 DAP</b><span class="n">36.4億 +3% <span class="tag mid">±微低於預期 36.6億</span></span></div>
+      </div>
+
+      <div class="blk">
+        <h3>利潤真相 — 98.9億訴訟費擾亂了報表</h3>
+        <div class="row"><b>一次性訴訟費</b><span class="n">$98.9億 → 拖低 EPS（$7.4 除訴訟 <span class="tag good">▲實為勝預期</span>）</span></div>
+        <div class="row"><b>營業利益（除訴訟）</b><span class="n">$228.8億 +11%，營益率 35.4%</span></div>
+        <div class="row"><b>但成本 +68%</b><span class="n">AI 基建／研發／第三方 AI Token 成本上升，核心利潤率受壓</span></div>
+        <div class="row"><b>資本開支</b><span class="n">$349.1億 +80%（伺服器＋數據中心）</span></div>
+      </div>
+
+      <div class="blk">
+        <h3>指引 — Q4 勝預期，開支再上調</h3>
+        <div class="row"><b>Q4 營收</b><span class="n">$730–760億（約 +24%）<span class="tag good">▲勝預期 737.5億</span></span></div>
+        <div class="row"><b>2026 總支出</b><span class="n">上調至 $1,750–1,790億</span></div>
+        <div class="row"><b>2026 資本開支</b><span class="n">上調至 $1,350–1,450億</span></div>
+        <div class="row"><b>2027</b><span class="n">未給指引 — 續積極投資，Q4 財報再交代 <span class="tag mid">±觀望</span></span></div>
+        <div class="row"><b>Reality Labs</b><span class="n">2027 運營虧損目標降至 ~$150億，此後趨向盈利 <span class="tag good">▲拐點</span></span></div>
+      </div>
+
+      <div class="fit">
+        <div><span class="lab hi">看點</span>Muse 個人 AI：一個半月 1,000萬人開通、25% 日用（兩倍於同類初期）；首周購物交易量超預期——要與 Stripe 臨時提高信用額度，平均單筆 &gt;$200；變現走「免費＋企業按交易收費＋高級訂閱」；目標明年運算成本效率改善 10 倍+（服務 10 億人算力建設中）</div>
+        <div><span class="lab wa">留意</span>明年新發 C 類股（約 1 拆 2 效果，投票權不變）；FCF 轉負＋開支再上調 — 重投資週期，利潤率短期難返 40%</div>
+      </div>
+    </div>
+
+    <!-- ============ TSLA ============ -->
+    <div class="col" style="--c:var(--tsla)">
+      <div class="chead">
+        <div class="nm">TESLA 解讀<small>TSLA · 車＋能源＋AI</small></div>
+        <div class="px">盤後 <b style="color:var(--good)">+2%</b> → 電話會轉跌，夜盤 <b style="color:var(--bad)">~−3%</b></div>
+      </div>
+      <div class="rets">
+        <div class="ret"><div class="l">Q3 營收</div><div class="v">$280.5億 <small>±0%</small></div><div class="s mid">± 微遜預期 281.3億</div></div>
+        <div class="ret"><div class="l">調整後 EPS</div><div class="v">$0.48 <small>−4%</small></div><div class="s good">▲ 高於預期 9%</div></div>
+        <div class="ret"><div class="l">毛利率</div><div class="v">19.6% <small>+1.6pp</small></div><div class="s good">▲ 勝預期近 2pp</div></div>
+        <div class="ret"><div class="l">自由現金流</div><div class="v">+$15.3億</div><div class="s good">▲ 預期為 −50億*</div></div>
+      </div>
+
+      <div class="blk">
+        <h3>收入拆解 — 能源係唯一明顯失準分部（單位：億美元）</h3>
+        <div class="bars">
+          <div class="pair">
+            <div class="pl"><span>汽車 <small style="color:var(--bad)">−3% 同比</small></span><small><span class="tag good">▲勝預期4%</span></small></div>
+            <div class="track">
+              <div class="bar act" style="width:88%"><span>實際 205.6</span></div>
+              <div class="bar exp" style="width:85%"><span>預期 198.3</span></div>
+            </div>
+          </div>
+          <div class="pair">
+            <div class="pl"><span>服務及其他 <small style="color:var(--good)">+33% 同比</small></span><small><span class="tag good">▲勝預期7%</span></small></div>
+            <div class="track">
+              <div class="bar act" style="width:95%"><span>實際 46.1</span></div>
+              <div class="bar exp" style="width:88%"><span>預期 43.0</span></div>
+            </div>
+          </div>
+          <div class="pair">
+            <div class="pl"><span>能源發電與儲能 <small style="color:var(--bad)">−16% 同比</small></span><small><span class="tag bad">▼遜預期26%</span></small></div>
+            <div class="track">
+              <div class="bar act" style="width:66%"><span>實際 28.8</span></div>
+              <div class="bar exp" style="width:90%"><span>預期 39.1</span></div>
+            </div>
+          </div>
+          <div class="legend">各分部橫槓按「實際／預期」相對比例顯示<i class="k1"></i>實際<i class="k2"></i>市場預期</div>
+        </div>
+      </div>
+
+      <div class="blk">
+        <h3>利潤與現金流真相</h3>
+        <div class="row"><b>毛利率修復</b><span class="n">汽車除監管積分 18.1%（Q2 16.3）— 改善唔靠積分</span></div>
+        <div class="row"><b>監管積分</b><span class="n">$1.13億 −73% — 高利潤補貼線收縮 <span class="tag mid">±結構性</span></span></div>
+        <div class="row"><b>GAAP 淨利</b><span class="n">$7.87億 −44% — 股權激勵（稅後 $9.8億）＋研發大增</span></div>
+        <div class="row"><b>FCF +15.3億真相</b><span class="n">Capex $47.3億 遠低於預期 $77.7億 —「慢住唔使」成分大</span></div>
+      </div>
+
+      <div class="blk">
+        <h3>指引／往後 — 無營收指引，焦點係 Q4 返唔返到嚟</h3>
+        <div class="row"><b>2026 Capex</b><span class="n">由 &gt;$250億 <b>下調至 $200億</b>（−20%）→ Q3「慢使」唔係純遞延，Q4 隱含 ~$70億 <span class="tag good">▲現金流壓力紓緩</span></span></div>
+        <div class="row"><b>SI 算力</b><span class="n">年底目標 400MW 訓練算力（Cortex 1+2 已投產 &gt;225MW）</span></div>
+        <div class="row"><b>長期產能</b><span class="n">2030 年前後年產 ~500萬輛（現水平 ~2.6 倍）</span></div>
+        <div class="row"><b>產能樽頸</b><span class="n">電池供應限制產量；庫存 11 日（Q2 15）、訂單積壓四年高</span></div>
+      </div>
+
+      <div class="fit">
+        <div><span class="lab hi">看點</span>FSD 訂閱 174萬（勝預期 11%、+67%），北美新車選裝 &gt;75%；Robotaxi 無監督里程 ~200萬英里（×8）；Optimus 加州產線投產首批量產質素機器人、目標 2027 年底解決生產問題；能源部署 13.7GWh +10%、訂單積壓創新高、毛利率 ~33% — CFO：數據中心需求「極其強勁」，2027 年 Megapack 產能幾乎售罄</div>
+        <div><span class="lab wa">留意</span>交付 −2%＋ASP 下行、電池供應限制產量；能源收入遜預期屬關稅相關退款，非需求轉弱；AI/Robotaxi 投入已壓住 GAAP 利潤，商業化兌現需時</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 四維速讀 ============ -->
+  <div class="quad">
+    <div class="qrow" style="border-bottom:1px solid var(--line)">
+      <div class="qh" style="font-size:7.4px;color:var(--ink3)">四維<br>速讀</div>
+      <div class="qcell" style="--c:var(--meta)"><b>META · 業績 → 指引</b></div>
+      <div class="qcell" style="--c:var(--tsla)"><b>TESLA · 業績 → 指引</b></div>
+    </div>
+    <div class="qrow">
+      <div class="qh">收入</div>
+      <div class="qcell" style="--c:var(--meta)"><b>業績</b> +26% 勝預期，廣告連續六季 +20%↑　<b>指引</b> Q4 730–760億（+24%）再勝共識</div>
+      <div class="qcell" style="--c:var(--tsla)"><b>業績</b> 零增長微遜，能源 −16% 係主要拖累　<b>指引</b> 無營收指引；長線目標 2030 年產 ~500萬輛（現水平 ~2.6 倍）</div>
+    </div>
+    <div class="qrow">
+      <div class="qh">毛利</div>
+      <div class="qcell" style="--c:var(--meta)"><b>業績</b> 營益率 20%（除訴訟 35.4% 勝共識）　<b>指引</b> 開支上調 → 核心利潤率短期受 AI 投資壓抑</div>
+      <div class="qcell" style="--c:var(--tsla)"><b>業績</b> 毛利率 19.6% 回升；汽車除積分 18.1%（Q2 16.3）— 修復真實、唔靠積分　<b>指引</b> ASP 仍下行，組合＋FSD 支撐</div>
+    </div>
+    <div class="qrow">
+      <div class="qh">現金流</div>
+      <div class="qcell" style="--c:var(--meta)"><b>業績</b> FCF −21億轉負（capex +80%）　<b>指引</b> 2026 capex 加碼至 1,350–1,450億 — 現金流續受壓</div>
+      <div class="qcell" style="--c:var(--tsla)"><b>業績</b> FCF +15.3億大勝預期，但靠 capex 慢使（47 vs 77.7億）　<b>指引</b> capex 目標下調至 $200億（−20%）→ 壓力紓緩，惟 AI 投入節奏放慢</div>
+    </div>
+    <div class="qrow">
+      <div class="qh">定價權</div>
+      <div class="qcell" style="--c:var(--meta)"><b>業績</b> 強 — 廣告價 +14% × 量 +10%、ARPP $17.72 新高　<b>往後</b> AI 投放效率續放大定價能力</div>
+      <div class="qcell" style="--c:var(--tsla)"><b>業績</b> 弱 — ASP 下行、監管積分 −73%；能源毛利率 ~33% 係唯一靚位　<b>往後</b> 軟件（FSD）先係潛在定價來源</div>
+    </div>
+  </div>
+
+  <div class="ft">披露 — 數據來自兩公司 2026 年第三季財報及業績電話會（2026-10-21 美股盤後公布；2026-10-22 整理），預期數字為市場共識（華爾街分析師平均預期）。META 電話會補充：Muse 首周交易量超預期、Reality Labs 2027 年運營虧損目標降至約 $150億。META 報表 EPS $3.83 含一次性訴訟費用 $98.9億；除訴訟約 $7.4 為公司口徑推算。TSLA「調整後 EPS」為非 GAAP 口徑（剔除股權激勵等）；自由現金流＝經營現金流 − 資本開支。電話會補充：2026 資本開支目標由逾 $250億 下調至 $200億、2030 年前後年產約 500萬輛、2027 年 Megapack 產能幾乎售罄（CFO：數據中心需求極其強勁）。TSLA 業績會後股價由漲轉跌、夜盤約 −3%，市場消化 capex 下調與長線目標。股價表現僅為公布後短線反應，並非投資建議；本資料僅供參考，並非投資意見。</div>
+</div>
+</body>
+</html>
