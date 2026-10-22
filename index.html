@@ -25,7 +25,7 @@
 <body>
 <header>
   <h1>📐 Infographics</h1>
-  <nav id="tabs"></nav>
+  <nav id="tabs"><a class="open" style="margin:0 12px 0 0" href="https://leunghlk.github.io/all-in-one/">🏠 返回主頁</a></nav>
 </header>
 <main><div class="framebox" id="framebox"><iframe id="frame" title="infographic"></iframe></div></main>
 <div class="hint" id="hint"></div>
@@ -40,7 +40,9 @@ const PAGES = [
 const tabs=document.getElementById("tabs"), box=document.getElementById("framebox"),
       frame=document.getElementById("frame"), hint=document.getElementById("hint"), links=[];
 function show(i){
+  frame.style.height="150px"; box.style.height="150px"; frame.style.transform="none"; // 切頁先歸零，防上一頁高度閃殘留
   frame.src=PAGES[i].f;
+  s.href=PAGES[i].f;
   links.forEach((x,j)=>x.classList.toggle("on",j===i));
   hint.textContent = `共 ${PAGES.length} 張 · 而家睇緊：${PAGES[i].t}（${PAGES[i].d}）· 撳上方 tab 切換`;
 }
@@ -52,7 +54,7 @@ PAGES.forEach((p,i)=>{
   tabs.appendChild(a); links.push(a);
 });
 const s=document.createElement("a");
-s.className="open"; s.target="_blank"; s.rel="noopener"; s.textContent="↗ 開獨立頁";
+s.className="open"; s.target="_blank"; s.rel="noopener"; s.href=PAGES[0].f; s.textContent="↗ 開獨立頁";
 tabs.appendChild(s);
 show(0);
 
@@ -61,9 +63,10 @@ function fit(){
   try{
     const doc=frame.contentDocument;
     if(!doc||!doc.documentElement) return;
+    frame.style.height="0px"; // 先收縮再量：唔係嘅話 scrollHeight 只會反映上一頁殘留高度，永遠縮唔返細
     const w=Math.max(doc.documentElement.scrollWidth, doc.body?doc.body.scrollWidth:0);
     const h=Math.max(doc.documentElement.scrollHeight, doc.body?doc.body.scrollHeight:0);
-    if(!w||!h) return;
+    if(!w||!h){ frame.style.height="150px"; return; }
     const avail=box.clientWidth;
     const k=Math.min(1, avail/w);
     frame.style.width=w+"px";

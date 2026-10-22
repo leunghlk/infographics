@@ -100,6 +100,7 @@
 </head>
 <body>
 <div class="ig-nav" style="background:#1a1d23;padding:8px 16px;display:flex;gap:16px;align-items:center;font-family:system-ui,-apple-system,sans-serif;font-size:12.5px;flex-wrap:wrap">
+  <a href="https://leunghlk.github.io/all-in-one/" style="color:#fbbf24;text-decoration:none;font-weight:700">🏠 返回主頁</a>
   <a href="https://leunghlk.github.io/infographics/" style="color:#9ec5f4;text-decoration:none;font-weight:700">📐 Infographics 入口</a>
   <a href="https://leunghlk.github.io/infographics/funds-income-1pager-A4-2026-10.html" style="color:#ffffff;text-decoration:none">A4 客用版</a>
   <a href="https://leunghlk.github.io/infographics/funds-income-compare-2026-10.html" style="color:#9ca3af;text-decoration:none">詳細版（全數據）</a>
@@ -359,5 +360,39 @@
   </div>
 
 </div>
+
+<!-- ⬇ JPEG 匯出 + k logo（共用件） -->
+<style>
+  .jpgbtn{position:fixed;top:72px;right:18px;z-index:60;background:#2563eb;color:#fff;border:none;
+    border-radius:10px;padding:11px 18px;font-size:14px;font-weight:700;cursor:pointer;
+    box-shadow:0 4px 14px rgba(37,99,235,.4);font-family:inherit}
+  .jpgbtn:hover{background:#1d4ed8}
+  .jpgbtn[disabled]{opacity:.6;cursor:wait}
+  .kbadge{position:fixed;bottom:16px;right:16px;z-index:60;width:36px;height:36px;background:#fff;
+    border-radius:10px;display:flex;align-items:center;justify-content:center;
+    box-shadow:0 2px 8px rgba(0,0,0,.18);text-decoration:none;
+    font:italic 300 21px/1 'Brush Script MT','Segoe Script',cursive;color:#2563eb}
+  @media print{.jpgbtn,.kbadge{display:none!important}}
+</style>
+<button class="jpgbtn" onclick="exportJPG(this)">⬇ 匯出 JPEG</button>
+<a class="kbadge" href="https://leunghlk.github.io/all-in-one/" title="leungkathy · 返回主頁">k</a>
+<script type="module">
+  import { domToJpeg } from "https://cdn.jsdelivr.net/npm/modern-screenshot@4/dist/index.mjs";
+  window.modernScreenshot = { domToJpeg };
+</script>
+<script>
+function exportJPG(btn){
+  var target=document.querySelector('.sheet')||document.querySelector('.wrap');
+  if(!target||!window.modernScreenshot){alert('匯出元件未載入，請檢查網絡後重試');return;}
+  btn.disabled=true;var t=btn.textContent;btn.textContent='⏳ 匯出中…';
+  modernScreenshot.domToJpeg(target,{scale:2,quality:0.92,backgroundColor:'#ffffff'}).then(function(url){
+    var a=document.createElement('a');
+    a.download=(document.title||'infographic').replace(/[\\\/:*?"<>|]+/g,'-').trim()+'.jpg';
+    a.href=url;
+    document.body.appendChild(a);a.click();a.remove();
+    btn.textContent=t;btn.disabled=false;
+  }).catch(function(e){alert('匯出失敗：'+e);btn.textContent=t;btn.disabled=false;});
+}
+</script>
 </body>
 </html>
