@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>下週觀察名單 · 2026-10-26 至 10-30</title>
+<style>
+  :root{
+    --ink:#1a1d23; --ink2:#4b5563; --ink3:#8a919c; --line:#e5e7eb;
+    --bg:#f6f7f9; --surface:#ffffff;
+    --a1:#2a78d6; --a2:#eb6834;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"PingFang TC","Microsoft JhengHei","Noto Sans TC",sans-serif;
+    background:var(--bg); color:var(--ink); line-height:1.35;
+    -webkit-print-color-adjust:exact; print-color-adjust:exact;}
+  .sheet{width:297mm; margin:6mm auto; background:var(--surface); border-radius:3mm;
+    padding:6mm 8mm 4.5mm; box-shadow:0 2px 14px rgba(0,0,0,.10);
+    display:flex; flex-direction:column; gap:3mm;}
+  @media print{
+    .sheet{margin:0; box-shadow:none; border-radius:0; width:auto;}
+    @page{size:A4 landscape; margin:6mm 5.5mm;}
+  }
+  @page{size:A4 landscape; margin:6mm 5.5mm;}
+
+  .hd{display:flex; justify-content:space-between; align-items:flex-end; border-bottom:2.5px solid var(--ink); padding-bottom:1.8mm;}
+  .hd h1{font-size:19px; font-weight:800;}
+  .hd h1 .en{color:var(--ink3); font-weight:700; font-size:12px;}
+  .hd .sub{font-size:8.5px; color:var(--ink2); margin-top:.8mm;}
+  .hd .asof{font-size:7.8px; color:var(--ink3); text-align:right; line-height:1.5;}
+
+  /* ── 日期軸 ── */
+  .days{display:grid; grid-template-columns:repeat(4,1fr); gap:3.2mm; flex:1;}
+  .day{border:1px solid var(--line); border-radius:2.4mm; border-top:1.8mm solid var(--c);
+    background:color-mix(in srgb,var(--c) 3%,#fff); display:flex; flex-direction:column; gap:1.8mm; padding:2.4mm 2.6mm; min-height:0;}
+  .dhead{display:flex; align-items:center; gap:2mm; padding-bottom:1.2mm; border-bottom:1px dashed var(--line);}
+  .dnum{font-size:16px; font-weight:800; color:var(--c); font-variant-numeric:tabular-nums; white-space:nowrap;}
+  .dnum small{font-size:9px; color:var(--ink3); font-weight:700;}
+  .dtheme{margin-left:auto; font-size:7.2px; font-weight:800; color:var(--c);
+    background:color-mix(in srgb,var(--c) 10%,#fff); border-radius:1mm; padding:.5mm 1.6mm; white-space:nowrap;}
+
+  .ev{background:#fff; border:1px solid var(--line); border-radius:1.8mm; padding:1.6mm 2mm; display:flex; flex-direction:column; gap:.8mm;}
+  .ev .who{font-size:9.6px; font-weight:800; display:flex; align-items:baseline; gap:1.2mm; flex-wrap:wrap;}
+  .ev .who .tk{font-size:7.2px; font-weight:700; color:var(--ink3); font-variant-numeric:tabular-nums;}
+  .ev .who .pill{font-size:6.4px; font-weight:800; color:#fff; background:var(--c); border-radius:1mm; padding:.2mm 1.2mm; white-space:nowrap;}
+  .ev .what{font-size:8.4px; color:var(--ink2); line-height:1.5;}
+  .ev .what b{color:var(--ink); font-weight:700;}
+
+  /* 10-29 三段編號 */
+  .ev .num{display:inline-flex; align-items:center; justify-content:center; width:3.6mm; height:3.6mm;
+    border-radius:50%; background:var(--c); color:#fff; font-size:7px; font-weight:800; flex-shrink:0;}
+
+  /* ── 持續追蹤 ── */
+  .track{border:1px solid var(--line); border-radius:2.4mm; background:#fbfbfc; padding:2.4mm 2.8mm; display:flex; flex-direction:column; gap:1.6mm;}
+  .track > h2{font-size:8px; font-weight:800; color:var(--ink3); text-transform:uppercase; letter-spacing:.09em;
+    display:flex; align-items:center; gap:1.6mm;}
+  .track > h2::after{content:""; flex:1; height:1px; background:var(--line);}
+  .tgrid{display:grid; grid-template-columns:repeat(3,1fr); gap:2.6mm;}
+  .tcard{background:#fff; border:1px solid var(--line); border-left:1.4mm solid var(--tc); border-radius:1.8mm; padding:1.8mm 2.2mm; display:flex; flex-direction:column; gap:.7mm;}
+  .tcard .names{font-size:9.2px; font-weight:800;}
+  .tcard .names small{font-size:7px; color:var(--ink3); font-weight:700; margin-right:.6mm;}
+  .tcard .focus{font-size:8.2px; color:var(--ink2);}
+  .tcard .focus b{color:var(--tc); font-weight:800;}
+
+  .ft{border-top:1px solid var(--line); padding-top:1.1mm; font-size:6.8px; color:var(--ink3); line-height:1.45;}
+</style>
+<style>@media print{.ig-nav{display:none!important}}</style>
+</head>
+<body>
+<div class="ig-nav" style="background:#1a1d23;padding:8px 16px;display:flex;gap:16px;align-items:center;font-family:system-ui,-apple-system,sans-serif;font-size:12.5px;flex-wrap:wrap">
+  <a href="https://leunghlk.github.io/infographics/" style="color:#9ec5f4;text-decoration:none;font-weight:700">📐 Infographics 入口</a>
+  <a href="https://leunghlk.github.io/infographics/watchlist-2026-10-26.html" style="color:#ffffff;text-decoration:none">下週觀察名單</a>
+  <a href="https://leunghlk.github.io/infographics/funds-income-1pager-A4-2026-10.html" style="color:#9ca3af;text-decoration:none">基金 A4 客用版</a>
+  <a href="https://leunghlk.github.io/infographics/funds-income-compare-2026-10.html" style="color:#9ca3af;text-decoration:none">基金詳細版</a>
+  <a href="https://leunghlk.github.io/infographics/spacex-q3-2026.html" style="color:#9ca3af;text-decoration:none">SpaceX Q3</a>
+  <a href="https://leunghlk.github.io/infographics/meta-tsla-q3-2026.html" style="color:#9ca3af;text-decoration:none">META × TSLA Q3</a>
+  <span style="color:#6b7280;margin-left:auto">2026-10-26</span>
+</div>
+<script>(function(){try{if(window.self!==window.top){var n=document.querySelector(".ig-nav");if(n)n.style.display="none";}}catch(e){}})();</script>
+
+<div class="sheet">
+  <div class="hd">
+    <div>
+      <h1>下週觀察名單 <span class="en">WEEKLY WATCHLIST</span></h1>
+      <div class="sub">2026-10-26（一）至 10-30（五）· 政策、業績、利率三線齊發：五中全會 → ASMPT → Alphabet／微軟 → 聯儲局議息＋港股業績</div>
+    </div>
+    <div class="asof">整理日期 2026-10-26<br>共 4 個重點交易日＋持續追蹤 3 組</div>
+  </div>
+
+  <div class="days">
+    <!-- 10-26 一 -->
+    <div class="day" style="--c:var(--a1)">
+      <div class="dhead">
+        <div class="dnum">10.26 <small>星期一</small></div>
+        <div class="dtheme">政策＋通訊</div>
+      </div>
+      <div class="ev" style="--c:var(--a1)">
+        <div class="who"><span class="pill">宏觀</span>五中全會召開</div>
+        <div class="what">關注 <b>AI、半導體、內需</b>政策定調</div>
+      </div>
+      <div class="ev" style="--c:var(--a1)">
+        <div class="who">中興 <span class="tk">763.HK</span></div>
+        <div class="what"><b>算力業務</b>能否抵銷<b>傳統設備疲弱</b>？</div>
+      </div>
+    </div>
+
+    <!-- 10-27 二 -->
+    <div class="day" style="--c:var(--a2)">
+      <div class="dhead">
+        <div class="dnum">10.27 <small>星期二</small></div>
+        <div class="dtheme">先進封裝</div>
+      </div>
+      <div class="ev" style="--c:var(--a2)">
+        <div class="who"><span class="pill">業績</span>ASMPT <span class="tk">522.HK</span></div>
+        <div class="what">關注 <b>HBM、先進封裝</b>與<b>混合鍵合</b>訂單</div>
+      </div>
+    </div>
+
+    <!-- 10-28 三 -->
+    <div class="day" style="--c:var(--a1)">
+      <div class="dhead">
+        <div class="dnum">10.28 <small>星期三</small></div>
+        <div class="dtheme">美國雲端巨頭</div>
+      </div>
+      <div class="ev" style="--c:var(--a1)">
+        <div class="who"><span class="pill">業績</span>Alphabet・微軟</div>
+        <div class="what">關注 <b>雲收入、AI 資本開支</b>、<br><b>折舊與現金流</b></div>
+      </div>
+    </div>
+
+    <!-- 10-29 四 -->
+    <div class="day" style="--c:var(--a2)">
+      <div class="dhead">
+        <div class="dnum">10.29 <small>星期四</small></div>
+        <div class="dtheme">利率＋港股業績</div>
+      </div>
+      <div class="ev" style="--c:var(--a2)">
+        <div class="who"><span class="num">1</span><span class="pill">宏觀</span>聯儲局議息</div>
+        <div class="what">同日美國 <b>PCE</b> 及 <b>GDP</b> 公布</div>
+      </div>
+      <div class="ev" style="--c:var(--a2)">
+        <div class="who"><span class="num">2</span><span class="pill">業績</span>比亞迪・吉利・聯通</div>
+        <div class="what">港股車企＋電訊業績</div>
+      </div>
+      <div class="ev" style="--c:var(--a2)">
+        <div class="who"><span class="num">3</span><span class="pill">AI 鏈</span>勝宏・中際旭創・灛起</div>
+        <div class="what">驗證 <b>AI 訂單</b>能見度</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="track">
+    <h2>持續追蹤 · ONGOING</h2>
+    <div class="tgrid">
+      <div class="tcard" style="--tc:var(--a1)">
+        <div class="names"><small>1</small>阿里／騰訊／美團／京東</div>
+        <div class="focus">關注 <b>資金與回購</b></div>
+      </div>
+      <div class="tcard" style="--tc:var(--a2)">
+        <div class="names"><small>2</small>寧德時代</div>
+        <div class="focus">關注 <b>毛利率</b>與回購</div>
+      </div>
+      <div class="tcard" style="--tc:var(--a1)">
+        <div class="names"><small>3</small>美團／快手／MINIMAX</div>
+        <div class="focus">關注 <b>AI 付費變現</b>進度</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ft">整理 — 內容為 2026-10-26 下週觀察名單重點（2026-10-26 至 10-30）；事項時間以公司公布及官方日程為準。本資料僅供參考，並非投資建議。</div>
+</div>
+
+<!-- ⬇ JPEG 匯出 + k logo（共用件） -->
+<style>
+  .jpgbtn{position:fixed;top:72px;right:18px;z-index:60;background:#2563eb;color:#fff;border:none;
+    border-radius:10px;padding:11px 18px;font-size:14px;font-weight:700;cursor:pointer;
+    box-shadow:0 4px 14px rgba(37,99,235,.4);font-family:inherit}
+  .jpgbtn:hover{background:#1d4ed8}
+  .jpgbtn[disabled]{opacity:.6;cursor:wait}
+  .kbadge{position:fixed;bottom:16px;right:16px;z-index:60;width:36px;height:36px;background:#fff;
+    border-radius:10px;display:flex;align-items:center;justify-content:center;
+    box-shadow:0 2px 8px rgba(0,0,0,.18);text-decoration:none;
+    font:italic 300 21px/1 'Brush Script MT','Segoe Script',cursive;color:#2563eb}
+  @media print{.jpgbtn,.kbadge{display:none!important}}
+</style>
+<button class="jpgbtn" onclick="exportJPG(this)">⬇ 匯出 JPEG</button>
+<a class="kbadge" href="https://leunghlk.github.io/all-in-one/" title="leungkathy · 返回主頁">k</a>
+<script type="module">
+  import { domToJpeg } from "https://cdn.jsdelivr.net/npm/modern-screenshot@4/dist/index.mjs";
+  window.modernScreenshot = { domToJpeg };
+</script>
+<script>
+function exportJPG(btn){
+  var target=document.querySelector('.sheet')||document.querySelector('.wrap');
+  if(!target||!window.modernScreenshot){alert('匯出元件未載入，請檢查網絡後重試');return;}
+  btn.disabled=true;var t=btn.textContent;btn.textContent='⏳ 匯出中…';
+  modernScreenshot.domToJpeg(target,{scale:2,quality:0.92,backgroundColor:'#ffffff'}).then(function(url){
+    var a=document.createElement('a');
+    a.download=(document.title||'infographic').replace(/[\\\/:*?"<>|]+/g,'-').trim()+'.jpg';
+    a.href=url;
+    document.body.appendChild(a);a.click();a.remove();
+    btn.textContent=t;btn.disabled=false;
+  }).catch(function(e){alert('匯出失敗：'+e);btn.textContent=t;btn.disabled=false;});
+}
+</script>
+</body>
+</html>
