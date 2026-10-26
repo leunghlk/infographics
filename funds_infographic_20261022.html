@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>多元資產入息基金四強對比 · 2026-10</title>
+<style>
+  .viz-root{
+    color-scheme: light;
+    --surface-1:      #fcfcfb;
+    --page:           #f9f9f7;
+    --text-primary:   #0b0b0b;
+    --text-secondary: #52514e;
+    --text-muted:     #898781;
+    --grid:           #e1e0d9;
+    --baseline:       #c3c2b7;
+    --border:         rgba(11,11,11,0.10);
+    --f1: #2a78d6;  /* Amundi  blue   */
+    --f2: #eb6834;  /* Franklin orange */
+    --f3: #1baf7a;  /* Manulife aqua  */
+    --f4: #eda100;  /* Schroder yellow */
+    --a-eq:  #2a78d6; /* 股票  */
+    --a-bd:  #eb6834; /* 債券  */
+    --a-ca:  #1baf7a; /* 現金  */
+    --a-ot:  #eda100; /* 其他  */
+  }
+  @media (prefers-color-scheme: dark){
+    :root:where(:not([data-theme="light"])) .viz-root{
+      color-scheme: dark;
+      --surface-1: #1a1a19; --page: #0d0d0d;
+      --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #898781;
+      --grid: #2c2c2a; --baseline: #383835; --border: rgba(255,255,255,0.10);
+      --f1: #3987e5; --f2: #d95926; --f3: #199e70; --f4: #c98500;
+      --a-eq: #3987e5; --a-bd: #d95926; --a-ca: #199e70; --a-ot: #c98500;
+    }
+  }
+  :root[data-theme="dark"] .viz-root{
+    color-scheme: dark;
+    --surface-1: #1a1a19; --page: #0d0d0d;
+    --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #898781;
+    --grid: #2c2c2a; --baseline: #383835; --border: rgba(255,255,255,0.10);
+    --f1: #3987e5; --f2: #d95926; --f3: #199e70; --f4: #c98500;
+    --a-eq: #3987e5; --a-bd: #d95926; --a-ca: #199e70; --a-ot: #c98500;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body.viz-root{
+    font-family: system-ui,-apple-system,"Segoe UI","PingFang TC","Microsoft JhengHei",sans-serif;
+    background:var(--page); color:var(--text-primary);
+    padding:28px 20px 40px; line-height:1.45;
+  }
+  .wrap{max-width:1280px;margin:0 auto;}
+  h1{font-size:26px;font-weight:700;letter-spacing:.01em;}
+  .sub{color:var(--text-secondary);font-size:13.5px;margin-top:6px;}
+  .asof{color:var(--text-muted);font-size:12px;margin-top:3px;}
+
+  .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+  @media(max-width:1020px){.grid4{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:560px){.grid4{grid-template-columns:1fr;}}
+
+  section{margin-top:26px;}
+  h2{font-size:15px;font-weight:700;display:flex;align-items:center;gap:8px;}
+  h2 .rule{flex:1;height:1px;background:var(--grid);}
+  .hint{color:var(--text-muted);font-size:11.5px;font-weight:400;margin-left:2px;}
+
+  /* fund header cards */
+  .fcard{background:var(--surface-1);border:1px solid var(--border);border-radius:12px;padding:14px 14px 12px;position:relative;overflow:hidden;}
+  .fcard::before{content:"";position:absolute;inset:0 auto 0 0;width:4px;background:var(--c);}
+  .fcard .house{font-size:11px;color:var(--text-muted);letter-spacing:.04em;text-transform:uppercase;}
+  .fcard .name{font-size:15.5px;font-weight:700;margin-top:2px;}
+  .fcard .en{font-size:11px;color:var(--text-secondary);margin-top:1px;}
+  .tagline{margin-top:9px;font-size:12.5px;font-weight:600;color:var(--text-primary);
+    background:color-mix(in srgb, var(--c) 9%, transparent);border-radius:8px;padding:7px 9px;line-height:1.5;}
+  .meta{margin-top:10px;display:grid;grid-template-columns:1fr 1fr;gap:5px 10px;font-size:11.5px;}
+  .meta b{font-weight:600;color:var(--text-secondary);display:block;font-size:10.5px;}
+  .meta span{font-variant-numeric:tabular-nums;}
+  .chips{margin-top:10px;display:flex;flex-wrap:wrap;gap:5px;}
+  .chip{font-size:10.5px;padding:2.5px 8px;border-radius:99px;border:1px solid var(--border);color:var(--text-secondary);}
+  .chip.hl{border-color:color-mix(in srgb, var(--c) 55%, transparent);color:var(--text-primary);font-weight:600;}
+  .yield{margin-top:10px;display:flex;align-items:baseline;gap:7px;}
+  .yield .v{font-size:24px;font-weight:700;}
+  .yield .l{font-size:11px;color:var(--text-muted);}
+
+  /* performance table */
+  table.perf{width:100%;border-collapse:collapse;background:var(--surface-1);
+    border:1px solid var(--border);border-radius:12px;overflow:hidden;font-size:13px;}
+  table.perf th,table.perf td{padding:10px 12px;text-align:left;vertical-align:middle;}
+  table.perf thead th{font-size:11.5px;color:var(--text-secondary);font-weight:600;border-bottom:1px solid var(--grid);}
+  table.perf thead th .dot{display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:6px;vertical-align:0;}
+  table.perf tbody tr+tr td{border-top:1px solid var(--grid);}
+  table.perf td.rowlab{color:var(--text-secondary);font-size:12px;width:150px;white-space:nowrap;}
+  table.perf td.rowlab small{display:block;color:var(--text-muted);font-size:10px;}
+  .cell{display:flex;align-items:center;gap:8px;}
+  .cell .num{font-variant-numeric:tabular-nums;font-weight:600;min-width:52px;text-align:right;}
+  .cell .track{flex:1;height:12px;display:flex;align-items:center;}
+  .cell .bar{height:12px;border-radius:0 4px 4px 0;background:var(--c);}
+  td.na{color:var(--text-muted);font-size:11.5px;}
+
+  /* two mini bar charts */
+  .riskgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  @media(max-width:820px){.riskgrid{grid-template-columns:1fr;}}
+  .panel{background:var(--surface-1);border:1px solid var(--border);border-radius:12px;padding:14px 16px 12px;}
+  .panel h3{font-size:13px;font-weight:600;}
+  .panel .axisnote{font-size:10.5px;color:var(--text-muted);margin-top:1px;}
+  .legend{display:flex;flex-wrap:wrap;gap:12px;font-size:11.5px;color:var(--text-secondary);margin:10px 0 4px;}
+  .legend .sw{display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:5px;}
+  .hbar{display:grid;grid-template-columns:118px 1fr 46px;align-items:center;gap:8px;margin-top:8px;}
+  .hbar .lab{font-size:12px;color:var(--text-secondary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .hbar .trk{height:14px;display:flex;align-items:center;border-left:1px solid var(--baseline);}
+  .hbar .bar{height:14px;border-radius:0 4px 4px 0;background:var(--c);}
+  .hbar .val{font-variant-numeric:tabular-nums;font-size:12.5px;font-weight:600;text-align:right;}
+
+  /* allocation stacked */
+  .allocpanel{background:var(--surface-1);border:1px solid var(--border);border-radius:12px;padding:14px 16px;}
+  .arow{margin-top:12px;}
+  .arow .top{display:flex;justify-content:space-between;align-items:baseline;font-size:12px;color:var(--text-secondary);}
+  .arow .top b{color:var(--text-primary);font-size:12.5px;font-weight:600;}
+  .stack{display:flex;gap:2px;height:18px;margin-top:5px;}
+  .seg{height:18px;}
+  .seg:first-child{border-radius:4px 0 0 4px;}
+  .seg:last-child{border-radius:0 4px 4px 0;}
+  .seg span{font-size:10px;color:#fff;display:flex;align-items:center;justify-content:center;height:100%;
+    white-space:nowrap;padding:0 3px;text-shadow:0 0 2px rgba(0,0,0,.25);}
+  .arow .vals{font-size:11px;color:var(--text-muted);margin-top:4px;font-variant-numeric:tabular-nums;}
+  .arow .vals em{font-style:normal;color:var(--text-secondary);}
+
+  /* geography + holdings columns */
+  .geogrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+  @media(max-width:1020px){.geogrid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:560px){.geogrid{grid-template-columns:1fr;}}
+  .gcard{background:var(--surface-1);border:1px solid var(--border);border-radius:12px;padding:13px 14px;}
+  .gcard h4{font-size:12.5px;font-weight:700;display:flex;align-items:center;gap:6px;margin-bottom:2px;}
+  .gcard h4 .sw{width:9px;height:9px;border-radius:3px;background:var(--c);}
+  .gcard .note{font-size:10.5px;color:var(--text-muted);margin-bottom:4px;}
+
+  ul.hold{list-style:none;margin-top:8px;}
+  ul.hold li{display:flex;align-items:baseline;gap:8px;font-size:11.5px;padding:3.5px 0;border-bottom:1px solid var(--grid);}
+  ul.hold li:last-child{border-bottom:none;}
+  ul.hold .rk{color:var(--text-muted);font-size:10px;width:14px;flex:none;font-variant-numeric:tabular-nums;}
+  ul.hold .nm{flex:1;color:var(--text-primary);min-width:0;}
+  ul.hold .wt{font-variant-numeric:tabular-nums;color:var(--text-secondary);font-weight:600;flex:none;}
+
+  /* niche */
+  .ncard{background:var(--surface-1);border:1px solid var(--border);border-radius:12px;padding:13px 14px;}
+  .ncard .niche{display:inline-block;font-size:11px;font-weight:700;color:var(--text-primary);
+    background:color-mix(in srgb, var(--c) 14%, transparent);border-radius:6px;padding:3px 9px;margin-bottom:8px;}
+  .ncard ul{list-style:none;font-size:11.8px;color:var(--text-secondary);}
+  .ncard ul li{padding:2.5px 0 2.5px 14px;position:relative;}
+  .ncard ul li::before{content:"";position:absolute;left:0;top:.72em;width:6px;height:6px;border-radius:2px;background:var(--c);}
+
+  .foot{margin-top:26px;border-top:1px solid var(--grid);padding-top:12px;font-size:10.8px;color:var(--text-muted);line-height:1.7;}
+
+  .bcard{background:var(--surface-1);border:1px solid var(--border);border-radius:12px;padding:13px 14px;}
+  .bcard h4{font-size:12.5px;font-weight:700;display:flex;align-items:center;gap:6px;margin-bottom:8px;}
+  .bcard h4 .sw{width:9px;height:9px;border-radius:3px;background:var(--c);}
+  .brow{display:flex;justify-content:space-between;align-items:baseline;font-size:11.8px;padding:3px 0;border-bottom:1px solid var(--grid);}
+  .brow:last-of-type{border-bottom:none;}
+  .brow b{font-weight:600;color:var(--text-secondary);font-size:10.8px;}
+  .brow span{font-variant-numeric:tabular-nums;color:var(--text-primary);font-weight:600;}
+  .verdict{margin-top:8px;font-size:11.3px;line-height:1.55;border-radius:8px;padding:7px 9px;}
+  .verdict.good{background:color-mix(in srgb,#0ca30c 10%,transparent);}
+  .verdict.mid{background:color-mix(in srgb,#fab219 13%,transparent);}
+  .verdict.bad{background:color-mix(in srgb,#d03b3b 10%,transparent);}
+  .verdict b{font-weight:700;}
+
+  /* tooltip */
+  #tip{position:fixed;z-index:9;pointer-events:none;background:var(--text-primary);color:var(--page);
+    font-size:11.5px;padding:5px 9px;border-radius:7px;opacity:0;transition:opacity .12s;max-width:260px;line-height:1.5;}
+  [data-tip]{cursor:default;}
+
+  @media print{
+    body.viz-root{background:#fff;padding:10mm;}
+    .fcard,.panel,.allocpanel,.gcard,.ncard{break-inside:avoid;}
+    section{break-inside:avoid;}
+  }
+</style>
+</head>
+<body class="viz-root">
+<div class="ig-nav" style="background:#1a1d23;padding:8px 16px;display:flex;gap:16px;align-items:center;font-family:system-ui,-apple-system,sans-serif;font-size:12.5px;flex-wrap:wrap">
+  <a href="https://leunghlk.github.io/infographics/" style="color:#9ec5f4;text-decoration:none;font-weight:700">📐 Infographics 入口</a>
+  <a href="https://leunghlk.github.io/infographics/funds-income-1pager-A4-2026-10.html" style="color:#9ca3af;text-decoration:none">A4 客用版</a>
+  <a href="https://leunghlk.github.io/infographics/funds-income-compare-2026-10.html" style="color:#ffffff;text-decoration:none">詳細版（全數據）</a>
+  <span style="color:#6b7280;margin-left:auto">2026-10-22</span>
+</div>
+<script>
+(function(){try{if(window.self!==window.top){var n=document.querySelector(".ig-nav");if(n)n.style.display="none";}}catch(e){}})();
+</script><style>@media print{.ig-nav{display:none!important}}</style>
+<div class="wrap">
+
+  <h1>多元資產入息基金 · 四強對比</h1>
+  <div class="sub">東方匯理收益機遇 ／ 富蘭克林入息 ／ 宏利環球多元資產入息 GMADI ／ 施羅德靈活配置總回報</div>
+  <div class="asof">表現數據截至 2026-09-30 · 風險指標為過去 12 個月（至 2026-09）· 資產配置／地域 2026-08-31（施羅德 2026-09-30）· 平台 HKD 類口徑 · 資料於 2026-10-22 自恒生 FSM 平台提取</div>
+
+  <!-- ============ fund cards ============ -->
+  <section>
+    <div class="grid4" id="fcards"></div>
+  </section>
+
+  <!-- ============ performance ============ -->
+  <section>
+    <h2>回報表現 <span class="hint">累計回報（YTD／1Y）及年度化回報（3Y／5Y）· 每行獨立縮放</span><span class="rule"></span></h2>
+    <div style="height:10px"></div>
+    <table class="perf" id="perftable"></table>
+  </section>
+
+  <!-- ============ risk ============ -->
+  <section>
+    <h2>風險與回報效率 <span class="hint">過去 12 個月 · 平台數據</span><span class="rule"></span></h2>
+    <div class="legend" id="legend-funds"></div>
+    <div class="riskgrid">
+      <div class="panel">
+        <h3>年度化波動率（12M）</h3>
+        <div class="axisnote">越低越平穩 · %</div>
+        <div id="chart-vol"></div>
+      </div>
+      <div class="panel">
+        <h3>Sharpe Ratio（12M）</h3>
+        <div class="axisnote">每單位風險的超額回報 · 越高越有效率</div>
+        <div id="chart-sharpe"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ allocation ============ -->
+  <section>
+    <h2>資產配置 <span class="hint">佔基金淨資產 %</span><span class="rule"></span></h2>
+    <div class="legend">
+      <span><span class="sw" style="background:var(--a-eq)"></span>股票</span>
+      <span><span class="sw" style="background:var(--a-bd)"></span>債券</span>
+      <span><span class="sw" style="background:var(--a-ca)"></span>現金</span>
+      <span><span class="sw" style="background:var(--a-ot)"></span>其他（ELN／可換股債等）</span>
+    </div>
+    <div class="allocpanel" id="alloc"></div>
+  </section>
+
+  <!-- ============ geography + holdings ============ -->
+  <section>
+    <h2>地域分佈 Top 5 <span class="hint">佔基金總資產 %</span><span class="rule"></span></h2>
+    <div style="height:10px"></div>
+    <div class="geogrid" id="geo"></div>
+  </section>
+
+  <section>
+    <h2>十大持倉 <span class="hint">佔基金淨資產 %</span><span class="rule"></span></h2>
+    <div style="height:10px"></div>
+    <div class="geogrid" id="hold"></div>
+  </section>
+
+  <!-- ============ bond & income ============ -->
+  <section>
+    <h2>債券部分 · 息源與食本檢查 <span class="hint">Duration／YTM 來自各基金 factsheet（2026-08-31）· 派息為平台類別最近一次每月派息</span><span class="rule"></span></h2>
+    <div style="height:10px"></div>
+    <div class="grid4" id="bondcards"></div>
+  </section>
+
+  <!-- ============ niche ============ -->
+  <section>
+    <h2>定位與特色 <span class="rule"></span></h2>
+    <div style="height:10px"></div>
+    <div class="grid4" id="niche"></div>
+  </section>
+
+  <div class="foot">
+    口徑說明 —
+    ① 表現為恒生 FSM 平台 HKD 分派（現金）類別之資產淨值回報：YTD／1Y 為累計，3Y／5Y 為年度化；宏利及施羅德平台類別 2025-04 成立，1Y／3Y／5Y 未有紀錄。
+    ② Amundi 平台類別 2023-02 成立，3Y／5Y 未有平台紀錄；同一組合之美元類別 factsheet（至 2026-08-31）：3Y 年化 +12.65%、5Y 年化 +8.28%，僅作參考。
+    ③ 波動率、Sharpe 為過去 12 個月平台計算值；資產配置及地域：Amundi／富蘭克林／宏利 2026-08-31，施羅德 2026-09-30。
+    ④ 全組合派息率＝過去 12 個月每單位分派 ÷ 現價（含股票股息及債息，分派可含資本成分），每月分派，非保證。⑤ 全組合 Portfolio Yield：僅富蘭克林於 factsheet 披露（基金層面 YTM 6.44%）；Amundi 只披露債券部分 YTM 7.51%、Duration 6.26 年（bonds only）；Franklin Duration 4.74 年為基金層面；宏利／施羅德 factsheet／KFS 無披露。宏利 HY 30.9%、資產類型分佈為 factsheet 2026-08-31 口徑。⑥ 四隻基金條款上均可由經理人酌情從資本派息。
+    ⑤ 資料來源：恒生銀行 FSM 平台基金數據（2026-10-22 提取）；本頁僅作內部參考，並非投資建議。
+  </div>
+</div>
+
+<div id="tip"></div>
+
+<script>
+const FUNDS = [
+  {
+    id:"f1", c:"var(--f1)",
+    house:"Amundi 東方匯理", name:"東方匯理收益機遇", en:"Amundi Funds – Income Opportunities",
+    code:"U45769 · A類（HKD 月派現金）", risk:2, cat:"USD Moderate Allocation",
+    launch:"2023-02-23", size:"HK$ 88.2 億", nav:"56.04",
+    msr:null,
+    tagline:"增長型收息：股票＋ELN 雙引擎，月月派息之餘捕捉環球股市升浪",
+    perf:{ytd:7.18, y1:21.86, y3:null, y5:null},
+    vol:7.58, sharpe:0.59,
+    alloc:{eq:48.2, bd:34.8, ca:4.6, ot:12.4, otNote:"其他含結構性票據（ELN）"},
+    geo:[["美國",25.0],["歐元區",7.1],["發達亞洲",5.1],["英國",3.8],["日本",2.4]],
+    geoNote:"美國僅約四分之一，金融股主導，真環球分散",
+    holds:[["Bank of America Corp",3.56],["Shell PLC",1.95],["Banco de Sabadell SA",1.61],["Eversource Energy",1.41],["Bristol-Myers Squibb",1.39],["Huntington Bancshares",1.31],["日本政府債 0.4%",1.17],["Grupo Financiero Banorte",1.14],["U.S. Bancorp",1.14],["Wells Fargo & Co",1.13]],
+    niche:"增長型收息",
+    points:["股本參與全場最高：股票 48%＋其他（ELN）12.4%","債簿高質：企業債＋按揭抵押證券為主，幾乎零高收益債","2022 年股債雙殺壓測僅 −1.3%，抗跌力強","12M Sharpe 0.59 全場最高，風險級別僅 2"]
+  },
+  {
+    id:"f2", c:"var(--f2)",
+    house:"Franklin Templeton 富蘭克林", name:"富蘭克林入息基金", en:"Franklin Income Fund",
+    code:"U45104 · A類（HKD 月派現金）", risk:2, cat:"USD Moderate Allocation",
+    launch:"2019-01-18（類別）", size:"HK$ 140.8 億", nav:"8.83",
+    msr:3,
+    tagline:"跨越世代的收息錨：源自 1948 年美國老牌入息策略，股債混合派月息",
+    perf:{ytd:7.13, y1:11.15, y3:9.47, y5:5.24},
+    vol:6.13, sharpe:0.54,
+    alloc:{eq:24.1, bd:52.1, ca:5.8, ot:18.1, otNote:"其他含可換股債／優先證券"},
+    geo:[["美國",21.8],["歐元區",0.8],["英國",0.7],["歐洲（非歐元）",0.4],["澳紐",0.3]],
+    geoNote:"美國本位：美國以外地區各佔不足 1%",
+    holds:[["Procter & Gamble",1.65],["The Home Depot",1.39],["PepsiCo",1.20],["ExxonMobil",1.14],["美國國債 4.5%",1.14],["Wells Fargo 8.5%",1.13],["Verizon",1.07],["Citigroup 8%",0.92],["UBS 優先股 8%",0.92],["Southern Co",0.91]],
+    niche:"核心收息錨",
+    points:["唯一具完整 3Y／5Y 年化紀錄：+9.47%／+5.24%","債券 52% 主導，高收益債＋較長存續期＝息源","12M 波動率 6.13% 全場最低，風險級別 2","四大 defensives 重倉：P&G／Home Depot／PepsiCo／ExxonMobil"]
+  },
+  {
+    id:"f3", c:"var(--f3)",
+    house:"Manulife 宏利", name:"宏利環球多元資產入息 GMADI", en:"Manulife GF – Global Multi-Asset Diversified Income",
+    code:"U45660 · F類（HKD 月派）", risk:3, cat:"USD Flexible Allocation",
+    launch:"2025-04-10", size:"HK$ 31.8 億", nav:"10.4711",
+    msr:null,
+    tagline:"10 厘級月派現金流：多元資產靈活走位，現金倉打底隨時轉防",
+    perf:{ytd:4.46, y1:null, y3:null, y5:null},
+    vol:7.18, sharpe:0.34,
+    alloc:{eq:39.7, bd:38.6, ca:17.1, ot:4.6, otNote:"現金 17.1% 為防守墊，機動性高"},
+    geo:[["美國",28.7],["歐元區",3.3],["日本",1.8],["發達亞洲",1.7],["英國",1.5]],
+    geoNote:"美股集中度四者最高（28.7%）",
+    holds:[["Microsoft",1.75],["NVIDIA",1.36],["Apple",1.17],["Broadcom",0.90],["台積電 ADR",0.85],["Alphabet A",0.75],["Amazon.com",0.73],["KKR & Co",0.61],["美國國庫票據",0.61],["Meta Platforms",0.55]],
+    niche:"高息現金流",
+    points:["派息率全場最高：月派 10.2%","股 40／債 39＋現金 17%：倉位靈活、防守墊厚","股票側重科技巨頭（MSFT／NVDA／AAPL／TSMC）＋另類資產 KKR","⚠️ 2025-04 成立，僅 18 個月紀錄，3Y／5Y 未能驗證"]
+  },
+  {
+    id:"f4", c:"var(--f4)",
+    house:"Schroders 施羅德", name:"施羅德靈活配置總回報", en:"Schroder Flexi Total Return",
+    code:"U45871 · R類（HKD 月派現金）", risk:3, cat:"USD Flexible Allocation",
+    launch:"2025-04-07", size:"HK$ 13.2 億", nav:"113.01",
+    msr:null,
+    tagline:"無懼逆市的絕對回報泊位：股債現金自由調配，目標『現金＋3%』",
+    perf:{ytd:5.03, y1:null, y3:null, y5:null},
+    vol:12.09, sharpe:0.36,
+    alloc:{eq:26.8, bd:58.9, ca:11.0, ot:3.3, otNote:"債券 58.9% 為全場最高，政府債佔 30%"},
+    geo:[["美國",12.8],["發達亞洲",4.6],["歐元區",2.6],["新興亞洲",2.6],["日本",1.2]],
+    geoNote:"美國僅 12.8%，四者中最分散、最不依賴美股",
+    holds:[["Schroder Global Credit IG（自家）",21.8],["Schroder ISF QEP Global Core（自家）",10.9],["美國國庫票據",6.94],["澳洲聯邦政府債 4.25%",6.92],["iShares 歐元企業債 ETF",6.27],["Schroder ISF Global Innov（自家）",5.36],["美國國債 4%",5.24],["意大利政府債 3.6%",4.44],["Schroder 亞洲 IG 信貸（自家）",3.23],["iShares 美元企業債 ETF",2.93]],
+    niche:"絕對回報／總回報",
+    points:["無基準約束，極端市況可大幅轉持現金避險","政府債 30%（美／澳／意）打底，防守債為本","以自家基金＋ETF 一籃子建倉，首兩大持倉佔 32.7%","⚠️ 12M 波動 12.1%、β 1.51 偏高：配置靈活＝雙刃劍；2025-04 成立"]
+  }
+];
+
+/* ---------- header cards ---------- */
+document.getElementById("fcards").innerHTML = FUNDS.map(f=>`
+  <div class="fcard" style="--c:${f.c}">
+    <div class="house">${f.house}</div>
+    <div class="name">${f.name}</div>
+    <div class="en">${f.en}</div>
+    <div class="tagline" data-tip="定位口號">${f.tagline}</div>
+    <div class="yield">
+      <span class="v">${f.perf.ytd.toFixed(2)}%</span>
+      <span class="l">YTD 回報<br>(至 2026-09-30)</span>
+    </div>
+    <div class="meta">
+      <div><b>風險級別</b><span>${f.risk}${f.msr?` · Morningstar ${f.msr}★`:""}</span></div>
+      <div><b>組別</b><span>${f.cat}</span></div>
+      <div><b>平台類別成立</b><span>${f.launch}</span></div>
+      <div><b>基金規模</b><span>${f.size}</span></div>
+      <div><b>基金代碼</b><span>${f.code.split(" · ")[0]}</span></div>
+      <div><b>現價 (NAV)</b><span>${f.nav}</span></div>
+    </div>
+  </div>`).join("");
+
+/* ---------- performance table ---------- */
+const perfRows = [
+  ["YTD 回報","2026 年初至今（累計）","ytd"],
+  ["1 年回報","截至 2026-09-30（累計）","y1"],
+  ["3 年回報","年度化","y3"],
+  ["5 年回報","年度化","y5"]
+];
+let perfHTML = `<thead><tr><th></th>${FUNDS.map(f=>`<th><span class="dot" style="background:${f.c}"></span>${f.name}</th>`).join("")}</tr></thead><tbody>`;
+for(const [lab,sub,key] of perfRows){
+  const max = Math.max(...FUNDS.map(f=>f.perf[key]??0));
+  perfHTML += `<tr><td class="rowlab">${lab}<small>${sub}</small></td>`;
+  for(const f of FUNDS){
+    const v = f.perf[key];
+    if(v==null){ perfHTML += `<td class="na">— 未有紀錄</td>`; }
+    else{
+      const w = Math.max(4, Math.round(v/max*100));
+      perfHTML += `<td><div class="cell"><span class="num">+${v.toFixed(2)}%</span>
+        <span class="track"><span class="bar" style="--c:${f.c};width:${w}%"></span></span></div></td>`;
+    }
+  }
+  perfHTML += `</tr>`;
+}
+document.getElementById("perftable").innerHTML = perfHTML + `</tbody>`;
+
+/* ---------- risk mini charts ---------- */
+document.getElementById("legend-funds").innerHTML =
+  FUNDS.map(f=>`<span><span class="sw" style="background:${f.c}"></span>${f.name}</span>`).join("");
+
+function hbars(el, key, axisMax, fmt){
+  document.getElementById(el).innerHTML = FUNDS.map(f=>`
+    <div class="hbar" data-tip="${f.name}：${fmt(f[key])}">
+      <span class="lab">${f.name}</span>
+      <span class="trk"><span class="bar" style="--c:${f.c};width:${(f[key]/axisMax*100).toFixed(1)}%"></span></span>
+      <span class="val">${fmt(f[key])}</span>
+    </div>`).join("");
+}
+hbars("chart-vol","vol",13, v=>v.toFixed(2)+"%");
+hbars("chart-sharpe","sharpe",0.7, v=>v.toFixed(2));
+
+/* ---------- allocation stacked ---------- */
+document.getElementById("alloc").innerHTML = FUNDS.map(f=>{
+  const a = f.alloc;
+  return `<div class="arow" data-tip="${f.name}：股 ${a.eq}%／債 ${a.bd}%／現金 ${a.ca}%／其他 ${a.ot}%">
+    <div class="top"><b>${f.name}</b><span>${a.otNote}</span></div>
+    <div class="stack">
+      <span class="seg" style="--c:var(--a-eq);background:var(--a-eq);width:${a.eq}%"><span>${a.eq.toFixed(1)}</span></span>
+      <span class="seg" style="background:var(--a-bd);width:${a.bd}%"><span>${a.bd.toFixed(1)}</span></span>
+      <span class="seg" style="background:var(--a-ca);width:${a.ca}%"><span>${a.ca.toFixed(1)}</span></span>
+      <span class="seg" style="background:var(--a-ot);width:${a.ot}%"></span>
+    </div>
+    <div class="vals">股票 <em>${a.eq.toFixed(1)}</em> · 債券 <em>${a.bd.toFixed(1)}</em> · 現金 <em>${a.ca.toFixed(1)}</em> · 其他 <em>${a.ot.toFixed(1)}</em>（佔基金 %）</div>
+  </div>`;
+}).join("");
+
+/* ---------- geography ---------- */
+document.getElementById("geo").innerHTML = FUNDS.map(f=>`
+  <div class="gcard" style="--c:${f.c}">
+    <h4><span class="sw"></span>${f.name}</h4>
+    <div class="note">${f.geoNote}</div>
+    ${f.geo.map(([n,v])=>`
+      <div class="hbar" data-tip="${f.name} · ${n}：佔基金 ${v}%">
+        <span class="lab">${n}</span>
+        <span class="trk"><span class="bar" style="--c:${f.c};width:${(v/f.geo[0][1]*100).toFixed(1)}%"></span></span>
+        <span class="val">${v.toFixed(1)}</span>
+      </div>`).join("")}
+  </div>`).join("");
+
+/* ---------- holdings ---------- */
+document.getElementById("hold").innerHTML = FUNDS.map(f=>`
+  <div class="gcard" style="--c:${f.c}">
+    <h4><span class="sw"></span>${f.name}</h4>
+    <div class="note">十大持倉（佔基金淨資產 %）</div>
+    <ul class="hold">
+      ${f.holds.map(([n,w],i)=>`<li data-tip="${n}：${w}%">
+        <span class="rk">${i+1}</span><span class="nm">${n}</span><span class="wt">${w.toFixed(2)}</span>
+      </li>`).join("")}
+    </ul>
+  </div>`).join("");
+
+/* ---------- bond & income（全組合口徑） ---------- */
+const BOND = {
+  f1:{rate:"7.84%", py:"未披露", pyNote:"factsheet 只披露債券部分孳息，全組合孳息未有官方數",
+      dur:"6.26 年", ytmRef:"債券部分 YTM 7.51%（參考）",
+      vcls:"good", vlabel:"🟢 覆蓋充足",
+      vtext:"1Y 總回報 +21.9% 遠高於派息率 7.8%，暫無食本跡象；債券部分孳息 7.51% 僅屬債券部分參考（全組合孳息未披露），條款上仍可從資本派息。"},
+  f2:{rate:"8.30%", py:"6.44%", pyNote:"factsheet 基金層面 YTM＝最接近全組合嘅官方披露",
+      dur:"4.74 年（基金層面）", ytmRef:null,
+      vcls:"mid", vlabel:"🟡 邊際覆蓋",
+      vtext:"全組合孳息 6.44% 低於派息率 8.30%，差額約 1.9pp 靠股息＋資本利得補足；2022 年式弱市（−7.3%）派息將含資本成分。"},
+  f3:{rate:"10%（固定機制）", py:"未披露", pyNote:"factsheet 無披露全組合孳息",
+      dur:"未披露", ytmRef:null,
+      vcls:"bad", vlabel:"🔴 高食本風險",
+      vtext:"F 類為固定 10% 派息機制（派息保證、唔保證唔食本金）；YTD 年化約 5.8% < 派 10%，缺口靠資本。債券簿以高收益債為主：HY 佔全基金 30.9%（≈債券簿七成），北美佔 75.6%。factsheet 明文警告資本侵蝕。2025-04 成立。"},
+  f4:{rate:"5.00%", py:"未披露", pyNote:"KFS 無披露全組合孳息",
+      dur:"未披露", ytmRef:null,
+      vcls:"mid", vlabel:"🟡 大致貼線",
+      vtext:"派息率 5.0% ≈ YTD 5.0%（年化約 6.5%），暫時勉強覆蓋。債券 58.9% 主導（政府債 30%：美／澳／意）＋IG 信貸基金，全組合孳息未有官方數。KFS 明文經理人可從資本派息。2025-04 成立。"}
+};
+document.getElementById("bondcards").innerHTML = FUNDS.map(f=>{
+  const b=BOND[f.id];
+  return `<div class="bcard" style="--c:${f.c}">
+    <h4><span class="sw"></span>${f.name}</h4>
+    <div class="brow"><b>全組合派息率（12個月）</b><span>${b.rate}</span></div>
+    <div class="brow"><b>全組合 Portfolio Yield</b><span data-tip="${b.pyNote}" ${b.py==="未披露"?'style="color:var(--text-muted);font-weight:400;font-size:11.5px"':""}>${b.py}</span></div>
+    <div class="brow"><b>Duration（債券部分）</b><span>${b.dur}</span></div>
+    ${b.ytmRef?`<div class="brow"><b>補充參考</b><span style="font-weight:400;color:var(--text-secondary);font-size:11.5px">${b.ytmRef}</span></div>`:""}
+    <div class="verdict ${b.vcls}"><b>${b.vlabel}</b> — ${b.vtext}</div>
+  </div>`;
+}).join("");
+
+/* ---------- niche ---------- */
+document.getElementById("niche").innerHTML = FUNDS.map(f=>`
+  <div class="ncard" style="--c:${f.c}">
+    <span class="niche">${f.niche}</span>
+    <ul>${f.points.map(p=>`<li>${p}</li>`).join("")}</ul>
+  </div>`).join("");
+
+/* ---------- tooltip ---------- */
+const tip = document.getElementById("tip");
+document.addEventListener("mousemove", e=>{
+  const t = e.target.closest("[data-tip]");
+  if(t){ tip.textContent = t.dataset.tip; tip.style.opacity = 1;
+    tip.style.left = Math.min(e.clientX+12, innerWidth-tip.offsetWidth-8)+"px";
+    tip.style.top  = (e.clientY+14)+"px";
+  } else { tip.style.opacity = 0; }
+});
+</script>
+</body>
+</html>

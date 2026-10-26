@@ -239,13 +239,22 @@ function exportJPG(btn){
   var target=document.querySelector('.sheet')||document.querySelector('.wrap');
   if(!target||!window.modernScreenshot){alert('匯出元件未載入，請檢查網絡後重試');return;}
   btn.disabled=true;var t=btn.textContent;btn.textContent='⏳ 匯出中…';
+  // ⭐ 匯出 JPEG 右下角必帶 k 字 logo：capture 前暫注入 target，完成後移除（唔影響頁面本身）
+  var k=document.createElement('div');
+  k.textContent='k';
+  k.style.cssText="position:absolute;right:8mm;bottom:2mm;z-index:9;font:italic 300 36px/1 'Brush Script MT','Segoe Script',cursive;color:#2563eb;pointer-events:none;";
+  var prevPos=target.style.position, prevPad=target.style.paddingBottom;
+  if(getComputedStyle(target).position==='static') target.style.position='relative';
+  target.style.paddingBottom='13mm';
+  target.appendChild(k);
+  function done(){ k.remove(); target.style.position=prevPos; target.style.paddingBottom=prevPad; }
   modernScreenshot.domToJpeg(target,{scale:2,quality:0.92,backgroundColor:'#ffffff'}).then(function(url){
     var a=document.createElement('a');
     a.download=(document.title||'infographic').replace(/[\\\/:*?"<>|]+/g,'-').trim()+'.jpg';
     a.href=url;
     document.body.appendChild(a);a.click();a.remove();
-    btn.textContent=t;btn.disabled=false;
-  }).catch(function(e){alert('匯出失敗：'+e);btn.textContent=t;btn.disabled=false;});
+    btn.textContent=t;btn.disabled=false;done();
+  }).catch(function(e){alert('匯出失敗：'+e);btn.textContent=t;btn.disabled=false;done();});
 }
 </script>
 </body>
