@@ -30,7 +30,7 @@
   .hd .asof{font-size:7.8px; color:var(--ink3); text-align:right; line-height:1.5;}
 
   /* ── 日期軸 ── */
-  .days{display:grid; grid-template-columns:repeat(4,1fr); gap:3.2mm; flex:1;}
+  .days{display:grid; grid-template-columns:repeat(5,1fr); gap:2.6mm; flex:1;}
   .day{border:1px solid var(--line); border-radius:2.4mm; border-top:1.8mm solid var(--c);
     background:color-mix(in srgb,var(--c) 3%,#fff); display:flex; flex-direction:column; gap:1.8mm; padding:2.4mm 2.6mm; min-height:0;}
   .dhead{display:flex; align-items:center; gap:2mm; padding-bottom:1.2mm; border-bottom:1px dashed var(--line);}
@@ -82,9 +82,9 @@
   <div class="hd">
     <div>
       <h1>下週觀察名單 <span class="en">WEEKLY WATCHLIST</span></h1>
-      <div class="sub">2026-10-26（一）至 10-30（五）· 政策、業績、利率三線齊發：五中全會 → ASMPT → Alphabet／微軟 → 聯儲局議息＋港股業績</div>
+      <div class="sub">2026-10-26（一）至 10-30（五）· 政策、業績、利率三線齊發：五中全會 → ASMPT・匯控 → Alphabet・微軟・SK海力士 → 聯儲局議息＋港股 → AMZN・INTC＋內銀</div>
     </div>
-    <div class="asof">整理日期 2026-10-26<br>共 4 個重點交易日＋持續追蹤 3 組</div>
+    <div class="asof">整理日期 2026-10-26<br>5 個交易日＋持續追蹤 3 組</div>
   </div>
 
   <div class="days">
@@ -108,11 +108,15 @@
     <div class="day" style="--c:var(--a2)">
       <div class="dhead">
         <div class="dnum">10.27 <small>星期二</small></div>
-        <div class="dtheme">先進封裝</div>
+        <div class="dtheme">先進封裝＋匯控</div>
       </div>
       <div class="ev" style="--c:var(--a2)">
         <div class="who"><span class="pill">業績</span>ASMPT <span class="tk">522.HK</span></div>
         <div class="what">關注 <b>HBM、先進封裝</b>與<b>混合鍵合</b>訂單</div>
+      </div>
+      <div class="ev" style="--c:var(--a2)">
+        <div class="who"><span class="pill">業績</span>匯控 <span class="tk">0005.HK</span></div>
+        <div class="what">關注 <b>淨息差</b>與淨利息收入、成本／重組進度、<b>回購派息</b>、壞帳撥備</div>
       </div>
     </div>
 
@@ -120,11 +124,15 @@
     <div class="day" style="--c:var(--a1)">
       <div class="dhead">
         <div class="dnum">10.28 <small>星期三</small></div>
-        <div class="dtheme">美國雲端巨頭</div>
+        <div class="dtheme">雲端＋記憶體</div>
       </div>
       <div class="ev" style="--c:var(--a1)">
         <div class="who"><span class="pill">業績</span>Alphabet・微軟</div>
         <div class="what">關注 <b>雲收入、AI 資本開支</b>、<br><b>折舊與現金流</b></div>
+      </div>
+      <div class="ev" style="--c:var(--a1)">
+        <div class="who"><span class="pill">業績</span>SK 海力士</div>
+        <div class="what">關注 <b>HBM 出貨</b>與 HBM4 進度、DRAM/NAND <b>價格週期</b>、AI 記憶體需求</div>
       </div>
     </div>
 
@@ -145,6 +153,23 @@
       <div class="ev" style="--c:var(--a2)">
         <div class="who"><span class="num">3</span><span class="pill">AI 鏈</span>勝宏・中際旭創・灛起</div>
         <div class="what">驗證 <b>AI 訂單</b>能見度</div>
+      </div>
+    </div>
+
+    <!-- 10-30 五 -->
+    <div class="day" style="--c:var(--a1)">
+      <div class="dhead">
+        <div class="dnum">10.30 <small>星期五</small></div>
+        <div class="dtheme">美科技＋內銀</div>
+      </div>
+      <div class="ev" style="--c:var(--a1)">
+        <div class="who"><span class="pill">業績</span>Amazon・Intel</div>
+        <div class="what">AMZN：<b>AWS 增速</b>與 AI 資本開支、零售利潤率</div>
+        <div class="what">INTC：<b>晶圓代工 18A</b> 進度、AI PC 出貨、重組進度</div>
+      </div>
+      <div class="ev" style="--c:var(--a1)">
+        <div class="who"><span class="pill">業績</span>內銀 Q3 業績</div>
+        <div class="what">關注 <b>淨息差</b>壓力、資產質素與<b>內房敞口</b>、手續費回暖、派息維持</div>
       </div>
     </div>
   </div>
