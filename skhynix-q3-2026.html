@@ -80,6 +80,10 @@
   .srow:last-child{border-bottom:none;}
   .srow .n{font-weight:700; font-variant-numeric:tabular-nums; text-align:right; white-space:nowrap;}
   .srow b{font-weight:600; color:var(--ink2); font-size:7.8px; flex-shrink:0;}
+  .srow.hl{background:var(--sk-soft); border:1px solid color-mix(in srgb,var(--sk) 40%,#fff); border-radius:1.6mm; padding:1.1mm 1.6mm; margin:0 -.6mm;}
+  .srow.hl b{color:var(--sk); font-weight:800;}
+  .srow.hl .n{font-size:10.5px; color:var(--sk);}
+  .newtag{display:inline-block; font-size:6.4px; font-weight:800; background:var(--sk); color:#fff; border-radius:1mm; padding:.2mm 1.2mm; vertical-align:.4mm; margin-left:1mm;}
 
   /* ── 指引 checklist ── */
   .gl{list-style:none; display:flex; flex-direction:column; gap:1.8mm;}
@@ -166,7 +170,7 @@
       <div class="split"><div class="a" title="分紅"></div><div class="b" title="回購註銷"></div></div>
       <div class="srow"><b>💰 現金分紅</b><span>30 萬億+</span></div>
       <div class="srow"><b>🔁 回購＋註銷</b><span>60 萬億+</span></div>
-      <div class="srow"><b>🆕 新批回購</b><span>20 萬億<br><small style="color:var(--ink3)">半數註銷 · 半數員工薪酬</small></span></div>
+      <div class="srow hl"><b>🆕 新批回購<span class="newtag">今次新公佈</span></b><span>20 萬億<br><small style="color:var(--ink2); font-weight:600">半數註銷 · 半數員工薪酬</small></span></div>
       <div class="srow"><b>Q3 每股息</b><span>₩20,000</span></div>
       <div class="npnote">其中 ₩10,000 係鎧俠投資收益特別息（連年終息分兩期派）</div>
     </div>
