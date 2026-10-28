@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SK海力士 Q3 2026 業績一頁睇</title>
+<style>
+  :root{
+    --ink:#1a1d23; --ink2:#4b5563; --ink3:#8a919c; --line:#e5e7eb;
+    --bg:#f6f7f9; --surface:#ffffff;
+    --good:#0ca30c; --good-bg:#e8f6e8;
+    --bad:#d03b3b;  --bad-bg:#fdeaea;
+    --sk:#2a78d6;   --sk-soft:#eaf2fd;
+    --exp:#d8dce2;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"PingFang TC","Microsoft JhengHei","Noto Sans TC",sans-serif;
+    background:var(--bg); color:var(--ink); line-height:1.35;
+    -webkit-print-color-adjust:exact; print-color-adjust:exact;}
+  .sheet{width:297mm; margin:6mm auto; background:var(--surface); border-radius:3mm;
+    padding:6mm 8mm 4.5mm; box-shadow:0 2px 14px rgba(0,0,0,.10);
+    display:flex; flex-direction:column; gap:2.6mm;}
+  @media print{
+    .sheet{margin:0; box-shadow:none; border-radius:0; width:auto;}
+    @page{size:A4 landscape; margin:6mm 5.5mm;}
+  }
+  @page{size:A4 landscape; margin:6mm 5.5mm;}
+
+  .hd{display:flex; justify-content:space-between; align-items:flex-end; border-bottom:2.5px solid var(--sk); padding-bottom:1.8mm;}
+  .hd h1{font-size:17px; font-weight:800;}
+  .hd h1 .en{color:var(--sk); font-weight:800;}
+  .hd .sub{font-size:8.5px; color:var(--ink2); margin-top:.8mm;}
+  .hd .asof{font-size:7.8px; color:var(--ink3); text-align:right; line-height:1.5;}
+
+  /* ── 一眼判決帶 ── */
+  .verdicts{display:grid; grid-template-columns:repeat(4,1fr); gap:2.6mm;}
+  .vd{border-radius:2.2mm; padding:2.2mm 2.8mm; border:1px solid var(--line);}
+  .vd.good{background:var(--good-bg); border-color:color-mix(in srgb,var(--good) 35%,#fff);}
+  .vd.bad{background:var(--bad-bg); border-color:color-mix(in srgb,var(--bad) 35%,#fff);}
+  .vd .t{font-size:8px; font-weight:700; color:var(--ink2); letter-spacing:.04em;}
+  .vd .v{font-size:19px; font-weight:800; margin-top:.4mm; font-variant-numeric:tabular-nums;}
+  .vd.good .v{color:var(--good);} .vd.bad .v{color:var(--bad);}
+  .vd .d{font-size:8px; color:var(--ink2); margin-top:.4mm; font-weight:600;}
+
+  .cols{display:grid; grid-template-columns:1.25fr 1fr 1fr; gap:3mm; flex:1;}
+  .col{border:1px solid var(--line); border-radius:2.4mm; padding:2.2mm 2.8mm; display:flex; flex-direction:column; gap:1.6mm;}
+  .col h3{font-size:9.5px; font-weight:800; display:flex; align-items:baseline; gap:1.6mm;}
+  .col h3 .en{font-size:7px; color:var(--ink3); font-weight:600;}
+  .col h3 .chip{font-size:7.5px; font-weight:800; border-radius:1mm; padding:.2mm 1.4mm;}
+  .chip.good{background:var(--good-bg); color:var(--good);}
+  .chip.bad{background:var(--bad-bg); color:var(--bad);}
+
+  /* ── 業績 vs 預期 bars ── */
+  .legend{display:flex; gap:4mm; font-size:7.5px; color:var(--ink2); font-weight:600; align-items:center;}
+  .legend .sw{width:9px; height:9px; border-radius:2.5px 0 0 2.5px; display:inline-block; margin-right:1mm; vertical-align:-1px;}
+  .bargrp{padding:1mm 0 .6mm; border-bottom:1px dashed var(--line);}
+  .bargrp:last-of-type{border-bottom:none;}
+  .bg-hd{display:flex; justify-content:space-between; align-items:baseline; font-size:9px; font-weight:700;}
+  .bg-hd .delta{font-size:9.5px; font-weight:800;}
+  .delta.up{color:var(--good);} .delta.dn{color:var(--bad);}
+  .barrow{display:flex; align-items:center; gap:1.6mm; margin-top:.9mm;}
+  .barrow .lb{font-size:7px; color:var(--ink3); width:26px; flex-shrink:0; font-weight:600;}
+  .track{flex:1; display:flex; align-items:center; gap:1.2mm;}
+  .bar{height:11px; border-radius:0 4px 4px 0;}
+  .bar.act{background:var(--sk);}
+  .bar.exp{background:var(--exp);}
+  .barrow .num{font-size:8.6px; font-weight:700; font-variant-numeric:tabular-nums; white-space:nowrap;}
+  .barrow .num small{color:var(--ink3); font-weight:600;}
+  .yoy{font-size:7.6px; color:var(--ink2); margin-top:.8mm; font-weight:600;}
+  .yoy b{color:var(--ink);}
+  .npnote{font-size:7.6px; color:var(--ink2); background:#f3f4f6; border-radius:1.4mm; padding:1.2mm 1.8mm; margin-top:.6mm; line-height:1.45;}
+
+  /* ── 股東回報 ── */
+  .big{font-size:26px; font-weight:800; color:var(--sk); font-variant-numeric:tabular-nums; line-height:1.1;}
+  .big small{font-size:9px; color:var(--ink2); font-weight:700;}
+  .split{display:flex; height:13px; border-radius:0 4px 4px 0; overflow:hidden; margin-top:1.4mm; gap:2px;}
+  .split .a{background:var(--sk); width:30%;}
+  .split .b{background:#9cc3f0; width:70%;}
+  .srow{display:flex; justify-content:space-between; font-size:8.4px; padding:.9mm 0; border-bottom:1px dashed var(--line); gap:2mm;}
+  .srow:last-child{border-bottom:none;}
+  .srow .n{font-weight:700; font-variant-numeric:tabular-nums; text-align:right; white-space:nowrap;}
+  .srow b{font-weight:600; color:var(--ink2); font-size:7.8px; flex-shrink:0;}
+  .srow.hl{background:var(--sk-soft); border:1px solid color-mix(in srgb,var(--sk) 40%,#fff); border-radius:1.6mm; padding:1.1mm 1.6mm; margin:0 -.6mm;}
+  .srow.hl b{color:var(--sk); font-weight:800;}
+  .srow.hl .n{font-size:10.5px; color:var(--sk);}
+  .newtag{display:inline-block; font-size:6.4px; font-weight:800; background:var(--sk); color:#fff; border-radius:1mm; padding:.2mm 1.2mm; vertical-align:.4mm; margin-left:1mm;}
+
+  /* ── 指引 checklist ── */
+  .gl{list-style:none; display:flex; flex-direction:column; gap:1.8mm;}
+  .gl li{font-size:9.2px; display:flex; gap:1.6mm; align-items:baseline; line-height:1.4;}
+  .gl .ic{font-weight:800; flex-shrink:0; font-size:9px;}
+  .gl .ok .ic{color:var(--good);} .gl .warn .ic{color:var(--mid, #b98900);}
+  .gl li.warn{background:#fdf4dc; border-radius:1.4mm; padding:.8mm 1.4mm;}
+  .gl b{font-weight:800;}
+
+  /* ── 股價帶 ── */
+  .pxbar{display:grid; grid-template-columns:auto 1fr auto 1fr auto; gap:2.6mm; align-items:center;
+    border:1px solid var(--line); border-radius:2.2mm; padding:2mm 3mm; background:#fafbfc;}
+  .px{display:flex; flex-direction:column; gap:.3mm;}
+  .px .l{font-size:7.2px; color:var(--ink3); font-weight:700;}
+  .px .p{font-size:13.5px; font-weight:800; font-variant-numeric:tabular-nums;}
+  .px .p small{font-size:8px; color:var(--ink2); font-weight:700;}
+  .px .chg{font-size:8.2px; font-weight:800;}
+  .px .chg.up{color:var(--good);}
+  .arrow{font-size:15px; color:var(--ink3);}
+  .pxbar .pending{font-size:8px; color:var(--ink2); text-align:center; line-height:1.45; font-weight:600;}
+
+  .ft{font-size:6.8px; color:var(--ink3); display:flex; justify-content:space-between;}
+
+  .jpgbtn{position:fixed; top:16px; right:16px; z-index:60; border:none; cursor:pointer;
+    background:#2563eb; color:#fff; font-size:13px; font-weight:700; padding:9px 16px; border-radius:9px;
+    box-shadow:0 2px 8px rgba(0,0,0,.18);}
+  .kbadge{position:fixed;bottom:16px;right:16px;z-index:60;width:36px;height:36px;background:#fff;
+    border-radius:10px;display:flex;align-items:center;justify-content:center;
+    box-shadow:0 2px 8px rgba(0,0,0,.18);text-decoration:none;
+    font:italic 300 21px/1 'Brush Script MT','Segoe Script',cursive;color:#2563eb}
+  @media print{.jpgbtn,.kbadge{display:none!important}}
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <div class="hd">
+    <div>
+      <h1><span class="en">SK海力士 SK hynix</span> · 2026 Q3 業績一頁睇</h1>
+      <div class="sub">全球第二大記憶體晶片商 · 10-27 美東時段公佈 · 業績／指引／盤後股價 一眼判決</div>
+    </div>
+    <div class="asof">製作 2026-10-28 08:00 HKT<br>股價：Yahoo Finance</div>
+  </div>
+
+  <div class="verdicts">
+    <div class="vd good"><div class="t">① 業績</div><div class="v">超預期 ✓</div><div class="d">營收 +7% · 營業利潤 +9%</div></div>
+    <div class="vd bad"><div class="t">② 淨利潤</div><div class="v">爆冷 −35%</div><div class="d">39.53 vs 預期 60.73 萬億₩</div></div>
+    <div class="vd good"><div class="t">③ 指引</div><div class="v">樂觀 ✓</div><div class="d">短缺至 2030 · 盈利未見頂</div></div>
+    <div class="vd good"><div class="t">④ 盤後股價（ADR）</div><div class="v">+2.7% ▲</div><div class="d">$145.41 → $149.40</div></div>
+  </div>
+
+  <div class="cols">
+
+    <div class="col">
+      <h3>業績 vs 市場預期 <span class="en">單位：萬億韓元</span><span class="chip good">營收／營業利潤 雙超</span><span class="chip bad">淨利 不及</span></h3>
+      <div class="legend"><span><span class="sw" style="background:var(--sk)"></span>實績</span><span><span class="sw" style="background:var(--exp)"></span>市場預期</span></div>
+
+      <div class="bargrp">
+        <div class="bg-hd"><span>營收</span><span class="delta up">▲ +7%</span></div>
+        <div class="barrow"><span class="lb">實績</span><div class="track"><div class="bar act" style="width:86%"></div><span class="num">104.62</span></div></div>
+        <div class="barrow"><span class="lb">預期</span><div class="track"><div class="bar exp" style="width:81%"></div><span class="num">98.34</span></div></div>
+        <div class="yoy">按年 <b>+327.9%</b> · 按季 <b>+31.9%</b></div>
+      </div>
+
+      <div class="bargrp">
+        <div class="bg-hd"><span>營業利潤</span><span class="delta up">▲ +9%</span></div>
+        <div class="barrow"><span class="lb">實績</span><div class="track"><div class="bar act" style="width:68.5%"></div><span class="num">83.33</span></div></div>
+        <div class="barrow"><span class="lb">預期</span><div class="track"><div class="bar exp" style="width:63%"></div><span class="num">76.72</span></div></div>
+        <div class="yoy">按年 <b>+632.1%</b>（≈7 倍）· 按季 <b>+37.6%</b></div>
+      </div>
+
+      <div class="bargrp">
+        <div class="bg-hd"><span>淨利潤</span><span class="delta dn">▼ −35%</span></div>
+        <div class="barrow"><span class="lb">實績</span><div class="track"><div class="bar act" style="width:32.5%"></div><span class="num">39.53</span></div></div>
+        <div class="barrow"><span class="lb">預期</span><div class="track"><div class="bar exp" style="width:50%"></div><span class="num">60.73</span></div></div>
+      </div>
+
+      <div class="npnote">淨利與營業利潤剪刀差：鎧俠投資稅務處理 · 匯率損益 · 一次性非經營項目 — 營運盈利本身依然強勁</div>
+    </div>
+
+    <div class="col">
+      <h3>股東回報 2026 財年 <span class="en">史詩級</span><span class="chip good">≈US$750 億</span></h3>
+      <div class="big">100 <small>萬億韓元</small></div>
+      <div class="split"><div class="a" title="分紅"></div><div class="b" title="回購註銷"></div></div>
+      <div class="srow"><b>💰 現金分紅</b><span>30 萬億+</span></div>
+      <div class="srow"><b>🔁 回購＋註銷</b><span>60 萬億+</span></div>
+      <div class="srow hl"><b>🆕 新批回購<span class="newtag">今次新公佈</span></b><span>20 萬億<br><small style="color:var(--ink2); font-weight:600">半數註銷 · 半數員工薪酬</small></span></div>
+      <div class="srow"><b>Q3 每股息</b><span>₩20,000</span></div>
+      <div class="npnote">其中 ₩10,000 係鎧俠投資收益特別息（連年終息分兩期派）</div>
+    </div>
+
+    <div class="col">
+      <h3>指引 checklist <span class="chip good">升勢未完</span></h3>
+      <ul class="gl">
+        <li class="ok"><span class="ic">✓</span><span>記憶體<b>供應短缺持續至 2030</b></span></li>
+        <li class="ok"><span class="ic">✓</span><span>季度盈利<b>未見頂</b>，升勢至少到 2027</span></li>
+        <li class="ok"><span class="ic">✓</span><span>2027 需求：DRAM <b>+20% 中段</b> · NAND <b>高十位數</b></span></li>
+        <li class="ok"><span class="ic">✓</span><span>14 大客戶長約，2027-28 <b>鎖定 &gt;50% 產能</b></span></li>
+        <li class="ok"><span class="ic">✓</span><span>Q3 均價：DRAM +20% · NAND +20% 中段（按季）</span></li>
+        <li class="ok"><span class="ic">✓</span><span>AI 任務更長更複雜 → 運算量急升，<b>需求高於市場原先估計</b></span></li>
+        <li class="warn"><span class="ic">⚠</span><span>代價：<b>PC／手機出貨料下滑</b></span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="pxbar">
+    <div class="px"><span class="l">首爾 000660 · 10-27 收市（公佈前）</span><span class="p">₩1,341,000 <small>+5.2%</small></span><span class="chg up">▲ 業績前已挾高</span></div>
+    <div class="arrow">→</div>
+    <div class="px"><span class="l">美股 ADR SKHY · 10-27 盤後</span><span class="p">$149.40 <small>高見 $149.70</small></span><span class="chg up">▲ +2.7%</span></div>
+    <div class="pending">公佈時首爾已收市<br><b>首爾 10-28 早市反應待現</b></div>
+  </div>
+
+  <div class="ft"><span>資料來源：公司業績公告 · 綜合市場報道 · Yahoo Finance</span><span>leungkathy · 2026-10-28</span></div>
+</div>
+
+<button class="jpgbtn" onclick="exportJPG(this)">⬇ 匯出 JPEG</button>
+<a class="kbadge" href="https://leunghlk.github.io/all-in-one/" title="leungkathy · 返回主頁">k</a>
+<script type="module">
+  import { domToJpeg } from "https://cdn.jsdelivr.net/npm/modern-screenshot@4/dist/index.mjs";
+  window.modernScreenshot = { domToJpeg };
+</script>
+<script>
+function exportJPG(btn){
+  var target=document.querySelector('.sheet')||document.querySelector('.wrap');
+  if(!target||!window.modernScreenshot){alert('匯出元件未載入，請檢查網絡後重試');return;}
+  btn.disabled=true;var t=btn.textContent;btn.textContent='⏳ 匯出中…';
+  var k=document.createElement('div');
+  k.textContent='k';
+  k.style.cssText="position:absolute;right:8mm;bottom:2mm;z-index:9;font:italic 300 36px/1 'Brush Script MT','Segoe Script',cursive;color:#2563eb;pointer-events:none;";
+  var prevPos=target.style.position, prevPad=target.style.paddingBottom;
+  if(getComputedStyle(target).position==='static') target.style.position='relative';
+  target.style.paddingBottom='13mm';
+  target.appendChild(k);
+  function done(){ k.remove(); target.style.position=prevPos; target.style.paddingBottom=prevPad; }
+  modernScreenshot.domToJpeg(target,{scale:2,quality:0.92,backgroundColor:'#ffffff'}).then(function(url){
+    var a=document.createElement('a');
+    a.download=(document.title||'infographic').replace(/[\\\/:*?"<>|]+/g,'-').trim()+'.jpg';
+    a.href=url;
+    document.body.appendChild(a);a.click();a.remove();
+    btn.textContent=t;btn.disabled=false;done();
+  }).catch(function(e){alert('匯出失敗：'+e);btn.textContent=t;btn.disabled=false;done();});
+}
+</script>
+</body>
+</html>
