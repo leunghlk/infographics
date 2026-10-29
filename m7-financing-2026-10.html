@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>M7＋AVGO 融資全景 · AI 借貸潮</title>
+<style>
+  :root{
+    --ink:#1a1d23; --ink2:#4b5563; --ink3:#8a919c; --line:#e5e7eb;
+    --bg:#f6f7f9; --surface:#ffffff;
+    --good:#0ca30c; --good-bg:#e8f6e8;
+    --bad:#d03b3b;  --bad-bg:#fdeaea;
+    --mid:#b98900;  --mid-bg:#fdf4dc;
+    --debt:#2a78d6; --debt-bg:#eaf2fd;
+    --eq:#7c5cd6;   --eq-bg:#f1ecfb;
+    --ocf:#2a78d6;  --capex:#4b5563;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"PingFang TC","Microsoft JhengHei","Noto Sans TC",sans-serif;
+    background:var(--bg); color:var(--ink); line-height:1.35;
+    -webkit-print-color-adjust:exact; print-color-adjust:exact;}
+  .sheet{width:297mm; margin:6mm auto; background:var(--surface); border-radius:3mm;
+    padding:6mm 8mm 4.5mm; box-shadow:0 2px 14px rgba(0,0,0,.10);
+    display:flex; flex-direction:column; gap:2.4mm;}
+  @media print{
+    .sheet{margin:0; box-shadow:none; border-radius:0; width:auto;}
+    @page{size:A4 landscape; margin:6mm 5.5mm;}
+  }
+  @page{size:A4 landscape; margin:6mm 5.5mm;}
+
+  .hd{display:flex; justify-content:space-between; align-items:flex-end; border-bottom:2.5px solid var(--debt); padding-bottom:1.6mm;}
+  .hd h1{font-size:16.5px; font-weight:800;}
+  .hd h1 .en{color:var(--debt);}
+  .hd .sub{font-size:8.3px; color:var(--ink2); margin-top:.7mm;}
+  .hd .asof{font-size:7.7px; color:var(--ink3); text-align:right; line-height:1.5;}
+
+  .verdicts{display:grid; grid-template-columns:repeat(4,1fr); gap:2.4mm;}
+  .vd{border-radius:2.2mm; padding:1.8mm 2.6mm; border:1px solid var(--line); background:#fafbfc;}
+  .vd.accent{background:var(--debt-bg); border-color:color-mix(in srgb,var(--debt) 35%,#fff);}
+  .vd .t{font-size:7.8px; font-weight:700; color:var(--ink2); letter-spacing:.03em;}
+  .vd .v{font-size:15px; font-weight:800; margin-top:.3mm; line-height:1.15;}
+  .vd.accent .v{color:var(--debt);}
+  .vd .d{font-size:7.6px; color:var(--ink2); margin-top:.4mm; font-weight:600;}
+
+  .grid{display:grid; grid-template-columns:repeat(4,1fr); grid-template-rows:1fr 1fr; gap:2.4mm; flex:1;}
+  .card{border:1px solid var(--line); border-radius:2.2mm; padding:1.8mm 2.2mm 1.6mm; display:flex; flex-direction:column; gap:1mm; background:#fff;}
+  .card.new{border-color:color-mix(in srgb,var(--debt) 45%,#fff); background:color-mix(in srgb,var(--debt-bg) 45%,#fff);}
+  .chead{display:flex; align-items:baseline; gap:1.4mm;}
+  .chead .nm{font-size:11.5px; font-weight:800;}
+  .chead .tag{font-size:6.3px; font-weight:700; color:var(--ink3); border:1px solid var(--line); border-radius:1mm; padding:.1mm 1mm;}
+  .chead .newtag{font-size:6.3px; font-weight:800; background:var(--debt); color:#fff; border-radius:1mm; padding:.15mm 1.2mm;}
+  .frow{font-size:7.8px; line-height:1.42; color:var(--ink2); padding:.55mm 0; border-top:1px dashed var(--line);}
+  .frow:first-of-type{border-top:none;}
+  .frow b{color:var(--ink); font-weight:700;}
+  .chip{display:inline-block; font-size:6.5px; font-weight:800; border-radius:1mm; padding:.15mm 1.2mm; margin-right:.8mm; vertical-align:.3mm;}
+  .chip.debt{background:var(--debt-bg); color:var(--debt);}
+  .chip.eq{background:var(--eq-bg); color:var(--eq);}
+  .frow .dt{color:var(--ink3); font-weight:600; font-size:6.8px;}
+
+  .fcf{margin-top:auto; border-top:1.5px solid var(--line); padding-top:.9mm;}
+  .fcf .l{font-size:6.4px; color:var(--ink3); font-weight:700; letter-spacing:.05em;}
+  .fcfrow{display:flex; align-items:center; gap:1.2mm; margin-top:.5mm;}
+  .fcfrow .lb{font-size:6.4px; color:var(--ink3); width:24px; flex-shrink:0; font-weight:600;}
+  .track{flex:1; display:flex; align-items:center; gap:1mm;}
+  .bar{height:7.5px; border-radius:0 3.5px 3.5px 0;}
+  .bar.ocf{background:var(--ocf);} .bar.cx{background:var(--capex);}
+  .fcfrow .num{font-size:7.4px; font-weight:700; font-variant-numeric:tabular-nums; white-space:nowrap; width:34px; text-align:right;}
+  .fcfsig{display:flex; justify-content:space-between; align-items:baseline; margin-top:.6mm; font-size:7.8px;}
+  .fcfsig .f{font-weight:800; font-size:9.5px; font-variant-numeric:tabular-nums;}
+  .fcfsig .f.good{color:var(--good);} .fcfsig .f.bad{color:var(--bad);} .fcfsig .f.mid{color:var(--mid);}
+  .fcfsig .q{font-size:6.8px; color:var(--ink2); font-weight:600;}
+  .fcfsig .q b.bad{color:var(--bad);} .fcfsig .q b.good{color:var(--good);}
+
+  .macro{display:grid; grid-template-columns:repeat(4,1fr); gap:2.4mm;}
+  .mx{background:#fafbfc; border:1px solid var(--line); border-radius:2mm; padding:1.2mm 2mm;}
+  .mx .n{font-size:11px; font-weight:800; color:var(--debt); font-variant-numeric:tabular-nums;}
+  .mx .d{font-size:6.9px; color:var(--ink2); font-weight:600; margin-top:.2mm; line-height:1.35;}
+
+  .ft{font-size:6.6px; color:var(--ink3); display:flex; justify-content:space-between; line-height:1.4;}
+
+  .jpgbtn{position:fixed; top:16px; right:16px; z-index:60; border:none; cursor:pointer;
+    background:#2563eb; color:#fff; font-size:13px; font-weight:700; padding:9px 16px; border-radius:9px;
+    box-shadow:0 2px 8px rgba(0,0,0,.18);}
+  .kbadge{position:fixed;bottom:16px;right:16px;z-index:60;width:36px;height:36px;background:#fff;
+    border-radius:10px;display:flex;align-items:center;justify-content:center;
+    box-shadow:0 2px 8px rgba(0,0,0,.18);text-decoration:none;
+    font:italic 300 21px/1 'Brush Script MT','Segoe Script',cursive;color:#2563eb}
+  @media print{.jpgbtn,.kbadge{display:none!important}}
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <div class="hd">
+    <div>
+      <h1><span class="en">M7＋Broadcom 融資全景</span> · AI 借貸潮</h1>
+      <div class="sub">股本（equity）＋債務（debt）融資公佈統計 · 對比 FCF／Capex · 截至 2026-10-29</div>
+    </div>
+    <div class="asof">製作 2026-10-29<br>FCF／Capex：Yahoo Finance 季度現金流</div>
+  </div>
+
+  <div class="verdicts">
+    <div class="vd accent"><div class="t">① 發債潮規模</div><div class="v">&gt;$500B</div><div class="d">AI 相關債今年已發；hyperscaler $368B＝去年 6 倍</div></div>
+    <div class="vd"><div class="t">② 轉捩點</div><div class="v">3 家單季 FCF 轉負</div><div class="d">META／GOOGL／AMZN capex 已食過 OCF</div></div>
+    <div class="vd"><div class="t">③ 股本融資回歸</div><div class="v">$85B＋$35B</div><div class="d">GOOGL 6 月史上首次發股；META 本週入紙</div></div>
+    <div class="vd"><div class="t">④ NVDA 角色反轉</div><div class="v">借錢＋借出</div><div class="d">自己發 $25B 債，同時推 $500B 借貸計劃</div></div>
+  </div>
+
+  <div class="grid">
+
+    <div class="card new">
+      <div class="chead"><span class="nm">META</span><span class="newtag">🆕 本週</span><span class="tag">Hyperscaler</span></div>
+      <div class="frow"><span class="chip eq">股</span><b>$35B</b> 入紙：$22.5B 普通股＋$12.5B 優先股 <span class="dt">10-26</span></div>
+      <div class="frow"><span class="chip debt">債</span>洽 <b>≥$25B</b> 新債 <span class="dt">10-27</span>；史：$30B（10-25 年度最大）·Hyperion $27B JV·El Paso $12.5B（8-26）</div>
+      <div class="fcf">
+        <div class="l">FCF vs CAPEX（TTM $B）</div>
+        <div class="fcfrow"><span class="lb">OCF</span><div class="track"><div class="bar ocf" style="width:72%"></div></div><span class="num">133</span></div>
+        <div class="fcfrow"><span class="lb">capex</span><div class="track"><div class="bar cx" style="width:56%"></div></div><span class="num">104</span></div>
+        <div class="fcfsig"><span class="f mid">FCF +29</span><span class="q">單季 <b class="bad">−1.2</b> 已轉負</span></div>
+      </div>
+    </div>
+
+    <div class="card new">
+      <div class="chead"><span class="nm">MSFT</span><span class="newtag">🆕 本週</span><span class="tag">Hyperscaler</span></div>
+      <div class="frow"><span class="chip debt">債</span>年內已發 <b>$20B</b>；FT：幾個月內重返市場再發行（規模公佈中）</div>
+      <div class="frow"><span class="chip debt">債</span>關聯 QTS 數據中心債 <b>$3.9B</b>（8-26，$8B 認購）；Bloomberg：MSFT＋ORCL 今年合共 ~$157B</div>
+      <div class="fcf">
+        <div class="l">FCF vs CAPEX（TTM $B）</div>
+        <div class="fcfrow"><span class="lb">OCF</span><div class="track"><div class="bar ocf" style="width:98%"></div></div><span class="num">183</span></div>
+        <div class="fcfrow"><span class="lb">capex</span><div class="track"><div class="bar cx" style="width:62%"></div></div><span class="num">116</span></div>
+        <div class="fcfsig"><span class="f good">FCF +67</span><span class="q">單季 <b class="good">+19.6</b> 僅餘正數</span></div>
+      </div>
+    </div>
+
+    <div class="card new">
+      <div class="chead"><span class="nm">AVGO</span><span class="newtag">🆕 本週</span><span class="tag">非 M7 · 晶片</span></div>
+      <div class="frow"><span class="chip debt">債</span>洽 <b>&gt;$60B</b> AI 晶片融資（傳 $70-80B）<span class="dt">8-26</span>；銀行備 <b>~$21B</b> 高評級債明年初賣（10-27，$42B 部分之一）· Fitch A-</div>
+      <div class="frow">性質：唔係自己起樓 — 係<b>借錢畀客（OpenAI）買佢啲片</b></div>
+      <div class="fcf">
+        <div class="l">FCF vs CAPEX（TTM $B）</div>
+        <div class="fcfrow"><span class="lb">OCF</span><div class="track"><div class="bar ocf" style="width:22%"></div></div><span class="num">41</span></div>
+        <div class="fcfrow"><span class="lb">capex</span><div class="track"><div class="bar cx" style="width:1.5%"></div></div><span class="num">1</span></div>
+        <div class="fcfsig"><span class="f good">FCF +39</span><span class="q">capex 極輕，融資係客戶信貸</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="chead"><span class="nm">GOOGL</span><span class="tag">Hyperscaler</span></div>
+      <div class="frow"><span class="chip eq">股</span><b>$85B</b> 史上首次大規模發股（$40B ATM＋$10B 巴郡＋配售）<span class="dt">6-26</span></div>
+      <div class="frow"><span class="chip debt">債</span>年內三連發 ≈<b>$80B</b>：$25B（11-25）· &gt;$30B（2-26）· $25B 10 部（8-26）；手上現金仍 $127B</div>
+      <div class="fcf">
+        <div class="l">FCF vs CAPEX（TTM $B）</div>
+        <div class="fcfrow"><span class="lb">OCF</span><div class="track"><div class="bar ocf" style="width:100%"></div></div><span class="num">186</span></div>
+        <div class="fcfrow"><span class="lb">capex</span><div class="track"><div class="bar cx" style="width:71%"></div></div><span class="num">132</span></div>
+        <div class="fcfsig"><span class="f good">FCF +53</span><span class="q">單季 <b class="bad">−5.9</b> 轉負</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="chead"><span class="nm">NVDA</span><span class="tag">晶片</span></div>
+      <div class="frow"><span class="chip debt">債</span><b>$25B</b>（目標 $20B 加碼；$85B 認購；七期；2021 後首次）<span class="dt">6-26</span></div>
+      <div class="frow"><span class="chip eq">借出</span><b>$500B</b> 借貸計劃（6 大銀行，8-26）· OpenAI 客戶融資 <b>$105B</b> 落地（總承諾可 &gt;$750B）</div>
+      <div class="fcf">
+        <div class="l">FCF vs CAPEX（TTM $B）</div>
+        <div class="fcfrow"><span class="lb">OCF</span><div class="track"><div class="bar ocf" style="width:72%"></div></div><span class="num">134</span></div>
+        <div class="fcfrow"><span class="lb">capex</span><div class="track"><div class="bar cx" style="width:4%"></div></div><span class="num">7</span></div>
+        <div class="fcfsig"><span class="f good">FCF +127</span><span class="q">唔缺錢 — 發債係做融資生意</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="chead"><span class="nm">AMZN</span><span class="tag">Hyperscaler</span></div>
+      <div class="frow"><span class="chip debt">債</span><b>$25B</b> 八部曲（7-26，反應較冷、股價跌）＋ $15B（11-25）；宣佈 2026 美元融資需求已完成</div>
+      <div class="frow">四家（AMZN/META/GOOGL/ORCL）經 7 月已發 $194B，按年 <b>+79%</b></div>
+      <div class="fcf">
+        <div class="l">FCF vs CAPEX（TTM $B）</div>
+        <div class="fcfrow"><span class="lb">OCF</span><div class="track"><div class="bar ocf" style="width:80%"></div></div><span class="num">149</span></div>
+        <div class="fcfrow"><span class="lb">capex</span><div class="track"><div class="bar cx" style="width:81%"></div></div><span class="num">151</span></div>
+        <div class="fcfsig"><span class="f bad">FCF −2</span><span class="q">唯一 TTM 負數；單季 <b class="bad">−18.2</b></span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="chead"><span class="nm">AAPL</span><span class="tag">消費硬件</span></div>
+      <div class="frow"><span class="chip debt">零</span>今年<b>零新融資</b> — 唯一冇參與 AI 借貸潮嘅 M7</div>
+      <div class="frow">舊債到期續借為主，FCF 全數回購＋派息</div>
+      <div class="fcf">
+        <div class="l">FCF vs CAPEX（TTM $B）</div>
+        <div class="fcfrow"><span class="lb">OCF</span><div class="track"><div class="bar ocf" style="width:79%"></div></div><span class="num">147</span></div>
+        <div class="fcfrow"><span class="lb">capex</span><div class="track"><div class="bar cx" style="width:5%"></div></div><span class="num">10</span></div>
+        <div class="fcfsig"><span class="f good">FCF +137</span><span class="q">M7 最厚 FCF 緩衝</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="chead"><span class="nm">TSLA</span><span class="tag">電動車/AI</span></div>
+      <div class="frow"><span class="chip debt">零</span><b>零新融資動作</b> — 呢浪 AI 債潮冇份</div>
+      <div class="frow">留意：M7 入面兩家（AAPL/TSLA）冇加泵，其餘五家全部出動</div>
+      <div class="fcf">
+        <div class="l">融資立場</div>
+        <div class="fcfsig" style="margin-top:1.6mm"><span class="f" style="color:var(--ink2)">旁觀</span><span class="q">未有債／股新公佈</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="macro">
+    <div class="mx"><div class="n">$368B</div><div class="d">hyperscaler＋數據中心今年發債額＝去年同期 6 倍（Bloomberg 10-28）</div></div>
+    <div class="mx"><div class="n">78/91</div><div class="d">2026 年發行嘅 hyperscaler 債，YTM 已闊過定價（中位數 +22bp）</div></div>
+    <div class="mx"><div class="n">$2-2.5T</div><div class="d">2026 全美投資級發行料破紀錄，AI 融資係主力</div></div>
+    <div class="mx"><div class="n">~40%</div><div class="d">hyperscaler 佔 AI 相關債發行比重（Goldman 口徑）</div></div>
+  </div>
+
+  <div class="ft">
+    <span>來源：Bloomberg · Reuters · CNBC · FT · SEC 文件 · Fitch（10-22→10-28 報道）；FCF／Capex＝Yahoo Finance 季度現金流 TTM（各司結算日唔齊：MSFT/AAPL 26-06 · GOOGL 26-06 · META 26-09 · AMZN 26-03 · NVDA/AVGO 26-07）；NVDA「借出」＝客戶融資承諾非現金支出</span>
+    <span>leungkathy · 2026-10-29</span>
+  </div>
+</div>
+
+<button class="jpgbtn" onclick="exportJPG(this)">⬇ 匯出 JPEG</button>
+<a class="kbadge" href="https://leunghlk.github.io/all-in-one/" title="leungkathy · 返回主頁">k</a>
+<script type="module">
+  import { domToJpeg } from "https://cdn.jsdelivr.net/npm/modern-screenshot@4/dist/index.mjs";
+  window.modernScreenshot = { domToJpeg };
+</script>
+<script>
+function exportJPG(btn){
+  var target=document.querySelector('.sheet')||document.querySelector('.wrap');
+  if(!target||!window.modernScreenshot){alert('匯出元件未載入，請檢查網絡後重試');return;}
+  btn.disabled=true;var t=btn.textContent;btn.textContent='⏳ 匯出中…';
+  var k=document.createElement('div');
+  k.textContent='k';
+  k.style.cssText="position:absolute;right:8mm;bottom:2mm;z-index:9;font:italic 300 36px/1 'Brush Script MT','Segoe Script',cursive;color:#2563eb;pointer-events:none;";
+  var prevPos=target.style.position, prevPad=target.style.paddingBottom;
+  if(getComputedStyle(target).position==='static') target.style.position='relative';
+  target.style.paddingBottom='13mm';
+  target.appendChild(k);
+  function done(){ k.remove(); target.style.position=prevPos; target.style.paddingBottom=prevPad; }
+  modernScreenshot.domToJpeg(target,{scale:2,quality:0.92,backgroundColor:'#ffffff'}).then(function(url){
+    var a=document.createElement('a');
+    a.download=(document.title||'infographic').replace(/[\\\/:*?"<>|]+/g,'-').trim()+'.jpg';
+    a.href=url;
+    document.body.appendChild(a);a.click();a.remove();
+    btn.textContent=t;btn.disabled=false;done();
+  }).catch(function(e){alert('匯出失敗：'+e);btn.textContent=t;btn.disabled=false;done();});
+}
+</script>
+</body>
+</html>
