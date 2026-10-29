@@ -69,10 +69,13 @@
   /* FCF mini columns：零線在上 60% 高度 */
   .fcf{position:relative; height:40px;}
   .fcf .zero{position:absolute; left:0; right:0; top:24px; border-top:1px solid var(--ink3);}
-  .qcell{position:absolute; top:0; bottom:0; width:16px;}
-  .qcell .bar{position:absolute; left:2.5px; width:11px;}
+  .qcell{position:absolute; top:0; bottom:0; width:24px;}
+  .qcell .bar{position:absolute; left:6px; width:12px;}
+  .qcell .v{position:absolute; left:0; width:24px; text-align:center; font-size:6.8px; font-weight:700; font-variant-numeric:tabular-nums;}
   .qcell.up .bar{bottom:16px; border-radius:2.5px 2.5px 0 0; background:var(--good);}
+  .qcell.up .v{bottom:auto; color:var(--good);}
   .qcell.dn .bar{top:24px; border-radius:0 0 2.5px 2.5px; background:var(--bad);}
+  .qcell.dn .v{top:auto; color:var(--bad);}
 
   .cx{display:flex; align-items:center; gap:1.2mm; height:13px;}
   .cx .bar{height:11px; background:var(--cx); border-radius:0 3.5px 3.5px 0;}
@@ -123,61 +126,52 @@
   </div>
 
   <div class="chart">
-    <div class="crow chead"><span>公司 · YTD FCF</span><span>2026 YTD 融資額（$B，由多至少）</span><span>FCF 逐季（$B · 左至右＝年內首季起）</span><span>最新季 capex（$B）</span></div>
-
     <div class="crow">
       <div class="co"><span class="nm">GOOGL</span><span class="yd bad">−$4.8B <small>YTD</small></span><span class="tag">Hyperscaler</span></div>
       <div class="fin"><div class="seg debt" style="width:39.3%"></div><div class="seg eq" style="width:60.6%"></div><span class="tot">$139.8</span></div>
-      <div class="fcf"><div class="zero"></div><div class="qcell up" style="left:0px"><div class="bar" style="height:3.5px"></div></div><div class="qcell dn" style="left:17px"><div class="bar" style="height:2.1px"></div></div><div class="qcell dn" style="left:34px"><div class="bar" style="height:3.2px"></div></div></div>
+      <div class="fcf"><div class="zero"></div><div class="qcell up" style="left:8px"><span class="v" style="bottom:20.5px">+10.1</span><div class="bar" style="height:3.5px"></div></div><div class="qcell dn" style="left:34px"><span class="v" style="top:27.1px">−5.9</span><div class="bar" style="height:2.1px"></div></div><div class="qcell dn" style="left:60px"><span class="v" style="top:28.2px">−9.1</span><div class="bar" style="height:3.2px"></div></div></div>
       <div class="cx"><div class="bar" style="width:93%"></div><span class="num">51.4</span></div>
     </div>
-
     <div class="crow">
       <div class="co"><span class="nm">META<span class="newtag">🆕</span></span><span class="yd good">+$13.8B <small>YTD</small></span><span class="tag">Hyperscaler</span></div>
       <div class="fin"><div class="seg debt" style="width:8.9%"></div><div class="seg talk" style="width:17.9%"></div><div class="seg eq" style="width:25.0%"></div><span class="tot">$72.5</span><span class="fnote">股$35B本週入紙·債≥$25B洽</span></div>
-      <div class="fcf"><div class="zero"></div><div class="qcell up" style="left:0px"><div class="bar" style="height:4.6px"></div></div><div class="qcell up" style="left:17px"><div class="bar" style="height:1.5px"></div></div><div class="qcell dn" style="left:34px"><div class="bar" style="height:1.5px"></div></div></div>
+      <div class="fcf"><div class="zero"></div><div class="qcell up" style="left:8px"><span class="v" style="bottom:21.6px">+13.2</span><div class="bar" style="height:4.6px"></div></div><div class="qcell up" style="left:34px"><span class="v" style="bottom:18.5px">+1.7</span><div class="bar" style="height:1.5px"></div></div><div class="qcell dn" style="left:60px"><span class="v" style="top:26.5px">−1.2</span><div class="bar" style="height:1.5px"></div></div></div>
       <div class="cx"><div class="bar" style="width:61%"></div><span class="num">33.9</span></div>
     </div>
-
     <div class="crow">
       <div class="co"><span class="nm">AVGO<span class="newtag">🆕</span></span><span class="yd good">+$31.9B <small>YTD</small></span><span class="tag">非 M7 · 晶片</span></div>
       <div class="fin"><div class="seg debt" style="width:3.2%"></div><div class="seg talk" style="width:42.9%"></div><span class="tot">$64.5</span><span class="fnote">洽&gt;$60B 幫客買片</span></div>
-      <div class="fcf"><div class="zero"></div><div class="qcell up" style="left:0px"><div class="bar" style="height:2.8px"></div></div><div class="qcell up" style="left:17px"><div class="bar" style="height:3.6px"></div></div><div class="qcell up" style="left:34px"><div class="bar" style="height:4.8px"></div></div></div>
+      <div class="fcf"><div class="zero"></div><div class="qcell up" style="left:8px"><span class="v" style="bottom:19.8px">+8.0</span><div class="bar" style="height:2.8px"></div></div><div class="qcell up" style="left:34px"><span class="v" style="bottom:20.6px">+10.3</span><div class="bar" style="height:3.6px"></div></div><div class="qcell up" style="left:60px"><span class="v" style="bottom:21.8px">+13.7</span><div class="bar" style="height:4.8px"></div></div></div>
       <div class="cx"><div class="bar" style="width:1.5%"></div><span class="num">0.5</span></div>
     </div>
-
     <div class="crow">
       <div class="co"><span class="nm">AMZN</span><span class="yd bad">−$22.9B <small>YTD</small></span><span class="tag">Hyperscaler</span></div>
       <div class="fin"><div class="seg debt" style="width:17.9%"></div><span class="tot">$25</span><span class="fnote">2026 美元融資已完成</span></div>
-      <div class="fcf"><div class="zero"></div><div class="qcell dn" style="left:0px"><div class="bar" style="height:6.4px"></div></div><div class="qcell dn" style="left:17px"><div class="bar" style="height:1.6px"></div></div></div>
+      <div class="fcf"><div class="zero"></div><div class="qcell dn" style="left:8px"><span class="v" style="top:31.4px">−18.2</span><div class="bar" style="height:6.4px"></div></div><div class="qcell dn" style="left:34px"><span class="v" style="top:26.6px">−4.7</span><div class="bar" style="height:1.6px"></div></div></div>
       <div class="cx"><div class="bar" style="width:98%"></div><span class="num">54.2</span></div>
     </div>
-
     <div class="crow">
       <div class="co"><span class="nm">NVDA</span><span class="yd good">+$104.9B <small>YTD</small></span><span class="tag">晶片</span></div>
       <div class="fin"><div class="seg debt" style="width:17.9%"></div><span class="tot">$25</span><span class="fnote">另借出 $500B＋OpenAI $105B</span></div>
-      <div class="fcf"><div class="zero"></div><div class="qcell up" style="left:0px"><div class="bar" style="height:12.2px"></div></div><div class="qcell up" style="left:17px"><div class="bar" style="height:17.0px"></div></div><div class="qcell up" style="left:34px"><div class="bar" style="height:7.5px"></div></div></div>
+      <div class="fcf"><div class="zero"></div><div class="qcell up" style="left:8px"><span class="v" style="bottom:29.2px">+34.9</span><div class="bar" style="height:12.2px"></div></div><div class="qcell up" style="left:34px"><span class="v" style="bottom:34.0px">+48.6</span><div class="bar" style="height:17.0px"></div></div><div class="qcell up" style="left:60px"><span class="v" style="bottom:24.5px">+21.4</span><div class="bar" style="height:7.5px"></div></div></div>
       <div class="cx"><div class="bar" style="width:5%"></div><span class="num">2.7</span></div>
     </div>
-
     <div class="crow">
       <div class="co"><span class="nm">MSFT<span class="newtag">🆕</span></span><span class="yd good">+$54.0B <small>YTD</small></span><span class="tag">Hyperscaler</span></div>
       <div class="fin"><div class="seg debt" style="width:14.3%"></div><div class="seg debt" style="width:2.8%"></div><span class="tot">$23.9</span><span class="fnote">再發行進行中</span></div>
-      <div class="fcf"><div class="zero"></div><div class="qcell up" style="left:0px"><div class="bar" style="height:5.5px"></div></div><div class="qcell up" style="left:17px"><div class="bar" style="height:6.9px"></div></div><div class="qcell up" style="left:34px"><div class="bar" style="height:6.5px"></div></div></div>
+      <div class="fcf"><div class="zero"></div><div class="qcell up" style="left:8px"><span class="v" style="bottom:22.5px">+15.8</span><div class="bar" style="height:5.5px"></div></div><div class="qcell up" style="left:34px"><span class="v" style="bottom:23.9px">+19.6</span><div class="bar" style="height:6.9px"></div></div><div class="qcell up" style="left:60px"><span class="v" style="bottom:23.5px">+18.6</span><div class="bar" style="height:6.5px"></div></div></div>
       <div class="cx"><div class="bar" style="width:90%"></div><span class="num">~50</span></div>
     </div>
-
     <div class="crow">
       <div class="co"><span class="nm">AAPL</span><span class="yd good">+$58.6B <small>YTD</small></span><span class="tag">消費硬件</span></div>
       <div class="fin"><span class="zero">零 — 冇參與借貸潮</span></div>
-      <div class="fcf"><div class="zero"></div><div class="qcell up" style="left:0px"><div class="bar" style="height:9.3px"></div></div><div class="qcell up" style="left:17px"><div class="bar" style="height:11.2px"></div></div></div>
+      <div class="fcf"><div class="zero"></div><div class="qcell up" style="left:8px"><span class="v" style="bottom:26.3px">+26.7</span><div class="bar" style="height:9.3px"></div></div><div class="qcell up" style="left:34px"><span class="v" style="bottom:28.2px">+31.9</span><div class="bar" style="height:11.2px"></div></div></div>
       <div class="cx"><div class="bar" style="width:4.5%"></div><span class="num">2.5</span></div>
     </div>
-
     <div class="crow">
-      <div class="co"><span class="nm">TSLA</span><span class="yd" style="color:var(--ink3)">—</span></div>
+      <div class="co"><span class="nm">TSLA</span><span class="yd" style="color:var(--ink3)">—</span><span class="tag">電動車/AI</span></div>
       <div class="fin"><span class="zero">零</span></div>
-      <div class="fcf"><div class="zero"></div><span style="position:absolute;left:2px;top:64%;font-size:6.8px;color:var(--ink3);font-weight:600">—</span></div>
+      <div class="fcf"><div class="zero"></div><span style="position:absolute;left:8px;top:64%;font-size:6.8px;color:var(--ink3);font-weight:600">—</span></div>
       <div class="cx"><span class="num" style="color:var(--ink3)">—</span></div>
     </div>
   </div>
