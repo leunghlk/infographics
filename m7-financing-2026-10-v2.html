@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>M7＋AVGO 2026 融資統計 · 一眼版</title>
+<style>
+  :root{
+    --ink:#1a1d23; --ink2:#4b5563; --ink3:#8a919c; --line:#e5e7eb;
+    --bg:#f6f7f9; --surface:#ffffff;
+    --good:#0ca30c; --good-bg:#e8f6e8;
+    --bad:#d03b3b;  --bad-bg:#fdeaea;
+    --debt:#2a78d6; --debt-bg:#eaf2fd;
+    --eq:#7c5cd6;   --eq-bg:#f1ecfb;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"PingFang TC","Microsoft JhengHei","Noto Sans TC",sans-serif;
+    background:var(--bg); color:var(--ink); line-height:1.35;
+    -webkit-print-color-adjust:exact; print-color-adjust:exact;}
+  .sheet{width:297mm; margin:6mm auto; background:var(--surface); border-radius:3mm;
+    padding:6mm 8mm 4.5mm; box-shadow:0 2px 14px rgba(0,0,0,.10);
+    display:flex; flex-direction:column; gap:2.6mm;}
+  @media print{
+    .sheet{margin:0; box-shadow:none; border-radius:0; width:auto;}
+    @page{size:A4 landscape; margin:6mm 5.5mm;}
+  }
+  @page{size:A4 landscape; margin:6mm 5.5mm;}
+
+  .hd{display:flex; justify-content:space-between; align-items:flex-end; border-bottom:2.5px solid var(--debt); padding-bottom:1.6mm;}
+  .hd h1{font-size:16.5px; font-weight:800;}
+  .hd h1 .en{color:var(--debt);}
+  .hd .sub{font-size:8.3px; color:var(--ink2); margin-top:.7mm;}
+  .hd .asof{font-size:7.7px; color:var(--ink3); text-align:right; line-height:1.5;}
+
+  .verdicts{display:grid; grid-template-columns:repeat(4,1fr); gap:2.4mm;}
+  .vd{border-radius:2.2mm; padding:1.8mm 2.6mm; border:1px solid var(--line); background:#fafbfc;}
+  .vd.accent{background:var(--debt-bg); border-color:color-mix(in srgb,var(--debt) 35%,#fff);}
+  .vd.warn{background:var(--bad-bg); border-color:color-mix(in srgb,var(--bad) 30%,#fff);}
+  .vd .t{font-size:7.8px; font-weight:700; color:var(--ink2);}
+  .vd .v{font-size:14.5px; font-weight:800; margin-top:.3mm; line-height:1.15;}
+  .vd.accent .v{color:var(--debt);} .vd.warn .v{color:var(--bad);}
+  .vd .d{font-size:7.5px; color:var(--ink2); margin-top:.4mm; font-weight:600;}
+
+  table{width:100%; border-collapse:collapse;}
+  thead th{font-size:7.2px; color:var(--ink3); font-weight:700; text-transform:uppercase; letter-spacing:.05em;
+    text-align:left; padding:1mm 1.6mm; border-bottom:1.6px solid var(--ink);}
+  tbody td{font-size:8.2px; padding:1.25mm 1.6mm; border-bottom:1px solid var(--line); vertical-align:middle; line-height:1.4;}
+  tbody tr:nth-child(even){background:#fafbfc;}
+  tr.isnew{background:var(--debt-bg) !important;}
+  td.co{white-space:nowrap;}
+  td.co .nm{font-size:11px; font-weight:800;}
+  td.co .tag{font-size:6.2px; color:var(--ink3); font-weight:600; display:block; margin-top:.2mm;}
+  td.co .newtag{display:inline-block; font-size:6.3px; font-weight:800; background:var(--debt); color:#fff; border-radius:1mm; padding:.15mm 1.2mm; margin-left:.8mm; vertical-align:.5mm;}
+  td.debtcol{width:27%;} td.eqcol{width:19%;} td.fcftd{width:26%;} td.cxcol{width:20%;}
+  .chip{display:inline-block; font-size:6.4px; font-weight:800; border-radius:1mm; padding:.15mm 1.2mm; margin-right:.7mm; vertical-align:.3mm;}
+  .chip.debt{background:var(--debt-bg); color:var(--debt);}
+  .chip.eq{background:var(--eq-bg); color:var(--eq);}
+  .b{font-weight:700; color:var(--ink);}
+  .dt{color:var(--ink3); font-weight:600; font-size:6.9px;}
+  .zero{color:var(--ink3); font-weight:700;}
+  .fcfbig{font-size:12.5px; font-weight:800; font-variant-numeric:tabular-nums;}
+  .fcfbig.good{color:var(--good);} .fcfbig.bad{color:var(--bad);}
+  .qchips{margin-top:.5mm; white-space:nowrap;}
+  .qc{display:inline-block; font-size:6.6px; font-weight:800; border-radius:1mm; padding:.2mm 1.1mm; margin-right:.7mm; font-variant-numeric:tabular-nums;}
+  .qc.up{background:var(--good-bg); color:var(--good);}
+  .qc.dn{background:var(--bad-bg); color:var(--bad);}
+  .qc .ql{font-weight:600; opacity:.75; margin-right:.4mm;}
+  .fcfsub{font-size:6.8px; color:var(--ink2); font-weight:600; margin-top:.4mm;}
+
+  .macro{display:grid; grid-template-columns:repeat(4,1fr); gap:2.4mm;}
+  .mx{background:#fafbfc; border:1px solid var(--line); border-radius:2mm; padding:1.1mm 2mm;}
+  .mx .n{font-size:11px; font-weight:800; color:var(--debt); font-variant-numeric:tabular-nums;}
+  .mx .d{font-size:6.9px; color:var(--ink2); font-weight:600; margin-top:.2mm; line-height:1.35;}
+
+  .ft{font-size:6.6px; color:var(--ink3); display:flex; justify-content:space-between; line-height:1.4; gap:4mm;}
+
+  .jpgbtn{position:fixed; top:16px; right:16px; z-index:60; border:none; cursor:pointer;
+    background:#2563eb; color:#fff; font-size:13px; font-weight:700; padding:9px 16px; border-radius:9px;
+    box-shadow:0 2px 8px rgba(0,0,0,.18);}
+  .kbadge{position:fixed;bottom:16px;right:16px;z-index:60;width:36px;height:36px;background:#fff;
+    border-radius:10px;display:flex;align-items:center;justify-content:center;
+    box-shadow:0 2px 8px rgba(0,0,0,.18);text-decoration:none;
+    font:italic 300 21px/1 'Brush Script MT','Segoe Script',cursive;color:#2563eb}
+  @media print{.jpgbtn,.kbadge{display:none!important}}
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <div class="hd">
+    <div>
+      <h1><span class="en">M7＋Broadcom 2026 融資統計</span> · 一眼版</h1>
+      <div class="sub">只計 2026 年內公佈／定價嘅債務（debt）＋股本（equity）融資 · FCF＝2026 已公佈季度合計 · 截至 2026-10-29</div>
+    </div>
+    <div class="asof">製作 2026-10-29<br>FCF：公司業績＋Yahoo Finance</div>
+  </div>
+
+  <div class="verdicts">
+    <div class="vd accent"><div class="t">① 發債潮</div><div class="v">&gt;$500B</div><div class="d">AI 相關債今年已發；hyperscaler $368B＝去年 6 倍</div></div>
+    <div class="vd warn"><div class="t">② 轉捩點</div><div class="v">FCF 燒穿</div><div class="d">GOOGL 連續兩季負＋YTD −$4.8B · AMZN YTD −$22.9B</div></div>
+    <div class="vd"><div class="t">③ 股本融資回歸</div><div class="v">$85B＋$35B</div><div class="d">GOOGL 6 月史上首次發股 · META 本週入紙</div></div>
+    <div class="vd"><div class="t">④ NVDA 角色反轉</div><div class="v">借錢＋借出</div><div class="d">自己發 $25B 債，同時推 $500B 借貸計劃</div></div>
+  </div>
+
+  <table>
+    <thead><tr>
+      <th>公司</th><th>2026 YTD 債融資（debt）</th><th>2026 YTD 股融資（equity）</th><th>FCF · 2026 已公佈季度合計（逐季）</th><th>Capex 口徑</th>
+    </tr></thead>
+    <tbody>
+      <tr class="isnew">
+        <td class="co"><span class="nm">META</span><span class="newtag">🆕 本週</span><span class="tag">Hyperscaler</span></td>
+        <td class="debtcol"><span class="chip debt">債</span>洽 <span class="b">≥$25B</span> <span class="dt">10-27</span> · El Paso <span class="b">$12.5B</span> <span class="dt">8-26</span><br><span class="dt">（2025 年另有 $30B＋Hyperion $27B，唔計入 YTD）</span></td>
+        <td class="eqcol"><span class="chip eq">股</span><span class="b">$35B</span> 入紙 <span class="dt">10-26</span>：$22.5B 普通＋$12.5B 優先</td>
+        <td class="fcftd"><span class="fcfbig good">+$13.8B</span><div class="qchips"><span class="qc up"><span class="ql">3月</span>+13.2</span><span class="qc up"><span class="ql">6月</span>+1.7</span><span class="qc dn"><span class="ql">9月</span>−1.2</span></div><div class="fcfsub">9 月季首次轉負 → 股價曾跌 9%</div></td>
+        <td class="cxcol">YTD 已投 <span class="b">$83.1B</span>（9月季 $33.9B）</td>
+      </tr>
+      <tr class="isnew">
+        <td class="co"><span class="nm">MSFT</span><span class="newtag">🆕 本週</span><span class="tag">Hyperscaler</span></td>
+        <td class="debtcol"><span class="chip debt">債</span><span class="b">$20B</span> 定價（年中）＋新發行進行中 <span class="dt">10 月底</span> · 關聯 QTS <span class="b">$3.9B</span> <span class="dt">8-26</span></td>
+        <td class="eqcol"><span class="zero">—</span></td>
+        <td class="fcftd"><span class="fcfbig good">+$54.0B</span><div class="qchips"><span class="qc up"><span class="ql">3月</span>+15.8</span><span class="qc up"><span class="ql">6月</span>+19.6</span><span class="qc up"><span class="ql">9月</span>+18.6</span></div><div class="fcfsub">9 月季 FCF 按年 −27% · 股價 +4%</div></td>
+        <td class="cxcol">9 月季 capex <span class="b">~$50B+</span>，FCF 跌主因</td>
+      </tr>
+      <tr class="isnew">
+        <td class="co"><span class="nm">AVGO</span><span class="newtag">🆕 本週</span><span class="tag">非 M7 · 晶片</span></td>
+        <td class="debtcol"><span class="chip debt">債</span>洽 <span class="b">&gt;$60B</span>（傳 $70-80B）<span class="dt">8-26</span> · <span class="b">$21B</span> 備 27 年初 <span class="dt">10-27</span> · $4.5B 再融資 <span class="dt">1-26</span></td>
+        <td class="eqcol"><span class="zero">—</span></td>
+        <td class="fcftd"><span class="fcfbig good">+$31.9B</span><div class="qchips"><span class="qc up"><span class="ql">1月</span>+8.0</span><span class="qc up"><span class="ql">4月</span>+10.3</span><span class="qc up"><span class="ql">7月</span>+13.7</span></div><div class="fcfsub">融資係借錢畀客（OpenAI）買片</div></td>
+        <td class="cxcol">YTD 淨 <span class="b">$1.0B</span> — 自己唔燒錢</td>
+      </tr>
+      <tr>
+        <td class="co"><span class="nm">GOOGL</span><span class="tag">Hyperscaler</span></td>
+        <td class="debtcol"><span class="chip debt">債</span><span class="b">&gt;$30B</span> <span class="dt">2-26</span> · <span class="b">$25B</span> 10 部 <span class="dt">8-26</span> → 年內 ~<span class="b">$55B</span></td>
+        <td class="eqcol"><span class="chip eq">股</span><span class="b">$84.75B</span> <span class="dt">6-26</span>：$40B ATM＋$10B 巴郡＋配售（史上首次）</td>
+        <td class="fcftd"><span class="fcfbig bad">−$4.8B</span><div class="qchips"><span class="qc up"><span class="ql">3月</span>+10.1</span><span class="qc dn"><span class="ql">6月</span>−5.9</span><span class="qc dn"><span class="ql">9月</span>−9.1</span></div><div class="fcfsub">連續兩季負 · 10-28 股價插 8-10%</div></td>
+        <td class="cxcol">Q3 <span class="b">$51.4B</span>；2026 guide 不變，2027「顯著增加」</td>
+      </tr>
+      <tr>
+        <td class="co"><span class="nm">NVDA</span><span class="tag">晶片</span></td>
+        <td class="debtcol"><span class="chip debt">債</span><span class="b">$25B</span> <span class="dt">6-26</span>：$85B 認購加碼 · 2021 後首次</td>
+        <td class="eqcol"><span class="chip eq">借出</span><span class="b">$500B</span> 借貸計劃＋OpenAI 客戶融資 <span class="b">$105B</span></td>
+        <td class="fcftd"><span class="fcfbig good">+$104.9B</span><div class="qchips"><span class="qc up"><span class="ql">1月</span>+34.9</span><span class="qc up"><span class="ql">4月</span>+48.6</span><span class="qc up"><span class="ql">7月</span>+21.4</span></div><div class="fcfsub">唔缺錢 — 發債係做融資生意</div></td>
+        <td class="cxcol">YTD 淨 <span class="b">$5.7B</span> — 客戶先係燒錢一方</td>
+      </tr>
+      <tr>
+        <td class="co"><span class="nm">AMZN</span><span class="tag">Hyperscaler</span></td>
+        <td class="debtcol"><span class="chip debt">債</span><span class="b">$25B</span> <span class="dt">7-26</span>（反應冷、股價跌）；宣佈 2026 美元融資需求已完成</td>
+        <td class="eqcol"><span class="zero">—</span></td>
+        <td class="fcftd"><span class="fcfbig bad">−$22.9B</span><div class="qchips"><span class="qc dn"><span class="ql">3月</span>−18.2</span><span class="qc dn"><span class="ql">6月</span>−4.7</span></div><div class="fcfsub">TTM 亦轉負（−$7.6B）· 今晚（10-29）公佈 Q3</div></td>
+        <td class="cxcol">2026 guide 加碼至 <span class="b">~$220B</span></td>
+      </tr>
+      <tr>
+        <td class="co"><span class="nm">AAPL</span><span class="tag">消費硬件</span></td>
+        <td class="debtcol"><span class="zero">零</span> — 唯一冇參與 AI 借貸潮嘅 M7</td>
+        <td class="eqcol"><span class="zero">零</span></td>
+        <td class="fcftd"><span class="fcfbig good">+$58.6B</span><div class="qchips"><span class="qc up"><span class="ql">3月</span>+26.7</span><span class="qc up"><span class="ql">6月</span>+31.9</span></div><div class="fcfsub">FCF 全數回購＋派息</div></td>
+        <td class="cxcol">YTD 淨 <span class="b">$4.4B</span></td>
+      </tr>
+      <tr>
+        <td class="co"><span class="nm">TSLA</span><span class="tag">電動車/AI</span></td>
+        <td class="debtcol"><span class="zero">零</span></td>
+        <td class="eqcol"><span class="zero">零</span></td>
+        <td class="fcftd"><span class="fcfsub" style="margin:0">—</span></td>
+        <td class="cxcol">—</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="macro">
+    <div class="mx"><div class="n">$368B</div><div class="d">hyperscaler＋數據中心今年發債額＝去年同期 6 倍（Bloomberg 10-28）</div></div>
+    <div class="mx"><div class="n">78/91</div><div class="d">2026 年發行嘅 hyperscaler 債，YTM 已闊過定價（中位數 +22bp）</div></div>
+    <div class="mx"><div class="n">$2-2.5T</div><div class="d">2026 全美投資級發行料破紀錄，AI 融資係主力</div></div>
+    <div class="mx"><div class="n">~40%</div><div class="d">hyperscaler 佔 AI 相關債發行比重（Goldman 口徑）</div></div>
+  </div>
+
+  <div class="ft">
+    <span>口徑：融資只計 2026 年內公佈／定價（洽談中標「洽」）；FCF＝各司 2026 年曆季度已公佈合計（META/GOOGL/MSFT 3月-9月季 · NVDA/AVGO 1月-7月季 · AMZN 3月+6月季 · AAPL 3月+6月季）；AMZN 6月季由公佈 TTM −$7.6B 反推；GOOGL Q3＝業績報告（FCF −$9.1B · capex $51.4B）；MSFT 9月季 FCF $18.63B 來自公司公佈。來源：Bloomberg · Reuters · CNBC · WSJ · SEC · 公司 IR</span>
+    <span>leungkathy · 2026-10-29</span>
+  </div>
+</div>
+
+<button class="jpgbtn" onclick="exportJPG(this)">⬇ 匯出 JPEG</button>
+<a class="kbadge" href="https://leunghlk.github.io/all-in-one/" title="leungkathy · 返回主頁">k</a>
+<script type="module">
+  import { domToJpeg } from "https://cdn.jsdelivr.net/npm/modern-screenshot@4/dist/index.mjs";
+  window.modernScreenshot = { domToJpeg };
+</script>
+<script>
+function exportJPG(btn){
+  var target=document.querySelector('.sheet')||document.querySelector('.wrap');
+  if(!target||!window.modernScreenshot){alert('匯出元件未載入，請檢查網絡後重試');return;}
+  btn.disabled=true;var t=btn.textContent;btn.textContent='⏳ 匯出中…';
+  var k=document.createElement('div');
+  k.textContent='k';
+  k.style.cssText="position:absolute;right:8mm;bottom:2mm;z-index:9;font:italic 300 36px/1 'Brush Script MT','Segoe Script',cursive;color:#2563eb;pointer-events:none;";
+  var prevPos=target.style.position, prevPad=target.style.paddingBottom;
+  if(getComputedStyle(target).position==='static') target.style.position='relative';
+  target.style.paddingBottom='13mm';
+  target.appendChild(k);
+  function done(){ k.remove(); target.style.position=prevPos; target.style.paddingBottom=prevPad; }
+  modernScreenshot.domToJpeg(target,{scale:2,quality:0.92,backgroundColor:'#ffffff'}).then(function(url){
+    var a=document.createElement('a');
+    a.download=(document.title||'infographic').replace(/[\\\/:*?"<>|]+/g,'-').trim()+'.jpg';
+    a.href=url;
+    document.body.appendChild(a);a.click();a.remove();
+    btn.textContent=t;btn.disabled=false;done();
+  }).catch(function(e){alert('匯出失敗：'+e);btn.textContent=t;btn.disabled=false;done();});
+}
+</script>
+</body>
+</html>
