@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>S&P 500 等權指數 SPW × RSP ETF · 一頁睇晒</title>
+<style>
+  :root{
+    --ink:#0b0b0b; --ink2:#52514e; --ink3:#898781; --line:#e1e0d9; --base:#c3c2b7;
+    --bg:#f6f7f9; --surface:#ffffff;
+    --spx:#2a78d6; --spx-bg:#eaf2fd;   /* 市值加權 = slot 1 blue */
+    --rsp:#eb6834; --rsp-bg:#fdf0ea;   /* 等權 = slot 2 orange */
+    --good:#0ca30c; --good-bg:#e8f6e8;
+    --bad:#d03b3b;  --bad-bg:#fdeaea;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"PingFang TC","Microsoft JhengHei","Noto Sans TC",sans-serif;
+    background:var(--bg); color:var(--ink); line-height:1.35;
+    -webkit-print-color-adjust:exact; print-color-adjust:exact;}
+  .sheet{width:297mm; margin:6mm auto; background:var(--surface); border-radius:3mm;
+    padding:5.5mm 7.5mm 4mm; box-shadow:0 2px 14px rgba(0,0,0,.10);
+    display:flex; flex-direction:column; gap:2mm;}
+  @media print{
+    .sheet{margin:0; box-shadow:none; border-radius:0; width:auto;}
+    @page{size:A4 landscape; margin:5mm 5mm;}
+  }
+  @page{size:A4 landscape; margin:5mm 5mm;}
+
+  .hd{display:flex; justify-content:space-between; align-items:flex-end; border-bottom:2.5px solid var(--rsp); padding-bottom:1.4mm;}
+  .hd h1{font-size:16px; font-weight:800;}
+  .hd h1 .en{color:var(--rsp);}
+  .hd .sub{font-size:8px; color:var(--ink2); margin-top:.6mm; font-weight:600;}
+  .hd .asof{font-size:7.6px; color:var(--ink3); text-align:right; line-height:1.5;}
+
+  .verdicts{display:grid; grid-template-columns:repeat(4,1fr); gap:2.2mm;}
+  .vd{border-radius:2.2mm; padding:1.4mm 2.2mm; border:1px solid var(--line); background:#fafbfc;}
+  .vd.accent{background:var(--rsp-bg); border-color:color-mix(in srgb,var(--rsp) 35%,#fff);}
+  .vd.blue{background:var(--spx-bg); border-color:color-mix(in srgb,var(--spx) 35%,#fff);}
+  .vd.warn{background:var(--bad-bg); border-color:color-mix(in srgb,var(--bad) 30%,#fff);}
+  .vd.good{background:var(--good-bg); border-color:color-mix(in srgb,var(--good) 30%,#fff);}
+  .vd .t{font-size:7.4px; font-weight:700; color:var(--ink2);}
+  .vd .v{font-size:13.5px; font-weight:800; margin-top:.2mm;}
+  .vd .d{font-size:7px; color:var(--ink2); margin-top:.3mm; font-weight:600;}
+
+  .cols{display:grid; grid-template-columns:82mm 96mm 94mm; gap:2.8mm; flex:1; align-items:stretch;}
+  .col{display:flex; flex-direction:column; gap:1.6mm; min-width:0;}
+  .ct{font-size:8.6px; font-weight:800; border-bottom:1.4px solid var(--ink); padding-bottom:.5mm; letter-spacing:.02em;}
+  .ct small{font-weight:600; color:var(--ink3); font-size:6.8px; margin-left:1.4mm;}
+
+  .legend{display:flex; gap:4mm; font-size:7px; color:var(--ink2); font-weight:600; align-items:center; flex-wrap:wrap;}
+  .legend .sw{width:9px; height:9px; display:inline-block; margin-right:.9mm; vertical-align:-1px; border-radius:2px;}
+
+  /* ── 概念：tall segmented bars ── */
+  .segbar{display:flex; height:28px; border-radius:4px; overflow:hidden; gap:2px;}
+  .segbar .seg{position:relative; display:flex; align-items:center; justify-content:flex-start; padding-left:1.6mm;}
+  .segbar .seg .in{font-size:6.6px; font-weight:700; color:#fff; white-space:nowrap; line-height:1.15;}
+  .segbar .seg .in small{display:block; font-size:5.8px; font-weight:600; opacity:.85;}
+  .segbar .seg.ctr{justify-content:center; padding-left:0;}
+  .segbar .seg.ctr .in{font-size:5.9px; letter-spacing:-.2px;}
+  .segbar .seg.ctr .in small{font-size:5px; letter-spacing:-.2px;}
+  .segbar .seg.mid .in{font-size:6.1px;}
+  .segbar .seg.mid .in small{font-size:5.4px;}
+  .seg-note{font-size:6.6px; color:var(--ink3); font-weight:600; margin-top:.4mm;}
+  .eqbar{height:28px; border-radius:4px; background:var(--rsp-bg); border:1px dashed color-mix(in srgb,var(--rsp) 55%,#fff);
+    display:flex; align-items:center; justify-content:center; gap:2mm;}
+  .eqbar .in{font-size:7.4px; font-weight:800; color:var(--ink);}
+  .eqbar .in b{color:var(--rsp);}
+
+  /* ── 集中度 × 倍數對比 ── */
+  .conc{display:flex; flex-direction:column; gap:1.2mm;}
+  .crow2{display:grid; grid-template-columns:30mm 1fr 14mm; gap:1.8mm; align-items:center;}
+  .crow2 .nm{font-size:7.4px; font-weight:700; line-height:1.2;}
+  .crow2 .nm small{display:block; font-size:6.2px; color:var(--ink3); font-weight:600;}
+  .pair{display:flex; flex-direction:column; gap:2px;}
+  .pbar{display:flex; align-items:center; gap:1.2mm; height:7px;}
+  .pbar .bar{height:6px; border-radius:0 4px 4px 0;}
+  .pbar .bar.spx{background:var(--spx);} .pbar .bar.rsp{background:var(--rsp);}
+  .pbar .num{font-size:6.4px; font-weight:700; color:var(--ink2); font-variant-numeric:tabular-nums; white-space:nowrap;}
+  .mult{font-size:8px; font-weight:800; text-align:right; color:var(--ink);}
+  .mult small{display:block; font-size:5.8px; color:var(--ink3); font-weight:600; letter-spacing:.04em;}
+
+  /* ── 基金對照表 ── */
+  table.facts{width:100%; border-collapse:collapse; font-size:6.9px;}
+  table.facts th{font-size:6.4px; color:var(--ink3); font-weight:800; text-transform:uppercase; letter-spacing:.05em;
+    border-bottom:1.3px solid var(--ink); padding:.5mm .8mm; text-align:left;}
+  table.facts th.r{color:var(--rsp);} table.facts th.s{color:var(--spx);}
+  table.facts td{border-bottom:.5px solid var(--line); padding:.62mm .8mm; vertical-align:top; line-height:1.25;}
+  table.facts td.k{color:var(--ink2); font-weight:700; width:15mm; font-size:6.4px;}
+  table.facts td b{font-weight:800;}
+  table.facts td .num{font-variant-numeric:tabular-nums;}
+
+  /* ── 板塊 paired bars ── */
+  .secwrap{display:flex; flex-direction:column; gap:.9mm;}
+  .srow{display:grid; grid-template-columns:21mm 1fr 15mm; gap:1.6mm; align-items:center; border-radius:1.6mm; padding:.3mm 1mm .3mm .8mm;}
+  .srow.hot{background:var(--rsp-bg);}
+  .srow .snm{font-size:7px; font-weight:700; line-height:1.15;}
+  .srow .snm small{display:block; font-size:5.9px; color:var(--ink3); font-weight:600;}
+  .spair{display:flex; flex-direction:column; gap:2px;}
+  .sbar{display:flex; align-items:center; gap:1mm; height:6px;}
+  .sbar .bar{height:5px; border-radius:0 4px 4px 0;}
+  .sbar .bar.spx{background:var(--spx);} .sbar .bar.rsp{background:var(--rsp);}
+  .sbar .num{font-size:6.2px; font-weight:600; color:var(--ink2); font-variant-numeric:tabular-nums; white-space:nowrap;}
+  .delta{font-size:7px; font-weight:800; text-align:right; font-variant-numeric:tabular-nums;}
+  .delta.neg{color:var(--ink3);} .delta.pos{color:var(--ink);}
+  .srow.hot .delta{color:var(--rsp);}
+
+  /* ── 年度回報 columns ── */
+  .ychart{position:relative; height:150px; margin-top:.6mm;}
+  .ychart .zero{position:absolute; left:0; right:0; top:88px; border-top:1px solid var(--base);}
+  .ygrid{position:absolute; left:0; right:0; border-top:1px solid var(--line);}
+  .ygrid .gl{position:absolute; right:0; top:-1px; transform:translateY(-100%); font-size:5.6px; color:var(--ink3); font-weight:600;}
+  .ycols{position:absolute; inset:0; display:flex;}
+  .ygrp{position:relative; flex:1;}
+  .ygrp .col2{position:absolute; left:50%; transform:translateX(-50%); display:flex; gap:2px; align-items:flex-end;}
+  .yb{width:8px; border-radius:4px 4px 0 0;}
+  .yb.spx{background:var(--spx);} .yb.rsp{background:var(--rsp);}
+  .yb.dn{border-radius:0 0 4px 4px;}
+  .ylab{position:absolute; left:50%; transform:translateX(-50%); bottom:-13px; font-size:6px; font-weight:700; color:var(--ink2); font-variant-numeric:tabular-nums;}
+  .ywin{position:absolute; top:0; width:7px; height:7px; border-radius:50%; background:var(--rsp); transform:translateX(-50%);}
+  .ytip{position:absolute; font-size:5.9px; font-weight:800; font-variant-numeric:tabular-nums; white-space:nowrap;}
+
+  table.ytab{width:100%; border-collapse:collapse; font-size:5.9px; margin-top:2.6mm; font-variant-numeric:tabular-nums;}
+  table.ytab th{color:var(--ink3); font-weight:700; border-bottom:1px solid var(--base); padding:.3mm 0; text-align:right;}
+  table.ytab td{text-align:right; padding:.34mm 0; border-bottom:.4px solid var(--line); color:var(--ink2); font-weight:600;}
+  table.ytab td:first-child, table.ytab th:first-child{text-align:left; font-weight:800; color:var(--ink);}
+  table.ytab .r{color:var(--rsp); font-weight:800;}
+
+  /* ── 統計 tile 行 ── */
+  .stats{display:grid; grid-template-columns:repeat(4,1fr); gap:1.6mm;}
+  .st{background:#fafbfc; border:1px solid var(--line); border-radius:1.8mm; padding:.8mm 1.6mm;}
+  .st .n{font-size:9px; font-weight:800;}
+  .st .kd{display:inline-block; width:7px; height:7px; border-radius:2px; margin:0 .6mm; vertical-align:.2mm;}
+  .st .d{font-size:6px; color:var(--ink2); font-weight:600; margin-top:.2mm; line-height:1.3;}
+
+  .winbox{background:#fafbfc; border:1px solid var(--line); border-radius:1.8mm; padding:1.2mm 2mm; font-size:6.8px; line-height:1.45; color:var(--ink2);}
+  .winbox b{color:var(--ink);}
+  .winbox .row{margin:.35mm 0;}
+  .winbox .tag{display:inline-block; font-size:5.9px; font-weight:800; border-radius:.8mm; padding:0 .9mm; margin-right:1mm; vertical-align:.2mm;}
+  .winbox .tag.w{background:var(--rsp-bg); color:var(--rsp);}
+  .winbox .tag.l{background:var(--spx-bg); color:var(--spx);}
+
+  .ft{font-size:6.2px; color:var(--ink3); display:flex; justify-content:space-between; line-height:1.4; gap:4mm;}
+
+  .jpgbtn{position:fixed; top:16px; right:16px; z-index:60; border:none; cursor:pointer;
+    background:#2563eb; color:#fff; font-size:13px; font-weight:700; padding:9px 16px; border-radius:9px;
+    box-shadow:0 2px 8px rgba(0,0,0,.18);}
+  .kbadge{position:fixed;bottom:16px;right:16px;z-index:60;width:36px;height:36px;background:#fff;
+    border-radius:10px;display:flex;align-items:center;justify-content:center;
+    box-shadow:0 2px 8px rgba(0,0,0,.18);text-decoration:none;
+    font:italic 300 21px/1 'Brush Script MT','Segoe Script',cursive;color:#2563eb}
+  @media print{.jpgbtn,.kbadge{display:none!important}}
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <div class="hd">
+    <div>
+      <h1><span class="en">S&amp;P 500 等權指數 SPW × RSP ETF</span> · 同 500 隻股票，兩種計法</h1>
+      <div class="sub">市值加權＝NVDA 一隻 8.5% 話事；等權＝每隻 0.2%，季季拉平（S&amp;P DJI 2003 年推出 SPW）· SPX 7,541 · RSP $219.98 · 截至 2026-11-03</div>
+    </div>
+    <div class="asof">製作 2026-11-03<br>數據：SSGA · Invesco · S&amp;P DJI · Wikipedia · Yahoo Finance</div>
+  </div>
+
+  <div class="verdicts">
+    <div class="vd accent"><div class="t">Top 10 集中度</div><div class="v">40% vs 2.0%</div><div class="d">SPX 破紀錄高位 · RSP 十隻先 2%（20 倍差）</div></div>
+    <div class="vd warn"><div class="t">NVDA＋AAPL＋MSFT</div><div class="v">21.5% vs 0.6%</div><div class="d">三巨頭佔 SPX 兩成 — 1980 年代以嚟最集中</div></div>
+    <div class="vd good"><div class="t">2026 YTD（廣度年）</div><div class="v">+14.8% ＞ +10.3%</div><div class="d">RSP 反贏 SPY 4.5pp — 資金走出巨企</div></div>
+    <div class="vd blue"><div class="t">10 年 CAGR（價格）</div><div class="v">12.9% vs 9.8%</div><div class="d">AI 巨企年代 SPY 年贏 3.1pp · 計息收窄至 ~2.7pp</div></div>
+  </div>
+
+  <div class="cols">
+
+    <!-- ═══ 欄 1：概念＋基金對照 ═══ -->
+    <div class="col">
+      <div class="ct">點計權重 — 同一籃子股票，兩個世界</div>
+
+      <div class="segbar" title="SPX：市值加權，NVDA 一隻佔 8.46%">
+        <div class="seg ctr" style="width:8.46%; background:#1c5cab;"><span class="in">NVDA<small>8.46</small></span></div>
+        <div class="seg ctr" style="width:7.30%; background:#256abf;"><span class="in">AAPL<small>7.30</small></span></div>
+        <div class="seg ctr" style="width:5.77%; background:#3987e5;"><span class="in">MSFT<small>5.77</small></span></div>
+        <div class="seg mid" style="width:17.97%; background:#6da7ec;"><span class="in">Top 10 其餘<small>7 隻 · 18.0%</small></span></div>
+        <div class="seg" style="width:60.5%; background:#9ec5f4;"><span class="in" style="color:#0b3a6e;">其餘 493 隻合計<small>60.5%</small></span></div>
+      </div>
+      <div class="seg-note">SPX（市值加權）：隻隻唔同價 — 大市值＝大話事權 · Top 10 合計 40%（歷史新高）</div>
+
+      <div class="eqbar" title="RSP：每隻 0.20%，504 隻一樣">
+        <span class="in">RSP／SPW：504 隻 × <b>0.20%</b> — 一視同仁，冇大細</span>
+      </div>
+      <div class="seg-note">等權：每季（3／6／9／12 月）拉返均等 — 自動「高沽低吸」嘅結構</div>
+
+      <div class="conc" style="margin-top:.6mm;">
+        <div class="crow2">
+          <div class="nm">NVDA 一隻<small>最大成分股</small></div>
+          <div class="pair">
+            <div class="pbar"><div class="bar spx" style="width:100%"></div><span class="num">8.46%</span></div>
+            <div class="pbar"><div class="bar rsp" style="width:2.4%"></div><span class="num">0.20%</span></div>
+          </div>
+          <div class="mult">42×<small>倍差</small></div>
+        </div>
+        <div class="crow2">
+          <div class="nm">NVDA＋AAPL＋MSFT<small>三巨頭</small></div>
+          <div class="pair">
+            <div class="pbar"><div class="bar spx" style="width:100%"></div><span class="num">21.5%</span></div>
+            <div class="pbar"><div class="bar rsp" style="width:2.8%"></div><span class="num">0.60%</span></div>
+          </div>
+          <div class="mult">36×<small>倍差</small></div>
+        </div>
+        <div class="crow2">
+          <div class="nm">Top 10 合計<small>集中度紀錄位</small></div>
+          <div class="pair">
+            <div class="pbar"><div class="bar spx" style="width:100%"></div><span class="num">40%</span></div>
+            <div class="pbar"><div class="bar rsp" style="width:5%"></div><span class="num">2.0%</span></div>
+          </div>
+          <div class="mult">20×<small>倍差</small></div>
+        </div>
+      </div>
+
+      <div class="ct" style="margin-top:1.2mm;">基金對照 — RSP vs SPY<small>兩隻都係 500 隻，孖生唔同情緒</small></div>
+      <table class="facts">
+        <tr><th></th><th class="r">RSP 等權</th><th class="s">SPY 市值加權</th></tr>
+        <tr><td class="k">發行商</td><td><b>Invesco</b></td><td><b>State Street</b>（SPDR）</td></tr>
+        <tr><td class="k">追蹤指數</td><td>S&amp;P 500® 等權指數（SPW）</td><td>S&amp;P 500®（市值加權）</td></tr>
+        <tr><td class="k">成立</td><td><span class="num">2003-04-21</span></td><td><span class="num">1993-01-22</span></td></tr>
+        <tr><td class="k">費用率</td><td><b>0.20%</b></td><td><b>0.0945%</b>（平一半有多）</td></tr>
+        <tr><td class="k">AUM</td><td><span class="num">~$96.7B</span></td><td><span class="num">$798B</span>（Nov 2, 2026）</td></tr>
+        <tr><td class="k">持股</td><td><span class="num">504</span> 隻</td><td><span class="num">504</span> 隻</td></tr>
+        <tr><td class="k">加權法</td><td>每隻 0.2% · 每季拉平</td><td>即時市值 · 巨企自動坐大</td></tr>
+        <tr><td class="k">換手率</td><td><span class="num">~11%</span>／年（rebalance 產生）</td><td>—（併購／成分變動為主）</td></tr>
+        <tr><td class="k">派息率</td><td><span class="num">~1.5%</span></td><td><span class="num">~1.1%</span></td></tr>
+        <tr><td class="k">現價</td><td><span class="num">$219.98</span></td><td><span class="num">$752.10</span>（SPX 7,541）</td></tr>
+      </table>
+    </div>
+
+    <!-- ═══ 欄 2：板塊分佈 ═══ -->
+    <div class="col">
+      <div class="ct">板塊分佈 — 集中度由邊度嚟<small>SPX＝GICS 市值權重 · RSP＝成分股數目比例</small></div>
+      <div class="legend"><span><span class="sw" style="background:var(--spx)"></span>SPX 市值加權</span><span><span class="sw" style="background:var(--rsp)"></span>RSP／SPW 等權</span><span style="color:var(--ink3)">Δ＝兩者差（等權−市值）</span></div>
+
+      <div class="secwrap">
+        <div class="srow hot"><div class="snm">資訊科技<small>Information Technology</small></div>
+          <div class="spair">
+            <div class="sbar"><div class="bar spx" style="width:93.6%"></div><span class="num">37.5%</span></div>
+            <div class="sbar"><div class="bar rsp" style="width:37.3%"></div><span class="num">14.9%</span></div>
+          </div><div class="delta">Δ −22.6pp</div></div>
+        <div class="srow"><div class="snm">工業<small>Industrials</small></div>
+          <div class="spair">
+            <div class="sbar"><div class="bar spx" style="width:20.4%"></div><span class="num">8.2%</span></div>
+            <div class="sbar"><div class="bar rsp" style="width:41.3%"></div><span class="num">16.5%</span></div>
+          </div><div class="delta pos">Δ +8.3pp</div></div>
+        <div class="srow"><div class="snm">金融<small>Financials</small></div>
+          <div class="spair">
+            <div class="sbar"><div class="bar spx" style="width:30.5%"></div><span class="num">12.2%</span></div>
+            <div class="sbar"><div class="bar rsp" style="width:37.8%"></div><span class="num">15.1%</span></div>
+          </div><div class="delta">Δ +2.9pp</div></div>
+        <div class="srow"><div class="snm">醫療保健<small>Health Care</small></div>
+          <div class="spair">
+            <div class="sbar"><div class="bar spx" style="width:25.6%"></div><span class="num">10.3%</span></div>
+            <div class="sbar"><div class="bar rsp" style="width:29.8%"></div><span class="num">11.9%</span></div>
+          </div><div class="delta">Δ +1.6pp</div></div>
+        <div class="srow"><div class="snm">非必需消費<small>Consumer Discretionary</small></div>
+          <div class="spair">
+            <div class="sbar"><div class="bar spx" style="width:22.6%"></div><span class="num">9.0%</span></div>
+            <div class="sbar"><div class="bar rsp" style="width:23.3%"></div><span class="num">9.3%</span></div>
+          </div><div class="delta">Δ +0.3pp</div></div>
+        <div class="srow"><div class="snm">通訊服務<small>Communication Services</small></div>
+          <div class="spair">
+            <div class="sbar"><div class="bar spx" style="width:21.1%"></div><span class="num">8.4%</span></div>
+            <div class="sbar"><div class="bar rsp" style="width:11.0%"></div><span class="num">4.4%</span></div>
+          </div><div class="delta">Δ −4.0pp</div></div>
+        <div class="srow"><div class="snm">必需消費<small>Consumer Staples</small></div>
+          <div class="spair">
+            <div class="sbar"><div class="bar spx" style="width:12.5%"></div><span class="num">5.0%</span></div>
+            <div class="sbar"><div class="bar rsp" style="width:17.0%"></div><span class="num">6.8%</span></div>
+          </div><div class="delta">Δ +1.8pp</div></div>
+        <div class="srow"><div class="snm">公用事業<small>Utilities</small></div>
+          <div class="spair">
+            <div class="sbar"><div class="bar spx" style="width:5.2%"></div><span class="num">2.1%</span></div>
+            <div class="sbar"><div class="bar rsp" style="width:15.5%"></div><span class="num">6.2%</span></div>
+          </div><div class="delta">Δ +4.1pp</div></div>
+        <div class="srow"><div class="snm">能源<small>Energy</small></div>
+          <div class="spair">
+            <div class="sbar"><div class="bar spx" style="width:9.8%"></div><span class="num">3.9%</span></div>
+            <div class="sbar"><div class="bar rsp" style="width:10.5%"></div><span class="num">4.2%</span></div>
+          </div><div class="delta">Δ +0.3pp</div></div>
+        <div class="srow"><div class="snm">房地產<small>Real Estate</small></div>
+          <div class="spair">
+            <div class="sbar"><div class="bar spx" style="width:4.5%"></div><span class="num">1.8%</span></div>
+            <div class="sbar"><div class="bar rsp" style="width:15.0%"></div><span class="num">6.0%</span></div>
+          </div><div class="delta pos">Δ +4.2pp</div></div>
+        <div class="srow"><div class="snm">原材料<small>Materials</small></div>
+          <div class="spair">
+            <div class="sbar"><div class="bar spx" style="width:4.4%"></div><span class="num">1.7%</span></div>
+            <div class="sbar"><div class="bar rsp" style="width:12.0%"></div><span class="num">4.8%</span></div>
+          </div><div class="delta">Δ +3.1pp</div></div>
+      </div>
+      <div class="seg-note" style="margin-top:.4mm;">一句講晒：買 SPX ＝ 押注科技巨企（37.5%）；買 RSP ＝ 押注「其餘 493 隻」嘅廣度 — 工業／金融／醫療／公用／房地產全部加重碼。</div>
+    </div>
+
+    <!-- ═══ 欄 3：年度回報＋統計＋何時贏 ═══ -->
+    <div class="col">
+      <div class="ct">年度回報 %（2016 → 2026 YTD · 價格口徑）<small>● 標記＝等權贏嗰年</small></div>
+      <div class="legend"><span><span class="sw" style="background:var(--spx)"></span>SPY（市值）</span><span><span class="sw" style="background:var(--rsp)"></span>RSP（等權）</span></div>
+
+      <div class="ychart">
+        <div class="ygrid" style="top:4px"><span class="gl">+30%</span></div>
+        <div class="ygrid" style="top:46px"><span class="gl">+15%</span></div>
+        <div class="zero"></div>
+        <div class="ygrid" style="top:132px"><span class="gl">−15%</span></div>
+        <div class="ycols">
+          <!-- scale: 2.8px/% · 零線 top:88px -->
+          <div class="ygrp"><span class="ywin" style="left:31%"></span>
+            <div class="col2" style="bottom:88px"><div class="yb rsp" style="height:36px"></div><div class="yb spx" style="height:27px"></div></div>
+            <span class="ylab">2016</span></div>
+          <div class="ygrp">
+            <div class="col2" style="bottom:88px"><div class="yb rsp" style="height:46px"></div><div class="yb spx" style="height:54px"></div></div>
+            <span class="ylab">2017</span></div>
+          <div class="ygrp">
+            <div class="col2" style="top:88px"><div class="yb rsp dn" style="height:27px"></div><div class="yb spx dn" style="height:18px"></div></div>
+            <span class="ylab">2018</span></div>
+          <div class="ygrp">
+            <div class="col2" style="bottom:88px"><div class="yb rsp" style="height:74px"></div><div class="yb spx" style="height:81px"></div></div>
+            <span class="ylab">2019</span></div>
+          <div class="ygrp">
+            <div class="col2" style="bottom:88px"><div class="yb rsp" style="height:29px"></div><div class="yb spx" style="height:45px"></div></div>
+            <span class="ylab">2020</span></div>
+          <div class="ygrp"><span class="ywin" style="left:31%"></span>
+            <div class="col2" style="bottom:88px"><div class="yb rsp" style="height:77px"></div><div class="yb spx" style="height:76px"></div></div>
+            <span class="ylab">2021</span></div>
+          <div class="ygrp"><span class="ywin" style="left:31%"></span>
+            <div class="col2" style="top:88px"><div class="yb rsp dn" style="height:37px"></div><div class="yb spx dn" style="height:55px"></div></div>
+            <span class="ylab">2022</span></div>
+          <div class="ygrp">
+            <div class="col2" style="bottom:88px"><div class="yb rsp" style="height:33px"></div><div class="yb spx" style="height:68px"></div></div>
+            <span class="ylab">2023</span></div>
+          <div class="ygrp">
+            <div class="col2" style="bottom:88px"><div class="yb rsp" style="height:31px"></div><div class="yb spx" style="height:65px"></div></div>
+            <span class="ylab">2024</span></div>
+          <div class="ygrp">
+            <div class="col2" style="bottom:88px"><div class="yb rsp" style="height:26px"></div><div class="yb spx" style="height:46px"></div></div>
+            <span class="ylab">2025</span></div>
+          <div class="ygrp"><span class="ywin" style="left:31%"></span>
+            <div class="col2" style="bottom:88px"><div class="yb rsp" style="height:41px"></div><div class="yb spx" style="height:29px"></div></div>
+            <span class="ytip" style="right:-6px; bottom:73px; color:var(--ink)">+14.8</span>
+            <span class="ytip" style="right:-6px; bottom:52px; color:var(--ink2)">+10.3</span>
+            <span class="ylab">2026<span style="color:var(--ink3)">YTD</span></span></div>
+        </div>
+      </div>
+
+      <table class="ytab">
+        <tr><th>年度</th><th>2016</th><th>2017</th><th>2018</th><th>2019</th><th>2020</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th><th>2025</th><th>26YTD</th></tr>
+        <tr><td>RSP</td><td class="r">+13.0</td><td>+16.6</td><td class="r">−9.5</td><td>+26.6</td><td>+10.2</td><td class="r">+27.6</td><td class="r">−13.2</td><td>+11.7</td><td>+11.0</td><td>+9.3</td><td class="r">+14.8</td></tr>
+        <tr><td>SPY</td><td>+9.6</td><td class="r">+19.4</td><td class="r">−6.3</td><td class="r">+28.8</td><td class="r">+16.2</td><td>+27.0</td><td>−19.5</td><td class="r">+24.3</td><td class="r">+23.3</td><td class="r">+16.4</td><td>+10.3</td></tr>
+      </table>
+      <div class="seg-note" style="margin-top:.2mm;">11 年計：RSP 贏 4 年（2016·2021·2022·2026）· SPY 贏 7 年。AI 大年輸最傷：<b style="color:var(--ink)">2023 +11.7 vs +24.3（−12.6pp）</b>；跌市較穩：<b style="color:var(--ink)">2022 −13.2 vs −19.5（少輸 6.3pp）</b>。</div>
+
+      <div class="stats" style="margin-top:.8mm;">
+        <div class="st"><div class="n"><span class="kd s" style="background:var(--spx)"></span>12.9% vs <span class="kd" style="background:var(--rsp)"></span>9.8%</div><div class="d">10 年 CAGR（價格）— SPY vs RSP</div></div>
+        <div class="st"><div class="n"><span class="kd" style="background:var(--spx)"></span>9.6% vs <span class="kd" style="background:var(--rsp)"></span>6.2%</div><div class="d">5 年 CAGR</div></div>
+        <div class="st"><div class="n"><span class="kd" style="background:var(--spx)"></span>15.1% vs <span class="kd" style="background:var(--rsp)"></span>16.5%</div><div class="d">10 年年化波動（等權較高）</div></div>
+        <div class="st"><div class="n"><span class="kd" style="background:var(--spx)"></span>−24.8 vs <span class="kd" style="background:var(--rsp)"></span>−27.4</div><div class="d">11 年最大回撤 %（月收口徑）</div></div>
+      </div>
+
+      <div class="winbox" style="margin-top:.8mm;">
+        <div class="row"><span class="tag w">等權贏</span><b>廣度市</b>（資金走出巨企 → 2026 正係咁）· <b>跌市較穩</b>（2022 少輸 6.3pp — 唔使孭 AI 倉）· <b>估值收縮期</b>（巨企溢價被質疑）</div>
+        <div class="row"><span class="tag l">等權輸</span><b>巨企主導升市</b>（2023-25 AI 年：年年輸 7.0-12.6pp）· 貴 0.11pp 費用 · 波動較高 · 追蹤誤差較大</div>
+        <div class="row"><span class="tag" style="background:#f0efec;color:var(--ink)">結構</span>季季 rebalance ＝ 紀律化「高沽低吸」（贏咗嘅縮、輸咗嘅加）— 帶少少 value 傾向 · beta ~1.1（中細價滲透較深）</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ft">
+    <span>口徑：回報＝Yahoo Finance 月收盤價格回報（唔計股息；RSP 息 ~1.5% vs SPY ~1.1%，計息 10 年差距收窄至 ~2.7pp／年）；波動／MaxDD 由月收盤推算（2025-12→2026-11）。SPX 板塊權重＝SSGA SPY 官方頁（Nov 2, 2026）；RSP 板塊權重＝S&amp;P 500 成分股 GICS 板塊數目 ÷ 503（Wikipedia 成分表，2026-11-03）— 等權下板塊權重即成分數目比例，與 Invesco 披露口徑輕微出入屬取整。集中度：Top 10 ≈40%（MarketCapOf，2026-10-07）、NVDA 8.46／AAPL 7.30／MSFT 5.77%、三巨頭 21.7%（AINvest，2026-10-20，1980 年代以嚟新高）；RSP AUM $96.7B／504 隻／turnover 11%／P/E ~20.5（GuruFocus 2026-10-22；Invesco 官網）。SPW＝S&amp;P DJI 2003 年推出，3／6／9／12 月第三個星期五 rebalance。波動較高＋季 rebalance 賣強買弱＝等權結構成本，buy-and-hold 10 年跑輸唔代表無配置價值（衛星倉／廣度對沖用）。來源：SSGA · Invesco · S&amp;P DJI · Yahoo Finance · Wikipedia · MarketCapOf · AINvest · GuruFocus</span>
+    <span>leungkathy · 2026-11-03</span>
+  </div>
+</div>
+
+<button class="jpgbtn" onclick="exportJPG(this)">⬇ 匯出 JPEG</button>
+<a class="kbadge" href="https://leunghlk.github.io/all-in-one/" title="leungkathy · 返回主頁">k</a>
+<script type="module">
+  import { domToJpeg } from "https://cdn.jsdelivr.net/npm/modern-screenshot@4/dist/index.mjs";
+  window.modernScreenshot = { domToJpeg };
+</script>
+<script>
+function exportJPG(btn){
+  var target=document.querySelector('.sheet')||document.querySelector('.wrap');
+  if(!target||!window.modernScreenshot){alert('匯出元件未載入，請檢查網絡後重試');return;}
+  btn.disabled=true;var t=btn.textContent;btn.textContent='⏳ 匯出中…';
+  var k=document.createElement('div');
+  k.textContent='k';
+  k.style.cssText="position:absolute;right:8mm;bottom:2mm;z-index:9;font:italic 300 36px/1 'Brush Script MT','Segoe Script',cursive;color:#2563eb;pointer-events:none;";
+  var prevPos=target.style.position, prevPad=target.style.paddingBottom;
+  if(getComputedStyle(target).position==='static') target.style.position='relative';
+  target.style.paddingBottom='13mm';
+  target.appendChild(k);
+  function done(){ k.remove(); target.style.position=prevPos; target.style.paddingBottom=prevPad; }
+  modernScreenshot.domToJpeg(target,{scale:2,quality:0.92,backgroundColor:'#ffffff'}).then(function(url){
+    var a=document.createElement('a');
+    a.download=(document.title||'infographic').replace(/[\\\/:*?"<>|]+/g,'-').trim()+'.jpg';
+    a.href=url;
+    document.body.appendChild(a);a.click();a.remove();
+    btn.textContent=t;btn.disabled=false;done();
+  }).catch(function(e){alert('匯出失敗：'+e);btn.textContent=t;btn.disabled=false;done();});
+}
+</script>
+</body>
+</html>
