@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>高息收息基金比較 · 財息兼收（客戶版）</title>
+<style>
+  .viz-root{
+    color-scheme: light;
+    --surface-1:#fcfcfb; --page:#f9f9f7;
+    --text-primary:#0b0b0b; --text-secondary:#52514e; --text-muted:#898781;
+    --grid:#e1e0d9; --baseline:#c3c2b7; --border:rgba(11,11,11,0.10);
+    --f2:#eb6834; --f4:#eda100; --f3:#1baf7a; --f1:#2a78d6;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:where(:not([data-theme="light"])) .viz-root{
+      color-scheme:dark;
+      --surface-1:#1a1a19; --page:#0d0d0d;
+      --text-primary:#f0efec; --text-secondary:#c3c2b7; --text-muted:#898781;
+      --grid:#2c2c2a; --baseline:#383835; --border:rgba(255,255,255,0.10);
+      --f2:#d95926; --f4:#c98500; --f3:#199e70; --f1:#3987e5;
+    }
+  }
+  :root[data-theme="dark"] .viz-root{
+    color-scheme:dark;
+    --surface-1:#1a1a19; --page:#0d0d0d;
+    --text-primary:#f0efec; --text-secondary:#c3c2b7; --text-muted:#898781;
+    --grid:#2c2c2a; --baseline:#383835; --border:rgba(255,255,255,0.10);
+    --f2:#d95926; --f4:#c98500; --f3:#199e70; --f1:#3987e5;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body.viz-root{font-family:system-ui,-apple-system,"Segoe UI","PingFang TC","Microsoft JhengHei",sans-serif;
+    background:var(--page);color:var(--text-primary);padding:26px 18px 36px;line-height:1.5;}
+  .wrap{max-width:1180px;margin:0 auto;}
+  h1{font-size:22px;font-weight:700;}
+  .sub{color:var(--text-secondary);font-size:13px;margin-top:4px;}
+  .asof{color:var(--text-muted);font-size:11.5px;margin-top:2px;}
+
+  table.cmp{width:100%;border-collapse:collapse;background:var(--surface-1);
+    border:1px solid var(--border);border-radius:12px;overflow:hidden;font-size:12.5px;margin-top:16px;}
+  table.cmp th,table.cmp td{padding:9px 12px;text-align:left;vertical-align:top;}
+  table.cmp thead th{border-bottom:1px solid var(--grid);}
+  table.cmp thead th .dot{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:7px;}
+  table.cmp thead th .nm{font-size:13.5px;font-weight:700;}
+  table.cmp thead th .code{display:block;font-size:10.5px;color:var(--text-muted);font-weight:400;margin-top:1px;}
+  table.cmp tbody tr+tr td{border-top:1px solid var(--grid);}
+  table.cmp td.k{color:var(--text-secondary);font-size:11.5px;width:128px;white-space:nowrap;}
+  td .big{font-size:16px;font-weight:700;font-variant-numeric:tabular-nums;}
+  td .pos{color:#0d8a3e;font-weight:700;font-variant-numeric:tabular-nums;}
+  @media (prefers-color-scheme: dark){ :root:where(:not([data-theme="light"])) .pos{color:#3ecf6e;} }
+  :root[data-theme="dark"] .pos{color:#3ecf6e;}
+  td .warn{color:#c0392b;font-weight:600;}
+  @media (prefers-color-scheme: dark){ :root:where(:not([data-theme="light"])) .warn{color:#e8705f;} }
+  :root[data-theme="dark"] .warn{color:#e8705f;}
+
+  .covrow{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:12px;}
+  @media(max-width:900px){.covrow{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:520px){.covrow{grid-template-columns:1fr;}}
+  .covcard{background:var(--surface-1);border:1px solid var(--border);border-radius:10px;padding:10px 12px;}
+  .covcard h4{font-size:11.5px;font-weight:600;color:var(--text-secondary);display:flex;align-items:center;gap:6px;}
+  .covcard h4 .dot{width:9px;height:9px;border-radius:3px;}
+  .barrow{display:grid;grid-template-columns:34px 1fr 44px;gap:7px;align-items:center;margin-top:6px;font-size:11px;}
+  .barrow .lb{color:var(--text-muted);}
+  .barrow .trk{height:12px;display:flex;align-items:center;border-left:1px solid var(--baseline);}
+  .barrow .bar{height:12px;border-radius:0 3px 3px 0;}
+  .barrow .v{font-weight:600;font-variant-numeric:tabular-nums;text-align:right;}
+  .covcard .note{margin-top:7px;font-size:11px;border-radius:7px;padding:5px 8px;}
+  .note.good{background:rgba(13,138,62,.10);color:#0d8a3e;}
+  .note.mid{background:rgba(250,178,25,.14);color:#8a6100;}
+  .note.bad{background:rgba(192,57,43,.10);color:#c0392b;}
+  @media (prefers-color-scheme: dark){
+    :root:where(:not([data-theme="light"])) .note.good{background:rgba(62,207,110,.12);color:#3ecf6e;}
+    :root:where(:not([data-theme="light"])) .note.mid{background:rgba(201,133,0,.14);color:#e5a83c;}
+    :root:where(:not([data-theme="light"])) .note.bad{background:rgba(232,112,95,.12);color:#e8705f;}
+  }
+  :root[data-theme="dark"] .note.good{background:rgba(62,207,110,.12);color:#3ecf6e;}
+  :root[data-theme="dark"] .note.mid{background:rgba(201,133,0,.14);color:#e5a83c;}
+  :root[data-theme="dark"] .note.bad{background:rgba(232,112,95,.12);color:#e8705f;}
+
+  h2{font-size:14px;font-weight:700;margin-top:22px;display:flex;align-items:center;gap:8px;}
+  h2 .rule{flex:1;height:1px;background:var(--grid);}
+  .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:12px;}
+  @media(max-width:900px){.grid4{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:520px){.grid4{grid-template-columns:1fr;}}
+  .pcard{background:var(--surface-1);border:1px solid var(--border);border-radius:10px;padding:12px 13px;border-top:3px solid var(--c);}
+  .pcard h3{font-size:12.5px;font-weight:700;}
+  .pcard .role{font-size:10.5px;color:var(--text-muted);margin-bottom:7px;}
+  .pcard ul{list-style:none;font-size:11.5px;color:var(--text-secondary);}
+  .pcard ul li{padding:2.5px 0 2.5px 13px;position:relative;}
+  .pcard ul li::before{content:"";position:absolute;left:0;top:.72em;width:5px;height:5px;border-radius:2px;background:var(--c);}
+  .pcard .fit{margin-top:7px;font-size:11px;color:var(--text-primary);background:color-mix(in srgb,var(--c) 8%,transparent);border-radius:7px;padding:5px 8px;}
+
+  .combo{margin-top:14px;background:var(--surface-1);border:1px solid var(--border);border-radius:10px;padding:11px 14px;font-size:12px;color:var(--text-secondary);}
+  .combo b{color:var(--text-primary);}
+  .foot{margin-top:20px;border-top:1px solid var(--grid);padding-top:11px;font-size:10.5px;color:var(--text-muted);line-height:1.75;}
+
+  .ig-nav{background:#1a1d23;padding:8px 16px;display:flex;gap:16px;align-items:center;font-size:12.5px;flex-wrap:wrap;}
+  .ig-nav a{color:#9ec5f4;text-decoration:none;}
+  .ig-nav .cur{color:#fff;}
+  @media print{.ig-nav{display:none!important}.pcard,table.cmp,.covcard,.combo{break-inside:avoid}body.viz-root{background:#fff;padding:8mm}}
+</style>
+</head>
+<body class="viz-root">
+<div class="ig-nav">
+  <a href="https://leunghlk.github.io/infographics/">📐 入口</a>
+  <a class="cur" href="https://leunghlk.github.io/infographics/funds-highyield-client-2026-11.html">高息四強 · 客戶版（11月）</a>
+  <a href="https://leunghlk.github.io/infographics/funds-highyield-compare-2026-11.html">詳細版</a>
+  <span style="color:#6b7280;margin-left:auto">2026-11-04</span>
+</div>
+<div class="wrap">
+
+  <h1>高息收息基金比較 · 財息兼收</h1>
+  <div class="sub">兩隻股票收息基金 × 兩隻多元資產收息基金 — 風險級別、派息與回報一覽</div>
+  <div class="asof">恒生 FSM 平台 HKD 現金類口徑 · 回報至 2026-10-31 · 派息率為最近一次月度分派年化（2026-11-02/03）· 2026-11-04 提取</div>
+
+  <table class="cmp">
+    <thead><tr>
+      <th></th>
+      <th><span class="dot" style="background:var(--f2)"></span><span class="nm">富達環球股息優勢</span><span class="code">U45568 · A-MCDIST(G) HKD 對沖 · 月派</span></th>
+      <th><span class="dot" style="background:var(--f4)"></span><span class="nm">摩根亞洲股票高息</span><span class="code">U45501 · (MTH) HKD 現金類 · 月派</span></th>
+      <th><span class="dot" style="background:var(--f3)"></span><span class="nm">宏利環球多元資產入息 GMADI</span><span class="code">U45660 · F類 HKD 月派（固定10%）</span></th>
+      <th><span class="dot" style="background:var(--f1)"></span><span class="nm">東方匯理收益機遇</span><span class="code">U45769 · HKD 月派現金類</span></th>
+    </tr></thead>
+    <tbody>
+      <tr><td class="k">風險級別<br><span style="color:var(--text-muted);font-size:10px">平台評級 1–5</span></td>
+        <td><span class="big">3</span> / 5<br><span style="color:var(--text-muted);font-size:11px">環球股票收息</span></td>
+        <td><span class="big">4</span> / 5<br><span style="color:var(--text-muted);font-size:11px">亞洲（日本除外）股票</span></td>
+        <td><span class="big">3</span> / 5<br><span style="color:var(--text-muted);font-size:11px">多元資產（靈活）</span></td>
+        <td><span class="big">2</span> / 5<br><span style="color:var(--text-muted);font-size:11px">多元資產（平衡）</span></td></tr>
+      <tr><td class="k">年化派息率*</td>
+        <td><span class="big">8.77%</span></td><td><span class="big">9.52%</span></td>
+        <td><span class="big">10.27%</span><br><span style="color:var(--text-muted);font-size:10.5px">固定 10% 派息機制</span></td>
+        <td><span class="big">7.82%</span></td></tr>
+      <tr><td class="k">近 1 年總回報</td>
+        <td><span class="pos">+13.56%</span></td><td><span class="pos">+15.14%</span></td>
+        <td><span class="pos">+6.81%</span></td><td><span class="pos">+10.81%</span></td></tr>
+      <tr><td class="k">年初至今回報</td>
+        <td><span class="pos">+9.87%</span></td><td><span class="pos">+12.75%</span></td>
+        <td><span class="pos">+4.90%</span></td><td><span class="pos">+7.74%</span></td></tr>
+      <tr><td class="k">近 3 年年化回報<br><span style="color:var(--text-muted);font-size:10px">基金層面</span></td>
+        <td><span class="pos">+16.28%</span><br><span style="color:var(--text-muted);font-size:10.5px">至 2026-08-31</span></td>
+        <td style="color:var(--text-muted)">— 2023-12 重組</td>
+        <td><span class="pos">+10.96%</span></td><td><span class="pos">+11.42%</span></td></tr>
+      <tr><td class="k">資產配置</td>
+        <td>環球股票 ≥90%<br><span style="color:var(--text-muted);font-size:11px">優質收息股為主</span></td>
+        <td>亞洲股票 95%<br><span style="color:var(--text-muted);font-size:11px">現金 5%</span></td>
+        <td>股票 50% · 債券 44%<br><span style="color:var(--text-muted);font-size:11px">高收益債佔全基金 32%</span></td>
+        <td>股票 46% · 債券 24%<br><span style="color:var(--text-muted);font-size:11px">掛鈎票據 24% · 現金 7%</span></td></tr>
+      <tr><td class="k">主要市場</td>
+        <td>英國＋歐洲為主<br><span style="color:var(--text-muted);font-size:11px">美國僅約 6%（有別於指數 64%）</span></td>
+        <td>台灣 25% · 韓國 20%<br><span style="color:var(--text-muted);font-size:11px">科技股約 37%</span></td>
+        <td>北美 76%<br><span style="color:var(--text-muted);font-size:11px">深度連繫美國利率環境</span></td>
+        <td>全球分散<br><span style="color:var(--text-muted);font-size:11px">股票部分美洲約 30%</span></td></tr>
+      <tr><td class="k">收入來源</td>
+        <td>股息＋<b>出售認購期權</b>（covered call，章程載明：個股或股指期權）</td>
+        <td>股息＋<b>出售亞洲指數認購期權</b>（factsheet 載明）；派息上限為盈利 75%</td>
+        <td>股息＋債息<br><span style="color:var(--text-muted);font-size:11px">債券年期／收益率未披露</span></td>
+        <td>股息＋債息（債券年期 6.3 年、收益率 7.4%）＋掛鈎票據</td></tr>
+      <tr><td class="k">2022 年跌市表現<br><span style="color:var(--text-muted);font-size:10px">股債雙殺壓力測試</span></td>
+        <td><span class="pos">−5.2%</span><br><span style="color:var(--text-muted);font-size:10.5px">對沖類；指數 −11.4%</span></td>
+        <td style="color:var(--text-muted)">— 無紀錄（2023-12 重組）</td>
+        <td><span class="warn">−13.0%</span></td>
+        <td><span class="pos">−1.3%</span><br><span style="color:var(--text-muted);font-size:10.5px">全場最抗跌</span></td></tr>
+    </tbody>
+  </table>
+
+  <h2>派息與回報對照（過去 12 個月）<span class="rule"></span></h2>
+  <div class="covrow">
+    <div class="covcard"><h4><span class="dot" style="background:var(--f2)"></span>富達環球股息優勢</h4>
+      <div class="barrow"><span class="lb">派息</span><span class="trk"><span class="bar" style="background:var(--f2);opacity:.55;width:55%"></span></span><span class="v">8.77%</span></div>
+      <div class="barrow"><span class="lb">回報</span><span class="trk"><span class="bar" style="background:var(--f2);width:85%"></span></span><span class="v">13.56%</span></div>
+      <div class="note good">回報高於派息 — 息由盈利支付</div></div>
+    <div class="covcard"><h4><span class="dot" style="background:var(--f4)"></span>摩根亞洲股票高息</h4>
+      <div class="barrow"><span class="lb">派息</span><span class="trk"><span class="bar" style="background:var(--f4);opacity:.55;width:60%"></span></span><span class="v">9.52%</span></div>
+      <div class="barrow"><span class="lb">回報</span><span class="trk"><span class="bar" style="background:var(--f4);width:95%"></span></span><span class="v">15.14%</span></div>
+      <div class="note good">回報高於派息 — 派息以盈利為基礎</div></div>
+    <div class="covcard"><h4><span class="dot" style="background:var(--f3)"></span>宏利 GMADI</h4>
+      <div class="barrow"><span class="lb">派息</span><span class="trk"><span class="bar" style="background:var(--f3);opacity:.55;width:64%"></span></span><span class="v">10.27%</span></div>
+      <div class="barrow"><span class="lb">回報</span><span class="trk"><span class="bar" style="background:var(--f3);width:43%"></span></span><span class="v">6.81%</span></div>
+      <div class="note bad">派息高於回報 — 差額或由本金承擔</div></div>
+    <div class="covcard"><h4><span class="dot" style="background:var(--f1)"></span>東方匯理收益機遇</h4>
+      <div class="barrow"><span class="lb">派息</span><span class="trk"><span class="bar" style="background:var(--f1);opacity:.55;width:49%"></span></span><span class="v">7.82%</span></div>
+      <div class="barrow"><span class="lb">回報</span><span class="trk"><span class="bar" style="background:var(--f1);width:68%"></span></span><span class="v">10.81%</span></div>
+      <div class="note mid">回報僅略高於派息 — 需留意市況轉弱</div></div>
+  </div>
+
+  <h2>定位與適合對象<span class="rule"></span></h2>
+  <div class="grid4">
+    <div class="pcard" style="--c:var(--f2)">
+      <h3>富達環球股息優勢</h3><div class="role">防守收息</div>
+      <ul>
+        <li>波動約為環球指數一半；2022 年跌市跌幅亦僅指數一半</li>
+        <li>美國佔比極低，天然分散美股集中風險</li>
+        <li>強市表現會落後大市（上行空間部分用於期權收息）</li>
+      </ul>
+      <div class="fit">適合：定存升級、追求低波動月月息的客戶</div></div>
+    <div class="pcard" style="--c:var(--f4)">
+      <h3>摩根亞洲股票高息</h3><div class="role">進取財息</div>
+      <ul>
+        <li>派息＋亞洲科技雙引擎，息與增長並重</li>
+        <li>派息以實際盈利為基礎（上限 75%）</li>
+        <li>風險級別 4；52 週內自高位回撤約 11%，波動較大</li>
+      </ul>
+      <div class="fit">適合：可承受較大波動、看好亞洲市場的客戶</div></div>
+    <div class="pcard" style="--c:var(--f3)">
+      <h3>宏利 GMADI</h3><div class="role">高息但需特別注意</div>
+      <ul>
+        <li>固定 10% 派息機制，現金流全場最高</li>
+        <li>近 12 個月回報低於派息，差額由本金承擔</li>
+        <li>2022 年壓力測試 −13%；高收益債佔比約三成</li>
+      </ul>
+      <div class="fit">適合：追求最高現金流、充分理解本金承擔的客戶</div></div>
+    <div class="pcard" style="--c:var(--f1)">
+      <h3>東方匯理收益機遇</h3><div class="role">平衡核心</div>
+      <ul>
+        <li>風險級別 2 為四隻中最低；2022 年僅 −1.3%</li>
+        <li>債券部分 6.3 年年期、收益率約 7.4%</li>
+        <li>近一年回報與派息貼近，市弱時或需動用資本</li>
+      </ul>
+      <div class="fit">適合：穩健型收息核心配置</div></div>
+  </div>
+
+  <div class="combo"><b>組合思路：</b>「防守＋進取」雙腿 — 以富達作低波動收息底倉、摩根作增強收息衛星；或以東方匯理作穩健核心。宏利 GMADI 建議僅在客戶明確接受本金承擔時採用。</div>
+
+  <div class="foot">
+    重要資料 —
+    * 派息率按最近一次月度分派年化計算。派息並不保證；四隻基金之派息條款上均可從收益或資本中支付。從資本中支付派息，即等於退回投資者原有本金之一部分，可能導致每股資產淨值即時減少。宏利 GMADI 為固定 10% 派息機制，其派息可能超越基金實際收益，基金公司已明確提示資本侵蝕風險。
+    回報為過往表現，未必代表未來表現。近 1 年／年初至今回報為恒生 FSM 平台 HKD 類別累計（至 2026-10-31）；近 3 年年化為基金層面 factsheet 數據（富達為 USD 類別至 2026-08-31，宏利及東方匯理至 2026-09-30）；摩根及富達現行平台類別分別於 2023-12／2024-10 重組，故無 3 年平台紀錄。2022 年數據為基金層面壓力測試口徑。
+    風險級別為恒生平台 1–5 級評級，級別越高代表風險越高。投資涉及風險，基金價格可升可跌，甚至可能損失全部投資金額。基金可能使用金融衍生工具，涉及對手方、流通性及波動風險。派息收益率為正值並不代表總回報為正。資料於 2026-11-04 自恒生 FSM 平台及基金公司 factsheet 提取，僅供客戶參考，並非投資建議或要約。詳情請參閱基金章程及產品資料概要。
+  </div>
+</div>
+
+<a class="kbadge" href="https://leunghlk.github.io/all-in-one/" title="leungkathy · 返回主頁"
+   style="position:fixed;bottom:16px;right:16px;z-index:60;width:36px;height:36px;background:#fff;border-radius:10px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.18);text-decoration:none;font:italic 300 21px/1 'Brush Script MT','Segoe Script',cursive;color:#2563eb">k</a>
+<style>@media print{.kbadge{display:none!important}}</style>
+<script>
+function exportJPG(btn){
+  var target=document.querySelector('.wrap');
+  if(!window.modernScreenshot){alert('匯出元件未載入，請檢查網絡後重試');return;}
+  btn.disabled=true;var t=btn.textContent;btn.textContent='⏳ 匯出中…';
+  var k=document.createElement('div');k.textContent='k';
+  k.style.cssText="position:absolute;right:8mm;bottom:2mm;z-index:9;font:italic 300 36px/1 'Brush Script MT','Segoe Script',cursive;color:#2563eb;pointer-events:none;";
+  var pp=target.style.paddingBottom;
+  if(getComputedStyle(target).position==='static') target.style.position='relative';
+  target.style.paddingBottom='13mm';target.appendChild(k);
+  function done(){k.remove();target.style.paddingBottom=pp;}
+  modernScreenshot.domToJpeg(target,{scale:2,quality:0.92,backgroundColor:'#ffffff'}).then(function(url){
+    var a=document.createElement('a');a.download=(document.title||'infographic')+'.jpg';a.href=url;
+    document.body.appendChild(a);a.click();a.remove();btn.textContent=t;btn.disabled=false;done();
+  }).catch(function(e){alert('匯出失敗：'+e);btn.textContent=t;btn.disabled=false;done();});
+}
+</script>
+<script type="module">
+  import { domToJpeg } from "https://cdn.jsdelivr.net/npm/modern-screenshot@4/dist/index.mjs";
+  window.modernScreenshot = { domToJpeg };
+  var b=document.createElement('button');b.textContent='📸 匯出 JPEG';b.onclick=function(){exportJPG(b)};
+  b.style.cssText='position:fixed;top:60px;right:18px;z-index:60;background:#2563eb;color:#fff;border:none;border-radius:10px;padding:10px 16px;font-size:13px;font-weight:700;cursor:pointer;box-shadow:0 4px 14px rgba(37,99,235,.4);font-family:inherit';
+  document.body.appendChild(b);
+</script>
+</body>
+</html>
