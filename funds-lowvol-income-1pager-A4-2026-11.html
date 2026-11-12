@@ -23,20 +23,20 @@
   }
   .sheet{
     width:297mm; min-height:209mm; margin:6mm auto; background:var(--surface);
-    padding:6mm 8mm 4.5mm; box-shadow:0 2px 14px rgba(0,0,0,.10);
-    display:flex; flex-direction:column; gap:2.4mm;
+    padding:5mm 7mm 2.5mm; box-shadow:0 2px 14px rgba(0,0,0,.10);
+    display:flex; flex-direction:column; gap:1.6mm;
   }
   @media print{
     body{background:#fff;}
     .sheet{margin:0; box-shadow:none; width:auto; min-height:auto;}
-    @page{size:A4 landscape; margin:6mm 5.5mm;}
+    @page{size:A4 landscape; margin:5mm 5mm;}
   }
-  @page{size:A4 landscape; margin:6mm 5.5mm;}
+  @page{size:A4 landscape; margin:5mm 5mm;}
 
   /* header */
   .hd{display:flex; justify-content:space-between; align-items:flex-end; border-bottom:2.5px solid var(--ink); padding-bottom:2mm;}
-  .hd h1{font-size:18px; font-weight:800;}
-  .hd .sub{font-size:9px; color:var(--ink2); margin-top:1mm;}
+  .hd h1{font-size:16.5px; font-weight:800;}
+  .hd .sub{font-size:8.6px; color:var(--ink2); margin-top:.8mm;}
   .hd .asof{font-size:8px; color:var(--ink3); text-align:right; line-height:1.55;}
 
   .cols{display:grid; grid-template-columns:repeat(4,1fr); gap:3mm; flex:1;}
@@ -47,23 +47,23 @@
   .chead .meta{font-size:7.8px; color:var(--ink2); margin-top:1mm; line-height:1.5;}
   .chead .meta b{color:var(--ink3); font-weight:600;}
 
-  .tag{margin:1.4mm 2.8mm 0; font-size:9px; font-weight:700; line-height:1.45;
-    background:color-mix(in srgb,var(--c) 10%,#fff); border-radius:2mm; padding:1.2mm 2.2mm;}
+  .tag{margin:1.1mm 2.8mm 0; font-size:8.8px; font-weight:700; line-height:1.4;
+    background:color-mix(in srgb,var(--c) 10%,#fff); border-radius:2mm; padding:.9mm 2.2mm;}
 
   .blk{padding:1.4mm 2.8mm 0;}
   .blk h3{font-size:7.2px; font-weight:700; color:var(--ink3); text-transform:uppercase; letter-spacing:.07em; margin-bottom:.9mm;}
   /* 跨欄 section 對齊：四欄同一 block 鎖同一最低高度（實測自 probe） */
-  .chead{min-height:84px;}
-  .ret{min-height:49px;}
-  .b-chips{min-height:48px;}
-  .b-alloc{min-height:67px;}
-  .b-pay{min-height:93px;}
-  .b-top5{min-height:8.2mm;}
-  .fit{min-height:65px;}
+  .chead{min-height:80px;}
+  .ret{min-height:38px;}
+  .b-chips{min-height:40px;}
+  .b-alloc{min-height:62px;}
+  .b-pay{min-height:76px;}
+  .b-top5{min-height:7.4mm;}
+  .fit{min-height:62px;}
 
   /* returns strip: 4 cells */
   .rets{display:grid; grid-template-columns:repeat(4,1fr); gap:1.2mm; text-align:center;}
-  .ret{background:#fafafa; border:1px solid var(--line); border-radius:1.6mm; padding:1mm 0 1.1mm;}
+  .ret{background:#fafafa; border:1px solid var(--line); border-radius:1.6mm; padding:.6mm 0 .7mm;}
   .ret .l{font-size:6.8px; color:var(--ink3);}
   .ret .v{font-size:12px; font-weight:800; margin-top:.4mm;}
   .ret .v.na{color:var(--ink3); font-weight:600; font-size:10px;}
@@ -89,26 +89,42 @@
   .pay .v small{font-size:7.6px; font-weight:600;}
   .pay .r{font-size:8px; color:var(--ink2); text-align:right;}
   .pay .r b{font-size:11px; color:var(--ink); font-weight:800;}
-  .cover{font-size:8.2px; line-height:1.42; border-radius:2mm; padding:1.1mm 2mm;}
+  .cover{font-size:7.9px; line-height:1.36; border-radius:2mm; padding:.9mm 2mm;}
   .cover.good{background:#e9f6e9;}
   .cover.mid{background:#fdf3dc;}
   .cover.bad{background:#fbe9e9;}
   .cover b{font-weight:800;}
 
-  .top5{font-size:8.2px; line-height:1.42; color:var(--ink2); font-variant-numeric:tabular-nums;}
+  .top5{font-size:7.6px; line-height:1.32; color:var(--ink2); font-variant-numeric:tabular-nums;}
   .top5 b{color:var(--ink); font-weight:600;}
 
-  .fit{margin-top:auto; border-top:1px solid var(--line); padding:1.4mm 2.8mm 1.8mm; font-size:8.2px; line-height:1.42;}
+  .fit{margin-top:auto; border-top:1px solid var(--line); padding:1.1mm 2.8mm 1.4mm; font-size:7.9px; line-height:1.36;}
   .fit div{padding:.25mm 0;}
   .fit .lab{display:inline-block; font-weight:800; font-size:7px; border-radius:1mm; padding:.2mm 1.4mm; margin-right:1.4mm; vertical-align:.3mm;}
   .fit .ok .lab{background:#e9f6e9; color:#0a5c0a;}
   .fit .watch .lab{background:#fdf3dc; color:#7a5800;}
   .fit .watch{color:var(--ink2);}
 
-  .combo{border:1px solid var(--line); background:#fafafa; border-radius:2mm; padding:1.6mm 3mm; font-size:8.6px; color:var(--ink2); line-height:1.5;}
+  .combo{border:1px solid var(--line); background:#fafafa; border-radius:2mm; padding:1.3mm 3mm; font-size:8.2px; color:var(--ink2); line-height:1.42;}
   .combo b{color:var(--ink);}
 
-  .ft{border-top:1px solid var(--line); padding-top:1.3mm; font-size:6.8px; color:var(--ink3); line-height:1.5;}
+  .ft{border-top:1px solid var(--line); padding-top:1.1mm; font-size:6.1px; color:var(--ink3); line-height:1.33; columns:2; column-gap:5mm;}
+
+  /* 衍生工具剔剔表 */
+  .der{border:1px solid var(--line); background:#fafafa; border-radius:2mm; padding:1.1mm 3mm .9mm;}
+  .der h3{font-size:7.2px; font-weight:700; color:var(--ink3); text-transform:uppercase; letter-spacing:.07em; margin-bottom:.8mm;}
+  .der h3 span{font-weight:400; text-transform:none; letter-spacing:0;}
+  .der table{width:100%; border-collapse:collapse; table-layout:fixed;}
+  .der th,.der td{border-bottom:1px solid var(--line); padding:.34mm 1.5mm; vertical-align:top;}
+  .der tr:last-child td{border-bottom:none;}
+  .der th{font-size:7.5px; text-align:left; color:var(--ink); font-weight:700; border-bottom:1.4px solid #d5d6d9; padding-bottom:.55mm;}
+  .der th i{font-style:normal; font-size:7px;}
+  .der td.lab{font-size:7.3px; color:var(--ink2); font-weight:600; width:15.5%;}
+  .der td{font-size:7.3px; line-height:1.28; color:var(--ink2);}
+  .der .yes{color:#0a5c0a; font-weight:800;}
+  .der .no{color:var(--ink3);}
+  .der .mid{color:#7a5800; font-weight:700;}
+  .der sup{font-size:5.5px;}
 </style>
 </head>
 <body>
@@ -141,7 +157,7 @@
         <div class="nm">富蘭克林入息基金</div>
         <div class="meta">U45104 · 風險級別 <b>2</b> · Morningstar ★★★★ · 規模 <b>US$147.0 億</b> · NAV 8.84<br>USD Moderate Allocation · 股債混合 · USD 類 1999 年成立</div>
       </div>
-      <div class="tag">低波動收息錨：23% 股票＋55% 債券、369 項持倉，12 個月波動 6.3% 全場最低</div>
+      <div class="tag">低波動收息錨：波動 6.3% 全場最低</div>
 
       <div class="blk">
         <div class="rets">
@@ -169,8 +185,8 @@
       </div>
 
       <div class="blk b-pay">
-        <h3>派息（HKD 每月）</h3>
-        <div class="pay"><span class="v">$0.0610</span><span class="r">派息率 <b>8.19%</b></span></div>
+        <h3>派息率（HKD 類）</h3>
+        <div class="pay"><span class="v">8.19%</span><span class="r">HKD 0.0610／月<br><span style="font-size:7px">最近月度分派</span></span></div>
         <div class="cover good"><b>覆蓋正數</b> — 近 1 年回報 +9.98% 高於派息率；債券息 7.08% 打底，1999 年至今累計 +311%（美元類）</div>
       </div>
 
@@ -192,7 +208,7 @@
         <div class="nm">宏利環球多元資產入息 GMADI</div>
         <div class="meta">U45660 · 風險級別 <b>3</b> · 規模 <b>US$32.4 億</b> · NAV 10.469<br>USD Flexible Allocation · 多元資產 · 基金 2019-04 成立</div>
       </div>
-      <div class="tag">定額現金流之王：F 類固定 10% 月月派——派息金額鎖定，惟回報不足時由本金支付</div>
+      <div class="tag">定額現金流之王：固定 10% 月月派</div>
 
       <div class="blk">
         <div class="rets">
@@ -220,9 +236,9 @@
       </div>
 
       <div class="blk b-pay">
-        <h3>派息（HKD 每月）</h3>
-        <div class="pay"><span class="v">$0.0905</span><span class="r">派息率 <b>10.27%</b><br><span style="font-size:7px">固定 10% 機制</span></span></div>
-        <div class="cover bad"><b>本金承擔</b> — 固定派 10% 高於近 1 年回報 +7.01%，差額由本金支付；基金公司已明確提示「資本侵蝕」風險；2022 年壓力測試 −13.0%</div>
+        <h3>派息率（HKD 類）</h3>
+        <div class="pay"><span class="v">10.27%</span><span class="r">HKD 0.0905／月<br><span style="font-size:7px">固定 10% 派息機制</span></span></div>
+        <div class="cover bad"><b>本金承擔</b> — 固定派 10% 高於 1 年回報 +7.01%，差額由本金支付；2022 年壓測 −13.0%</div>
       </div>
 
       <div class="blk b-top5">
@@ -232,7 +248,7 @@
 
       <div class="fit">
         <div class="ok"><span class="lab">適合</span>追求最高定額現金流、充分理解派息可含本金的客（風險 3 級）</div>
-        <div class="watch"><span class="lab">留意</span>固定 10% 並非保證回報；本金承擔即是「退回部分原有投資」</div>
+        <div class="watch"><span class="lab">留意</span>固定 10% 非保證回報；本金承擔＝退回部分本金</div>
       </div>
     </div>
 
@@ -241,9 +257,9 @@
       <div class="chead">
         <div class="house">Amundi 東方匯理</div>
         <div class="nm">東方匯理收益機遇</div>
-        <div class="meta">U45768 · 風險級別 <b>2</b> · 規模 <b>US$90.4 億</b> · NAV 55.47<br>USD Moderate Allocation · 多元資產 · 基金 2018-05 成立</div>
+        <div class="meta">U45768 · 風險級別 <b>2</b> · Morningstar ★★★★ · 規模 <b>US$90.4 億</b> · NAV 55.47<br>USD Moderate Allocation · 多元資產 · 基金 2018-05 成立</div>
       </div>
-      <div class="tag">平衡收息核心：2022 年股債雙殺僅 −1.3% 全場最抗跌；股票＋債券＋掛鈎票據三柱收息</div>
+      <div class="tag">2022 雙殺僅 −1.3%，全場最抗跌</div>
 
       <div class="blk">
         <div class="rets">
@@ -271,8 +287,8 @@
       </div>
 
       <div class="blk b-pay">
-        <h3>派息（USD 每月）</h3>
-        <div class="pay"><span class="v">$0.3709</span><span class="r">派息率 <b>7.85%</b><br><span style="font-size:7px">factsheet 年化 8.4%</span></span></div>
+        <h3>派息率（USD 類）</h3>
+        <div class="pay"><span class="v">7.85%</span><span class="r">USD 0.3709／月<br><span style="font-size:7px">factsheet 年化 8.4%</span></span></div>
         <div class="cover mid"><b>貼線覆蓋</b> — 近 1 年回報 +8.50% 略高於派息率；3／5 年年化 +8.8%／+7.9% 覆蓋充裕，惟市況轉弱時或需動用資本</div>
       </div>
 
@@ -294,7 +310,7 @@
         <div class="nm">PIMCO 平衡收益及增長</div>
         <div class="meta">U45553 · 風險級別 <b>3</b> · 規模 <b>US$205.8 億</b> · NAV 12.83<br>USD Moderate Allocation · 60/40＋戰術 · 2023-11 轉現行策略</div>
       </div>
-      <div class="tag">回報效率之選：Sharpe 0.99 全場最高；債券實際存續期僅 2.57 年，利率敏感度低</div>
+      <div class="tag">回報效率之選：Sharpe 0.99 最高</div>
 
       <div class="blk">
         <div class="rets">
@@ -307,9 +323,9 @@
 
       <div class="blk b-chips">
         <div class="chips">
-          <span class="chip best">Sharpe <b>0.99</b> 全場最高</span>
+          <span class="chip best">Sharpe <b>0.99</b> 最高</span>
           <span class="chip">波動 <b>9.72%</b></span>
-          <span class="chip">1 年回報 <b>+13.88%</b> 全場最高</span>
+          <span class="chip">1 年 <b>+13.88%</b> 最高</span>
         </div>
       </div>
 
@@ -322,8 +338,8 @@
       </div>
 
       <div class="blk b-pay">
-        <h3>派息（HKD 每月）</h3>
-        <div class="pay"><span class="v">$0.0782</span><span class="r">派息率 <b>6.93%</b><br><span style="font-size:7px">factsheet 年率化 7.27%</span></span></div>
+        <h3>派息率（HKD 類）</h3>
+        <div class="pay"><span class="v">6.93%</span><span class="r">HKD 0.0782／月<br><span style="font-size:7px">factsheet 年率化 7.27%</span></span></div>
         <div class="cover good"><b>覆蓋最健康</b> — 近 1 年回報 +13.88% 高出派息率約 7 個百分點；派息率全場最克制，資本增長留於倉內</div>
       </div>
 
@@ -340,11 +356,55 @@
 
   </div>
 
-  <div class="combo"><b>組合思路：</b>以富蘭克林入息（波動最低）或東方匯理收益機遇（2022 年最抗跌）作低波動收息核心；PIMCO 平衡收益及增長作回報增強（Sharpe 0.99、1 年 +13.88%）。宏利 GMADI 建議僅在客戶明確理解並接受「派息可能由本金支付」時採用。對照參考：前次推介之兩隻純股票收息基金 12 個月波動分別為 13.4%（富達環球股息優勢）及 20.1%（摩根亞洲股票高息），本頁四隻全部低於 10%。</div>
+
+  <div class="der">
+    <table>
+      <thead><tr>
+        <td class="lab" style="font-size:7.2px;color:var(--ink3);font-weight:700">衍生工具剔剔表<br><span style="font-size:5.8px;font-weight:400">✓ 有 · ✗ 無 · — 未見披露<br>倉位 2026-09-30 · 票息見附註</span></td>
+        <th><i style="color:var(--f1)">■</i> 富蘭克林入息</th>
+        <th><i style="color:var(--f2)">■</i> 宏利 GMADI</th>
+        <th><i style="color:var(--f3)">■</i> 東方匯理收益機遇</th>
+        <th><i style="color:var(--f4)">■</i> PIMCO 平衡收益及增長</th>
+      </tr></thead>
+      <tbody>
+        <tr><td class="lab">認購期權 Short call</td>
+          <td><span class="yes">✓</span> 少量（審計帳實錄）</td>
+          <td><span class="no">✗</span></td>
+          <td><span class="no">✗</span></td>
+          <td><span class="no">✗</span></td></tr>
+        <tr><td class="lab">認沽期權 Short put</td>
+          <td><span class="yes">✓</span> 少量＋ELN 內嵌</td>
+          <td><span class="no">✗</span></td>
+          <td><span class="mid">經 ELN 內嵌</span></td>
+          <td><span class="no">✗</span></td></tr>
+        <tr><td class="lab">股票掛鈎票據 ELN</td>
+          <td><span class="yes">✓</span> 28.2% 倉<sup>1</sup> · 票息約 7–12%</td>
+          <td><span class="no">✗</span></td>
+          <td><span class="yes">✓</span> 23.5% 倉<sup>2</sup> · 票息約 14–25%</td>
+          <td><span class="no">✗</span></td></tr>
+        <tr><td class="lab">期貨 Futures</td>
+          <td><span class="no">—</span> 條款允許，未見實持</td>
+          <td><span class="no">✗</span></td>
+          <td><span class="yes">✓</span> 對沖 overlay 約 −17~20%</td>
+          <td><span class="yes">✓</span> 國債期貨（2／5／10 年＋超長期）管理利率<small>股票敞口經 MSCI ACWI 指數掉期（TRS）</small></td></tr>
+        <tr><td class="lab">短倉 Short positions</td>
+          <td><span class="no">✗</span></td>
+          <td><span class="no">✗</span> 現無負數配置</td>
+          <td><span class="yes">✓</span> 對沖短倉，月底淨 −0.21%</td>
+          <td><span class="no">✗</span> 負現金＝融資腿，非造淡</td></tr>
+        <tr><td class="lab">整體定位 Long-only</td>
+          <td>淨長倉＋票息工具</td>
+          <td><span class="yes">四強唯一純 long-only</span></td>
+          <td>淨長倉（章程明文不整體淨短）</td>
+          <td>合成長倉（淨敞口約 100%）</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="combo"><b>組合思路：</b>富蘭克林入息或東方匯理收益機遇作收息核心；PIMCO 作回報增強；GMADI 僅適合明白接受「派息可含本金」之客。對照：前兩隻純股票車 12M 波動 13.4%／20.1%，本頁四隻全低於 10%。</div>
 
   <div class="ft">
-    重要資料 — 回報為過往表現，未必代表未來表現。YTD／1 年回報為恒生 FSM 平台類別累計（至 2026-10-31，按各基金平台類別貨幣計算）；3／5 年年化為基金公司 factsheet 數據（2026-09-30，富蘭克林及宏利為美元類別、東方匯理為 A2 美元累積類別；PIMCO 現行策略自 2023-11-29 更名後生效，前名 Global Core Asset Allocation Fund，故無 3／5 年紀錄，成立至今為港元收息 II 類別累計）。波動及夏普比率為恒生平台 12 個月計算（至 2026-10-31），夏普比率跨基金比較受基準及口徑影響，僅供參考；恒生平台並無提供「下跌風險」指標，本頁以 12 個月波動、52 週高位回撤（−3.3%至−4.8%）及 2022 年曆年表現作下行風險參考。派息率按最近一次月度分派年化計算（宏利為固定 10% 派息機制）；派息並不保證，四隻基金之派息條款上均可從收益或資本中支付——從資本中支付派息等於退回投資者原有本金之一部分，可能導致每股資產淨值即時減少；宏利 GMADI 之派息可能超越基金實際收益，基金公司已明確提示資本侵蝕風險。正派息率並不代表正總回報。風險級別為恒生平台 1–5 級內部評估。基金可能使用金融衍生工具，涉及對手方、流通性及波動風險；PIMCO 透過期貨持倉令總敞口高於 100%。資產配置為恒生平台口徑（2026-09-30）；債券存續期及孳息率為 factsheet 債券部分口徑（PIMCO 為基金統計數據）。資料於 2026-11-12 自恒生 FSM 平台及基金公司 factsheet 提取，僅供客戶參考，並非投資建議或要約。詳情請參閱基金章程及產品資料概要。
-  </div>
+    重要資料 — 回報為過往表現，未必代表未來表現。YTD／1 年回報為恒生 FSM 平台類別累計（至 2026-10-31，按平台類別貨幣）；3／5 年年化為 factsheet 數據（2026-09-30，富蘭克林及宏利為美元類別、東方匯理為 A2 美元累積類別；PIMCO 現行策略 2023-11-29 生效，前名 Global Core Asset Allocation，故無 3／5 年紀錄，成立至今為港元收息 II 類別）。波動／Sharpe 為恒生平台 12 個月（至 2026-10-31），跨基金比較受口徑影響僅供參考；平台無「下跌風險」指標，以 12 個月波動、52 週高位回撤（−3.3%至−4.8%）及 2022 年曆年表現作下行參考。派息率按最近月度分派年化（宏利為固定 10% 機制）；派息不保證，四隻條款上均可從收益或資本中支付——從資本支付等於退回部分原有本金，可令每股資產淨值即時減少；宏利派息可超逾實際收益，基金公司已明示資本侵蝕風險；正派息率不代表正總回報。風險級別為恒生平台 1–5 級內部評估。基金可使用金融衍生工具，涉對手方、流通性及波動風險；PIMCO 衍生工具令總敞口高於 100%。資產配置為恒生平台口徑（2026-09-30）；存續期及孳息率為 factsheet 債券部分口徑（PIMCO 為基金統計數據）。資料於 2026-11-12 自恒生 FSM 平台及基金公司 factsheet 提取，僅供客戶參考，並非投資建議或要約。詳情請參閱基金章程及產品資料概要。剔剔表來源：factsheet／月報（2026-09-30）。¹富蘭克林 ELN 票息（約 7–12%，2025-09）出同系美國註冊基金經審計年報（同一管理團隊；covered call／沽出認沽合計約佔 0.3%，同帳），銷售資料另稱 12–17%（未經公開文件核實）。²東方匯理 ELN 票息（個別約 13.9–25.1%、平均約 18%，2026-08-31）出分銷商資料，官方月報不披露個別票息；對沖短倉水平（2026 年 6–8 月約 17–20%）出基金公司及分銷商資料，屬酌情而非固定上限，章程規定不作整體淨短倉、淨衍生敞口上限 50%。PIMCO 國債期貨（十大內合計約 13%）見平台持倉（2026-06-30），官方用途為管理美國利率／存續期；股票敞口主要經 MSCI ACWI 掉期（TRS），並以 PIMCO 美元短期貨幣基金（7.6%）作按金；負現金＝衍生工具融資腿，非造淡。東方匯理★4（2026-09-30，EAA USD Moderate Allocation 組別 1,198 隻）屬 A2 USD (C) 類，平台月派類 2026-11-14 起始滿三年門檻。</div>
 </div>
 
 <a class="kbadge" href="https://leunghlk.github.io/all-in-one/" title="leungkathy · 返回主頁"
