@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>收息基金低波動四強 · 一頁對比（A4）</title>
+<style>
+  :root{
+    --surface:#ffffff; --page:#f2f3f5;
+    --ink:#101114; --ink2:#4d5157; --ink3:#8a8d92;
+    --line:#e3e4e7;
+    --f1:#2a78d6; /* Franklin blue */
+    --f2:#1baf7a; /* Manulife aqua */
+    --f3:#eda100; /* Amundi yellow */
+    --f4:#eb6834; /* PIMCO orange */
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{background:var(--page);}
+  body{
+    font-family:system-ui,-apple-system,"Segoe UI","PingFang TC","Microsoft JhengHei",sans-serif;
+    color:var(--ink); line-height:1.35;
+    -webkit-print-color-adjust:exact; print-color-adjust:exact;
+  }
+  .sheet{
+    width:297mm; min-height:209mm; margin:6mm auto; background:var(--surface);
+    padding:6mm 8mm 4.5mm; box-shadow:0 2px 14px rgba(0,0,0,.10);
+    display:flex; flex-direction:column; gap:2.4mm;
+  }
+  @media print{
+    body{background:#fff;}
+    .sheet{margin:0; box-shadow:none; width:auto; min-height:auto;}
+    @page{size:A4 landscape; margin:6mm 5.5mm;}
+  }
+  @page{size:A4 landscape; margin:6mm 5.5mm;}
+
+  /* header */
+  .hd{display:flex; justify-content:space-between; align-items:flex-end; border-bottom:2.5px solid var(--ink); padding-bottom:2mm;}
+  .hd h1{font-size:18px; font-weight:800;}
+  .hd .sub{font-size:9px; color:var(--ink2); margin-top:1mm;}
+  .hd .asof{font-size:8px; color:var(--ink3); text-align:right; line-height:1.55;}
+
+  .cols{display:grid; grid-template-columns:repeat(4,1fr); gap:3mm; flex:1;}
+  .col{border:1px solid var(--line); border-radius:3mm; overflow:hidden; display:flex; flex-direction:column;}
+  .chead{background:color-mix(in srgb,var(--c) 8%,#fff); border-top:1.4mm solid var(--c); padding:1.9mm 2.8mm 1.6mm;}
+  .chead .house{font-size:7.2px; color:var(--ink3); text-transform:uppercase; letter-spacing:.06em;}
+  .chead .nm{font-size:13px; font-weight:800; line-height:1.2; margin-top:.4mm;}
+  .chead .meta{font-size:7.8px; color:var(--ink2); margin-top:1mm; line-height:1.5;}
+  .chead .meta b{color:var(--ink3); font-weight:600;}
+
+  .tag{margin:1.4mm 2.8mm 0; font-size:9px; font-weight:700; line-height:1.45;
+    background:color-mix(in srgb,var(--c) 10%,#fff); border-radius:2mm; padding:1.2mm 2.2mm;}
+
+  .blk{padding:1.4mm 2.8mm 0;}
+  .blk h3{font-size:7.2px; font-weight:700; color:var(--ink3); text-transform:uppercase; letter-spacing:.07em; margin-bottom:.9mm;}
+  /* 跨欄 section 對齊：四欄同一 block 鎖同一最低高度（實測自 probe） */
+  .chead{min-height:84px;}
+  .ret{min-height:49px;}
+  .b-chips{min-height:48px;}
+  .b-alloc{min-height:67px;}
+  .b-pay{min-height:93px;}
+  .b-top5{min-height:8.2mm;}
+  .fit{min-height:65px;}
+
+  /* returns strip: 4 cells */
+  .rets{display:grid; grid-template-columns:repeat(4,1fr); gap:1.2mm; text-align:center;}
+  .ret{background:#fafafa; border:1px solid var(--line); border-radius:1.6mm; padding:1mm 0 1.1mm;}
+  .ret .l{font-size:6.8px; color:var(--ink3);}
+  .ret .v{font-size:12px; font-weight:800; margin-top:.4mm;}
+  .ret .v.na{color:var(--ink3); font-weight:600; font-size:10px;}
+  .ret .v.na small{display:block; font-size:6px; font-weight:400; color:var(--ink3); margin-top:.3mm;}
+
+  .chips{display:flex; gap:1.6mm; flex-wrap:wrap;}
+  .chip{font-size:8.2px; border:1px solid var(--line); border-radius:99px; padding:.7mm 2.2mm; color:var(--ink2); font-variant-numeric:tabular-nums;}
+  .chip b{color:var(--ink); font-weight:700;}
+  .chip.best{border-color:color-mix(in srgb,var(--c) 55%,transparent); background:color-mix(in srgb,var(--c) 8%,#fff); font-weight:700;}
+  .chip.warn{border-color:#d9a0a0; background:#fbe9e9; color:#8a2a2a;}
+
+  .stack{display:flex; gap:1px; height:4mm; border-radius:1.2mm; overflow:hidden;}
+  .stack span{height:100%;}
+  .avals{font-size:8px; color:var(--ink2); margin-top:1mm; font-variant-numeric:tabular-nums;}
+
+  .krow{display:flex; justify-content:space-between; align-items:baseline; font-size:9px; padding:.5mm 0; border-bottom:1px solid var(--line); font-variant-numeric:tabular-nums; gap:2mm;}
+  .krow:last-child{border-bottom:none;}
+  .krow b{color:var(--ink2); font-weight:600; font-size:8px; flex:none;}
+  .krow .na{color:var(--ink3); font-weight:400; font-size:8px;}
+
+  .pay{display:flex; align-items:baseline; justify-content:space-between; margin-bottom:.9mm;}
+  .pay .v{font-size:14px; font-weight:800;}
+  .pay .v small{font-size:7.6px; font-weight:600;}
+  .pay .r{font-size:8px; color:var(--ink2); text-align:right;}
+  .pay .r b{font-size:11px; color:var(--ink); font-weight:800;}
+  .cover{font-size:8.2px; line-height:1.42; border-radius:2mm; padding:1.1mm 2mm;}
+  .cover.good{background:#e9f6e9;}
+  .cover.mid{background:#fdf3dc;}
+  .cover.bad{background:#fbe9e9;}
+  .cover b{font-weight:800;}
+
+  .top5{font-size:8.2px; line-height:1.42; color:var(--ink2); font-variant-numeric:tabular-nums;}
+  .top5 b{color:var(--ink); font-weight:600;}
+
+  .fit{margin-top:auto; border-top:1px solid var(--line); padding:1.4mm 2.8mm 1.8mm; font-size:8.2px; line-height:1.42;}
+  .fit div{padding:.25mm 0;}
+  .fit .lab{display:inline-block; font-weight:800; font-size:7px; border-radius:1mm; padding:.2mm 1.4mm; margin-right:1.4mm; vertical-align:.3mm;}
+  .fit .ok .lab{background:#e9f6e9; color:#0a5c0a;}
+  .fit .watch .lab{background:#fdf3dc; color:#7a5800;}
+  .fit .watch{color:var(--ink2);}
+
+  .combo{border:1px solid var(--line); background:#fafafa; border-radius:2mm; padding:1.6mm 3mm; font-size:8.6px; color:var(--ink2); line-height:1.5;}
+  .combo b{color:var(--ink);}
+
+  .ft{border-top:1px solid var(--line); padding-top:1.3mm; font-size:6.8px; color:var(--ink3); line-height:1.5;}
+</style>
+</head>
+<body>
+<div class="ig-nav" style="background:#1a1d23;padding:8px 16px;display:flex;gap:16px;align-items:center;font-family:system-ui,-apple-system,sans-serif;font-size:12.5px;flex-wrap:wrap">
+  <a href="https://leunghlk.github.io/infographics/" style="color:#9ec5f4;text-decoration:none;font-weight:700">📐 Infographics 入口</a>
+  <a href="https://leunghlk.github.io/infographics/funds-lowvol-income-four-2026-11.html" style="color:#9ca3af;text-decoration:none">低波動四強 · 詳細版</a>
+  <a href="https://leunghlk.github.io/infographics/funds-lowvol-income-1pager-A4-2026-11.html" style="color:#ffffff;text-decoration:none">A4 一頁版</a>
+  <a href="https://leunghlk.github.io/infographics/funds-highyield-compare-2026-11.html" style="color:#9ca3af;text-decoration:none">高息四強（11 月）</a>
+  <span style="color:#6b7280;margin-left:auto">2026-11-12</span>
+</div>
+<script>
+(function(){try{if(window.self!==window.top){var n=document.querySelector(".ig-nav");if(n)n.style.display="none";}}catch(e){}})();
+</script><style>@media print{.ig-nav{display:none!important}}</style>
+<div class="sheet">
+
+  <div class="hd">
+    <div>
+      <h1>收息基金 · 低波動四強 一頁對比</h1>
+      <div class="sub">富蘭克林入息 ／ 宏利 GMADI ／ 東方匯理收益機遇 ／ PIMCO 平衡收益及增長 — 四隻股債混合收息基金：派息之餘，12 個月波動全數低於 10%</div>
+    </div>
+    <div class="asof">回報截至 2026-10-31（恒生平台類口徑）· 波動／Sharpe 為 12 個月（至 2026-10）<br>配置／債券指標：factsheet 2026-09-30 · NAV：2026-11-11 · 派息率為最近月度分派年化</div>
+  </div>
+
+  <div class="cols">
+
+    <!-- ============ Franklin ============ -->
+    <div class="col" style="--c:var(--f1)">
+      <div class="chead">
+        <div class="house">Franklin Templeton 富蘭克林鄧普頓</div>
+        <div class="nm">富蘭克林入息基金</div>
+        <div class="meta">U45104 · 風險級別 <b>2</b> · Morningstar ★★★★ · 規模 <b>US$147.0 億</b> · NAV 8.84<br>USD Moderate Allocation · 股債混合 · USD 類 1999 年成立</div>
+      </div>
+      <div class="tag">低波動收息錨：23% 股票＋55% 債券、369 項持倉，12 個月波動 6.3% 全場最低</div>
+
+      <div class="blk">
+        <div class="rets">
+          <div class="ret"><div class="l">YTD</div><div class="v">+7.99%</div></div>
+          <div class="ret"><div class="l">1 年</div><div class="v">+9.98%</div></div>
+          <div class="ret"><div class="l">3 年年化</div><div class="v">+9.38%</div></div>
+          <div class="ret"><div class="l">5 年年化</div><div class="v">+5.08%</div></div>
+        </div>
+      </div>
+
+      <div class="blk b-chips">
+        <div class="chips">
+          <span class="chip best">波動 <b>6.34%</b> 全場最低</span>
+          <span class="chip">Sharpe <b>0.80</b></span>
+          <span class="chip">3Y Sharpe <b>0.99</b></span>
+        </div>
+      </div>
+
+      <div class="blk b-alloc">
+        <h3>資產配置</h3>
+        <div class="stack">
+          <span style="width:23.0%;background:var(--f1)"></span><span style="width:54.7%;background:var(--f4)"></span><span style="width:4.9%;background:var(--f2)"></span><span style="width:17.4%;background:var(--f3)"></span>
+        </div>
+        <div class="avals">股 23.0 · 債 54.7 · 現金 4.9 · 其他（優先證券／換股債）17.4<small style="display:block;color:var(--ink3);margin-top:.4mm">債券簿孳息率 7.08%、存續期 5.03 年（factsheet）</small></div>
+      </div>
+
+      <div class="blk b-pay">
+        <h3>派息（HKD 每月）</h3>
+        <div class="pay"><span class="v">$0.0610</span><span class="r">派息率 <b>8.19%</b></span></div>
+        <div class="cover good"><b>覆蓋正數</b> — 近 1 年回報 +9.98% 高於派息率；債券息 7.08% 打底，1999 年至今累計 +311%（美元類）</div>
+      </div>
+
+      <div class="blk b-top5">
+        <h3>主要持倉 Top 5（%）</h3>
+        <div class="top5"><b>寶潔 P&amp;G</b> 1.64 · <b>Home Depot</b> 1.20 · <b>ExxonMobil</b> 1.15 · <b>美國國債</b> 1.10 · <b>Wells Fargo</b> 1.09</div>
+      </div>
+
+      <div class="fit">
+        <div class="ok"><span class="lab">適合</span>要穩定月息＋最低波動的核心收息客（風險 2 級）</div>
+        <div class="watch"><span class="lab">留意</span>派息條款上可從資本支付；息源部分來自高收益債，信貸轉差時受壓</div>
+      </div>
+    </div>
+
+    <!-- ============ Manulife GMADI ============ -->
+    <div class="col" style="--c:var(--f2)">
+      <div class="chead">
+        <div class="house">Manulife 宏利</div>
+        <div class="nm">宏利環球多元資產入息 GMADI</div>
+        <div class="meta">U45660 · 風險級別 <b>3</b> · 規模 <b>US$32.4 億</b> · NAV 10.469<br>USD Flexible Allocation · 多元資產 · 基金 2019-04 成立</div>
+      </div>
+      <div class="tag">定額現金流之王：F 類固定 10% 月月派——派息金額鎖定，惟回報不足時由本金支付</div>
+
+      <div class="blk">
+        <div class="rets">
+          <div class="ret"><div class="l">YTD</div><div class="v">+5.32%</div></div>
+          <div class="ret"><div class="l">1 年</div><div class="v">+7.01%</div></div>
+          <div class="ret"><div class="l">3 年年化</div><div class="v">+10.98%</div></div>
+          <div class="ret"><div class="l">5 年年化</div><div class="v">+4.90%</div></div>
+        </div>
+      </div>
+
+      <div class="blk b-chips">
+        <div class="chips">
+          <span class="chip best">派息率 <b>10.27%</b> 全場最高</span>
+          <span class="chip">波動 <b>7.19%</b></span>
+          <span class="chip warn">Sharpe 0.29</span>
+        </div>
+      </div>
+
+      <div class="blk b-alloc">
+        <h3>資產配置</h3>
+        <div class="stack">
+          <span style="width:40.3%;background:var(--f1)"></span><span style="width:39.4%;background:var(--f4)"></span><span style="width:15.9%;background:var(--f2)"></span><span style="width:4.4%;background:var(--f3)"></span>
+        </div>
+        <div class="avals">股 40.3 · 債 39.4 · 現金 15.9 · 其他 4.4<small style="display:block;color:var(--ink3);margin-top:.4mm">高收益債佔全基金約 32%；Duration／YTM 未披露</small></div>
+      </div>
+
+      <div class="blk b-pay">
+        <h3>派息（HKD 每月）</h3>
+        <div class="pay"><span class="v">$0.0905</span><span class="r">派息率 <b>10.27%</b><br><span style="font-size:7px">固定 10% 機制</span></span></div>
+        <div class="cover bad"><b>本金承擔</b> — 固定派 10% 高於近 1 年回報 +7.01%，差額由本金支付；基金公司已明確提示「資本侵蝕」風險；2022 年壓力測試 −13.0%</div>
+      </div>
+
+      <div class="blk b-top5">
+        <h3>主要持倉 Top 5（%）</h3>
+        <div class="top5"><b>NVIDIA</b> 1.49 · <b>Microsoft</b> 1.40 · <b>Apple</b> 1.10 · <b>台積電 ADR</b> 0.92 · <b>Broadcom</b> 0.88</div>
+      </div>
+
+      <div class="fit">
+        <div class="ok"><span class="lab">適合</span>追求最高定額現金流、充分理解派息可含本金的客（風險 3 級）</div>
+        <div class="watch"><span class="lab">留意</span>固定 10% 並非保證回報；本金承擔即是「退回部分原有投資」</div>
+      </div>
+    </div>
+
+    <!-- ============ Amundi ============ -->
+    <div class="col" style="--c:var(--f3)">
+      <div class="chead">
+        <div class="house">Amundi 東方匯理</div>
+        <div class="nm">東方匯理收益機遇</div>
+        <div class="meta">U45768 · 風險級別 <b>2</b> · 規模 <b>US$90.4 億</b> · NAV 55.47<br>USD Moderate Allocation · 多元資產 · 基金 2018-05 成立</div>
+      </div>
+      <div class="tag">平衡收息核心：2022 年股債雙殺僅 −1.3% 全場最抗跌；股票＋債券＋掛鈎票據三柱收息</div>
+
+      <div class="blk">
+        <div class="rets">
+          <div class="ret"><div class="l">YTD</div><div class="v">+6.50%</div></div>
+          <div class="ret"><div class="l">1 年</div><div class="v">+8.50%</div></div>
+          <div class="ret"><div class="l">3 年年化</div><div class="v">+8.76%</div></div>
+          <div class="ret"><div class="l">5 年年化</div><div class="v">+7.86%</div></div>
+        </div>
+      </div>
+
+      <div class="blk b-chips">
+        <div class="chips">
+          <span class="chip best">2022 僅 <b>−1.3%</b></span>
+          <span class="chip">波動 <b>7.57%</b></span>
+          <span class="chip">Sharpe <b>0.73</b></span>
+        </div>
+      </div>
+
+      <div class="blk b-alloc">
+        <h3>資產配置</h3>
+        <div class="stack">
+          <span style="width:45.7%;background:var(--f1)"></span><span style="width:37.3%;background:var(--f4)"></span><span style="width:6.8%;background:var(--f2)"></span><span style="width:10.2%;background:var(--f3)"></span>
+        </div>
+        <div class="avals">股 45.7 · 債 37.3 · 現金 6.8 · 其他（掛鈎票據 ELN）10.2<small style="display:block;color:var(--ink3);margin-top:.4mm">債券簿孳息率 7.39%、存續期 6.31 年；投資級為主</small></div>
+      </div>
+
+      <div class="blk b-pay">
+        <h3>派息（USD 每月）</h3>
+        <div class="pay"><span class="v">$0.3709</span><span class="r">派息率 <b>7.85%</b><br><span style="font-size:7px">factsheet 年化 8.4%</span></span></div>
+        <div class="cover mid"><b>貼線覆蓋</b> — 近 1 年回報 +8.50% 略高於派息率；3／5 年年化 +8.8%／+7.9% 覆蓋充裕，惟市況轉弱時或需動用資本</div>
+      </div>
+
+      <div class="blk b-top5">
+        <h3>主要持倉 Top 5（%）</h3>
+        <div class="top5"><b>Bank of America</b> 3.08 · <b>Shell</b> 2.48 · <b>三星電子</b> 2.08 · <b>Microsoft</b> 2.03 · <b>Amazon</b> 1.48</div>
+      </div>
+
+      <div class="fit">
+        <div class="ok"><span class="lab">適合</span>重視抗跌紀錄的穩健收息核心（風險 2 級）</div>
+        <div class="watch"><span class="lab">留意</span>現階段覆蓋屬貼線水平；掛鈎票據息源隨股市表現起落</div>
+      </div>
+    </div>
+
+    <!-- ============ PIMCO ============ -->
+    <div class="col" style="--c:var(--f4)">
+      <div class="chead">
+        <div class="house">PIMCO 品浩</div>
+        <div class="nm">PIMCO 平衡收益及增長</div>
+        <div class="meta">U45553 · 風險級別 <b>3</b> · 規模 <b>US$205.8 億</b> · NAV 12.83<br>USD Moderate Allocation · 60/40＋戰術 · 2023-11 轉現行策略</div>
+      </div>
+      <div class="tag">回報效率之選：Sharpe 0.99 全場最高；債券實際存續期僅 2.57 年，利率敏感度低</div>
+
+      <div class="blk">
+        <div class="rets">
+          <div class="ret"><div class="l">YTD</div><div class="v">+11.85%</div></div>
+          <div class="ret"><div class="l">1 年</div><div class="v">+13.88%</div></div>
+          <div class="ret"><div class="l">3 年年化</div><div class="v na">—<small>2023-11 轉策略</small></div></div>
+          <div class="ret"><div class="l">成立至今</div><div class="v">+17.1%</div></div>
+        </div>
+      </div>
+
+      <div class="blk b-chips">
+        <div class="chips">
+          <span class="chip best">Sharpe <b>0.99</b> 全場最高</span>
+          <span class="chip">波動 <b>9.72%</b></span>
+          <span class="chip">1 年回報 <b>+13.88%</b> 全場最高</span>
+        </div>
+      </div>
+
+      <div class="blk b-alloc">
+        <h3>資產配置</h3>
+        <div class="stack">
+          <span style="width:65.3%;background:var(--f1)"></span><span style="width:34.7%;background:var(--f4)"></span>
+        </div>
+        <div class="avals">股票 65.3 · 債券及現金淨倉 34.7（淨敞口約 100%）<small style="display:block;color:var(--ink3);margin-top:.4mm">債券實際存續期 2.57 年、估計孳息率 8.16%、平均信貸評級 AA−；經期貨持倉，總敞口高於 100%</small></div>
+      </div>
+
+      <div class="blk b-pay">
+        <h3>派息（HKD 每月）</h3>
+        <div class="pay"><span class="v">$0.0782</span><span class="r">派息率 <b>6.93%</b><br><span style="font-size:7px">factsheet 年率化 7.27%</span></span></div>
+        <div class="cover good"><b>覆蓋最健康</b> — 近 1 年回報 +13.88% 高出派息率約 7 個百分點；派息率全場最克制，資本增長留於倉內</div>
+      </div>
+
+      <div class="blk b-top5">
+        <h3>主要持倉 Top 5（%）</h3>
+        <div class="top5"><b>短存續期浮息票據</b> 7.59 · <b>10 年國債期貨</b> 4.99 · <b>2 年國債期貨</b> 3.02 · <b>NVIDIA</b> 2.51 · <b>5 年國債期貨</b> 2.51</div>
+      </div>
+
+      <div class="fit">
+        <div class="ok"><span class="lab">適合</span>重視回報效率、接受期貨操作的收息增強客（風險 3 級）</div>
+        <div class="watch"><span class="lab">留意</span>現行策略 2023-11 才生效，無 2022 年跌市紀錄；期貨倉在逆轉市會放大波動</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="combo"><b>組合思路：</b>以富蘭克林入息（波動最低）或東方匯理收益機遇（2022 年最抗跌）作低波動收息核心；PIMCO 平衡收益及增長作回報增強（Sharpe 0.99、1 年 +13.88%）。宏利 GMADI 建議僅在客戶明確理解並接受「派息可能由本金支付」時採用。對照參考：前次推介之兩隻純股票收息基金 12 個月波動分別為 13.4%（富達環球股息優勢）及 20.1%（摩根亞洲股票高息），本頁四隻全部低於 10%。</div>
+
+  <div class="ft">
+    重要資料 — 回報為過往表現，未必代表未來表現。YTD／1 年回報為恒生 FSM 平台類別累計（至 2026-10-31，按各基金平台類別貨幣計算）；3／5 年年化為基金公司 factsheet 數據（2026-09-30，富蘭克林及宏利為美元類別、東方匯理為 A2 美元累積類別；PIMCO 現行策略自 2023-11-29 更名後生效，前名 Global Core Asset Allocation Fund，故無 3／5 年紀錄，成立至今為港元收息 II 類別累計）。波動及夏普比率為恒生平台 12 個月計算（至 2026-10-31），夏普比率跨基金比較受基準及口徑影響，僅供參考；恒生平台並無提供「下跌風險」指標，本頁以 12 個月波動、52 週高位回撤（−3.3%至−4.8%）及 2022 年曆年表現作下行風險參考。派息率按最近一次月度分派年化計算（宏利為固定 10% 派息機制）；派息並不保證，四隻基金之派息條款上均可從收益或資本中支付——從資本中支付派息等於退回投資者原有本金之一部分，可能導致每股資產淨值即時減少；宏利 GMADI 之派息可能超越基金實際收益，基金公司已明確提示資本侵蝕風險。正派息率並不代表正總回報。風險級別為恒生平台 1–5 級內部評估。基金可能使用金融衍生工具，涉及對手方、流通性及波動風險；PIMCO 透過期貨持倉令總敞口高於 100%。資產配置為恒生平台口徑（2026-09-30）；債券存續期及孳息率為 factsheet 債券部分口徑（PIMCO 為基金統計數據）。資料於 2026-11-12 自恒生 FSM 平台及基金公司 factsheet 提取，僅供客戶參考，並非投資建議或要約。詳情請參閱基金章程及產品資料概要。
+  </div>
+</div>
+
+<a class="kbadge" href="https://leunghlk.github.io/all-in-one/" title="leungkathy · 返回主頁"
+   style="position:fixed;bottom:16px;right:16px;z-index:60;width:36px;height:36px;background:#fff;border-radius:10px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.18);text-decoration:none;font:italic 300 21px/1 'Brush Script MT','Segoe Script',cursive;color:#2563eb">k</a>
+<style>@media print{.kbadge,.jpgbtn{display:none!important}}</style>
+<script>
+function exportJPG(btn){
+  var target=document.querySelector('.sheet');
+  if(!window.modernScreenshot){alert('匯出元件未載入，請檢查網絡後重試');return;}
+  btn.disabled=true;var t=btn.textContent;btn.textContent='⏳ 匯出中…';
+  var k=document.createElement('div');k.textContent='k';
+  k.style.cssText="position:absolute;right:8mm;bottom:2mm;z-index:9;font:italic 300 36px/1 'Brush Script MT','Segoe Script',cursive;color:#2563eb;pointer-events:none;";
+  var pp=target.style.paddingBottom;
+  if(getComputedStyle(target).position==='static') target.style.position='relative';
+  target.style.paddingBottom='13mm';target.appendChild(k);
+  function done(){k.remove();target.style.paddingBottom=pp;}
+  modernScreenshot.domToJpeg(target,{scale:2,quality:0.92,backgroundColor:'#ffffff'}).then(function(url){
+    var a=document.createElement('a');a.download=(document.title||'infographic').replace(/[\\\/:*?"<>|]+/g,'-').trim()+'.jpg';a.href=url;
+    document.body.appendChild(a);a.click();a.remove();btn.textContent=t;btn.disabled=false;done();
+  }).catch(function(e){alert('匯出失敗：'+e);btn.textContent=t;btn.disabled=false;done();});
+}
+</script>
+<script type="module">
+  import { domToJpeg } from "https://cdn.jsdelivr.net/npm/modern-screenshot@4/dist/index.mjs";
+  window.modernScreenshot = { domToJpeg };
+  var b=document.createElement('button');b.textContent='📸 匯出 JPEG';b.onclick=function(){exportJPG(b)};
+  b.className='jpgbtn';
+  b.style.cssText='position:fixed;top:60px;right:18px;z-index:60;background:#2563eb;color:#fff;border:none;border-radius:10px;padding:10px 16px;font-size:13px;font-weight:700;cursor:pointer;box-shadow:0 4px 14px rgba(37,99,235,.4);font-family:inherit';
+  document.body.appendChild(b);
+</script>
+</body>
+</html>
