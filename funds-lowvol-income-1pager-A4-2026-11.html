@@ -23,7 +23,7 @@
   }
   .sheet{
     width:297mm; min-height:209mm; margin:6mm auto; background:var(--surface);
-    padding:5mm 7mm 2.5mm; box-shadow:0 2px 14px rgba(0,0,0,.10);
+    padding:5mm 7mm 1.2mm; box-shadow:0 2px 14px rgba(0,0,0,.10);
     display:flex; flex-direction:column; gap:1.6mm;
   }
   @media print{
@@ -108,7 +108,7 @@
   .combo{border:1px solid var(--line); background:#fafafa; border-radius:2mm; padding:1.3mm 3mm; font-size:8.2px; color:var(--ink2); line-height:1.42;}
   .combo b{color:var(--ink);}
 
-  .ft{border-top:1px solid var(--line); padding-top:1.1mm; font-size:6.1px; color:var(--ink3); line-height:1.33; columns:2; column-gap:5mm;}
+  .ft{border-top:1px solid var(--line); padding-top:1.1mm; font-size:6.1px; color:var(--ink3); line-height:1.26; columns:2; column-gap:5mm;}
 
   /* 衍生工具剔剔表 */
   .der{border:1px solid var(--line); background:#fafafa; border-radius:2mm; padding:1.1mm 3mm .9mm;}
@@ -360,7 +360,7 @@
   <div class="der">
     <table>
       <thead><tr>
-        <td class="lab" style="font-size:7.2px;color:var(--ink3);font-weight:700">衍生工具剔剔表<br><span style="font-size:5.8px;font-weight:400">✓ 有 · ✗ 無 · — 未見披露<br>倉位 2026-09-30 · 票息見附註</span></td>
+        <td class="lab" style="font-size:7.2px;color:var(--ink3);font-weight:700">衍生工具策略比較<br><span style="font-size:5.8px;font-weight:400">✓ 有 · ✗ 無 · — 未見披露<br>倉位 2026-09-30 · 票息見附註</span></td>
         <th><i style="color:var(--f1)">■</i> 富蘭克林入息</th>
         <th><i style="color:var(--f2)">■</i> 宏利 GMADI</th>
         <th><i style="color:var(--f3)">■</i> 東方匯理收益機遇</th>
@@ -369,16 +369,16 @@
       <tbody>
         <tr><td class="lab">認購期權 Short call</td>
           <td><span class="yes">✓</span> 少量（審計帳實錄）</td>
-          <td><span class="no">✗</span></td>
+          <td><span class="yes">✓</span> 期權收息策略<sup>3</sup></td>
           <td><span class="no">✗</span></td>
           <td><span class="no">✗</span></td></tr>
         <tr><td class="lab">認沽期權 Short put</td>
           <td><span class="yes">✓</span> 少量＋ELN 內嵌</td>
-          <td><span class="no">✗</span></td>
+          <td><span class="yes">✓</span> 期權收息策略<sup>3</sup></td>
           <td><span class="mid">經 ELN 內嵌</span></td>
           <td><span class="no">✗</span></td></tr>
         <tr><td class="lab">股票掛鈎票據 ELN</td>
-          <td><span class="yes">✓</span> 28.2% 倉<sup>1</sup> · 票息約 7–12%</td>
+          <td><span class="yes">✓</span> 28.2% 倉<sup>1</sup> · 票息約 12–17%</td>
           <td><span class="no">✗</span></td>
           <td><span class="yes">✓</span> 23.5% 倉<sup>2</sup> · 票息約 14–25%</td>
           <td><span class="no">✗</span></td></tr>
@@ -392,10 +392,10 @@
           <td><span class="no">✗</span> 現無負數配置</td>
           <td><span class="yes">✓</span> 對沖短倉，月底淨 −0.21%</td>
           <td><span class="no">✗</span> 負現金＝融資腿，非造淡</td></tr>
-        <tr><td class="lab">整體定位 Long-only</td>
-          <td>淨長倉＋票息工具</td>
-          <td><span class="yes">四強唯一純 long-only</span></td>
-          <td>淨長倉（章程明文不整體淨短）</td>
+        <tr><td class="lab">整體倉位定位</td>
+          <td>淨長倉＋ELN 票息工具</td>
+          <td>淨長倉＋期權收息</td>
+          <td><span class="yes">長短倉（long-short）· 唯一持實短倉</span></td>
           <td>合成長倉（淨敞口約 100%）</td></tr>
       </tbody>
     </table>
@@ -404,7 +404,7 @@
   <div class="combo"><b>組合思路：</b>富蘭克林入息或東方匯理收益機遇作收息核心；PIMCO 作回報增強；GMADI 僅適合明白接受「派息可含本金」之客。對照：前兩隻純股票車 12M 波動 13.4%／20.1%，本頁四隻全低於 10%。</div>
 
   <div class="ft">
-    重要資料 — 回報為過往表現，未必代表未來表現。YTD／1 年回報為恒生 FSM 平台類別累計（至 2026-10-31，按平台類別貨幣）；3／5 年年化為 factsheet 數據（2026-09-30，富蘭克林及宏利為美元類別、東方匯理為 A2 美元累積類別；PIMCO 現行策略 2023-11-29 生效，前名 Global Core Asset Allocation，故無 3／5 年紀錄，成立至今為港元收息 II 類別）。波動／Sharpe 為恒生平台 12 個月（至 2026-10-31），跨基金比較受口徑影響僅供參考；平台無「下跌風險」指標，以 12 個月波動、52 週高位回撤（−3.3%至−4.8%）及 2022 年曆年表現作下行參考。派息率按最近月度分派年化（宏利為固定 10% 機制）；派息不保證，四隻條款上均可從收益或資本中支付——從資本支付等於退回部分原有本金，可令每股資產淨值即時減少；宏利派息可超逾實際收益，基金公司已明示資本侵蝕風險；正派息率不代表正總回報。風險級別為恒生平台 1–5 級內部評估。基金可使用金融衍生工具，涉對手方、流通性及波動風險；PIMCO 衍生工具令總敞口高於 100%。資產配置為恒生平台口徑（2026-09-30）；存續期及孳息率為 factsheet 債券部分口徑（PIMCO 為基金統計數據）。資料於 2026-11-12 自恒生 FSM 平台及基金公司 factsheet 提取，僅供客戶參考，並非投資建議或要約。詳情請參閱基金章程及產品資料概要。剔剔表來源：factsheet／月報（2026-09-30）。¹富蘭克林 ELN 票息（約 7–12%，2025-09）出同系美國註冊基金經審計年報（同一管理團隊；covered call／沽出認沽合計約佔 0.3%，同帳），銷售資料另稱 12–17%（未經公開文件核實）。²東方匯理 ELN 票息（個別約 13.9–25.1%、平均約 18%，2026-08-31）出分銷商資料，官方月報不披露個別票息；對沖短倉水平（2026 年 6–8 月約 17–20%）出基金公司及分銷商資料，屬酌情而非固定上限，章程規定不作整體淨短倉、淨衍生敞口上限 50%。PIMCO 國債期貨（十大內合計約 13%）見平台持倉（2026-06-30），官方用途為管理美國利率／存續期；股票敞口主要經 MSCI ACWI 掉期（TRS），並以 PIMCO 美元短期貨幣基金（7.6%）作按金；負現金＝衍生工具融資腿，非造淡。東方匯理★4（2026-09-30，EAA USD Moderate Allocation 組別 1,198 隻）屬 A2 USD (C) 類，平台月派類 2026-11-14 起始滿三年門檻。</div>
+    重要資料 — 回報為過往表現，未必代表未來表現。YTD／1 年回報為恒生 FSM 平台類別累計（至 2026-10-31，按平台類別貨幣）；3／5 年年化為 factsheet 數據（2026-09-30，富蘭克林及宏利為美元類別、東方匯理為 A2 美元累積類別；PIMCO 現行策略 2023-11-29 生效，前名 Global Core Asset Allocation，故無 3／5 年紀錄，成立至今為港元收息 II 類別）。波動／Sharpe 為恒生平台 12 個月（至 2026-10-31），跨基金比較受口徑影響僅供參考；平台無「下跌風險」指標，以 12 個月波動、52 週高位回撤（−3.3%至−4.8%）及 2022 年曆年表現作下行參考。派息率按最近月度分派年化（宏利為固定 10% 機制）；派息不保證，四隻條款上均可從收益或資本中支付——從資本支付等於退回部分原有本金，可令每股資產淨值即時減少；宏利派息可超逾實際收益，基金公司已明示資本侵蝕風險；正派息率不代表正總回報。風險級別為恒生平台 1–5 級內部評估。基金可使用金融衍生工具，涉對手方、流通性及波動風險；PIMCO 衍生工具令總敞口高於 100%。資產配置為恒生平台口徑（2026-09-30）；存續期及孳息率為 factsheet 債券部分口徑（PIMCO 為基金統計數據）。資料於 2026-11-12 自恒生 FSM 平台及基金公司 factsheet 提取，僅供客戶參考，並非投資建議或要約。詳情請參閱基金章程及產品資料概要。衍生工具策略比較資料來源：factsheet／月報（2026-09-30）。¹富蘭克林 ELN 票息約 12–17%（基金公司銷售簡報 2026-10）；同系美國註冊基金（同一管理團隊）審計年報（2025-09）另載約 7–12%；covered call／沽出認沽合計約佔 0.3%；票息隨市況浮動，並不保證。²東方匯理 ELN 票息（個別約 13.9–25.1%、平均約 18%，2026-08-31）出分銷商資料，官方月報不披露個別票息；對沖短倉水平（2026 年 6–8 月約 17–20%）出基金公司及分銷商資料，屬酌情而非固定上限，章程規定不作整體淨短倉、淨衍生敞口上限 50%。東方匯理為四強唯一持實短倉（章程准許長短倉操作），整體仍淨長倉。³宏利撰寫（賣出）認購及認沽期權收期權金，作收益增強及下行風險管理，非方向性造淡（GMADI 冊子 2026-04-30；對標 CBOE BuyWrite／PutWrite 指數）。PIMCO 國債期貨（十大內合計約 13%）見平台持倉（2026-06-30），官方用途為管理美國利率／存續期；股票敞口主要經 MSCI ACWI 掉期（TRS），並以 PIMCO 美元短期貨幣基金（7.6%）作按金；負現金＝衍生工具融資腿，非造淡。東方匯理★4（2026-09-30，EAA USD Moderate Allocation 組別 1,198 隻）屬 A2 USD (C) 類，平台月派類 2026-11-14 起始滿三年門檻。</div>
 </div>
 
 <a class="kbadge" href="https://leunghlk.github.io/all-in-one/" title="leungkathy · 返回主頁"
