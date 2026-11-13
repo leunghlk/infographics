@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>施羅德雙雄透視 · MAGI × 彈性總回報（對照低波動四強）</title>
+<style>
+  .viz-root{
+    color-scheme: light;
+    --surface-1:      #fcfcfb;
+    --page:           #f9f9f7;
+    --text-primary:   #0b0b0b;
+    --text-secondary: #52514e;
+    --text-muted:     #898781;
+    --grid:           #e1e0d9;
+    --baseline:       #c3c2b7;
+    --border:         rgba(11,11,11,0.10);
+    --f1: #2a78d6;  /* Franklin blue */
+    --f2: #1baf7a;  /* Manulife aqua */
+    --f3: #eda100;  /* Amundi yellow */
+    --f4: #eb6834;  /* PIMCO orange  */
+    --fmut: #b9b8ae; /* 對比組 muted */
+    --a-eq:  #2a78d6; /* 股票  */
+    --a-bd:  #eb6834; /* 債券  */
+    --a-ca:  #1baf7a; /* 現金  */
+    --a-ot:  #eda100; /* 其他  */
+  }
+  @media (prefers-color-scheme: dark){
+    :root:where(:not([data-theme="light"])) .viz-root{
+      color-scheme: dark;
+      --surface-1: #1a1a19; --page: #0d0d0d;
+      --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #898781;
+      --grid: #2c2c2a; --baseline: #383835; --border: rgba(255,255,255,0.10);
+      --f1: #3987e5; --f2: #199e70; --f3: #c98500; --f4: #d95926; --fmut: #4a4a46;
+      --a-eq: #3987e5; --a-bd: #d95926; --a-ca: #199e70; --a-ot: #c98500;
+    }
+  }
+  :root[data-theme="dark"] .viz-root{
+    color-scheme: dark;
+    --surface-1: #1a1a19; --page: #0d0d0d;
+    --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #898781;
+    --grid: #2c2c2a; --baseline: #383835; --border: rgba(255,255,255,0.10);
+    --f1: #3987e5; --f2: #199e70; --f3: #c98500; --f4: #d95926; --fmut: #4a4a46;
+    --a-eq: #3987e5; --a-bd: #d95926; --a-ca: #199e70; --a-ot: #c98500;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body.viz-root{
+    font-family: system-ui,-apple-system,"Segoe UI","PingFang TC","Microsoft JhengHei",sans-serif;
+    background:var(--page); color:var(--text-primary);
+    padding:28px 20px 40px; line-height:1.45;
+  }
+  .wrap{max-width:1280px;margin:0 auto;}
+  h1{font-size:26px;font-weight:700;letter-spacing:.01em;}
+  .sub{color:var(--text-secondary);font-size:13.5px;margin-top:6px;}
+  .asof{color:var(--text-muted);font-size:12px;margin-top:3px;}
+
+  .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+  @media(max-width:1020px){.grid4{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:560px){.grid4{grid-template-columns:1fr;}}
+
+  section{margin-top:26px;}
+  h2{font-size:15px;font-weight:700;display:flex;align-items:center;gap:8px;}
+  h2 .rule{flex:1;height:1px;background:var(--grid);}
+  .hint{color:var(--text-muted);font-size:11.5px;font-weight:400;margin-left:2px;}
+
+  /* fund header cards */
+  .fcard{background:var(--surface-1);border:1px solid var(--border);border-radius:12px;padding:14px 14px 12px;position:relative;overflow:hidden;}
+  .fcard::before{content:"";position:absolute;inset:0 auto 0 0;width:4px;background:var(--c);}
+  .fcard .house{font-size:11px;color:var(--text-muted);letter-spacing:.04em;text-transform:uppercase;}
+  .fcard .name{font-size:15.5px;font-weight:700;margin-top:2px;}
+  .fcard .en{font-size:11px;color:var(--text-secondary);margin-top:1px;}
+  .tagline{margin-top:9px;font-size:12.5px;font-weight:600;color:var(--text-primary);
+    background:color-mix(in srgb, var(--c) 9%, transparent);border-radius:8px;padding:7px 9px;line-height:1.5;}
+  .meta{margin-top:10px;display:grid;grid-template-columns:1fr 1fr;gap:5px 10px;font-size:11.5px;}
+  .meta b{font-weight:600;color:var(--text-secondary);display:block;font-size:10.5px;}
+  .meta span{font-variant-numeric:tabular-nums;}
+  .chips{margin-top:10px;display:flex;flex-wrap:wrap;gap:5px;}
+  .chip{font-size:10.5px;padding:2.5px 8px;border-radius:99px;border:1px solid var(--border);color:var(--text-secondary);}
+  .chip.hl{border-color:color-mix(in srgb, var(--c) 55%, transparent);color:var(--text-primary);font-weight:600;}
+  .yield{margin-top:10px;display:flex;align-items:baseline;gap:7px;}
+  .yield .v{font-size:24px;font-weight:700;}
+  .yield .l{font-size:11px;color:var(--text-muted);}
+
+  /* core-four highlight strip */
+  .coregrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+  @media(max-width:1020px){.coregrid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:560px){.coregrid{grid-template-columns:1fr;}}
+  .ccard{background:var(--surface-1);border:1px solid var(--border);border-radius:12px;padding:12px 13px;position:relative;overflow:hidden;}
+  .ccard::before{content:"";position:absolute;inset:0 auto 0 0;width:4px;background:var(--c);}
+  .ccard h4{font-size:12.5px;font-weight:700;display:flex;align-items:center;gap:6px;}
+  .ccard h4 .sw{width:9px;height:9px;border-radius:3px;background:var(--c);}
+  .ccard .sub4{font-size:10px;color:var(--text-muted);margin-bottom:6px;}
+  .stat4{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;}
+  .stat{border:1px solid var(--grid);border-radius:9px;padding:7px 6px 6px;text-align:center;position:relative;}
+  .stat.best{border-color:color-mix(in srgb, var(--c) 60%, transparent);
+    background:color-mix(in srgb, var(--c) 8%, transparent);}
+  .stat .k{font-size:9.5px;color:var(--text-muted);letter-spacing:.02em;}
+  .stat .v{font-size:16px;font-weight:700;margin-top:2px;font-variant-numeric:tabular-nums;}
+  .stat .b{position:absolute;top:-7px;right:-4px;font-size:9px;background:var(--c);color:#fff;
+    border-radius:99px;padding:1px 6px;font-weight:700;letter-spacing:.02em;}
+  .stat .warn{position:absolute;top:-7px;right:-4px;font-size:9px;background:#d03b3b;color:#fff;
+    border-radius:99px;padding:1px 6px;font-weight:700;}
+
+  /* performance table */
+  table.perf{width:100%;border-collapse:collapse;background:var(--surface-1);
+    border:1px solid var(--border);border-radius:12px;overflow:hidden;font-size:13px;}
+  table.perf th,table.perf td{padding:10px 12px;text-align:left;vertical-align:middle;}
+  table.perf thead th{font-size:11.5px;color:var(--text-secondary);font-weight:600;border-bottom:1px solid var(--grid);}
+  table.perf thead th .dot{display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:6px;vertical-align:0;}
+  table.perf tbody tr+tr td{border-top:1px solid var(--grid);}
+  table.perf td.rowlab{color:var(--text-secondary);font-size:12px;width:170px;white-space:nowrap;}
+  table.perf td.rowlab small{display:block;color:var(--text-muted);font-size:10px;white-space:normal;}
+  .cell{display:flex;align-items:center;gap:8px;}
+  .cell .num{font-variant-numeric:tabular-nums;font-weight:600;min-width:52px;text-align:right;}
+  .cell .track{flex:1;height:12px;display:flex;align-items:center;}
+  .cell .bar{height:12px;border-radius:0 4px 4px 0;background:var(--c);}
+  td.na{color:var(--text-muted);font-size:11.5px;}
+
+  /* mini bar panels */
+  .riskgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  @media(max-width:820px){.riskgrid{grid-template-columns:1fr;}}
+  .panel{background:var(--surface-1);border:1px solid var(--border);border-radius:12px;padding:14px 16px 12px;}
+  .panel h3{font-size:13px;font-weight:600;}
+  .panel .axisnote{font-size:10.5px;color:var(--text-muted);margin-top:1px;}
+  .legend{display:flex;flex-wrap:wrap;gap:12px;font-size:11.5px;color:var(--text-secondary);margin:10px 0 4px;}
+  .legend .sw{display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:5px;}
+  .hbar{display:grid;grid-template-columns:150px 1fr 52px;align-items:center;gap:8px;margin-top:8px;}
+  .hbar .lab{font-size:12px;color:var(--text-secondary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .hbar .trk{height:14px;display:flex;align-items:center;border-left:1px solid var(--baseline);}
+  .hbar .bar{height:14px;border-radius:0 4px 4px 0;background:var(--c);}
+  .hbar.mut .bar{background:var(--fmut);}
+  .hbar .val{font-variant-numeric:tabular-nums;font-size:12.5px;font-weight:600;text-align:right;}
+  .mutnote{font-size:10.5px;color:var(--text-muted);margin-top:8px;line-height:1.6;}
+
+  /* allocation stacked */
+  .allocpanel{background:var(--surface-1);border:1px solid var(--border);border-radius:12px;padding:14px 16px;}
+  .arow{margin-top:12px;}
+  .arow .top{display:flex;justify-content:space-between;align-items:baseline;font-size:12px;color:var(--text-secondary);gap:14px;}
+  .arow .top b{color:var(--text-primary);font-size:12.5px;font-weight:600;flex:none;}
+  .stack{display:flex;gap:2px;height:18px;margin-top:5px;}
+  .seg{height:18px;overflow:hidden;}
+  .seg:first-child{border-radius:4px 0 0 4px;}
+  .seg:last-child{border-radius:0 4px 4px 0;}
+  .seg span{font-size:10px;color:#fff;display:flex;align-items:center;justify-content:center;height:100%;
+    white-space:nowrap;padding:0 3px;text-shadow:0 0 2px rgba(0,0,0,.25);}
+  .arow .vals{font-size:11px;color:var(--text-muted);margin-top:4px;font-variant-numeric:tabular-nums;}
+  .arow .vals em{font-style:normal;color:var(--text-secondary);}
+
+  /* niche / engine cards */
+  .ncard{background:var(--surface-1);border:1px solid var(--border);border-radius:12px;padding:13px 14px;}
+  .ncard .niche{display:inline-block;font-size:11px;font-weight:700;color:var(--text-primary);
+    background:color-mix(in srgb, var(--c) 14%, transparent);border-radius:6px;padding:3px 9px;margin-bottom:8px;}
+  .ncard ul{list-style:none;font-size:11.8px;color:var(--text-secondary);}
+  .ncard ul li{padding:2.5px 0 2.5px 14px;position:relative;}
+  .ncard ul li::before{content:"";position:absolute;left:0;top:.72em;width:6px;height:6px;border-radius:2px;background:var(--c);}
+  .ncard .q{font-size:11px;color:var(--text-secondary);border-left:3px solid var(--c);padding:5px 9px;
+    background:color-mix(in srgb, var(--c) 6%, transparent);border-radius:0 8px 8px 0;margin-top:8px;line-height:1.6;}
+  .ncard .src{font-size:10px;color:var(--text-muted);margin-top:4px;}
+
+  /* bond / 食本 cards */
+  .bcard{background:var(--surface-1);border:1px solid var(--border);border-radius:12px;padding:13px 14px;}
+  .bcard h4{font-size:12.5px;font-weight:700;display:flex;align-items:center;gap:6px;margin-bottom:8px;}
+  .bcard h4 .sw{width:9px;height:9px;border-radius:3px;background:var(--c);}
+  .brow{display:flex;justify-content:space-between;align-items:baseline;font-size:11.8px;padding:3px 0;border-bottom:1px solid var(--grid);gap:10px;}
+  .brow:last-of-type{border-bottom:none;}
+  .brow b{font-weight:600;color:var(--text-secondary);font-size:10.8px;flex:none;}
+  .brow span{font-variant-numeric:tabular-nums;color:var(--text-primary);font-weight:600;text-align:right;}
+  .verdict{margin-top:8px;font-size:11.3px;line-height:1.55;border-radius:8px;padding:7px 9px;}
+  .verdict.good{background:color-mix(in srgb,#0ca30c 10%,transparent);}
+  .verdict.mid{background:color-mix(in srgb,#fab219 13%,transparent);}
+  .verdict.bad{background:color-mix(in srgb,#d03b3b 10%,transparent);}
+  .verdict b{font-weight:700;}
+
+  /* coverage */
+  .covgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+  @media(max-width:1020px){.covgrid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:560px){.covgrid{grid-template-columns:1fr;}}
+  .covgroup{background:var(--surface-1);border:1px solid var(--border);border-radius:12px;padding:12px 14px;}
+  .covgroup h4{font-size:12.5px;font-weight:700;display:flex;align-items:center;gap:6px;}
+  .covgroup h4 .sw{width:9px;height:9px;border-radius:3px;background:var(--c);}
+  .covgroup .rowlab2{font-size:10.5px;color:var(--text-muted);margin-top:7px;}
+
+  /* holdings */
+  .geogrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+  @media(max-width:1020px){.geogrid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:560px){.geogrid{grid-template-columns:1fr;}}
+  .gcard{background:var(--surface-1);border:1px solid var(--border);border-radius:12px;padding:13px 14px;}
+  .gcard h4{font-size:12.5px;font-weight:700;display:flex;align-items:center;gap:6px;margin-bottom:2px;}
+  .gcard h4 .sw{width:9px;height:9px;border-radius:3px;background:var(--c);}
+  .gcard .note{font-size:10.5px;color:var(--text-muted);margin-bottom:4px;}
+  ul.hold{list-style:none;margin-top:8px;}
+  ul.hold li{display:flex;align-items:baseline;gap:8px;font-size:11.5px;padding:3.5px 0;border-bottom:1px solid var(--grid);}
+  ul.hold li:last-child{border-bottom:none;}
+  ul.hold .rk{color:var(--text-muted);font-size:10px;width:14px;flex:none;font-variant-numeric:tabular-nums;}
+  ul.hold .nm{flex:1;color:var(--text-primary);min-width:0;}
+  ul.hold .wt{font-variant-numeric:tabular-nums;color:var(--text-secondary);font-weight:600;flex:none;}
+
+  .foot{margin-top:26px;border-top:1px solid var(--grid);padding-top:12px;font-size:10.8px;color:var(--text-muted);line-height:1.7;}
+
+  /* tooltip */
+  #tip{position:fixed;z-index:9;pointer-events:none;background:var(--text-primary);color:var(--page);
+    font-size:11.5px;padding:5px 9px;border-radius:7px;opacity:0;transition:opacity .12s;max-width:260px;line-height:1.5;}
+  [data-tip]{cursor:default;}
+
+  @media print{
+    body.viz-root{background:#fff;padding:10mm;}
+    .fcard,.panel,.allocpanel,.gcard,.ncard,.bcard,.covgroup,.ccard{break-inside:avoid;}
+    section{break-inside:avoid;}
+  }
+
+
+  /* ===== duo 版覆寫 ===== */
+  .grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+  @media(max-width:1080px){.grid2,.coregrid,.covgrid,.geogrid{grid-template-columns:1fr;}}
+  .coregrid,.covgrid,.geogrid{grid-template-columns:repeat(2,1fr);}
+  .combo{border:1px solid var(--border);background:var(--surface-1);border-radius:12px;
+    padding:14px 18px;font-size:13.2px;line-height:1.65;color:var(--text-secondary);margin-top:4px;}
+  .combo b{color:var(--text-primary);}
+  .combo .s{color:var(--f1);font-weight:800;}
+  .combo .t{color:var(--f2);font-weight:800;}
+  .selllist{list-style:none;margin-top:8px;display:flex;flex-direction:column;gap:6px;}
+  .selllist li{position:relative;padding-left:15px;font-size:12.2px;line-height:1.52;color:var(--text-secondary);}
+  .selllist li::before{content:"▪";position:absolute;left:1px;top:0;color:var(--c);font-size:11px;}
+  .selllist li b{color:var(--text-primary);}
+  .sellhead{font-size:11.5px;font-weight:800;letter-spacing:.06em;color:var(--c);}
+  .sellhead+.selllist{margin-top:6px;}
+  .sellhead.mut{color:var(--text-muted);margin-top:10px;}
+</style>
+</head>
+<body class="viz-root">
+<div class="ig-nav" style="background:#1a1d23;padding:8px 16px;display:flex;gap:16px;align-items:center;font-family:system-ui,-apple-system,sans-serif;font-size:12.5px;flex-wrap:wrap">
+  <a href="https://leunghlk.github.io/infographics/" style="color:#9ec5f4;text-decoration:none;font-weight:700">📐 Infographics 入口</a>
+  <a href="https://leunghlk.github.io/infographics/funds-lowvol-income-four-2026-11.html" style="color:#9ca3af;text-decoration:none">低波動四強（本月）</a>
+  <a href="https://leunghlk.github.io/infographics/funds-lowvol-income-1pager-A4-2026-11.html" style="color:#9ca3af;text-decoration:none">低波動四強 · A4</a>
+  <a href="https://leunghlk.github.io/infographics/funds-bond4-1pager-A4-2026-11.html" style="color:#9ca3af;text-decoration:none">債券基金部署 · A4</a>
+  <a href="https://leunghlk.github.io/infographics/funds-schroder-duo-2026-11-v2.html" style="color:#ffffff;text-decoration:none">施羅德雙雄透視</a>
+  <span style="color:#6b7280;margin-left:auto">2026-11-13</span>
+</div>
+
+<div class="wrap">
+
+  <h1>施羅德雙雄透視 <span style="color:var(--f1)">MAGI</span> × <span style="color:var(--f2)">彈性總回報</span></h1>
+  <div class="sub">進取增長手足 ＋ 防禦型靈活總回報——同低波動四強（富蘭克林／GMADI／東方匯理／PIMCO）係三層分工，唔係同類競爭：四強＝收息錨，雙雄＝收息盤以外的第二層配置</div>
+  <div class="asof">平台回報 YTD（至 2026-11-11）· 風險指標 12M（至 2026-10-31）· factsheet 2026-09-30 · NAV／52 週帶 2026-11-11 · 派息率＝平台最近月度分派年化 · 恒生 FSM 平台類口徑 · 2026-11-13 提取</div>
+
+  <!-- ============ fund cards ============ -->
+  <section>
+    <div class="grid2" id="fcards"></div>
+  </section>
+
+  <!-- ============ core highlight ============ -->
+  <section>
+    <h2>核心四數速讀 <span class="hint">派息率／12M 波動／12M Sharpe／1Y 總回報 · 🏆＝雙雄之最 · 平台口徑</span><span class="rule"></span></h2>
+    <div style="height:10px"></div>
+    <div class="coregrid" id="core"></div>
+  </section>
+
+  <!-- ============ 風險座標 ============ -->
+  <section>
+    <h2>風險座標：12M 波動／Sharpe 對照低波動四強 <span class="hint">雙雄唔係收息錨——波動貼近純股票車對照組，遠高於四強</span><span class="rule"></span></h2>
+    <div class="riskgrid">
+      <div class="panel">
+        <h3>12M 波動率（%）— 由低至高</h3>
+        <div class="axisnote">同尺 0–22% · 灰色＝對照（非本頁推介）· 彩色＝施羅德雙雄</div>
+        <div id="chart-vol"></div>
+        <div class="mutnote">灰＝低波動四強（富蘭克林 6.34／GMADI 7.19／東方匯理 7.57／PIMCO 9.72）＝收息錨；對照組＝富達環球股息優勢 U45568（89% 股票）13.36、摩根亞洲股票高息 U45501（95% 股票）20.08。MAGI 13.45／彈性總回報 12.21 落喺四強同純股票車之間——增長／靈活層，唔係收息錨。</div>
+      </div>
+      <div class="panel">
+        <h3>12M Sharpe Ratio — 越高越有效率</h3>
+        <div class="axisnote">同尺 0–1.0 · 灰色＝低波動四強（平台 12M 口徑）</div>
+        <div id="chart-sharpe"></div>
+        <div class="mutnote">MAGI 12M 0.48 回落，但 3 年 Sharpe 1.19 仍係全組（含四強）最高——近一年效率降唔等於長線效率降；彈性總回報 0.14＝零售類首年＋防禦取向，效率指標唔係佢嘅賣點。四強 12M：PIMCO 0.99／富蘭克林 0.80／東方匯理 0.73／GMADI 0.29。</div>
+      </div>
+    </div>
+    <div style="height:10px"></div>
+    <div class="grid2" id="riskcards"></div>
+  </section>
+
+  <!-- ============ performance ============ -->
+  <section>
+    <h2>回報表現 <span class="hint">YTD＝平台類（至 11-11）· 1 年年化＝平台 12M 年度化回報（至 10-31）· 曆年＝平台類 · 3 年／5 年年化＝factsheet 基金級（美元 A 累積類）</span><span class="rule"></span></h2>
+    <div style="height:10px"></div>
+    <table class="perf" id="perftable"></table>
+  </section>
+
+  <!-- ============ coverage ============ -->
+  <section>
+    <h2>息 vs 賺（過去 12 個月） <span class="hint">核心檢查：派息率是否低於總回報 · 同一把尺 0–16%</span><span class="rule"></span></h2>
+    <div style="height:10px"></div>
+    <div class="covgrid" id="cov"></div>
+  </section>
+
+  <!-- ============ allocation ============ -->
+  <section>
+    <h2>資產配置 <span class="hint">佔基金淨資產 % · 恒生平台口徑（2026-09-30）</span><span class="rule"></span></h2>
+    <div class="legend">
+      <span><span class="sw" style="background:var(--a-eq)"></span>股票</span>
+      <span><span class="sw" style="background:var(--a-bd)"></span>債券</span>
+      <span><span class="sw" style="background:var(--a-ca)"></span>現金</span>
+      <span><span class="sw" style="background:var(--a-ot)"></span>其他（優先證券／可換股債等）</span>
+    </div>
+    <div class="allocpanel" id="alloc"></div>
+  </section>
+
+  <!-- ============ holdings ============ -->
+  <section>
+    <h2>主要持倉 <span class="hint">恒生平台 Top 5（佔基金淨資產 %）</span><span class="rule"></span></h2>
+    <div style="height:10px"></div>
+    <div class="geogrid" id="hold"></div>
+  </section>
+
+  <!-- ============ engine ============ -->
+  <section>
+    <h2>收入引擎與定位 <span class="hint">投資目標原文／條款引用</span><span class="rule"></span></h2>
+    <div style="height:10px"></div>
+    <div class="grid2" id="engine"></div>
+  </section>
+
+  <!-- ============ 食本檢查 ============ -->
+  <section>
+    <h2>派息條款與食本檢查 <span class="hint">派息率＝平台最近一次月度分派年化</span><span class="rule"></span></h2>
+    <div style="height:10px"></div>
+    <div class="grid2" id="bondcards"></div>
+  </section>
+
+  <!-- ============ 賣點與留意位 ============ -->
+  <section>
+    <h2>賣點與留意位 <span class="hint">賣點對應低波動四強嚟寫——三層分工：四強＝收息錨 · MAGI＝進取增長手足 · 彈性總回報＝防禦型靈活總回報</span><span class="rule"></span></h2>
+    <div style="height:10px"></div>
+    <div class="grid2" id="sellcards"></div>
+  </section>
+
+  <!-- ============ 適合哪類客 ============ -->
+  <section>
+    <h2>適合哪類客 · 與四強分工 <span class="rule"></span></h2>
+    <div style="height:10px"></div>
+    <div class="grid2" id="fitcards"></div>
+  </section>
+
+  <div class="combo"><b>比較結論：</b>施羅德雙雄與低波動四強（12M 波動 6.3–9.7%）屬三層分工而非同類競爭。<b>四強＝收息錨</b>，穩定月息需求照揀四強；<span class="s">MAGI</span>＝<b>進取增長手足</b>——3 年 Sharpe 1.19 高過四強全部、1Y／3Y／5Y 全跑贏比較基準，惟 2022 年 −16.2% 亦全組最深，適合接受大回撤的進取客做衛星增強；<span class="t">彈性總回報</span>＝<b>防禦型靈活總回報工具</b>——基金 2013 年成立、機構類別 13 年年化約 7%、不受基準限制兼可持現金逾 30% 防禦，角色實在：只係息率較低（5.11%）、零售類別 2025 年 4 月方設、零售規模一年增約 8.5 倍，宜小注分批、唔使急。</div>
+
+  <div class="foot">
+    口徑說明 —
+    ① 回報：YTD 為恒生 FSM 平台類累計（至 2026-11-11）；1 年年化為平台 12M 年度化回報（fundVolOneYearAR，至 2026-10-31）；MAGI 曆年（2021 +4.61／2022 −16.23／2023 +15.51／2024 +6.97／2025 +21.92）為平台 A (HKD) 月派類；factsheet 基金級（美元 A 累積類，2015-03-11 起）：1Y +14.8／3Y 累積 +58.0（年化 16.48%）／5Y 累積 +39.2（年化 6.8%，幾何換算）／10Y +88.7，同期比較基準 +5.5／+42.6／+26.9。彈性總回報平台類 2025-04-07 成立，factsheet R 美元類 1Y +8.2（至 09-30）、自成立 +23.6%。
+    ② 風險：12M 波動／Sharpe／年度化回報為恒生平台計算（至 2026-10-31）：MAGI 13.45%／0.48／+10.96%，彈性總回報 12.21%／0.14／+5.90%；MAGI 3Y：波動 9.93% · Sharpe 1.19，factsheet 3 年年化波動 10.1%（美元類）；彈性總回報零售類不足 3 年，平台未提供星級評級。
+    ③ 52 週回撤＝現價相對 52 週最高 NAV（2026-11-11）：MAGI −7.4%（1,059.32–1,214.92）／彈性總回報 −6.8%（108.53–120.23）。最差曆年＝2022 股債雙殺：MAGI −16.2%（factsheet 基金級）；彈性總回報零售類 2025 年方設，無紀錄。低波動四強對照數（12M 波動 6.34／7.19／7.57／9.72% · 12M Sharpe 0.80／0.29／0.73／0.99 · 2022 年 −7.33／−13.02／−1.30%）為恒生平台（2026-10-31）及各基金 factsheet。
+    ④ 派息率＝平台最近一次月度分派年化：MAGI 8.20%（最近 HKD 7.61202）／彈性總回報 5.11%（最近 HKD 0.56365）；彈性總回報 factsheet 風險披露明載分派可由經理人酌情從資本支付（即退回部分原投資金額），派息非保證，正派息率不代表正總回報。
+    ⑤ 費用（恒生平台）：MAGI 認購 4.00% · 管理 1.25% p.a.；彈性總回報認購 5.00% · 管理 1.00% p.a.。規模（基金級）：MAGI US$47.9 億／彈性總回報 US$13.2 億。
+    ⑥ 配置與持倉（平台 2026-09-30）：MAGI 股 32.96／債 35.53／現金 3.26／其他 28.25（優先證券／可換股債等），732 實股＋530 債券；十大持倉以內部債基＋美元 CPI 通脹掉期（兩筆合計 6.93%，頁面合併列示）＋E-mini 股指期貨為主——敞口經衍生工具調節。彈性總回報 股 26.79／債 58.87／現金 11.00／其他 3.34，0 實股＋7 筆直債，主力經施羅德自家基金＋債券 ETF（基金中基金結構，章程風險披露 5 提示底層基金或涉額外成本）；章程限另類資產 ≤20%、可逾 50% 經認可集體投資計劃投資、極端市況可持現金逾 30% 作防禦。
+    ⑦ MAGI 比較基準（2021-10-29 起）＝25% MSCI ACWI＋25% Barclays 環球高收益（ex CMBS &amp; EMG 2%）＋12.5% 環球可換股＋37.5% Barclays 環球 Agg；同日移除舊有「資本增值和收入＋每年 6–12% 波動目標」目標基準（此前比較基準為 30／30／30／10）。彈性總回報投資目標原文：「提供資本增長與收入的平衡（中長線）· 環球分散 · 不受市場基準限制 · 致力限制短期資本損失」。
+    ⑧ 「現金+3% 絕對回報導向」出自基金公司銷售簡報（2026-10），章程／factsheet／年報／官網並無此目標條文；施羅德年報（FY2026，財年止 30-06）機構 I 類單位價 2017→2026 約 107–117→217（年化約 7%）；彈性總回報零售規模 FY2024 US$94.5m→FY2026 US$1,578m（約 8.5 倍）。
+    ⑨ 資料於 2026-11-13 自恒生 FSM 平台 API＋兩基金 factsheet（2026-09-30 版）提取；本頁僅作內部／客戶參考，並非投資建議。過往表現未必代表未來表現，詳情請參閱基金章程及產品資料概要。
+  </div>
+</div>
+
+<div id="tip"></div>
+<script>
+const FUNDS = [
+  {
+    id:"m", c:"var(--f1)",
+    house:"Schroders 施羅德", name:"施羅德環球股債增長收息（MAGI）", en:"Schroder ISF Multi-Asset Growth & Income",
+    code:"U45883 · A (HKD) 月派現金類", risk:3, cat:"Equity/Bond Balanced · 股債混合",
+    launch:"基金 2012-07 起 · 平台類 2018-11", size:"US$ 47.9 億", nav:"1,125.08（11-11）",
+    fee:"認購 4.0% · 管理 1.25%",
+    yieldV:8.20, yieldNote:"月派 · 最近 HKD 7.612",
+    tagline:"進取增長手足：3 年 Sharpe 1.19 高過四強全部，1Y／3Y／5Y 全跑贏比較基準——增長收息並重，唔係收息錨",
+    chips:["1Y／3Y／5Y 全跑贏基準","3Y Sharpe 1.19","2025 曆年 +21.9%"],
+    core:{yld:8.20, yldBest:true, vol:13.45, volBest:false, sr:0.48, srBest:true, ret:10.96, retBest:true, retWarn:false},
+    perf:{ytd:9.64, y1:10.96, c25:21.92, c24:6.97, y3:16.48, y5:6.8, since:"+88.7%（10 年累積 · USD A 累積類）"},
+    vol:13.45, sharpe:0.48,
+    fundRisk:"3Y：波動 9.93% · Sharpe 1.19（平台）；factsheet 3 年年化 +16.5%／波動 10.1%（美元 A 累積）；基金經理 Dorian Carrell ＋ Remi Olu-Pitan（SIGMA 多資產團隊）",
+    dd52:-7.4, worstV:-16.2, worstT:"−16.2%",
+    alloc:{eq:32.96, bd:35.53, ca:3.26, ot:28.25, otNote:"「其他」為優先證券／可換股債等；732 實股＋530 債券"},
+    holds:[["施羅德 ISF 戰略信貸基金 I",4.90],["美元 CPI 通脹掉期 2036（兩筆合計）",6.93],["E-mini 能源板塊期貨 12 月",3.11],["E-mini Nasdaq 100 期貨 12 月",2.11],["E-mini 醫療板塊期貨 12 月",1.85]],
+    niche:"進取增長手足",
+    engine:{tag:"股債混合＋期貨／掉期調節",
+      quote:"投資目標（factsheet 原文）：「提供資本增長與收入——3 至 5 年期、費後」，經環球多元資產分散投資。比較基準（2021-10-29 起）＝25% MSCI ACWI＋25% 環球高收益＋12.5% 環球可換股＋37.5% 環球 Agg；同日移除舊有「每年 6–12% 波動目標」。十大持倉以內部債基＋美元 CPI 通脹掉期＋E-mini 股指期貨為主——敞口經衍生工具調節。",
+      src:"施羅德 MAGI factsheet 2026-09-30＋恒生平台 detailInformation（2026-11-13）"},
+    sell:[["賣點",
+      ["<b>1Y +14.8 vs 基準 +5.5；3Y +58.0 vs +42.6；5Y +39.2 vs +26.9</b>——三條年期全跑贏比較基準（factsheet 美元 A 累積）",
+       "<b>3 年 Sharpe 1.19 高過低波動四強全部</b>（四強最高 PIMCO 0.99）——招牌係風險調整後回報，唔係派最高息",
+       "<b>增長收息並重</b>：月派 8.20%，2025 曆年 +21.9%（平台類）——收息同時保留增長引擎",
+       "<b>2012 年成立、US$47.9 億</b>，2022 壓測紀錄完整——老基金大規模，透明度足"]],
+      ["留意位",
+       ["<b>2022 年 −16.2% 全組最深</b>（四強最淺東方匯理僅 −1.3%）——跌市會痛，注碼匹配風險承受力",
+        "<b>12M 波動 13.45% 全組最高</b>，貼近純股票車對照組（富達 13.36）——唔係低波動收息錨",
+        "12M Sharpe 0.48 較 3 年 1.19 回落——近一年效率降，追入宜分注",
+        "2021-10 起移除 6–12% 波動目標——風險檔由基金經理自決，唔再有波動承諾"]]]
+  },
+  {
+    id:"x", c:"var(--f2)",
+    house:"Schroders 施羅德", name:"施羅德彈性總回報基金", en:"Schroder ISF Flexi Total Return",
+    code:"U45871 · R MF (HKD) 月派", risk:3, cat:"Equity/Bond Balanced · 靈活混合",
+    launch:"基金 2013-06 起 · 零售類 2025-02/04", size:"US$ 13.2 億", nav:"112.03（11-11）",
+    fee:"認購 5.0% · 管理 1.00%",
+    yieldV:5.11, yieldNote:"月派 · 最近 HKD 0.564",
+    tagline:"防禦型靈活總回報：2013 年成立、不受市場基準限制——章程明載「限制短期資本損失」，跌市有現金彈藥",
+    chips:["基金 2013 年成立","不受基準限制","債 58.9%＋現金 11%"],
+    core:{yld:5.11, yldBest:false, vol:12.21, volBest:true, sr:0.14, srBest:false, ret:5.90, retBest:false, retWarn:false},
+    perf:{ytd:4.64, y1:5.90, c25:null, c24:null, y3:null, y5:null, since:"+23.6%（零售類 2025 年起 · R 美元類）"},
+    vol:12.21, sharpe:0.14,
+    fundRisk:"零售類 2025-04 起——類別紀錄不足 3 年；基金經理 Keiko Kondo（施羅德亞太多資產投資主管）；章程限另類資產 ≤20%、可逾 50% 經認可集體投資計劃",
+    dd52:-6.8, worstV:null, worstT:"—（零售類 2025 方設）",
+    alloc:{eq:26.79, bd:58.87, ca:11.00, ot:3.34, otNote:"0 實股＋7 筆直債——主力經施羅德自家基金＋債券 ETF（基金中基金式）"},
+    holds:[["施羅德環球信貸收益基金 I",21.82],["施羅德 QEP 環球核心基金 I",10.89],["美國國庫券",6.94],["澳洲國債 4.25%",6.92],["iShares 歐元企業債 ETF",6.27]],
+    niche:"防禦型靈活總回報",
+    engine:{tag:"不受基準限制靈活配置",
+      quote:"投資目標（factsheet 原文）：「提供資本增長與收入的平衡（中長線）——環球分散、不受市場基準限制、致力限制短期資本損失」。章程：另類資產 ≤20%、可逾 50% 經認可集體投資計劃投資、極端市況可持現金逾 30% 作防禦。持倉主要經施羅德自家基金（環球信貸 21.8%＋QEP 環球核心 10.9%）＋債券 ETF。",
+      src:"施羅德 Flexi TR factsheet 2026-09-30＋章程（2026-09-11）＋恒生平台（2026-11-13）"},
+    sell:[["賣點",
+      ["<b>基金 2013 年成立，機構類別 13 年年化約 7%</b>（年報實數）——策略唔新，新嘅只係零售類別",
+       "<b>不受市場基準限制</b>：章程明載「致力限制短期資本損失」、極端市況可持現金逾 30% 防禦——跌市有彈藥",
+       "<b>債 58.9%＋現金 11% 底倉厚</b>，加息環境食票息；零售類自成立 +23.6%（R 美元類）",
+       "銷售簡報（2026-10）定位<b>「現金+3% 絕對回報導向」</b>；波動 12.21% 低過 MAGI——MAGI 的保守手足"]],
+      ["留意位",
+       ["<b>零售類 2025-04 方設、零售規模一年增約 8.5 倍</b>（FY2024 US$94.5m→FY2026 US$1,578m）——類別紀錄短，宜分注建立倉位",
+        "<b>派息率 5.11% 全組最低</b>（四強 6.93–10.27%）——佢係總回報工具，唔係高息車",
+        "12M Sharpe 0.14 近一年平淡；「現金+3%」章程無此條文，向客講要標明出自銷售簡報",
+        "基金中基金結構——底層基金收費疊加（章程風險披露 5 明載）"]]]
+  }
+];
+
+/* 對照組：低波動四強＋純股票車（全部非本頁推介） */
+const MUT_VOL = [
+  {name:"富蘭克林入息（四強）", v:6.34},
+  {name:"宏利 GMADI（四強）", v:7.19},
+  {name:"東方匯理收益機遇（四強）", v:7.57},
+  {name:"PIMCO 平衡收益及增長（四強）", v:9.72},
+  {name:"彈性總回報", v:12.21, f:"x"},
+  {name:"富達環球股息優勢（對照）", v:13.36},
+  {name:"MAGI", v:13.45, f:"m"},
+  {name:"摩根亞洲股票高息（對照）", v:20.08}
+];
+const MUT_SR = [
+  {name:"彈性總回報", v:0.14, f:"x"},
+  {name:"宏利 GMADI（四強）", v:0.29},
+  {name:"MAGI", v:0.48, f:"m"},
+  {name:"東方匯理收益機遇（四強）", v:0.73},
+  {name:"富蘭克林入息（四強）", v:0.80},
+  {name:"PIMCO 平衡收益及增長（四強）", v:0.99}
+];
+
+/* ---------- header cards ---------- */
+document.getElementById("fcards").innerHTML = FUNDS.map(f=>`
+  <div class="fcard" style="--c:${f.c}">
+    <div class="house">${f.house}</div>
+    <div class="name">${f.name}</div>
+    <div class="en">${f.en}</div>
+    <div class="tagline">${f.tagline}</div>
+    <div class="yield">
+      <span class="v">${f.yieldV.toFixed(2)}%</span>
+      <span class="l">平台年化派息率<br>${f.yieldNote}</span>
+    </div>
+    <div class="meta">
+      <div><b>風險級別</b><span>${f.risk} / 5</span></div>
+      <div><b>組別</b><span>${f.cat}</span></div>
+      <div><b>成立／類別</b><span>${f.launch}</span></div>
+      <div><b>基金規模</b><span>${f.size}</span></div>
+      <div><b>現價 NAV</b><span>${f.nav}</span></div>
+      <div><b>費用</b><span>${f.fee}</span></div>
+    </div>
+    <div class="chips">${f.chips.map(c=>`<span class="chip hl">${c}</span>`).join("")}</div>
+  </div>`).join("");
+
+/* ---------- core highlight ---------- */
+document.getElementById("core").innerHTML = FUNDS.map(f=>{
+  const k=f.core;
+  const stat=(lab,val,cls,badge,warn)=>`
+    <div class="stat ${cls}">
+      ${badge?`<span class="${warn?'warn':'b'}">${badge}</span>`:""}
+      <div class="k">${lab}</div>
+      <div class="v">${val}</div>
+    </div>`;
+  return `<div class="ccard" style="--c:${f.c}">
+    <h4><span class="sw"></span>${f.name.replace("施羅德環球股債增長收息（MAGI）","施羅德 MAGI")}</h4>
+    <div class="sub4">${f.code}</div>
+    <div class="stat4">
+      ${stat("派息率",k.yld.toFixed(2)+"%",k.yldBest?"best":"",k.yldBest?"🏆 雙雄之最":null)}
+      ${stat("12M波動",k.vol.toFixed(2)+"%",k.volBest?"best":"",k.volBest?"雙雄波動較低":null)}
+      ${stat("12M Sharpe",k.sr.toFixed(2),k.srBest?"best":"",k.srBest?"🏆 雙雄之最":(k.sr<0.4?"效率偏弱":null),k.sr<0.4)}
+      ${stat("1Y 回報（年化）","+"+k.ret.toFixed(2)+"%",k.retBest?"best":"",k.retBest?"🏆 雙雄之最":null)}
+    </div>
+  </div>`;
+}).join("");
+
+/* ---------- 風險座標 charts ---------- */
+const fc = {m:"var(--f1)", x:"var(--f2)"};
+document.getElementById("chart-vol").innerHTML = MUT_VOL.map(r=>`
+  <div class="hbar${r.f?"":" mut"}">
+    <span class="lab">${r.name}</span>
+    <span class="trk"><span class="bar" style="${r.f?`--c:${fc[r.f]};`:""}width:${(r.v/22*100).toFixed(1)}%"></span></span>
+    <span class="val">${r.v.toFixed(2)}</span>
+  </div>`).join("");
+
+document.getElementById("chart-sharpe").innerHTML = MUT_SR.map(r=>`
+  <div class="hbar${r.f?"":" mut"}">
+    <span class="lab">${r.name}</span>
+    <span class="trk"><span class="bar" style="${r.f?`--c:${fc[r.f]};`:""}width:${(r.v/1.0*100).toFixed(1)}%"></span></span>
+    <span class="val">${r.v.toFixed(2)}</span>
+  </div>`).join("");
+
+/* ---------- risk cards ---------- */
+document.getElementById("riskcards").innerHTML = FUNDS.map(f=>`
+  <div class="gcard" style="--c:${f.c}">
+    <h4><span class="sw"></span>${f.name.replace("施羅德環球股債增長收息（MAGI）","施羅德 MAGI")}</h4>
+    <div class="note">${f.fundRisk}</div>
+    <div class="hbar">
+      <span class="lab">52 週高位回撤</span>
+      <span class="trk"><span class="bar" style="--c:${f.c};width:${(Math.abs(f.dd52)/12*100).toFixed(1)}%"></span></span>
+      <span class="val">${f.dd52.toFixed(1)}%</span>
+    </div>
+    <div class="hbar">
+      <span class="lab">最差年度（2022）</span>
+      <span class="trk"><span class="bar" style="--c:${f.c};width:${f.worstV!=null?Math.max(3,Math.abs(f.worstV)/14*100).toFixed(1):"3"}%"></span></span>
+      <span class="val">${f.worstT}</span>
+    </div>
+  </div>`).join("");
+
+/* ---------- performance table ---------- */
+const perfRows = [
+  ["YTD 回報","平台類 · 累計（至 11-11）","ytd"],
+  ["1 年年化","平台 12M 年度化（至 10-31）","y1"],
+  ["2025 曆年","平台類","c25"],
+  ["2024 曆年","平台類","c24"],
+  ["3 年年化","factsheet 基金級 · 美元 A 累積","y3"],
+  ["5 年年化","factsheet 基金級 · 累積換算","y5"]
+];
+document.getElementById("perftable").innerHTML = (()=>{
+  let html = `<thead><tr><th></th>${FUNDS.map(f=>`<th><span class="dot" style="background:${f.c}"></span>${f.name.replace("施羅德環球股債增長收息（MAGI）","施羅德 MAGI").replace("施羅德彈性總回報基金","彈性總回報")}</th>`).join("")}</tr></thead><tbody>`;
+  for(const [lab,sub,key] of perfRows){
+    const max = Math.max(...FUNDS.map(f=>f.perf[key]??0));
+    html += `<tr><td class="rowlab">${lab}<small>${sub}</small></td>`;
+    for(const f of FUNDS){
+      const v = f.perf[key];
+      if(v==null){
+        html += `<td class="na">— 零售類 2025-04 方設</td>`;
+      }else{
+        const w = Math.max(4, Math.round(v/max*100));
+        html += `<td><div class="cell"><span class="num">+${v.toFixed(2)}%</span>
+          <span class="track"><span class="bar" style="--c:${f.c};width:${w}%"></span></span></div></td>`;
+      }
+    }
+    html += `</tr>`;
+  }
+  html += `<tr><td class="rowlab">成立至今<small>factsheet 類別 · 累計</small></td>` +
+    FUNDS.map(f=>`<td><div class="cell"><span class="num">${f.perf.since.split("（")[0]}</span><small>${f.perf.since.split("（")[1]?"（"+f.perf.since.split("（")[1]:""}</small></div></td>`).join("") + `</tr>`;
+  return html + `</tbody>`;
+})();
+
+/* ---------- coverage ---------- */
+document.getElementById("cov").innerHTML = FUNDS.map(f=>{
+  const y=f.yieldV, r=f.core.ret, mx=16;
+  const ok = r>=y;
+  const extra = ok && f.id==="x" ? "（貼線：市弱一格即轉負，追蹤要密）" : "";
+  return `<div class="covgroup" style="--c:${f.c}">
+    <h4><span class="sw"></span>${f.name.replace("施羅德環球股債增長收息（MAGI）","施羅德 MAGI")}</h4>
+    <div class="rowlab2">派息率（平台年化）</div>
+    <div class="hbar">
+      <span class="lab">派息</span>
+      <span class="trk"><span class="bar" style="--c:${f.c};width:${(y/mx*100).toFixed(1)}%;opacity:.55"></span></span>
+      <span class="val">${y.toFixed(2)}%</span>
+    </div>
+    <div class="rowlab2">1 年年化回報（平台）</div>
+    <div class="hbar">
+      <span class="lab">賺到</span>
+      <span class="trk"><span class="bar" style="--c:${f.c};width:${(r/mx*100).toFixed(1)}%"></span></span>
+      <span class="val">${r.toFixed(2)}%</span>
+    </div>
+    <div class="verdict ${ok?'good':'bad'}" style="margin-top:9px"><b>${ok?"✓ 賺 > 派":"⚠ 派 > 賺"}</b> — 差額 ${ok?"+":"−"}${Math.abs(r-y).toFixed(1)}pp${ok?"：息由回報支付"+extra:"：缺口食本金"}</div>
+  </div>`;
+}).join("");
+
+/* ---------- allocation ---------- */
+document.getElementById("alloc").innerHTML = FUNDS.map(f=>{
+  const a = f.alloc;
+  const seg=(v,bg)=>v>0?`<span class="seg" style="background:${bg};width:${v}%"><span>${v.toFixed(1)}</span></span>`:"";
+  return `<div class="arow">
+    <div class="top"><b>${f.name.replace("施羅德環球股債增長收息（MAGI）","施羅德 MAGI")}</b><span>${a.otNote}</span></div>
+    <div class="stack">
+      ${seg(a.eq,"var(--a-eq)")}
+      ${seg(a.bd,"var(--a-bd)")}
+      ${seg(a.ca,"var(--a-ca)")}
+      ${seg(a.ot,"var(--a-ot)")}
+    </div>
+    <div class="vals">股票 <em>${a.eq.toFixed(1)}</em> · 債券 <em>${a.bd.toFixed(1)}</em> · 現金 <em>${a.ca.toFixed(1)}</em> · 其他 <em>${a.ot.toFixed(1)}</em>（佔基金 %）</div>
+  </div>`;
+}).join("");
+
+/* ---------- holdings ---------- */
+document.getElementById("hold").innerHTML = FUNDS.map(f=>`
+  <div class="gcard" style="--c:${f.c}">
+    <h4><span class="sw"></span>${f.name.replace("施羅德環球股債增長收息（MAGI）","施羅德 MAGI")}</h4>
+    <div class="note">平台 Top 5 持倉（佔基金淨資產 %）${f.id==="m"?"· 兩筆同名 CPI 掉期合併列示（3.47＋3.46）；十大仲有 ASX SPI 200／MSCI World 期貨＋韓國／墨西哥國債":"· 六成以上經施羅德自家基金／債券 ETF——基金中基金結構"}</div>
+    <ul class="hold">
+      ${f.holds.map(([n,w],i)=>`<li>
+        <span class="rk">${i+1}</span><span class="nm">${n}</span><span class="wt">${w.toFixed(2)}</span>
+      </li>`).join("")}
+    </ul>
+  </div>`).join("");
+
+/* ---------- engine ---------- */
+document.getElementById("engine").innerHTML = FUNDS.map(f=>{
+  const e=f.engine;
+  return `<div class="ncard" style="--c:${f.c}">
+    <span class="niche">${e.tag}</span>
+    <div class="q">${e.quote}</div>
+    <div class="src">來源：${e.src}</div>
+  </div>`;
+}).join("");
+
+/* ---------- 食本檢查 ---------- */
+const BOND = {
+  m:{rate:"8.20%（月派）", terms:"條款：月度分派 · 非保證（平台 IC 類）",
+      dur:"未披露", ytm:"未披露",
+      vcls:"good", vlabel:"🟢 覆蓋正數",
+      vtext:"1Y 年化賺 10.96% > 派 8.20%（+2.8pp）；factsheet 3 年年化 +16.5% 覆蓋派息無虞。但佢係增長手足唔係收息錨：2022 −16.2% 提示呢個息係坐過山車收嘅。"},
+  x:{rate:"5.11%（月派）", terms:"條款：經理人酌情，可從資本派（factsheet 風險披露 7）",
+      dur:"未披露（FoF 結構）", ytm:"未披露",
+      vcls:"mid", vlabel:"🟡 貼線覆蓋",
+      vtext:"1Y 年化賺 5.90% > 派 5.11%（+0.8pp，貼線）。息率全組最低——佢係總回報工具唔係高息車：買佢係為咗「跌市守到、升市賺到」，唔係為咗收息。條款上可含資本成分，見客要講明。"}
+};
+document.getElementById("bondcards").innerHTML = FUNDS.map(f=>{
+  const b=BOND[f.id];
+  return `<div class="bcard" style="--c:${f.c}">
+    <h4><span class="sw"></span>${f.name.replace("施羅德環球股債增長收息（MAGI）","施羅德 MAGI")}</h4>
+    <div class="brow"><b>平台派息率</b><span>${b.rate}</span></div>
+    <div class="brow"><b>派息條款</b><span style="font-weight:400;color:var(--text-secondary);font-size:11.3px;text-align:right">${b.terms}</span></div>
+    <div class="brow"><b>Duration</b><span>${b.dur}</span></div>
+    <div class="brow"><b>YTM</b><span>${b.ytm}</span></div>
+    <div class="verdict ${b.vcls}"><b>${b.vlabel}</b> — ${b.vtext}</div>
+  </div>`;
+}).join("");
+
+/* ---------- 賣點與留意位 ---------- */
+document.getElementById("sellcards").innerHTML = FUNDS.map(f=>`
+  <div class="ncard" style="--c:${f.c}">
+    <span class="niche">${f.name.replace("施羅德環球股債增長收息（MAGI）","施羅德 MAGI")} · 賣點與留意位</span>
+    ${f.sell.map(([head,items],i)=>`
+      <div class="sellhead ${i?'mut':''}">${head}</div>
+      <ul class="selllist">${items.map(t=>`<li>${t}</li>`).join("")}</ul>`).join("")}
+  </div>`).join("");
+
+/* ---------- 適合哪類客 ---------- */
+const FIT = {
+  m:"已用低波動四強收息、想加一隻<b>進取增長手足</b>拉高組合整體回報的客——風險 3 級、充分接受 −16% 級別年度回撤。同四強係互補唔係互替：宜做衛星增強（例如佔組合一至兩成），唔好當收息核心。",
+  x:"想要「跌市守到、升市賺到」的<b>靈活總回報</b>、唔介意息率較低（5.11%）的客——四強收息盤以外的<b>小注衛星</b>。零售類紀錄尚短＋零售規模一年 8.5 倍：<b>分注分批</b>建立，唔使急。"
+};
+document.getElementById("fitcards").innerHTML = FUNDS.map(f=>`
+  <div class="ncard" style="--c:${f.c}">
+    <span class="niche">${f.name.replace("施羅德環球股債增長收息（MAGI）","施羅德 MAGI")} 適合</span>
+    <div class="q">${FIT[f.id]}</div>
+  </div>`).join("");
+
+/* ---------- tooltip ---------- */
+const tip = document.getElementById("tip");
+document.addEventListener("mousemove", e=>{
+  const t = e.target.closest("[data-tip]");
+  if(t){ tip.textContent = t.dataset.tip; tip.style.opacity = 1;
+    tip.style.left = Math.min(e.clientX+12, innerWidth-tip.offsetWidth-8)+"px";
+    tip.style.top  = (e.clientY+14)+"px";
+  } else { tip.style.opacity = 0; }
+});
+</script>
+
+<!-- ⬇ JPEG 匯出 + k logo（共用件） -->
+<style>
+  .jpgbtn{position:fixed;top:72px;right:18px;z-index:60;background:#2563eb;color:#fff;border:none;
+    border-radius:10px;padding:11px 18px;font-size:14px;font-weight:700;cursor:pointer;
+    box-shadow:0 4px 14px rgba(37,99,235,.4);font-family:inherit}
+  .jpgbtn:hover{background:#1d4ed8}
+  .jpgbtn[disabled]{opacity:.6;cursor:wait}
+  .kbadge{position:fixed;bottom:16px;right:16px;z-index:60;width:36px;height:36px;background:#fff;
+    border-radius:10px;display:flex;align-items:center;justify-content:center;
+    box-shadow:0 2px 8px rgba(0,0,0,.18);text-decoration:none;
+    font:italic 300 21px/1 'Brush Script MT','Segoe Script',cursive;color:#2563eb}
+  @media print{.jpgbtn,.kbadge{display:none!important}}
+</style>
+<button class="jpgbtn" onclick="exportJPG(this)">📸 匯出 JPEG</button>
+<a class="kbadge" href="https://leunghlk.github.io/all-in-one/" title="leungkathy · 返回主頁">k</a>
+<script type="module">
+  import { domToJpeg } from "https://cdn.jsdelivr.net/npm/modern-screenshot@4/dist/index.mjs";
+  window.modernScreenshot = { domToJpeg };
+</script>
+<script>
+function exportJPG(btn){
+  var target=document.querySelector('.sheet')||document.querySelector('.wrap');
+  if(!target||!window.modernScreenshot){alert('匯出元件未載入，請檢查網絡後重試');return;}
+  btn.disabled=true;var t=btn.textContent;btn.textContent='⏳ 匯出中…';
+  // ⭐ 匯出 JPEG 右下角必帶 k 字 logo：capture 前暫注入 target，完成後移除（唔影響頁面本身）
+  var k=document.createElement('div');
+  k.textContent='k';
+  k.style.cssText="position:absolute;right:8mm;bottom:2mm;z-index:9;font:italic 300 36px/1 'Brush Script MT','Segoe Script',cursive;color:#2563eb;pointer-events:none;";
+  var prevPos=target.style.position, prevPad=target.style.paddingBottom;
+  if(getComputedStyle(target).position==='static') target.style.position='relative';
+  target.style.paddingBottom='13mm';
+  target.appendChild(k);
+  function done(){ k.remove(); target.style.position=prevPos; target.style.paddingBottom=prevPad; }
+  modernScreenshot.domToJpeg(target,{scale:2,quality:0.92,backgroundColor:'#ffffff'}).then(function(url){
+    var a=document.createElement('a');
+    a.download=(document.title||'infographic').replace(/[\\\/:*?"<>|]+/g,'-').trim()+'.jpg';
+    a.href=url;
+    document.body.appendChild(a);a.click();a.remove();
+    btn.textContent=t;btn.disabled=false;done();
+  }).catch(function(e){alert('匯出失敗：'+e);btn.textContent=t;btn.disabled=false;done();});
+}
+</script>
+</body>
+</html>
