@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>債券基金部署指南 · 一頁對比（A4）</title>
+<title>債券基金部署指南 · 一頁對比（A4 · 五隻）</title>
 <style>
   :root{
     --surface:#ffffff; --page:#f2f3f5;
@@ -13,6 +13,7 @@
     --b2:#199e70; /* 滙豐短存續期 */
     --b3:#2a78d6; /* 富蘭克林 */
     --b4:#B4830E; /* 宏利 恒生金 */
+    --b5:#0e7490; /* PIMCO 收益基金 II 青 */
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   html,body{background:var(--page);}
@@ -37,7 +38,7 @@
   .hd{display:flex; justify-content:space-between; align-items:flex-end; border-bottom:2.5px solid var(--ink); padding-bottom:1.3mm;}
   .hd h1{font-size:16.5px; font-weight:800;}
   .hd h1 .acc{color:var(--b1);}
-  .hd .sub{font-size:8.6px; color:var(--ink2); margin-top:.8mm;}
+  .hd .sub{font-size:8.4px; color:var(--ink2); margin-top:.8mm;}
   .hd .asof{font-size:8px; color:var(--ink3); text-align:right; line-height:1.55;}
 
   /* section label */
@@ -45,59 +46,56 @@
     display:flex; align-items:center; gap:2mm;}
   .slab .rule{flex:1; height:1px; background:var(--line);}
   .slab .hint{font-weight:400; color:var(--ink3); letter-spacing:0;}
-
-  /* 頭卡 row */
-  .heads{display:grid; grid-template-columns:repeat(4,1fr); gap:3mm;}
-  .hcell{border:1px solid var(--line); border-top:1.4mm solid var(--c); border-radius:2mm; overflow:hidden;
-    background:color-mix(in srgb,var(--c) 6%,#fff); padding:1.4mm 2.6mm 1.2mm;}
-  .hcell .house{font-size:7px; color:var(--ink3); text-transform:uppercase; letter-spacing:.05em;}
-  .hcell .nm{font-size:12px; font-weight:800; line-height:1.2; margin-top:.3mm;}
-  .hcell .en{font-size:6.8px; color:var(--ink3); margin-top:.2mm;}
-  .hcell .meta{font-size:7.5px; color:var(--ink2); margin-top:.9mm; line-height:1.45;}
-  .hcell .meta b{color:var(--ink3); font-weight:600;}
-  .hcell .tag{margin-top:.8mm; font-size:8.6px; font-weight:800; line-height:1.35;
-    background:color-mix(in srgb,var(--c) 12%,#fff); border-radius:1.4mm; padding:.65mm 1.8mm;}
-
-  /* 資料行 section：一個 grid＝一個 section，四欄同 row 自動等高對齊 */
-  .sec{display:grid; grid-template-columns:repeat(4,1fr); column-gap:3mm; row-gap:0;
-    border:1px solid var(--line); border-radius:2mm; overflow:hidden; background:#fff;}
-  .sec>div{padding:.75mm 2.2mm .65mm; border-bottom:1px solid var(--line);
-    display:flex; justify-content:space-between; align-items:baseline; gap:2mm; font-size:9px; min-height:4.8mm;}
-  .sec>div:nth-last-child(-n+4){border-bottom:none;}
-  /* 欄間分隔線（第 2/3/4 欄） */
-  .sec>div:nth-child(4n+2),.sec>div:nth-child(4n+3),.sec>div:nth-child(4n+4){border-left:1px solid var(--line);}
-  .kcell .lab{font-size:7.6px; color:var(--ink3); font-weight:600; flex:none;}
-  .kcell .val{font-weight:700; text-align:right; font-variant-numeric:tabular-nums; line-height:1.25;}
-  .kcell .val small{font-size:6.8px; color:var(--ink3); font-weight:400; display:block;}
-  .val.pos{color:#0a6b3d;} .val.neg{color:#b03434;} .val.best{color:var(--ink); }
-  .val.best::after{content:"◆"; font-size:5.5px; color:var(--b1); margin-left:.6mm; vertical-align:.4mm;}
-  .val .na{color:var(--ink3); font-weight:400; font-size:7.6px;}
-
   .blk{display:flex; flex-direction:column; gap:.5mm;}
 
-  /* 情境 pills */
-  .pill{display:inline-block; font-size:7px; font-weight:800; border-radius:99px; padding:.2mm 1.9mm; margin-right:1mm; vertical-align:.3mm;}
-  .pill.g{background:#e2f3ea; color:#0a6b3d;} .pill.y{background:#f7efdc; color:#8a6410;} .pill.r{background:#f8e3e3; color:#b03434;}
-  .kcell .ctx{font-size:8.2px; line-height:1.3; text-align:right;}
+  /* 頭卡 row */
+  .heads{display:grid; grid-template-columns:repeat(5,1fr); gap:2.2mm;}
+  .hcell{border:1px solid var(--line); border-top:1.4mm solid var(--c); border-radius:2mm; overflow:hidden;
+    background:color-mix(in srgb,var(--c) 6%,#fff); padding:1.4mm 2.2mm 1.2mm;}
+  .hcell .house{font-size:6.6px; color:var(--ink3); text-transform:uppercase; letter-spacing:.04em;}
+  .hcell .nm{font-size:10.8px; font-weight:800; line-height:1.2; margin-top:.3mm;}
+  .hcell .en{font-size:6.3px; color:var(--ink3); margin-top:.2mm;}
+  .hcell .meta{font-size:7px; color:var(--ink2); margin-top:.8mm; line-height:1.4;}
+  .hcell .meta b{color:var(--ink3); font-weight:600;}
+  .hcell .tag{margin-top:.8mm; font-size:8px; font-weight:800; line-height:1.32;
+    background:color-mix(in srgb,var(--c) 12%,#fff); border-radius:1.4mm; padding:.6mm 1.6mm;}
+
+  /* 資料行 section：一個 grid＝一個 section，五欄同 row 自動等高對齊 */
+  .sec{display:grid; grid-template-columns:repeat(5,1fr); column-gap:2.2mm; row-gap:0;
+    border:1px solid var(--line); border-radius:2mm; overflow:hidden; background:#fff;}
+  .sec>div{padding:.75mm 1.9mm .65mm; border-bottom:1px solid var(--line);
+    display:flex; justify-content:space-between; align-items:baseline; gap:1.5mm; font-size:8.8px; min-height:4.8mm;}
+  .sec>div:nth-last-child(-n+5){border-bottom:none;}
+  /* 欄間分隔線（第 2–5 欄） */
+  .sec>div:nth-child(5n+2),.sec>div:nth-child(5n+3),.sec>div:nth-child(5n+4),.sec>div:nth-child(5n+5){border-left:1px solid var(--line);}
+  .kcell .lab{font-size:7.2px; color:var(--ink3); font-weight:600; flex:none;}
+  .kcell .val{font-weight:700; text-align:right; font-variant-numeric:tabular-nums; line-height:1.25;}
+  .kcell .val small{font-size:6.4px; color:var(--ink3); font-weight:400; display:block;}
+  .val.pos{color:#0a6b3d;} .val.neg{color:#b03434;} .val.best{color:var(--ink); }
+  .val.best::after{content:"◆"; font-size:5.5px; color:var(--b1); margin-left:.6mm; vertical-align:.4mm;}
+  .val .na{color:var(--ink3); font-weight:400; font-size:7.2px;}
+  /* 從資本撥息標記 */
+  .cap{display:inline-block; font-size:5.6px; font-weight:800; color:#8a6410; background:#f7efdc;
+    border:1px solid #eadfc2; border-radius:99px; padding:.05mm 1.2mm; margin-left:.8mm; vertical-align:.25mm; letter-spacing:.02em;}
 
   /* 部署結論：紅綠燈判決板 */
-  .vsec>div{display:block; padding:.9mm 2.2mm .8mm; font-size:8.2px; min-height:0;}
+  .vsec>div{display:block; padding:.9mm 1.9mm .8mm; font-size:8px; min-height:0;}
   .vsec>div.v-ok{background:#e9f5ee;}
   .vsec>div.v-warn{background:#faf3e0;}
   .vsec>div.v-no{background:#faeaea;}
-  .vq{font-size:7px; font-weight:800; color:var(--ink3); letter-spacing:.03em;}
-  .vrow{display:flex; align-items:center; gap:1.6mm; margin-top:.35mm;}
-  .mk{font-size:13.5px; font-weight:800; flex:none; width:5mm; text-align:center; line-height:1;}
-  .mk.ok{color:#0a6b3d;} .mk.warn{color:#9a6c00;} .mk.no{color:#b03434;}
-  .vd{font-size:10px; font-weight:800; line-height:1.2;}
-  .vr{margin-top:.35mm; font-size:7.2px; color:var(--ink2); line-height:1.3;}
   .vsec>div.v-neutral{background:#fff;}
+  .vq{font-size:6.8px; font-weight:800; color:var(--ink3); letter-spacing:.03em;}
+  .vrow{display:flex; align-items:center; gap:1.4mm; margin-top:.35mm;}
+  .mk{font-size:12.5px; font-weight:800; flex:none; width:4.5mm; text-align:center; line-height:1;}
+  .mk.ok{color:#0a6b3d;} .mk.warn{color:#9a6c00;} .mk.no{color:#b03434;}
+  .vd{font-size:9.2px; font-weight:800; line-height:1.2;}
+  .vr{margin-top:.35mm; font-size:6.9px; color:var(--ink2); line-height:1.3;}
 
   /* combo strip＋foot */
   .combo{border:1px solid var(--line); background:#fafafa; border-radius:2mm; padding:.9mm 2.6mm;
-    font-size:8.6px; color:var(--ink2); line-height:1.5;}
+    font-size:8.2px; color:var(--ink2); line-height:1.5;}
   .combo b{color:var(--ink);}
-  .ft{border-top:1px solid var(--line); padding-top:.8mm; font-size:6.2px; color:var(--ink3); line-height:1.35;}
+  .ft{border-top:1px solid var(--line); padding-top:.8mm; font-size:5.9px; color:var(--ink3); line-height:1.35;}
   .ft b{color:var(--ink2);}
 
   .jpgbtn{position:fixed;top:60px;right:18px;z-index:60;background:#2563eb;color:#fff;border:none;border-radius:10px;
@@ -114,7 +112,7 @@
 <body>
 <div class="ig-nav" style="background:#1a1d23;padding:8px 16px;display:flex;gap:16px;align-items:center;font-family:system-ui,-apple-system,sans-serif;font-size:12.5px;flex-wrap:wrap">
   <a href="https://leunghlk.github.io/infographics/" style="color:#9ec5f4;text-decoration:none;font-weight:700">📐 Infographics 入口</a>
-  <a href="https://leunghlk.github.io/infographics/funds-bond4-1pager-A4-2026-11.html" style="color:#ffffff;text-decoration:none">債券四隻 · A4</a>
+  <a href="https://leunghlk.github.io/infographics/funds-bond4-1pager-A4-2026-11.html" style="color:#ffffff;text-decoration:none">債券五隻 · A4</a>
   <a href="https://leunghlk.github.io/infographics/funds-bond4-deploy-2026-11.html" style="color:#9ca3af;text-decoration:none">債券四隻 · 詳細版</a>
   <a href="https://leunghlk.github.io/infographics/funds-lowvol-income-1pager-A4-2026-11.html" style="color:#9ca3af;text-decoration:none">低波動四強 · A4</a>
   <a href="https://leunghlk.github.io/infographics/funds-schroder-vs-four-2026-11.html" style="color:#9ca3af;text-decoration:none">施羅德雙雄 vs 四強</a>
@@ -128,10 +126,10 @@
 
   <div class="hd">
     <div>
-      <h1>債券基金部署指南 <span class="acc">·</span> 一頁對比</h1>
-      <div class="sub">滙豐超短期債券 ／ 滙豐環球短存續期債券 ／ 富蘭克林環球低波動債券 ／ 宏利優先證券收益 — 現金加強 → 鎖息 → 純債 → 混合資本，逐欄對齊</div>
+      <h1>債券基金部署指南 <span class="acc">·</span> 一頁對比（五隻）</h1>
+      <div class="sub">滙豐超短期債券 ／ 滙豐環球短存續期債券 ／ 富蘭克林環球低波動債券 ／ 宏利優先證券收益 ／ PIMCO 收益基金 II — 現金加強 → 鎖息 → 純債 → 混合資本 → 長存續期收息，逐欄對齊</div>
     </div>
-    <div class="asof">回報截至 2026-11-10（恒生平台類口徑）· 波動／Sharpe 為 12 個月（至 2026-10）<br>配置 2026-09-30 · ◆＝該行全組最佳 · 完整口徑見詳細版</div>
+    <div class="asof">回報截至 2026-11-10（恒生平台類口徑）· 存續期／孳息率為 factsheet 2026-09-30<br>◆＝該行全組最佳 · <span style="color:#8a6410">資本撥</span>＝派息可從資本支付 · 完整口徑見詳細版</div>
   </div>
 
   <!-- ============ 頭卡 ============ -->
@@ -148,7 +146,7 @@
       <div class="nm">環球短存續期債券 AM2</div>
       <div class="en">Global Short Duration Bond · 港元月派</div>
       <div class="meta">U45302 · 風險級別 <b>1</b> · ★★★ · 規模 <b>US$45.3 億</b></div>
-      <div class="tag">鎖息工具：孳息 5.12% · 存續期 2.45 年</div>
+      <div class="tag">鎖息工具：YTM 5.35% · 有效存續期 2.45 年</div>
     </div>
     <div class="hcell" style="--c:var(--b3)">
       <div class="house">富蘭克林鄧普頓 Franklin Templeton</div>
@@ -164,6 +162,13 @@
       <div class="meta">U45658 · 風險級別 <b>2</b> · 未評級 · 規模 <b>US$3.1 億</b></div>
       <div class="tag">混合資本收息：並非一般債券基金</div>
     </div>
+    <div class="hcell" style="--c:var(--b5)">
+      <div class="house">PIMCO 品浩 環球投資者系列</div>
+      <div class="nm">收益基金 II（E 類）</div>
+      <div class="en">GIS Income Fund II · 港元月派</div>
+      <div class="meta">U50021 · 風險級別 <b>2</b> · ★★★ · 規模 <b>US$5.3 億</b></div>
+      <div class="tag">長存續期收息：YTM 8.65% 全組最高</div>
+    </div>
   </div>
 
   <!-- ============ 回報 ============ -->
@@ -174,53 +179,64 @@
     <div class="kcell"><span class="lab">YTD</span><span class="val">+2.46</span></div>
     <div class="kcell"><span class="lab">YTD</span><span class="val">+0.66</span></div>
     <div class="kcell"><span class="lab">YTD</span><span class="val neg">−1.41</span></div>
+    <div class="kcell"><span class="lab">YTD</span><span class="val neg">−1.36</span></div>
     <div class="kcell"><span class="lab">1 年</span><span class="val best">+4.54</span></div>
     <div class="kcell"><span class="lab">1 年</span><span class="val">+3.21</span></div>
     <div class="kcell"><span class="lab">1 年</span><span class="val">+1.29</span></div>
     <div class="kcell"><span class="lab">1 年</span><span class="val neg">−1.32</span></div>
+    <div class="kcell"><span class="lab">1 年</span><span class="val neg">−0.73</span></div>
     <div class="kcell"><span class="lab">3 年年化</span><span class="val">+5.04</span></div>
-    <div class="kcell"><span class="lab">3 年年化</span><span class="val best">+5.43</span></div>
+    <div class="kcell"><span class="lab">3 年年化</span><span class="val">+5.43</span></div>
     <div class="kcell"><span class="lab">3 年年化</span><span class="val"><span class="na">類別不足 3 年</span></span></div>
     <div class="kcell"><span class="lab">3 年年化</span><span class="val"><span class="na">類別不足 3 年</span></span></div>
+    <div class="kcell"><span class="lab">3 年年化</span><span class="val best">+6.02</span></div>
     <div class="kcell"><span class="lab">2022 壓測</span><span class="val best">+1.29</span></div>
     <div class="kcell"><span class="lab">2022 壓測</span><span class="val neg">−5.46</span></div>
     <div class="kcell"><span class="lab">2022 壓測</span><span class="val"><span class="na">2025 年成立</span></span></div>
     <div class="kcell"><span class="lab">2022 壓測</span><span class="val neg">−14.99</span></div>
+    <div class="kcell"><span class="lab">2022 壓測</span><span class="val neg">−8.46</span></div>
     <div class="kcell"><span class="lab">2025 年</span><span class="val">+5.11</span></div>
-    <div class="kcell"><span class="lab">2025 年</span><span class="val best">+5.57</span></div>
+    <div class="kcell"><span class="lab">2025 年</span><span class="val">+5.57</span></div>
     <div class="kcell"><span class="lab">2025 年</span><span class="val">+4.52</span></div>
     <div class="kcell"><span class="lab">2025 年</span><span class="val">+5.14</span></div>
+    <div class="kcell"><span class="lab">2025 年</span><span class="val best">+9.55</span></div>
   </div>
   </div>
 
   <!-- ============ 風險與息率 ============ -->
   <div class="blk">
-  <div class="slab">風險與息率<span class="hint">孳息率／存續期為 factsheet 2026-09-30 債券部分口徑</span><span class="rule"></span></div>
+  <div class="slab">風險與息率<span class="hint">存續期為各基金 factsheet 有效存續期 · 孳息率為 factsheet 組合級到期孳息率（YTM）· 詳見口徑</span><span class="rule"></span></div>
   <div class="sec">
     <div class="kcell"><span class="lab">12 個月波動</span><span class="val best">0.56%</span></div>
     <div class="kcell"><span class="lab">12 個月波動</span><span class="val">1.93%</span></div>
     <div class="kcell"><span class="lab">12 個月波動</span><span class="val">1.83%</span></div>
-    <div class="kcell"><span class="lab">12 個月波動</span><span class="val neg">4.53%</span></div>
+    <div class="kcell"><span class="lab">12 個月波動</span><span class="val">4.53%</span></div>
+    <div class="kcell"><span class="lab">12 個月波動</span><span class="val neg">5.44%</span></div>
     <div class="kcell"><span class="lab">3 年 Sharpe</span><span class="val best">0.82</span></div>
     <div class="kcell"><span class="lab">3 年 Sharpe</span><span class="val">0.37</span></div>
     <div class="kcell"><span class="lab">3 年 Sharpe</span><span class="val"><span class="na">—</span></span></div>
     <div class="kcell"><span class="lab">3 年 Sharpe</span><span class="val"><span class="na">—</span></span></div>
-    <div class="kcell"><span class="lab">派息率（年化）</span><span class="val">4.09%</span></div>
-    <div class="kcell"><span class="lab">派息率（年化）</span><span class="val">5.04%</span></div>
-    <div class="kcell"><span class="lab">派息率（年化）</span><span class="val">5.21%</span></div>
-    <div class="kcell"><span class="lab">派息率（年化）</span><span class="val best">9.24%</span></div>
-    <div class="kcell"><span class="lab">孳息率</span><span class="val"><span class="na">未披露</span></span></div>
-    <div class="kcell"><span class="lab">孳息率</span><span class="val">5.12%</span></div>
-    <div class="kcell"><span class="lab">孳息率</span><span class="val best">5.70%</span></div>
-    <div class="kcell"><span class="lab">孳息率</span><span class="val">8.15%</span></div>
-    <div class="kcell"><span class="lab">存續期</span><span class="val">期貨調節<small>2 年期國債期貨＋現金</small></span></div>
-    <div class="kcell"><span class="lab">存續期</span><span class="val">2.45 年</span></div>
-    <div class="kcell"><span class="lab">存續期</span><span class="val"><span class="na">未披露</span></span></div>
-    <div class="kcell"><span class="lab">存續期</span><span class="val neg">4.89 年</span></div>
+    <div class="kcell"><span class="lab">3 年 Sharpe</span><span class="val">0.28</span></div>
+    <div class="kcell"><span class="lab">派息率（年化）</span><span class="val">4.09%<span class="cap">資本撥</span></span></div>
+    <div class="kcell"><span class="lab">派息率（年化）</span><span class="val">5.04%<span class="cap">資本撥</span></span></div>
+    <div class="kcell"><span class="lab">派息率（年化）</span><span class="val">5.21%<span class="cap">資本撥</span></span></div>
+    <div class="kcell"><span class="lab">派息率（年化）</span><span class="val best">9.24%<span class="cap">資本撥</span></span></div>
+    <div class="kcell"><span class="lab">派息率（年化）</span><span class="val">6.25%<span class="cap">資本撥</span></span></div>
+    <div class="kcell"><span class="lab">到期孳息率 YTM</span><span class="val">4.92%</span></div>
+    <div class="kcell"><span class="lab">到期孳息率 YTM</span><span class="val">5.35%</span></div>
+    <div class="kcell"><span class="lab">到期孳息率 YTM</span><span class="val">5.70%</span></div>
+    <div class="kcell"><span class="lab">到期孳息率 YTM</span><span class="val">8.15%</span></div>
+    <div class="kcell"><span class="lab">到期孳息率 YTM</span><span class="val best">8.65%</span></div>
+    <div class="kcell"><span class="lab">存續期（有效）</span><span class="val best">0.40 年</span></div>
+    <div class="kcell"><span class="lab">存續期（有效）</span><span class="val">2.45 年</span></div>
+    <div class="kcell"><span class="lab">存續期（有效）</span><span class="val">1.95 年</span></div>
+    <div class="kcell"><span class="lab">存續期（有效）</span><span class="val">4.89 年</span></div>
+    <div class="kcell"><span class="lab">存續期（有效）</span><span class="val neg">7.51 年</span></div>
     <div class="kcell"><span class="lab">管理費</span><span class="val best">0.30%</span></div>
     <div class="kcell"><span class="lab">管理費</span><span class="val">0.50%</span></div>
-    <div class="kcell"><span class="lab">管理費</span><span class="val neg">1.00%</span></div>
-    <div class="kcell"><span class="lab">管理費</span><span class="val neg">1.10%</span></div>
+    <div class="kcell"><span class="lab">管理費</span><span class="val">1.00%</span></div>
+    <div class="kcell"><span class="lab">管理費</span><span class="val">1.10%</span></div>
+    <div class="kcell"><span class="lab">管理費</span><span class="val neg">1.45%</span></div>
   </div>
   </div>
 
@@ -229,28 +245,32 @@
   <div class="slab">部署結論<span class="hint">✓ 建議 · △ 有條件 · ✗ 不建議 — 新錢現在買為核心判決</span><span class="rule"></span></div>
   <div class="sec vsec">
     <div class="v-ok"><div class="vq">繼續持有？</div><div class="vrow"><span class="mk ok">✓</span><span class="vd">照持 · 核心倉</span></div><div class="vr">風險調整後回報全組最佳（3 年 Sharpe 0.82）</div></div>
-    <div class="v-ok"><div class="vq">繼續持有？</div><div class="vrow"><span class="mk ok">✓</span><span class="vd">照持</span></div><div class="vr">孳息 5.12%、458 隻債券分散，收費合理</div></div>
+    <div class="v-ok"><div class="vq">繼續持有？</div><div class="vrow"><span class="mk ok">✓</span><span class="vd">照持</span></div><div class="vr">YTM 5.35%、458 隻債券分散，收費合理</div></div>
     <div class="v-warn"><div class="vq">繼續持有？</div><div class="vrow"><span class="mk warn">△</span><span class="vd">照持收息</span></div><div class="vr">組合無結構性問題，不建議恐慌沽出</div></div>
     <div class="v-warn"><div class="vq">繼續持有？</div><div class="vrow"><span class="mk warn">△</span><span class="vd">照收息 · 檢視佔比</span></div><div class="vr">9.24% 息可從資本撥（條款明載）；佔比高宜逐步減持</div></div>
+    <div class="v-warn"><div class="vq">繼續持有？</div><div class="vrow"><span class="mk warn">△</span><span class="vd">照收息 · 盯存續期</span></div><div class="vr">有效存續期 7.51 年全組最長，息口反覆時波動明顯</div></div>
     <div class="v-ok"><div class="vq">換馬？</div><div class="vrow"><span class="mk ok">✓</span><span class="vd">不用換</span></div><div class="vr">收費 0.30% 全組最低、91 億規模流動性充足</div></div>
     <div class="v-ok"><div class="vq">換馬？</div><div class="vrow"><span class="mk ok">✓</span><span class="vd">不用換</span></div><div class="vr">定位與收費均合適</div></div>
     <div class="v-warn"><div class="vq">換馬？</div><div class="vrow"><span class="mk warn">△</span><span class="vd">可換短存續期</span></div><div class="vr">定位重疊：轉倉每年慳 0.50%、紀錄更長</div></div>
     <div class="v-warn"><div class="vq">換馬？</div><div class="vrow"><span class="mk warn">△</span><span class="vd">不宜直接換馬</span></div><div class="vr">非同類產品；降風險可分批轉短債</div></div>
+    <div class="v-warn"><div class="vq">換馬？</div><div class="vrow"><span class="mk warn">△</span><span class="vd">非短債替代</span></div><div class="vr">屬長存續期收息工具，與超短／短存續不同類</div></div>
     <div class="v-ok"><div class="vq">新錢現在買？</div><div class="vrow"><span class="mk ok">✓</span><span class="vd">隨時買</span></div><div class="vr">新錢第一站：不押注息口方向，無入場時機風險</div></div>
     <div class="v-ok"><div class="vq">新錢現在買？</div><div class="vrow"><span class="mk ok">✓</span><span class="vd">分批買</span></div><div class="vr">屬「鎖息」決定，須接受 2.45 年存續期波動</div></div>
     <div class="v-no"><div class="vq">新錢現在買？</div><div class="vrow"><span class="mk no">✗</span><span class="vd">不建議</span></div><div class="vr">同一需求：短存續期成本更低、紀錄更長</div></div>
     <div class="v-no"><div class="vq">新錢現在買？</div><div class="vrow"><span class="mk no">✗</span><span class="vd">不建議</span></div><div class="vr">波動為超短期八倍，Sharpe −1.42 無補償</div></div>
+    <div class="v-warn"><div class="vq">新錢現在買？</div><div class="vrow"><span class="mk warn">△</span><span class="vd">有條件 · 分批</span></div><div class="vr">接受 7.5 年利率敏感度方可收 8.65% 孳息；純現金加強需求不適用</div></div>
     <div class="v-neutral"><div class="vq">幾時買得過？</div><div class="vd">隨時</div><div class="vr">唯一代價：息口回落時票息跟跌</div></div>
     <div class="v-neutral"><div class="vq">幾時買得過？</div><div class="vd">息口高位＝鎖息窗</div><div class="vr">減息則價息兼收；再升或重演 −5.46%</div></div>
     <div class="v-neutral"><div class="vq">幾時買得過？</div><div class="vd">暫無必然理由</div><div class="vr">待收費優惠，或績效／規模明顯改善</div></div>
     <div class="v-neutral"><div class="vq">幾時買得過？</div><div class="vd">待信用恐慌擴息差</div><div class="vr">屆時逆向買入；現價非時機</div></div>
+    <div class="v-neutral"><div class="vq">幾時買得過？</div><div class="vd">看好減息方入手</div><div class="vr">息口回落資本利得全組最大；無方向觀點則用短存續</div></div>
   </div>
   </div>
 
-  <div class="combo"><b>用法判斷：</b>不押注息口方向、只求勝過活存 → <b>超短期（核心倉）</b>｜接受約 2.5 年鎖息、看好減息 → <b>短存續期（增息衛星）</b>，組合建議 70/30｜2022 年實證：<b>+1.29% 對 −5.46%</b></div>
+  <div class="combo"><b>用法判斷：</b>不押注息口方向、只求勝過活存 → <b>超短期（核心倉）</b>｜接受約 2.5 年鎖息、看好減息 → <b>短存續期（增息衛星）</b>，組合建議 70/30｜看好減息、求最高孳息且承受長存續期波動 → <b>PIMCO 收益基金 II</b>｜2022 年實證：<b>+1.29% 對 −5.46% 對 −8.46% 對 −14.99%</b></div>
 
   <div class="ft">
-    <b>口徑</b> — ① 回報為恒生 FSM 平台類累計（2026-11-10）；2022 年曆年（超短期 +1.29／短存續期 −5.46／宏利 −14.99）出平台紀錄及 factsheet 2026-09-30（美元類基金級）；富蘭克林 2025-01-07 成立，僅 2025 年（+4.52）。② 波動／3 年 Sharpe 為恒生平台計算（2026-10-31）；四隻 12 個月 Sharpe 皆為負值（港元對沖成本所致），跨基金比較以 3 年 Sharpe 為準。③ 派息率為最近月度分派年化；四隻條款上均可由經理人酌情從資本支付分派（宏利章程明示資本侵蝕風險），派息非保證、正派息率不代表正總回報。④ 轉倉或涉及認購費，本頁未計一次性成本；宏利持倉 56.75% 為優先證券／混合資本、BBB 佔 67%，與一般債券基金不同。⑤ 資料 2026-11-13 自恒生 FSM 平台 API 及各基金 factsheet 提取；本頁僅供客戶參考，並非投資建議或要約；過往表現未必代表未來表現，詳情參閱基金章程及產品資料概要（完整口徑見詳細版）。
+    <b>口徑</b> — ① 回報為恒生 FSM 平台類累計／年度化（2026-11-10）；2022／2025 年曆年出最新 factsheet（2026-09-30，各股份類別基金級：超短期 PM2 港元類 +1.29／+5.11；短存續期 AM2 港元類 −5.46／+5.57；宏利 AA 美元類 −14.99／+5.14；PIMCO 收益基金 II E 類港元 −8.46／+9.55）；富蘭克林 A 月派美元類 2025-01-07 成立，僅 2025 年（+4.52）。② 波動／3 年 Sharpe 為恒生平台計算（2026-10-31）；五隻 12 個月 Sharpe 皆為負值（港元對沖／高息環境成本所致），跨基金比較以 3 年 Sharpe 為準。③ <b>派息與資本撥付</b>：派息率為最近月度分派年化；<b>五隻 factsheet／章程均明載派息可從資本支付</b>（超短期及短存續期「可從資本中或未扣除開支前撥付股息，或導致資本蠶食」；富蘭克林「實際上可從資本中支付股息」；宏利每月派息(G)類「可從已變現資本收益、資本及／或總收益撥付股息」；PIMCO 收益基金 II「股息將從基金的資本中扣除，資本將逐漸減少」）；派息非保證、正派息率不代表正總回報。④ <b>存續期為各基金最新 factsheet（2026-09-30）有效存續期</b>（Effective Duration）：超短期 0.40／短存續期 2.45／富蘭克林 1.95／宏利 4.89（factsheet 稱平均存續期）／PIMCO 收益基金 II 7.51（稱實際存續期）。<b>孳息率為 factsheet 組合級到期孳息率（YTM，費用前口徑）</b>：4.92／5.35／5.70／8.15／8.65%（PIMCO 明示扣除費用後將降低；YTM 非實際派息保證）。⑤ 管理費為恒生平台口徑；轉倉或涉及認購費，本頁未計一次性成本；宏利持倉 56.75% 為優先證券／混合資本、BBB 佔 67%，PIMCO 收益基金 II 以機構按揭抵押證券（約 33.6%）等多板塊為主，均與一般短債基金不同。⑥ 資料 2026-11-13 自恒生 FSM 平台 API 及五隻基金最新 factsheet 提取；本頁僅供客戶參考，並非投資建議或要約；過往表現未必代表未來表現，詳情參閱基金章程及產品資料概要（完整口徑見詳細版）。
   </div>
 </div>
 
