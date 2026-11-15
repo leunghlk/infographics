@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>本週重點日曆 2026-11-16 → 11-20</title>
+<style>
+  :root{
+    --hs-green:#00834E; --hs-gold:#B4830E;
+    --c-earn:#00834E; --c-data:#D19A1F; --c-geo:#8E2A20; --c-mon:#2E5FA3;
+    --ink:#1a1a1a; --ink2:#4a4a4a; --ink3:#767676; --surface:#ffffff; --line:#e3e1dc;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:#f2f0ec;font-family:-apple-system,"PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;color:var(--ink);padding:18px 0;}
+  .sheet{width:1123px;margin:0 auto;background:var(--surface);padding:26px 30px 20px;box-shadow:0 2px 14px rgba(0,0,0,.08);}
+
+  /* header */
+  .hd{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:3px solid var(--hs-green);padding-bottom:12px;}
+  .hd h1{font-size:26px;font-weight:800;letter-spacing:.5px;}
+  .hd h1 span{color:var(--hs-green);}
+  .hd .sub{font-size:12.5px;color:var(--ink2);margin-top:5px;}
+  .hd .badge{text-align:right;font-size:11.5px;color:var(--ink2);line-height:1.5;white-space:nowrap;}
+  .hd .badge b{color:var(--hs-green);font-size:13px;}
+
+  /* legend */
+  .lg{display:flex;gap:14px;margin:12px 0 12px;font-size:11.5px;color:var(--ink2);align-items:center;flex-wrap:wrap;}
+  .lg .li{display:flex;align-items:center;gap:5px;}
+  .lg .sw{width:11px;height:11px;border-radius:3px;}
+
+  /* day grid */
+  .days{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;}
+  .day{border:1px solid var(--line);border-radius:8px;background:#fdfcfa;display:flex;flex-direction:column;}
+  .day.hot{border-color:var(--hs-green);background:#f4faf7;}
+  .dh{padding:7px 10px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:baseline;}
+  .day.hot .dh{background:var(--hs-green);color:#fff;border-radius:7px 7px 0 0;}
+  .dh .d1{font-size:14px;font-weight:800;}
+  .dh .d2{font-size:10.5px;color:var(--ink3);}
+  .day.hot .dh .d2{color:#d9ede3;}
+  .db{padding:8px 8px 9px;display:flex;flex-direction:column;gap:7px;flex:1;}
+
+  .ev{border-left:3.5px solid var(--ink3);background:#fff;border-radius:0 6px 6px 0;padding:6px 8px 6px 9px;box-shadow:0 1px 2px rgba(0,0,0,.05);}
+  .ev .chip{display:inline-block;font-size:9.5px;font-weight:700;letter-spacing:.5px;padding:1px 6px;border-radius:8px;color:#fff;margin-bottom:3px;}
+  .ev .ev-t{font-size:12.8px;font-weight:750;line-height:1.3;}
+  .ev .ev-d{font-size:10.8px;color:var(--ink2);line-height:1.42;margin-top:2px;}
+  .ev-d b{color:var(--ink);}
+  .t-earn{border-left-color:var(--c-earn);} .t-earn .chip{background:var(--c-earn);}
+  .t-data{border-left-color:var(--c-data);} .t-data .chip{background:var(--c-data);color:#3a2c05;}
+  .t-geo{border-left-color:var(--c-geo);} .t-geo .chip{background:var(--c-geo);}
+  .t-mon{border-left-color:var(--c-mon);} .t-mon .chip{background:var(--c-mon);}
+
+  /* monitor band */
+  .mon{margin-top:14px;border:1.5px solid var(--hs-green);border-radius:9px;overflow:hidden;}
+  .mon .mh{background:var(--hs-green);color:#fff;font-size:12.5px;font-weight:800;letter-spacing:1.5px;padding:6px 14px;}
+  .tiles{display:grid;grid-template-columns:repeat(6,1fr);}
+  .tile{padding:9px 12px;border-right:1px solid var(--line);}
+  .tile:last-child{border-right:none;}
+  .tile .k{font-size:10.5px;color:var(--ink3);font-weight:600;letter-spacing:.3px;}
+  .tile .v{font-size:15.5px;font-weight:800;margin-top:2px;}
+  .tile .n{font-size:10px;color:var(--ink2);line-height:1.4;margin-top:2px;}
+  .tile .v.g{color:var(--hs-green);} .tile .v.au{color:var(--hs-gold);}
+
+  /* RM line */
+  .rm{margin-top:12px;background:#faf6ec;border:1px solid #eadfc2;border-radius:8px;padding:9px 14px;font-size:12.5px;line-height:1.55;}
+  .rm b{color:var(--hs-gold);}
+  .rm .tt{font-weight:800;color:var(--hs-green);margin-right:6px;}
+
+  .ft{margin-top:10px;display:flex;justify-content:space-between;font-size:9.8px;color:var(--ink3);}
+
+  /* shared components */
+  .jpgbtn{position:fixed;right:18px;bottom:18px;background:var(--hs-green);color:#fff;border:none;border-radius:22px;padding:9px 18px;font-size:13px;font-weight:700;cursor:pointer;box-shadow:0 3px 10px rgba(0,0,0,.25);font-family:inherit;}
+  .jpgbtn:hover{filter:brightness(1.08);}
+  .kbadge{position:fixed;left:16px;bottom:16px;font-size:10px;color:#fff;background:rgba(0,0,0,.35);border-radius:10px;padding:3px 9px;text-decoration:none;font-family:inherit;}
+  .ig-nav{background:#14231c;padding:8px 18px;display:flex;gap:16px;font-size:12px;width:1123px;margin:0 auto 14px;border-radius:8px;}
+  .ig-nav a{color:#b9cfc4;text-decoration:none;}
+  .ig-nav a.on{color:#fff;font-weight:700;border-bottom:2px solid var(--hs-gold);}
+  @media print{
+    body{padding:0;background:#fff;}
+    .sheet{box-shadow:none;width:100%;}
+    .jpgbtn,.kbadge,.ig-nav{display:none!important;}
+    @page{size:A4 landscape;margin:6mm 5.5mm;}
+    *{print-color-adjust:exact;-webkit-print-color-adjust:exact;}
+  }
+</style>
+</head>
+<body>
+
+<nav class="ig-nav"><a href="https://leunghlk.github.io/infographics/">入口</a><a class="on" href="week-calendar-2026-11-16.html">本週日曆 11-16→20</a><a href="sp500-equalweight-rsp-2026-11.html">SPW×RSP</a><a href="watchlist-2026-10-26-v2.html">觀察名單</a><a href="funds-income-compare-2026-10.html">基金對比</a><a href="meta-tsla-q3-2026.html">META×TSLA</a><a href="spacex-q3-2026.html">SpaceX</a></nav>
+
+<div class="sheet">
+  <div class="hd">
+    <div>
+      <h1>本週重點日曆 <span>2026-11-16 → 11-20</span></h1>
+      <div class="sub">業績週＋地緣週：NVDA 業績定 AI 情緒・騰訊阿里定港股・APEC＋出口管制法案定中美 ｜ 基調：加息初段（12月8-9 FOMC 加息 90.5%），唔博方向、博擺位</div>
+    </div>
+    <div class="badge">10年期美債 <b>5.15%</b>（上週 +30bp）<br>美元 +1.1%・金 −4.6%・20日防守股 +6-7%</div>
+  </div>
+
+  <div class="lg">
+    <span style="font-weight:700;">圖例：</span>
+    <span class="li"><span class="sw" style="background:var(--c-earn);"></span>業績</span>
+    <span class="li"><span class="sw" style="background:var(--c-data);"></span>經濟數據</span>
+    <span class="li"><span class="sw" style="background:var(--c-geo);"></span>地緣政治／政策</span>
+    <span class="li"><span class="sw" style="background:var(--c-mon);"></span>監察／desk 動作</span>
+  </div>
+
+  <div class="days">
+    <div class="day hot">
+      <div class="dh"><span class="d1">11-16 週一</span><span class="d2">今日</span></div>
+      <div class="db">
+        <div class="ev t-data"><span class="chip">數據</span><div class="ev-t">🇨🇳 中國 10月經濟數據</div><div class="ev-d">工業增加值／社零（預期僅 <b>+0.8%</b>）／房價／FAI——NBS 慣例週一上午</div></div>
+        <div class="ev t-geo"><span class="chip">政策</span><div class="ev-t">AI 晶片出口管制法案</div><div class="ev-d">FT 今日頭條後續：兩黨支持、白宮反對——條文／委員會日程監察</div></div>
+        <div class="ev t-mon"><span class="chip">desk</span><div class="ev-t">981／1347 高開不追</div><div class="ev-d">國產替代敘事盤 65 折紀律照行</div></div>
+      </div>
+    </div>
+
+    <div class="day hot">
+      <div class="dh"><span class="d1">11-17 週二</span><span class="d2">美數據＋NVDA夜</span></div>
+      <div class="db">
+        <div class="ev t-data"><span class="chip">數據</span><div class="ev-t">🇺🇸 美國 10月零售銷售</div><div class="ev-d">21:30 HKT——12月 FOMC 前重要輸入</div></div>
+        <div class="ev t-earn"><span class="chip">業績</span><div class="ev-t">DIS 迪士尼</div><div class="ev-d">事件溢價極高——唔搭佢寫 ELN</div></div>
+        <div class="ev t-earn"><span class="chip">業績</span><div class="ev-t">⭐NVDA Q3（美東盤後）</div><div class="ev-d">＝香港 <b>11-18 朝早</b>；Kress 臨時 CEO 主持——指引風險加倍</div></div>
+        <div class="ev t-mon"><span class="chip">desk</span><div class="ev-t">貼價接貨客兩劇本</div><div class="ev-d">業績前預講：反彈過 strike／跌穿轉備戰</div></div>
+      </div>
+    </div>
+
+    <div class="day hot">
+      <div class="dh"><span class="d1">11-18 週三</span><span class="d2">全週最重</span></div>
+      <div class="db">
+        <div class="ev t-mon"><span class="chip">監察</span><div class="ev-t">NVDA 業績反應＋繼任訊號</div><div class="ev-d">繼任人選（Haas／Malachowsky 傳聞）＝第二個訊號</div></div>
+        <div class="ev t-geo"><span class="chip">政治</span><div class="ev-t">🇺🇸 國會閉門簡報</div><div class="ev-d">NVDA／國安問話——傳票威脅懸而未決</div></div>
+        <div class="ev t-earn"><span class="chip">業績</span><div class="ev-t">騰訊 700 Q3</div><div class="ev-d"><b>20:00 HKT</b>・預期收入 ~2,108億人民幣（+9%）；同日董事會或派息</div></div>
+        <div class="ev t-geo"><span class="chip">政治</span><div class="ev-t">APEC 深圳（11-18/19）</div><div class="ev-d">特朗普行程：會唔會帶黃仁勳（已高度成疑）</div></div>
+        <div class="ev t-data"><span class="chip">數據</span><div class="ev-t">FOMC 會議紀錄</div><div class="ev-d">週三／四（待確認）——加息口徑</div></div>
+      </div>
+    </div>
+
+    <div class="day">
+      <div class="dh"><span class="d1">11-19 週四</span><span class="d2">港股業績</span></div>
+      <div class="db">
+        <div class="ev t-earn"><span class="chip">業績</span><div class="ev-t">阿里巴巴 9988 Q2</div><div class="ev-d">美東早上發布；港電話會 <b>20:00</b>——雲／資本開支指引係位</div></div>
+        <div class="ev t-data"><span class="chip">數據</span><div class="ev-t">🇺🇸 初領失業金</div><div class="ev-d">20:30 HKT</div></div>
+        <div class="ev t-geo"><span class="chip">政治</span><div class="ev-t">APEC 深圳 Day2</div><div class="ev-d">中美照會／聯合宣言前兆</div></div>
+        <div class="ev t-mon"><span class="chip">desk</span><div class="ev-t">700/9988 業績後波動</div><div class="ev-d">港股 ELN 深度價外防守股照行（939/1398/883/2318）</div></div>
+      </div>
+    </div>
+
+    <div class="day">
+      <div class="dh"><span class="d1">11-20 週五</span><span class="d2">收週</span></div>
+      <div class="db">
+        <div class="ev t-geo"><span class="chip">政治</span><div class="ev-t">APEC 收尾</div><div class="ev-d">聯合宣言＋中方訊號——人民幣／港股窗口</div></div>
+        <div class="ev t-mon"><span class="chip">監察</span><div class="ev-t">週末前 de-risk 波動</div><div class="ev-d">聖誕前傳統去風險期——唔博 ③ 浪確認</div></div>
+        <div class="ev t-mon"><span class="chip">監察</span><div class="ev-t">法案進度＋債息收市位</div><div class="ev-d">10Y 收 5.25+ ＝ 債基第三注窗口臨近</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mon">
+    <div class="mh">全週監察價位帶</div>
+    <div class="tiles">
+      <div class="tile"><div class="k">美債 10Y</div><div class="v g">5.15%</div><div class="n"><b>5.25-5.50 ＝ 債基第三注 trigger</b></div></div>
+      <div class="tile"><div class="k">費半 SOX</div><div class="v au">阻力 10660-11174</div><div class="n">IV浪底反彈過唔過＝轉勢分水嶺</div></div>
+      <div class="tile"><div class="k">恒指</div><div class="v g">22671 生死位</div><div class="n">26009-26188 企穩先講轉勢；跌穿下望 21756</div></div>
+      <div class="tile"><div class="k">黃金</div><div class="v au">3857 認錯位</div><div class="n">V② 底之上分注吸納（3170/GLD）</div></div>
+      <div class="tile"><div class="k">NVDA 客簿</div><div class="v g">接貨備戰照行</div><div class="n">無提早平倉——深度價內約談、貼價預講</div></div>
+      <div class="tile"><div class="k">12月 FOMC</div><div class="v au">8-9 日</div><div class="n">加息 90.5%——本週數據＝最後輸入</div></div>
+    </div>
+  </div>
+
+  <div class="rm"><span class="tt">RM 一句</span>本週三個情緒都唔使估：<b>NVDA 業績定 AI</b>、<b>700/9988 定港股</b>、<b>APEC＋法案定中美</b>——接貨位等 65 折、債第三注等 5.25、金 3857 上分注。加息初段，每通電話：一句期望管理＋一個行動＋file note。</div>
+
+  <div class="ft"><span>數據截至 2026-11-16；FOMC 紀錄日期／中國數據確實鐘點以官方為準。</span><span>leunghlk.github.io/infographics</span></div>
+</div>
+
+<button class="jpgbtn" onclick="dl()">⬇ 匯出 JPEG</button>
+<a class="kbadge" href="https://leunghlk.github.io/infographics/">k</a>
+
+<script type="module">
+  import {domToJpeg} from "https://cdn.jsdelivr.net/npm/modern-screenshot@4/dist/index.mjs";
+  window.modernScreenshot={domToJpeg};
+</script>
+<script>
+  async function dl(){
+    const {domToJpeg}=window.modernScreenshot;
+    const node=document.querySelector(".sheet");
+    const url=await domToJpeg(node,{scale:2,quality:0.92,backgroundColor:"#ffffff"});
+    const a=document.createElement("a");
+    a.href=url;a.download=(document.title.replace(/[\\/:*?"<>| ]+/g,"_"))+".jpg";a.click();
+  }
+</script>
+</body>
+</html>
