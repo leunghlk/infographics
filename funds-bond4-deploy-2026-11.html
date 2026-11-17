@@ -419,7 +419,7 @@
 </script>
 <script>
 function exportJPG(btn){
-  var target=document.querySelector('.wrap');
+  var target=document.querySelector('.sheet')||document.querySelector('.wrap');
   if(!target||!window.modernScreenshot){alert('匯出元件未載入，請檢查網絡後重試');return;}
   btn.disabled=true;var t=btn.textContent;btn.textContent='⏳ 匯出中…';
   var k=document.createElement('div');
@@ -430,14 +430,77 @@ function exportJPG(btn){
   target.style.paddingBottom='13mm';
   target.appendChild(k);
   function done(){ k.remove(); target.style.position=prevPos; target.style.paddingBottom=prevPad; }
-  modernScreenshot.domToJpeg(target,{scale:2,quality:0.92,backgroundColor:'#ffffff'}).then(function(url){
-    var a=document.createElement('a');
-    a.download=(document.title||'infographic').replace(/[\\\/:*?"<>|]+/g,'-').trim()+'.jpg';
-    a.href=url;
-    document.body.appendChild(a);a.click();a.remove();
-    btn.textContent=t;btn.disabled=false;done();
-  }).catch(function(e){alert('匯出失敗：'+e);btn.textContent=t;btn.disabled=false;done();});
+  function restore(){ done(); btn.textContent=t; btn.disabled=false; }
+  function fname(){ return (document.title.replace(/[^\w一-鿿-]+/g,'-').replace(/-+/g,'-'))+'.jpg'; }
+  // 📱 大圖防爆記憶體：限制 canvas 總像素；失敗自動降 scale 重試
+  var rg=target.getBoundingClientRect(), MAXPX=16000000;
+  var sc=2; if(rg.width*rg.height*4>MAXPX) sc=Math.max(1,Math.sqrt(MAXPX/(rg.width*rg.height)));
+  function overlay(blob,name){ // 後備路：長按張圖 →「加入照片」貯入相簿
+    var u=URL.createObjectURL(blob);
+    var o=document.createElement('div');
+    o.style.cssText='position:fixed;inset:0;z-index:99999;background:rgba(10,12,16,.88);display:flex;flex-direction:column;align-items:center;gap:12px;padding:18px;overflow:auto;';
+    var tip=document.createElement('div');
+    tip.style.cssText='color:#fff;font:600 14px/1.5 -apple-system,system-ui,sans-serif;text-align:center;';
+    tip.innerHTML='長按下面張圖 → 揀「<b>加入照片</b>」即可貯入相簿<br><span style="font-size:12px;opacity:.65">（或撳「下載」存入檔案 App）</span>';
+    var img=new Image(); img.src=u; img.style.cssText='max-width:100%;background:#fff;box-shadow:0 6px 28px rgba(0,0,0,.5);';
+    var bar=document.createElement('div'); bar.style.cssText='display:flex;gap:10px;';
+    var dl=document.createElement('a'); dl.href=u; dl.download=name; dl.textContent='⬇ 下載';
+    dl.style.cssText='background:#2563eb;color:#fff;font:700 14px -apple-system,system-ui,sans-serif;padding:10px 18px;border-radius:9px;text-decoration:none;';
+    var cl=document.createElement('button'); cl.textContent='✕ 關閉';
+    cl.style.cssText='background:#374151;color:#fff;font:700 14px -apple-system,system-ui,sans-serif;padding:10px 18px;border-radius:9px;border:none;';
+    cl.onclick=function(){ o.remove(); URL.revokeObjectURL(u); };
+    bar.appendChild(dl); bar.appendChild(cl);
+    o.appendChild(tip); o.appendChild(img); o.appendChild(bar);
+    document.body.appendChild(o);
+  }
+  function deliver(url,name){
+    fetch(url).then(function(r){return r.blob();}).then(function(blob){
+      var file=null; try{ file=new File([blob],name,{type:'image/jpeg'}); }catch(e){}
+      var touch=(navigator.maxTouchPoints>0)||/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
+      // 📱 電話首選：系統分享單 →「加入照片」直接貯入相簿
+      if(file&&touch&&navigator.canShare&&navigator.canShare({files:[file]})){
+        navigator.share({files:[file],title:name}).then(function(){ restore(); })
+        .catch(function(err){
+          if(err&&err.name==='AbortError'){ restore(); return; }
+          overlay(blob,name); restore();
+        });
+        return;
+      }
+      // 💻 桌面／其他：照舊 anchor 下載
+      var u=URL.createObjectURL(blob);
+      var a=document.createElement('a'); a.href=u; a.download=name;
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(function(){ URL.revokeObjectURL(u); },4000);
+      if(touch&&/iP(hone|ad|od)/.test(navigator.userAgent)){ overlay(blob,name); }
+      else restore();
+    }).catch(function(e){ restore(); alert('匯出失敗：'+(e&&e.message||e)); });
+  }
+  modernScreenshot.domToJpeg(target,{scale:sc,quality:0.92,backgroundColor:'#ffffff'})
+  .then(function(url){ done(); deliver(url,fname()); })
+  .catch(function(e){
+    if(sc>1){
+      modernScreenshot.domToJpeg(target,{scale:1,quality:0.9,backgroundColor:'#ffffff'})
+      .then(function(url){ done(); deliver(url,fname()); })
+      .catch(function(e2){ restore(); alert('匯出失敗：'+(e2&&e2.message||e2)); });
+    }else{ restore(); alert('匯出失敗：'+(e&&e.message||e)); }
+  });
 }
+</script>
+<script>
+// 📱 電話觀看修正：內容闊過螢幕 → viewport 設做內容闊度，開頁即成頁縮細睇到＋可以較大
+(function(){
+  function go(){
+    try{
+      var sw=Math.min(window.screen.width, window.innerWidth||window.screen.width);
+      var w=Math.max(document.documentElement.scrollWidth, document.body?document.body.scrollWidth:0);
+      var m=document.querySelector('meta[name="viewport"]');
+      if(!m||w>2400||w<=sw+4) return;
+      m.setAttribute('content','width='+Math.ceil(w));
+    }catch(e){}
+  }
+  if(document.readyState==='complete') setTimeout(go,80);
+  else window.addEventListener('load',function(){ setTimeout(go,80); });
+})();
 </script>
 </body>
 </html>

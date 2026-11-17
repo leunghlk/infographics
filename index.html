@@ -17,8 +17,20 @@
   nav a.tab.on{color:var(--accent);border-bottom-color:var(--accent);background:var(--accent-light);}
   nav a.open{font-size:13px;font-weight:700;color:var(--accent);text-decoration:none;margin-left:10px;padding:9px 4px;}
   main{max-width:1400px;margin:18px auto;padding:0 16px;}
-  .framebox{width:100%;border-radius:16px;overflow:hidden;background:#fff;box-shadow:0 2px 16px rgba(0,0,0,.08);}
+  .framebox{position:relative;width:100%;border-radius:16px;overflow:hidden;background:#fff;box-shadow:0 2px 16px rgba(0,0,0,.08);}
   .framebox iframe{border:none;display:block;background:#fff;}
+  .tapopen{display:none;}
+  @media (max-width:700px){
+    nav{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+    nav::-webkit-scrollbar{display:none;}
+    nav a.tab{white-space:nowrap;padding:11px 14px;font-size:15px;}
+    nav a.open{white-space:nowrap;padding:11px 6px;}
+    /* 📱 預覽唔夠位睇：成個框變「撳一下開全頁」掣 */
+    .tapopen{display:flex;position:absolute;inset:0;z-index:5;align-items:flex-end;justify-content:center;
+      background:transparent;cursor:pointer;-webkit-tap-highlight-color:transparent;}
+    .tapopen span{pointer-events:none;margin-bottom:14px;background:rgba(26,29,35,.82);color:#fff;
+      font-size:13px;font-weight:700;padding:10px 18px;border-radius:999px;backdrop-filter:blur(4px);}
+  }
   .hint{max-width:1400px;margin:10px auto 30px;padding:0 16px;font-size:12px;color:#9ca3af;}
 </style>
 </head>
@@ -27,7 +39,7 @@
   <h1>📐 Infographics</h1>
   <nav id="tabs"></nav>
 </header>
-<main><div class="framebox" id="framebox"><iframe id="frame" title="infographic"></iframe></div></main>
+<main><div class="framebox" id="framebox"><iframe id="frame" title="infographic"></iframe><div class="tapopen" id="tapopen" title="開獨立頁"><span>⤢ 撳一下開全頁・可以匯出 JPEG 貯相簿</span></div></div></main>
 <div class="hint" id="hint"></div>
 <script>
 // ⬇️  出新圖：喺呢個 list 頂部加一行（排第一 = main page 顯示，其餘自動變 tab）
@@ -53,12 +65,15 @@ const PAGES = [
 ];
 const tabs=document.getElementById("tabs"), box=document.getElementById("framebox"),
       frame=document.getElementById("frame"), hint=document.getElementById("hint"), links=[];
+let cur=0;
+document.getElementById("tapopen").onclick=()=>window.open(PAGES[cur].f,"_blank");
 function show(i){
+  cur=i;
   frame.style.height="150px"; box.style.height="150px"; frame.style.transform="none"; // 切頁先歸零，防上一頁高度閃殘留
   frame.src=PAGES[i].f;
   s.href=PAGES[i].f;
   links.forEach((x,j)=>x.classList.toggle("on",j===i));
-  hint.textContent = `共 ${PAGES.length} 張 · 而家睇緊：${PAGES[i].t}（${PAGES[i].d}）· 撳上方 tab 切換`;
+  hint.textContent = `共 ${PAGES.length} 張 · 而家睇緊：${PAGES[i].t}（${PAGES[i].d}）· 撳上方 tab 切換${matchMedia("(max-width:700px)").matches?" · 電話睇靚圖：撳預覽開全頁":""}`;
 }
 PAGES.forEach((p,i)=>{
   const a=document.createElement("a");
