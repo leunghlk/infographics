@@ -53,7 +53,7 @@
   table.mgr{width:100%; border-collapse:collapse; font-size:6.9px;}
   table.mgr th{font-size:6.3px; color:var(--ink3); font-weight:800; text-transform:uppercase; letter-spacing:.05em;
     border-bottom:1.3px solid var(--ink); padding:.5mm .6mm; text-align:left;}
-  table.mgr td{border-bottom:.5px solid var(--line); padding:.66mm .6mm .66mm; vertical-align:top; line-height:1.28;}
+  table.mgr td{border-bottom:.5px solid var(--line); padding:.56mm .6mm; vertical-align:top; line-height:1.28;}
   table.mgr td.m{font-weight:800; width:21mm; font-size:7px;}
   table.mgr td.m small{display:block; font-size:6px; color:var(--ink3); font-weight:600;}
   table.mgr td.a{width:9mm; text-align:right; font-weight:800; font-variant-numeric:tabular-nums; white-space:nowrap;}
@@ -63,6 +63,8 @@
   table.mgr td .nw{color:var(--new); font-weight:800;}
   table.mgr tr.hl{background:var(--add-bg);}
   table.mgr tr.hot{background:var(--bad-bg);}
+  table.mgr tr.new{background:var(--new-bg);}
+  table.mgr td.m .chip{display:inline-block;font-size:5.6px;font-weight:800;color:var(--new);border:1px solid var(--new);border-radius:1mm;padding:0 1mm;margin-top:.3mm;}
 
   /* ── NVDA 對決列 ── */
   .duel{display:flex; flex-direction:column; gap:.7mm;}
@@ -128,7 +130,7 @@
   <div class="hd">
     <div>
       <h1>13F 風向球 <span class="en">Q3 2026</span> · 大機構持倉大檢閱</h1>
-      <div class="sub">季底 9/30 · 申報限期 11/16（45日規則順延）· 15 大管理人 EDGAR 原表直讀（另 Harvard／FMR 報道補充） — 五條主線：AI 硬體輪動 · SpaceX 滿天飛 · NVDA 大對決 · 財富重訊號 · 新股熱</div>
+      <div class="sub">季底 9/30 · 申報限期 11/16 · 20 大管理人 EDGAR 原表直讀（Harvard／FMR 對決欄同步原表核實）· 綠底＝本季新入表 — 五條主線：AI 硬體輪動 · SpaceX 滿天飛 · NVDA 大對決 · 財富重訊號 · 新股熱</div>
     </div>
     <div class="asof">倉位快照：2026-09-30<br>申報：2026-11-12→11-16<br>編製：2026-11-17</div>
   </div>
@@ -137,51 +139,56 @@
     <div class="vd blue">
       <div class="t">主線① AI 硬體輪動</div>
       <div class="v">NVDA → 周邊</div>
-      <div class="d">MU／LRCX／AMAT／儲存接棒：RenTech MU <b>+619%</b>、Bridgewater AMAT <b>+93%</b>、Duquesne 新建 Seagate</div>
+      <div class="d">記憶體・設備・儲存接棒：RenTech MU <b>+619%</b>、DE Shaw INTC <b>+70%</b>、Lone Pine 新 Intel——詳見速讀表＋輪動地圖</div>
     </div>
     <div class="vd green">
       <div class="t">主線② SpaceX 滿天飛</div>
-      <div class="v">≥6 大戶持貨</div>
-      <div class="d">Nvidia 第一大持倉 $19.7B；ARK +51%；RenTech／Tepper 新建——私企經 secondary 首次大規模入表</div>
+      <div class="v">8 大戶持貨</div>
+      <div class="d">Nvidia $19.7B × D1 $17.6B 頭馬並走；Harvard 股數 <b>−34%</b> 走先——私企經 secondary 首次大規模入表</div>
     </div>
     <div class="vd warn">
       <div class="t">主線③ 最大減持訊號</div>
       <div class="v">Situational −92%</div>
-      <div class="d">$20.2B → $1.6B：SanDisk／MU／Bloom／TSM 清倉，轉買 call options——AI 純倉自我去風險</div>
+      <div class="d">$20.2B → $1.6B：SanDisk／MU／TSM 全清轉 call——AI 純倉自我去風險</div>
     </div>
     <div class="vd">
       <div class="t">主線④ NVDA 大對決</div>
       <div class="v">抱 vs 削</div>
-      <div class="d">Tiger 1,200萬股做第一大 vs RenTech 削 <b>99.7%</b>、Soros −19%＋買 PUT、Harvard 削 1/3</div>
+      <div class="d">Tiger／Maverick／Point72 加 vs RenTech 清 <b>99.7%</b>、Soros 買 PUT、FMR −9%——見中欄對決</div>
     </div>
     <div class="vd">
       <div class="t">主線⑤ 避險訊號</div>
       <div class="v">現金＋對沖</div>
-      <div class="d">Berkshire 現金 <b>$356.9B</b> 新高；Citadel SPY／QQQ 雙向名義 ~$112B；Bridgewater 落指數 ETF</div>
+      <div class="d">Berkshire 現金 <b>$356.9B</b> 新高；Citadel SPY／QQQ 雙向 ~$112B；Harvard 買金 $600M</div>
     </div>
   </div>
 
   <div class="cols">
     <!-- ══════ 左欄：管理人速讀 ══════ -->
     <div class="col">
-      <div class="ct">管理人速讀 <small>總市值（季底）· 倉數 · 一句話動作</small></div>
+      <div class="ct">管理人速讀 <small>總市值（季底）· 倉數 · 一句話動作 · 綠底＝新入表</small></div>
       <table class="mgr">
         <tr><th>管理人</th><th style="text-align:right">規模</th><th style="text-align:right">倉</th><th>季度動作</th></tr>
-        <tr><td class="m">Citadel<small>Ken Griffin</small></td><td class="a">$900B</td><td class="n">13,613</td><td>SPY call $34B＋put $30B、QQQ 同樣雙向——市場敞口近乎全對沖；META call 名義 +64%；貴金屬新倉</td></tr>
-        <tr class="hl"><td class="m">Berkshire<small>Abel 時代</small></td><td class="a">$304B</td><td class="n">30</td><td>三連季執倉：<span class="nw">新 Bending Spoons $689M</span>・Delta +12%・Lennar 股數 +99%；BAC −6%、VeriSign −34%、KO 持倉不變；現金 $356.9B 新高</td></tr>
-        <tr><td class="m">Renaissance<small>Simons 系</small></td><td class="a">$73.4B</td><td class="n">3,151</td><td><span class="dn">NVDA 削 99.7%</span>（709萬→2.3萬股）；<span class="up">MU +619%</span> 成為第一大 $1.6B、AMD +140%；<span class="nw">新 SpaceX $621M</span></td></tr>
-        <tr><td class="m">Coatue<small>Laffont</small></td><td class="a">$54.5B</td><td class="n">73</td><td><span class="nw">新 Salesforce $1.84B</span>；TSM 第一大 $4.31B；LRCX／AMAT／SpaceX／MU 齊加——AI 硬體鏈最大集中倉</td></tr>
-        <tr class="hl"><td class="m">Nvidia（自家）<small>公司戰投</small></td><td class="a">$48.3B</td><td class="n">8</td><td><span class="up">SpaceX 超越 Intel 成為第一大</span>（+6.3% 股）；Intel −25%、Nokia −56%；CoreWeave／Coherent 不變</td></tr>
-        <tr><td class="m">Pershing Sq.<small>Ackman</small></td><td class="a">$30.8B</td><td class="n">16</td><td>Netflix +18% 至 1,540 萬股 $1.07B；MSFT −35%、Brookfield −11%；HHH 2,790 萬股不變；含自家上市車輛 $10.3B</td></tr>
-        <tr><td class="m">Bridgewater<small>Dalio 交棒</small></td><td class="a">$23.0B</td><td class="n">974</td><td><span class="dn">SPY −36%、iShares core −50%</span> 落指數；<span class="up">轉入 LRCX/AMAT/MU/QCOM</span>＋電力（新 Dominion/Entergy）；Dalio 9/30 交出投票權</td></tr>
-        <tr><td class="m">Tiger Global<small>Coleman</small></td><td class="a">$20.2B</td><td class="n">45</td><td><span class="up">NVDA 1,200 萬股成為第一大</span>（+7%）；Cerebras +48%；TSM −36%、GOOGL −42%、Sea −43%</td></tr>
-        <tr><td class="m">ARK Invest<small>Cathie Wood</small></td><td class="a">$17.4B</td><td class="n">181</td><td><span class="up">NVDA +85%</span> 重投；<span class="up">SpaceX +51%</span> 升第二大 $1.02B；TSLA +22%、Circle +50%；規模 +$2.0B</td></tr>
-        <tr><td class="m">Icahn<small>Carl Icahn</small></td><td class="a">$9.4B</td><td class="n">10</td><td>IEP/CVR 主倉不動；<span class="nw">新 SandRidge 能源 $69M</span>；EchoStar −64%、IFF −30%、B+L −32%</td></tr>
-        <tr><td class="m">Soros FM<small>Soros 系</small></td><td class="a">$8.5B</td><td class="n">263</td><td><span class="up">Intel 28 倍</span>（100K→283萬股）；NVDA −19%＋另買 35萬股 PUT；<span class="dn">能源板塊 PUT $670M</span>＋20年債 CALL $237M、公用 CALL $215M</td></tr>
-        <tr><td class="m">Appaloosa<small>Tepper</small></td><td class="a">$7.6B</td><td class="n">24</td><td>MU 第一大 $1.33B；<span class="nw">新 SpaceX $557M</span>；TSM $719M、Korea ETF、BABA、ORCL、CoreWeave——AI 全倉型</td></tr>
-        <tr><td class="m">Third Point<small>Loeb</small></td><td class="a">$4.6B</td><td class="n">39</td><td><span class="nw">新 UNUM $439M</span>；META 第一大 $475M；NVDA $343M、Block $234M、MSFT $231M</td></tr>
-        <tr><td class="m">Duquesne<small>Druckenmiller</small></td><td class="a">$4.5B</td><td class="n">65</td><td>Natera 一隻佔組合 29%（$1.31B）；Seagate 股數 ×2.8＋<span class="nw">新 call</span>——儲存主題；TSM −94%、STM −48%；Unity 股數 ×5.4；倉數 95→65 大幅整倉</td></tr>
-        <tr class="hot"><td class="m">Situational Aw.<small>AI 純倉</small></td><td class="a">$1.6B</td><td class="n">9</td><td><span class="dn">−92%：$20.2B → $1.6B</span>；SanDisk/MU/Bloom/TSM/Nebius/CoreWeave 全清，餘錢轉 Bloom/Nebius/Memory ETF call</td></tr>
+        <tr><td class="m">Citadel<small>Ken Griffin</small></td><td class="a">$900B</td><td class="n">13,613</td><td>SPY/QQQ call＋put 雙向近乎全對沖；META call +64%；貴金屬新倉</td></tr>
+        <tr class="hl"><td class="m">Berkshire<small>Abel 時代</small></td><td class="a">$304B</td><td class="n">30</td><td><span class="nw">新 Bending Spoons $689M</span>（IPO＋10月加）；現金 $356.9B 新高</td></tr>
+        <tr class="new"><td class="m">D.E. Shaw<small>量化台</small><span class="chip">NEW</span></td><td class="a">$209B</td><td class="n">3,158</td><td><span class="up">INTC +70% $3.04B</span>、TSM +285%、SMCI +89%——量化台整倉入 AI 硬體</td></tr>
+        <tr class="new"><td class="m">Point72<small>Steve Cohen</small><span class="chip">NEW</span></td><td class="a">$90B</td><td class="n">2,293</td><td><span class="up">NVDA +224% $935M</span>、INTC +56%、NBIS +236%；TSM／ASML −56% 兩手準備</td></tr>
+        <tr><td class="m">Renaissance<small>Simons 系</small></td><td class="a">$73.4B</td><td class="n">3,151</td><td><span class="dn">NVDA 削 99.7%</span>；<span class="up">MU +619%</span> 第一大；<span class="nw">新 SpaceX $621M</span></td></tr>
+        <tr><td class="m">Coatue<small>Laffont</small></td><td class="a">$54.5B</td><td class="n">73</td><td><span class="nw">新 Salesforce $1.84B</span>；TSM 第一大；LRCX／AMAT／SpaceX 齊加</td></tr>
+        <tr class="hl"><td class="m">Nvidia（自家）<small>公司戰投</small></td><td class="a">$48.3B</td><td class="n">8</td><td><span class="up">SpaceX 升第一大</span>（+6.3% 股）；Intel −25%、Nokia −56%——自家現金買客</td></tr>
+        <tr class="new"><td class="m">D1 Capital<small>Sundheim</small><span class="chip">NEW</span></td><td class="a">$31.8B</td><td class="n">44</td><td><span class="up">SpaceX $17.6B 佔組合 55%</span>（股 −7%）；AMZN +67%——集中度警示</td></tr>
+        <tr><td class="m">Pershing Sq.<small>Ackman</small></td><td class="a">$30.8B</td><td class="n">16</td><td>Netflix +18% $1.07B；MSFT −35%；HHH 2,790 萬股不變</td></tr>
+        <tr><td class="m">Bridgewater<small>Dalio 交棒</small></td><td class="a">$23.0B</td><td class="n">974</td><td><span class="dn">SPY −36% 落指數</span>；<span class="up">轉入 LRCX/AMAT/MU</span>＋新 Dominion/Entergy 電力</td></tr>
+        <tr><td class="m">Tiger Global<small>Coleman</small></td><td class="a">$20.2B</td><td class="n">45</td><td><span class="up">NVDA 1,200 萬股第一大</span>（+7%）；TSM −36%、GOOGL −42%</td></tr>
+        <tr><td class="m">ARK Invest<small>Cathie Wood</small></td><td class="a">$17.4B</td><td class="n">181</td><td><span class="up">NVDA +85% 重投</span>；SpaceX +51% 至 $1.02B；TSLA +22%</td></tr>
+        <tr class="new"><td class="m">Lone Pine<small>舊錢長倉</small><span class="chip">NEW</span></td><td class="a">$15.3B</td><td class="n">31</td><td><span class="nw">新 Intel $721M</span>＋TSM 股數 ×16——舊錢轉身入半導體；AMZN 新第一大</td></tr>
+        <tr class="new"><td class="m">Maverick<small>Lee Ainslie</small><span class="chip">NEW</span></td><td class="a">$12.8B</td><td class="n">499</td><td><span class="up">NVDA 第一大 +38%</span>；Seagate ×93 至 $110M——AI＋儲存全軸</td></tr>
+        <tr><td class="m">Icahn<small>Carl Icahn</small></td><td class="a">$9.4B</td><td class="n">10</td><td>IEP/CVR 不動；<span class="nw">新 SandRidge 能源 $69M</span>；EchoStar −64%</td></tr>
+        <tr><td class="m">Soros FM<small>Soros 系</small></td><td class="a">$8.5B</td><td class="n">263</td><td><span class="up">Intel ×28</span>；<span class="dn">NVDA −19%＋PUT</span>；能源 PUT $670M＋長債 CALL</td></tr>
+        <tr><td class="m">Appaloosa<small>Tepper</small></td><td class="a">$7.6B</td><td class="n">24</td><td>MU 第一大 $1.33B；<span class="nw">新 SpaceX $557M</span>——AI 全倉型</td></tr>
+        <tr><td class="m">Third Point<small>Loeb</small></td><td class="a">$4.6B</td><td class="n">39</td><td><span class="nw">新 UNUM $439M</span>；META 第一大 $475M；NVDA $343M</td></tr>
+        <tr><td class="m">Duquesne<small>Druckenmiller</small></td><td class="a">$4.5B</td><td class="n">65</td><td>Natera 佔 29%；Seagate ×2.8＋call；TSM −94%——大整倉</td></tr>
+        <tr class="hot"><td class="m">Situational Aw.<small>AI 純倉</small></td><td class="a">$1.6B</td><td class="n">9</td><td><span class="dn">−92%：$20.2B → $1.6B</span>；AI 鏈全清，餘錢轉 call</td></tr>
       </table>
     </div>
 
@@ -189,16 +196,16 @@
     <div class="col">
       <div class="ct">NVDA 大對決 <span class="lg"><span class="sw" style="background:var(--add)"></span>加注／持有　<span class="sw" style="background:var(--cut)"></span>減持／造淡</span></div>
       <div class="duel">
-        <div class="drow up"><div class="nm">Tiger Global<small>第一大持倉</small></div><div class="tx">1,200 萬股（Q2 1,120 萬 → +7%），市值 $2.74B——不減反加</div><div class="num">+7%<small>$2.74B</small></div></div>
+        <div class="drow up"><div class="nm">Tiger Global<small>第一大持倉</small></div><div class="tx">1,200 萬股（+7%），市值 $2.74B——不減反加</div><div class="num">+7%<small>$2.74B</small></div></div>
+        <div class="drow up"><div class="nm">Maverick<small>新入表</small></div><div class="tx">370 萬股 $844M 做第一大（+38%）</div><div class="num">+38%<small>$844M</small></div></div>
+        <div class="drow up"><div class="nm">Point72<small>新入表</small></div><div class="tx">$935M（+224%）——Cohen 台整倉入 AI</div><div class="num">+224%<small>$935M</small></div></div>
         <div class="drow up"><div class="nm">ARK Invest<small>重投 AI</small></div><div class="tx">256 萬股 $585M——本季 +85% 買回</div><div class="num">+85%<small>$585M</small></div></div>
-        <div class="drow up"><div class="nm">Citadel<small>call 側</small></div><div class="tx">CALL 名義 5,890 萬股（premium $13.5B）；淨方向仍屬好倉</div><div class="num">5,890萬<small>名義股</small></div></div>
         <div class="drow up"><div class="nm">Appaloosa<small>Tepper</small></div><div class="tx">200 萬股 $457M，組合第 6；與 MU/TSM 同持</div><div class="num">200萬<small>$457M</small></div></div>
-        <div class="drow up"><div class="nm">Third Point<small>Loeb</small></div><div class="tx">150 萬股 $343M，第 3 大持倉</div><div class="num">150萬<small>$343M</small></div></div>
         <div class="drow dn"><div class="nm">Renaissance<small>量化之王</small></div><div class="tx">709 萬股 → 2.3 萬股，基本清倉</div><div class="num">−99.7%<small>剩 2.3萬股</small></div></div>
-        <div class="drow dn"><div class="nm">Harvard 捐基<small>報道・11/14</small></div><div class="tx">削約 1/3 NVDA，同時買入 AMD——轉投第二供應商</div><div class="num">−33%<small>轉 AMD</small></div></div>
+        <div class="drow dn"><div class="nm">Harvard 捐基<small>原表・11/13</small></div><div class="tx">79萬→52萬股（股 −34%），同時新建 AMD $198M——轉投第二供應商</div><div class="num">−34%<small>轉 AMD</small></div></div>
         <div class="drow dn"><div class="nm">Soros FM<small>＋PUT</small></div><div class="tx">正股 106 萬 → 85.9 萬股（−19%），另持有 35 萬股 PUT（premium $80M）</div><div class="num">−19%<small>＋PUT</small></div></div>
-        <div class="drow dn"><div class="nm">FMR／Fidelity<small>報道</small></div><div class="tx">9.33 億股（−9.1%）——最大機構股東減持</div><div class="num">−9.1%<small>9.33億股</small></div></div>
-        <div class="drow dn"><div class="nm">Citadel<small>put 側</small></div><div class="tx">PUT 名義 3,795 萬股（premium $8.7B）——賺波動而非賭方向</div><div class="num">3,795萬<small>名義股</small></div></div>
+        <div class="drow dn"><div class="nm">FMR／Fidelity<small>原表・11/10</small></div><div class="tx">9.33 億股（−9.1%）——最大機構股東減持</div><div class="num">−9.1%<small>9.33億股</small></div></div>
+        <div class="drow"><div class="nm">Citadel<small>雙向</small></div><div class="tx">call 5,890 萬名義股（premium $13.5B）＋ put 3,795 萬名義股（$8.7B）——賺波動唔賭方向</div><div class="num" style="color:var(--ink)">雙向<small>premium $22B</small></div></div>
       </div>
       <div class="dnote">⚠ 9/30 季底快照——11/11–12 Nvidia CEO 風波（Intel 股價同日 −3.5%）完全未反映；方向翻轉要等 Q4 13F（2027/2/17 截止）先知。選擇權只計 premium（市值），唔係名義值。</div>
 
@@ -218,40 +225,42 @@
 
     <!-- ══════ 右欄：SpaceX + 輪動地圖 ══════ -->
     <div class="col">
-      <div class="ct">SpaceX 滿天飛 <small>大戶持倉市值（季底）</small></div>
+      <div class="ct">SpaceX 滿天飛 <small>大戶持倉市值（季底）· 8 大戶</small></div>
       <div class="bars">
         <div class="brow"><div class="bnm">Nvidia <small>第一大持倉</small></div><div class="btrack"><div class="bar g" style="width:100%"></div></div><div class="bnum">$19.7B<small class="nwc">1.30億股</small></div></div>
-        <div class="brow"><div class="bnm">Coatue <small>第 6 大</small></div><div class="btrack"><div class="bar b" style="width:14.9%"></div></div><div class="bnum">$2.94B<small class="adc">+5%</small></div></div>
-        <div class="brow"><div class="bnm">ARK <small>第二大</small></div><div class="btrack"><div class="bar b" style="width:5.2%"></div></div><div class="bnum">$1.02B<small class="adc">+51%</small></div></div>
+        <div class="brow"><div class="bnm">D1 Capital <small>第二大・佔其組合 55%</small></div><div class="btrack"><div class="bar b" style="width:89%"></div></div><div class="bnum">$17.6B<small class="cuc">股 −7%</small></div></div>
+        <div class="brow"><div class="bnm">Coatue <small>持有</small></div><div class="btrack"><div class="bar b" style="width:14.9%"></div></div><div class="bnum">$2.94B<small class="adc">+5%</small></div></div>
+        <div class="brow"><div class="bnm">Harvard <small>⚠ 首個大戶減持</small></div><div class="btrack"><div class="bar" style="width:6.6%;background:var(--cut)"></div></div><div class="bnum">$1.29B<small class="cuc">股 −34%</small></div></div>
+        <div class="brow"><div class="bnm">ARK <small>持有</small></div><div class="btrack"><div class="bar b" style="width:5.2%"></div></div><div class="bnum">$1.02B<small class="adc">+51%</small></div></div>
         <div class="brow"><div class="bnm">RenTech <small>新建</small></div><div class="btrack"><div class="bar b" style="width:3.2%"></div></div><div class="bnum">$621M<small class="nwc">NEW</small></div></div>
         <div class="brow"><div class="bnm">Appaloosa <small>新建</small></div><div class="btrack"><div class="bar b" style="width:2.8%"></div></div><div class="bnum">$557M<small class="nwc">NEW</small></div></div>
         <div class="brow"><div class="bnm">Tiger Global <small>持有</small></div><div class="btrack"><div class="bar b" style="width:.9%"></div></div><div class="bnum">$57M<small>375K 股</small></div></div>
       </div>
-      <div class="dnote">SpaceX 未上市——大戶經 secondary 市場接貨入 13F；估值滯後＋無公開流動性，減持亦屬雙邊協商交易。</div>
+      <div class="dnote">SpaceX 未上市——大戶經 secondary 接貨入 13F：估值滯後、無公開流動性，減持屬雙邊協商交易（D1 −7%／Harvard −34% 股數先係決定，價值變幅受估值影響）。另 Point72 +657% 至 $55M 細倉試水。</div>
 
       <div class="ct" style="margin-top:1mm">輪動地圖 <small>資金由 NVDA 流向邊</small></div>
       <div class="map">
         <div class="mg hot">
-          <div class="gt"><span class="tag">硬體鏈</span>記憶體・設備・儲存</div>
-          <div class="gl"><b>Micron</b>：RenTech <span class="p">+619%</span>／Bridgewater <span class="p">+103%</span>／Tepper 第一大 $1.33B／Coatue $3.5B／Citadel call $15.9B<br>
-          <b>Lam Research</b>：Bridgewater <span class="p">+13%</span>／Coatue <span class="p">+5%</span> $3.26B／Tepper $205M　·　<b>AMAT</b>：Bridgewater <span class="p">+93%</span>／Coatue $2.31B<br>
-          <b>儲存</b>：Duquesne Seagate 股數 ×2.8＋<span class="p">新 call</span>（合共 ~$422M）——Druckenmiller 落注 HDD 主題；反例：Situational 清倉 SanDisk $5.67B</div>
+          <div class="gt"><span class="tag">硬體鏈</span>記憶體・設備・INTC 翻身・儲存</div>
+          <div class="gl"><b>Micron</b>：RenTech <span class="p">+619%</span>／Tepper 第一大 $1.33B／Coatue $3.5B；<b>設備</b>：Bridgewater AMAT <span class="p">+93%</span>／Coatue LRCX $3.26B<br>
+          <b>INTC 翻身</b>（被拋棄股 → 第二供應商概念）：DE Shaw <span class="p">+70%</span> $3.04B／Lone Pine <span class="p">新 $721M</span>／Point72 <span class="p">+56%</span>／Soros <span class="p">×28</span>——四台齊沽買<br>
+          <b>儲存</b>：Maverick STX ×93 至 $110M、Duquesne STX ×2.8＋call；反例：Situational 清 SNDK、Whale Rock SNDK −73%</div>
         </div>
         <div class="mg">
-          <div class="gt"><span class="tag">利率端</span>債券・電力</div>
-          <div class="gl">Soros：<b>20年債 CALL $237M</b>＋公用 CALL $215M；新 OGE/Alliant/DTE、加 Xcel/Fervo——<b>減息＋AI 用電</b>雙主題<br>Bridgewater：新 Dominion $92M、Entergy $44M；Exit 聯合太平洋／PACCAR</div>
+          <div class="gt"><span class="tag">利率端</span>債券・電力・金</div>
+          <div class="gl">Soros：<b>20年債 CALL $237M</b>＋公用 CALL $215M——<b>減息＋AI 用電</b>雙主題；Bridgewater 新 Dominion $92M／Entergy $44M；Harvard 買金 $600M（GLD＋IAU）</div>
         </div>
         <div class="mg">
           <div class="gt"><span class="tag">新股熱</span>Bending Spoons</div>
-          <div class="gl">意大利 app 集團（Evernote/Meetup），7 月 Nasdaq IPO 募資 $1.68B。<b>Berkshire $689M</b>（IPO $600M＋10月加 $330M @ $33，4% 股權）＋Tiger $20M——Abel 時代首隻大型 IPO 注碼；公布後股價 <span class="p">+41%</span> @ $51</div>
+          <div class="gl">意大利 app 集團（Evernote/Meetup），7 月 Nasdaq IPO。<b>Berkshire $689M</b>（IPO＋10月加 $330M @ $33）＋Tiger $20M——Abel 時代首隻大型 IPO 注碼；公布後股價 <span class="p">+41%</span> @ $51</div>
         </div>
       </div>
     </div>
   </div>
 
   <div class="foot">
-    <b>讀 13F 四個提醒：</b>① 快照滯後 45 日——倉位屬 9/30，並非今日觀點；11/12–16 申報。② 13F 只報「市值」：options 計 premium 而非名義值，Citadel 型雙向倉宜只睇趨勢、照抄危險。③ 多策略台（Citadel/Millennium 類）＝眾 pod 加總＋對沖倉，個人 clone 意義有限。④ 私企倉（SpaceX／Bending Spoons）經 secondary 入表，估值滯後、流動性成疑。<br>
-    <b>來源：</b>SEC EDGAR 13F-HR 原表（Berkshire/Coatue/Tiger/Pershing/Duquesne/Bridgewater/Third Point/Situational 申報 11-16；RenTech/ARK/Soros/Icahn 11-12→13）· Berkshire 現金 $356.9B 來自 11-09 Q3 業績 · Harvard／FMR 兩項來自 11-14 報道 · 2026-11-17 編製
+    <b>讀 13F 四個提醒：</b>① 快照滯後 45 日——倉位屬 9/30，並非今日觀點。② options 計 premium 而非名義值，雙向倉宜只睇趨勢、照抄危險。③ 多策略台（Citadel/Point72/DE Shaw）＝眾 pod 加總＋對沖倉，個人 clone 意義有限。④ 私企倉（SpaceX／Bending Spoons）經 secondary 入表，估值滯後、流動性成疑。<br>
+    <b>來源：</b>SEC EDGAR 13F-HR 原表（20 家直讀：新入表 DE Shaw/Point72/D1/Lone Pine/Maverick 申報 11-16、Harvard 11-13、FMR 11-10，餘同前）· Berkshire 現金 $356.9B 來自 11-09 Q3 業績 · 覆核未收錄：Millennium（主實體無 Q3 檔）／Two Sigma／Marshall Wace（pod 倉噪音大）／Gates・Norges（被動） · 2026-11-17 編製
   </div>
 </div>
 
