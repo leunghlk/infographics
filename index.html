@@ -8,23 +8,23 @@
   :root{--ink:#1a1d23;--muted:#6b7280;--line:#e5e7eb;--accent:#2563eb;--accent-light:#eef4ff;}
   *{margin:0;padding:0;box-sizing:border-box;}
   body{font-family:-apple-system,BlinkMacSystemFont,"PingFang TC","Microsoft JhengHei",sans-serif;background:#f6f7f9;color:var(--ink);}
-  header{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--line);padding:10px 16px 0;z-index:9;}
-  header h1{font-size:17px;font-weight:800;margin-bottom:8px;}
-  nav{display:flex;gap:4px;flex-wrap:wrap;align-items:center;}
-  nav a.tab{font-size:14px;font-weight:600;padding:9px 18px;border-radius:10px 10px 0 0;text-decoration:none;
+  header{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--line);padding:8px 16px 0;z-index:9;
+    transition:transform .28s ease;box-shadow:0 1px 4px rgba(0,0,0,.03);}
+  header.hide{transform:translateY(-110%);}
+  header h1{font-size:16px;font-weight:800;margin-bottom:6px;}
+  /* 單行橫滑 tab strip：永遠得一row，闊都唔會疊層霸位 */
+  nav{display:flex;gap:2px;flex-wrap:nowrap;align-items:center;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+  nav::-webkit-scrollbar{display:none;}
+  nav a.tab{font-size:13.5px;font-weight:600;padding:9px 14px;border-radius:10px 10px 0 0;text-decoration:none;white-space:nowrap;flex:0 0 auto;
     color:var(--muted);border:none;border-bottom:3px solid transparent;background:transparent;cursor:pointer;}
   nav a.tab:hover{color:var(--ink);background:#f3f4f6;}
   nav a.tab.on{color:var(--accent);border-bottom-color:var(--accent);background:var(--accent-light);}
-  nav a.open{font-size:13px;font-weight:700;color:var(--accent);text-decoration:none;margin-left:10px;padding:9px 4px;}
+  nav a.open{font-size:13px;font-weight:700;color:var(--accent);text-decoration:none;margin-left:8px;padding:9px 4px;white-space:nowrap;flex:0 0 auto;}
   main{max-width:1400px;margin:18px auto;padding:0 16px;}
   .framebox{position:relative;width:100%;border-radius:16px;overflow:hidden;background:#fff;box-shadow:0 2px 16px rgba(0,0,0,.08);}
   .framebox iframe{border:none;display:block;background:#fff;}
   .tapopen{display:none;}
   @media (max-width:700px){
-    nav{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
-    nav::-webkit-scrollbar{display:none;}
-    nav a.tab{white-space:nowrap;padding:11px 14px;font-size:15px;}
-    nav a.open{white-space:nowrap;padding:11px 6px;}
     /* 📱 預覽唔夠位睇：成個框變「撳一下開全頁」掣 */
     .tapopen{display:flex;position:absolute;inset:0;z-index:5;align-items:flex-end;justify-content:center;
       background:transparent;cursor:pointer;-webkit-tap-highlight-color:transparent;}
@@ -73,6 +73,7 @@ function show(i){
   frame.src=PAGES[i].f;
   s.href=PAGES[i].f;
   links.forEach((x,j)=>x.classList.toggle("on",j===i));
+  links[i].scrollIntoView({inline:"center",block:"nearest",behavior:"smooth"}); // active tab 喺單行 strip 自動捲到中間
   hint.textContent = `共 ${PAGES.length} 張 · 而家睇緊：${PAGES[i].t}（${PAGES[i].d}）· 撳上方 tab 切換${matchMedia("(max-width:700px)").matches?" · 電話睇靚圖：撳預覽開全頁":""}`;
 }
 PAGES.forEach((p,i)=>{
@@ -107,6 +108,15 @@ function fit(){
 }
 frame.addEventListener("load", ()=>{fit(); setTimeout(fit,300); setTimeout(fit,1200);});
 window.addEventListener("resize", fit);
+
+// 📱💻 header 識縮走：向下滾（睇圖）就收埋，向上滾就返嚟；喺頂永遠攤開
+const hd=document.querySelector("header");
+let lastY=0;
+window.addEventListener("scroll", ()=>{
+  const y=window.scrollY;
+  hd.classList.toggle("hide", y>lastY && y>120);
+  lastY=y;
+},{passive:true});
 </script>
 </body>
 </html>
