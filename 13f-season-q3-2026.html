@@ -19,7 +19,7 @@
     -webkit-print-color-adjust:exact; print-color-adjust:exact;}
   .sheet{width:297mm; margin:6mm auto; background:var(--surface); border-radius:3mm;
     padding:5.5mm 7.5mm 4mm; box-shadow:0 2px 14px rgba(0,0,0,.10);
-    display:flex; flex-direction:column; gap:2.2mm;}
+    display:flex; flex-direction:column; gap:1.5mm;}
   @media print{
     .sheet{margin:0; box-shadow:none; border-radius:0; width:auto;}
     @page{size:A4 landscape; margin:5mm 5mm;}
@@ -33,28 +33,28 @@
   .hd .asof{font-size:7.4px; color:var(--ink3); text-align:right; line-height:1.5;}
 
   .verdicts{display:grid; grid-template-columns:repeat(5,1fr); gap:2.2mm;}
-  .vd{border-radius:2.2mm; padding:1.4mm 2.2mm; border:1px solid var(--line); background:#fafbfc;}
+  .vd{border-radius:2.2mm; padding:1.15mm 2.2mm; border:1px solid var(--line); background:#fafbfc;}
   .vd.blue{background:var(--add-bg); border-color:color-mix(in srgb,var(--add) 35%,#fff);}
   .vd.warn{background:var(--bad-bg); border-color:color-mix(in srgb,var(--bad) 30%,#fff);}
   .vd.green{background:var(--new-bg); border-color:color-mix(in srgb,var(--new) 35%,#fff);}
   .vd .t{font-size:7.2px; font-weight:700; color:var(--ink2);}
   .vd .v{font-size:12.5px; font-weight:800; margin-top:.2mm;}
   .vd .v small{font-size:8px; font-weight:700;}
-  .vd .d{font-size:6.9px; color:var(--ink2); margin-top:.3mm; font-weight:600; line-height:1.3;}
+  .vd .d{font-size:6.9px; color:var(--ink2); margin-top:.3mm; font-weight:600; line-height:1.25;}
 
   .cols{display:grid; grid-template-columns:88mm 100mm 90mm; gap:2.8mm; align-items:stretch;}
-  .col{display:flex; flex-direction:column; gap:1.8mm; min-width:0;}
+  .col{display:flex; flex-direction:column; gap:1.4mm; min-width:0;}
   .ct{font-size:8.8px; font-weight:800; border-bottom:1.4px solid var(--ink); padding-bottom:.5mm; letter-spacing:.02em;}
   .ct small{font-weight:600; color:var(--ink3); font-size:6.8px; margin-left:1.4mm;}
   .ct .lg{float:right; font-size:6.6px; font-weight:700; color:var(--ink2);}
   .lg .sw{display:inline-block; width:8px; height:8px; border-radius:2px; margin:0 1mm 0 2.4mm; vertical-align:-1px;}
 
   /* ── 管理人速讀表 ── */
-  table.mgr{width:100%; border-collapse:collapse; font-size:6.9px;}
+  table.mgr{width:100%; border-collapse:collapse; font-size:7.3px;}
   table.mgr th{font-size:6.3px; color:var(--ink3); font-weight:800; text-transform:uppercase; letter-spacing:.05em;
-    border-bottom:1.3px solid var(--ink); padding:.5mm .6mm; text-align:left;}
-  table.mgr td{border-bottom:.5px solid var(--line); padding:.56mm .6mm; vertical-align:top; line-height:1.28;}
-  table.mgr td.m{font-weight:800; width:21mm; font-size:7px;}
+    border-bottom:1.3px solid var(--ink); padding:.3mm .6mm; text-align:left;}
+  table.mgr td{border-bottom:.5px solid var(--line); padding:.45mm .6mm; vertical-align:top; line-height:1.22;}
+  table.mgr td.m{font-weight:800; width:20mm; font-size:7.4px;}
   table.mgr td.m small{display:block; font-size:6px; color:var(--ink3); font-weight:600;}
   table.mgr td.a{width:9mm; text-align:right; font-weight:800; font-variant-numeric:tabular-nums; white-space:nowrap;}
   table.mgr td.n{width:5.5mm; text-align:right; color:var(--ink2); font-variant-numeric:tabular-nums;}
@@ -67,19 +67,23 @@
   table.mgr td.m .chip{display:inline-block;font-size:5.6px;font-weight:800;color:var(--new);border:1px solid var(--new);border-radius:1mm;padding:0 1mm;margin-top:.3mm;}
 
   /* ── NVDA 對決列 ── */
-  .duel{display:flex; flex-direction:column; gap:.7mm;}
-  .drow{display:flex; align-items:center; gap:1.4mm; border-radius:1.6mm; padding:.55mm 1.4mm; border-left:2.5px solid var(--base);}
+  .duel{display:flex; flex-direction:column; gap:.55mm;}
+  .drow{display:flex; align-items:center; gap:1.4mm; border-radius:1.6mm; padding:.32mm 1.4mm; border-left:2.5px solid var(--base);}
   .drow.up{background:var(--add-bg); border-left-color:var(--add);}
   .drow.dn{background:var(--cut-bg); border-left-color:var(--cut);}
-  .drow .nm{font-size:7px; font-weight:800; width:22mm; line-height:1.15;}
-  .drow .nm small{display:block; font-size:5.9px; color:var(--ink3); font-weight:600;}
-  .drow .tx{font-size:6.7px; color:var(--ink2); font-weight:600; flex:1; line-height:1.25;}
-  .drow .num{font-size:7.6px; font-weight:800; text-align:right; white-space:nowrap; font-variant-numeric:tabular-nums;}
+  .drow .nm{font-size:6.9px; font-weight:800; width:20mm; line-height:1.12;}
+  .drow .nm small{display:block; font-size:5.8px; color:var(--ink3); font-weight:600;}
+  .drow .tx{font-size:6.6px; color:var(--ink2); font-weight:600; flex:1; line-height:1.22;}
+  .drow .num{font-size:7.4px; font-weight:800; text-align:right; white-space:nowrap; font-variant-numeric:tabular-nums;}
   .drow.up .num{color:var(--add);} .drow.dn .num{color:var(--cut);}
-  .dnote{font-size:6.4px; color:var(--ink3); font-weight:600; line-height:1.35; margin-top:.4mm;}
+  .dnote{font-size:6.4px; color:var(--ink3); font-weight:600; line-height:1.28; margin-top:.3mm;}
+
+  /* ── 加減倉王（全寬雙欄對打）── */
+  .kings{display:grid; grid-template-columns:1fr 1fr; gap:1mm 3.2mm;}
+  .kings .drow .nm{width:21mm;}
 
   /* ── 通用比例 bars ── */
-  .bars{display:flex; flex-direction:column; gap:.9mm;}
+  .bars{display:flex; flex-direction:column; gap:.6mm;}
   .brow{display:grid; grid-template-columns:24mm 1fr 15mm; gap:1.4mm; align-items:center;}
   .brow .bnm{font-size:6.9px; font-weight:700; line-height:1.15;}
   .brow .bnm small{display:block; font-size:5.8px; color:var(--ink3); font-weight:600;}
@@ -92,16 +96,16 @@
   .brow .bnum .nwc{color:var(--new);} .brow .bnum .adc{color:var(--add);} .brow .bnum .cuc{color:var(--cut);}
 
   /* ── 輪動地圖 chips ── */
-  .map{display:flex; flex-direction:column; gap:1.2mm;}
-  .mg{border:1px solid var(--line); border-radius:1.8mm; padding:1.1mm 1.6mm; background:#fafbfc;}
+  .map{display:flex; flex-direction:column; gap:.9mm;}
+  .mg{border:1px solid var(--line); border-radius:1.8mm; padding:.85mm 1.6mm; background:#fafbfc;}
   .mg.hot{background:var(--add-bg); border-color:color-mix(in srgb,var(--add) 30%,#fff);}
   .mg .gt{font-size:7.2px; font-weight:800; margin-bottom:.4mm;}
   .mg .gt .tag{display:inline-block; font-size:5.9px; font-weight:800; color:#fff; background:var(--add); border-radius:1mm; padding:.1mm 1.1mm; margin-right:1.1mm; vertical-align:.2mm;}
-  .mg .gl{font-size:6.5px; color:var(--ink2); font-weight:600; line-height:1.4;}
+  .mg .gl{font-size:6.5px; color:var(--ink2); font-weight:600; line-height:1.32;}
   .mg .gl b{color:var(--ink); font-weight:800;}
   .mg .gl .p{color:var(--add); font-weight:800;} .mg .gl .m{color:var(--cut); font-weight:800;}
 
-  .foot{border-top:1px solid var(--line); padding-top:1mm; font-size:6.2px; color:var(--ink3); line-height:1.45; font-weight:600;}
+  .foot{border-top:1px solid var(--line); padding-top:.8mm; font-size:6.2px; color:var(--ink3); line-height:1.32; font-weight:600;}
   .foot b{color:var(--ink2);}
 
   .jpgbtn{position:fixed; top:16px; right:16px; z-index:60; border:none; cursor:pointer;
@@ -169,26 +173,26 @@
       <div class="ct">管理人速讀 <small>總市值（季底）· 倉數 · 一句話動作 · 綠底＝新入表</small></div>
       <table class="mgr">
         <tr><th>管理人</th><th style="text-align:right">規模</th><th style="text-align:right">倉</th><th>季度動作</th></tr>
-        <tr><td class="m">Citadel<small>Ken Griffin</small></td><td class="a">$900B</td><td class="n">13,613</td><td>SPY/QQQ call＋put 雙向近乎全對沖；META call +64%；貴金屬新倉</td></tr>
-        <tr class="hl"><td class="m">Berkshire<small>Abel 時代</small></td><td class="a">$304B</td><td class="n">30</td><td><span class="nw">新 Bending Spoons $689M</span>（IPO＋10月加）；現金 $356.9B 新高</td></tr>
-        <tr class="new"><td class="m">D.E. Shaw<small>量化台</small><span class="chip">NEW</span></td><td class="a">$209B</td><td class="n">3,158</td><td><span class="up">INTC +70% $3.04B</span>、TSM +285%、SMCI +89%——量化台整倉入 AI 硬體</td></tr>
-        <tr class="new"><td class="m">Point72<small>Steve Cohen</small><span class="chip">NEW</span></td><td class="a">$90B</td><td class="n">2,293</td><td><span class="up">NVDA +224% $935M</span>、INTC +56%、NBIS +236%；TSM／ASML −56% 兩手準備</td></tr>
-        <tr><td class="m">Renaissance<small>Simons 系</small></td><td class="a">$73.4B</td><td class="n">3,151</td><td><span class="dn">NVDA 削 99.7%</span>；<span class="up">MU +619%</span> 第一大；<span class="nw">新 SpaceX $621M</span></td></tr>
-        <tr><td class="m">Coatue<small>Laffont</small></td><td class="a">$54.5B</td><td class="n">73</td><td><span class="nw">新 Salesforce $1.84B</span>；TSM 第一大；LRCX／AMAT／SpaceX 齊加</td></tr>
-        <tr class="hl"><td class="m">Nvidia（自家）<small>公司戰投</small></td><td class="a">$48.3B</td><td class="n">8</td><td><span class="up">SpaceX 升第一大</span>（+6.3% 股）；Intel −25%、Nokia −56%——自家現金買客</td></tr>
-        <tr class="new"><td class="m">D1 Capital<small>Sundheim</small><span class="chip">NEW</span></td><td class="a">$31.8B</td><td class="n">44</td><td><span class="up">SpaceX $17.6B 佔組合 55%</span>（股 −7%）；AMZN +67%——集中度警示</td></tr>
-        <tr><td class="m">Pershing Sq.<small>Ackman</small></td><td class="a">$30.8B</td><td class="n">16</td><td>Netflix +18% $1.07B；MSFT −35%；HHH 2,790 萬股不變</td></tr>
-        <tr><td class="m">Bridgewater<small>Dalio 交棒</small></td><td class="a">$23.0B</td><td class="n">974</td><td><span class="dn">SPY −36% 落指數</span>；<span class="up">轉入 LRCX/AMAT/MU</span>＋新 Dominion/Entergy 電力</td></tr>
-        <tr><td class="m">Tiger Global<small>Coleman</small></td><td class="a">$20.2B</td><td class="n">45</td><td><span class="up">NVDA 1,200 萬股第一大</span>（+7%）；TSM −36%、GOOGL −42%</td></tr>
-        <tr><td class="m">ARK Invest<small>Cathie Wood</small></td><td class="a">$17.4B</td><td class="n">181</td><td><span class="up">NVDA +85% 重投</span>；SpaceX +51% 至 $1.02B；TSLA +22%</td></tr>
-        <tr class="new"><td class="m">Lone Pine<small>舊錢長倉</small><span class="chip">NEW</span></td><td class="a">$15.3B</td><td class="n">31</td><td><span class="nw">新 Intel $721M</span>＋TSM 股數 ×16——舊錢轉身入半導體；AMZN 新第一大</td></tr>
-        <tr class="new"><td class="m">Maverick<small>Lee Ainslie</small><span class="chip">NEW</span></td><td class="a">$12.8B</td><td class="n">499</td><td><span class="up">NVDA 第一大 +38%</span>；Seagate ×93 至 $110M——AI＋儲存全軸</td></tr>
-        <tr><td class="m">Icahn<small>Carl Icahn</small></td><td class="a">$9.4B</td><td class="n">10</td><td>IEP/CVR 不動；<span class="nw">新 SandRidge 能源 $69M</span>；EchoStar −64%</td></tr>
-        <tr><td class="m">Soros FM<small>Soros 系</small></td><td class="a">$8.5B</td><td class="n">263</td><td><span class="up">Intel ×28</span>；<span class="dn">NVDA −19%＋PUT</span>；能源 PUT $670M＋長債 CALL</td></tr>
-        <tr><td class="m">Appaloosa<small>Tepper</small></td><td class="a">$7.6B</td><td class="n">24</td><td>MU 第一大 $1.33B；<span class="nw">新 SpaceX $557M</span>——AI 全倉型</td></tr>
-        <tr><td class="m">Third Point<small>Loeb</small></td><td class="a">$4.6B</td><td class="n">39</td><td><span class="nw">新 UNUM $439M</span>；META 第一大 $475M；NVDA $343M</td></tr>
-        <tr><td class="m">Duquesne<small>Druckenmiller</small></td><td class="a">$4.5B</td><td class="n">65</td><td>Natera 佔 29%；Seagate ×2.8＋call；TSM −94%——大整倉</td></tr>
-        <tr class="hot"><td class="m">Situational Aw.<small>AI 純倉</small></td><td class="a">$1.6B</td><td class="n">9</td><td><span class="dn">−92%：$20.2B → $1.6B</span>；AI 鏈全清，餘錢轉 call</td></tr>
+        <tr><td class="m">Citadel<small>Ken Griffin</small></td><td class="a">$900B</td><td class="n">13,613</td><td>SPY/QQQ 雙向全對沖；META call +64%</td></tr>
+        <tr class="hl"><td class="m">Berkshire<small>Abel 時代</small></td><td class="a">$304B</td><td class="n">30</td><td><span class="nw">新 Bending Spoons $689M</span>；現金 $356.9B 新高</td></tr>
+        <tr class="new"><td class="m">D.E. Shaw<small>量化台 · NEW</small></td><td class="a">$209B</td><td class="n">3,158</td><td><span class="up">INTC +70% $3.04B</span>、TSM +285%（量化台）</td></tr>
+        <tr class="new"><td class="m">Point72<small>Steve Cohen · NEW</small></td><td class="a">$90B</td><td class="n">2,293</td><td><span class="up">NVDA +224% $935M</span>、NBIS +236%；TSM −56%</td></tr>
+        <tr><td class="m">Renaissance<small>Simons 系</small></td><td class="a">$73.4B</td><td class="n">3,151</td><td><span class="dn">NVDA 清 99.7%</span>；<span class="up">MU +619%</span> 第一大；<span class="nw">新 SpaceX</span></td></tr>
+        <tr><td class="m">Coatue<small>Laffont</small></td><td class="a">$54.5B</td><td class="n">73</td><td><span class="nw">新 Salesforce $1.84B</span>；TSM 第一大；硬體齊加</td></tr>
+        <tr class="hl"><td class="m">Nvidia（自家）<small>公司戰投</small></td><td class="a">$48.3B</td><td class="n">8</td><td><span class="up">SpaceX 升第一大</span>；Intel −25%、Nokia −56%</td></tr>
+        <tr class="new"><td class="m">D1 Capital<small>Sundheim · NEW</small></td><td class="a">$31.8B</td><td class="n">44</td><td><span class="up">SpaceX $17.6B＝組合 55%</span>（股 −7%）</td></tr>
+        <tr><td class="m">Pershing Sq.<small>Ackman</small></td><td class="a">$30.8B</td><td class="n">16</td><td>Netflix +18% $1.07B；MSFT −35%；HHH 不變</td></tr>
+        <tr><td class="m">Bridgewater<small>Dalio 交棒</small></td><td class="a">$23.0B</td><td class="n">974</td><td><span class="dn">SPY −36% 落指數</span>；<span class="up">轉 LRCX/AMAT/MU＋電力</span></td></tr>
+        <tr><td class="m">Tiger Global<small>Coleman</small></td><td class="a">$20.2B</td><td class="n">45</td><td><span class="up">NVDA 1,200 萬股第一大</span>（+7%）；TSM −36%</td></tr>
+        <tr><td class="m">ARK Invest<small>Cathie Wood</small></td><td class="a">$17.4B</td><td class="n">181</td><td><span class="up">NVDA +85% 重投</span>；SpaceX +51%；TSLA +22%</td></tr>
+        <tr class="new"><td class="m">Lone Pine<small>舊錢長倉 · NEW</small></td><td class="a">$15.3B</td><td class="n">31</td><td><span class="nw">新 Intel $721M</span>＋TSM ×16 入半導體</td></tr>
+        <tr class="new"><td class="m">Maverick<small>Lee Ainslie · NEW</small></td><td class="a">$12.8B</td><td class="n">499</td><td><span class="up">NVDA 第一大 +38%</span>；Seagate ×93 至 $110M</td></tr>
+        <tr><td class="m">Icahn<small>Carl Icahn</small></td><td class="a">$9.4B</td><td class="n">10</td><td>IEP/CVR 不動；<span class="nw">新 SandRidge $69M</span>；EchoStar −64%</td></tr>
+        <tr><td class="m">Soros FM<small>Soros 系</small></td><td class="a">$8.5B</td><td class="n">263</td><td><span class="up">Intel ×28</span>；<span class="dn">NVDA −19%＋PUT</span>；能源 PUT</td></tr>
+        <tr><td class="m">Appaloosa<small>Tepper</small></td><td class="a">$7.6B</td><td class="n">24</td><td>MU 第一大 $1.33B；<span class="nw">新 SpaceX $557M</span></td></tr>
+        <tr><td class="m">Third Point<small>Loeb</small></td><td class="a">$4.6B</td><td class="n">39</td><td><span class="nw">新 UNUM $439M</span>；META 第一大 $475M</td></tr>
+        <tr><td class="m">Duquesne<small>Druckenmiller</small></td><td class="a">$4.5B</td><td class="n">65</td><td>Natera 佔 29%；Seagate ×2.8；TSM −94%</td></tr>
+        <tr class="hot"><td class="m">Situational Aw.<small>AI 純倉</small></td><td class="a">$1.6B</td><td class="n">9</td><td><span class="dn">−92%：$20.2B→$1.6B</span>；AI 鏈全清轉 call</td></tr>
       </table>
     </div>
 
@@ -207,9 +211,9 @@
         <div class="drow dn"><div class="nm">FMR／Fidelity<small>原表・11/10</small></div><div class="tx">9.33 億股（−9.1%）——最大機構股東減持</div><div class="num">−9.1%<small>9.33億股</small></div></div>
         <div class="drow"><div class="nm">Citadel<small>雙向</small></div><div class="tx">call 5,890 萬名義股（premium $13.5B）＋ put 3,795 萬名義股（$8.7B）——賺波動唔賭方向</div><div class="num" style="color:var(--ink)">雙向<small>premium $22B</small></div></div>
       </div>
-      <div class="dnote">⚠ 9/30 季底快照——11/11–12 Nvidia CEO 風波（Intel 股價同日 −3.5%）完全未反映；方向翻轉要等 Q4 13F（2027/2/17 截止）先知。選擇權只計 premium（市值），唔係名義值。</div>
+      <div class="dnote">⚠ 9/30 快照——11/11–12 CEO 風波未反映；翻轉要等 Q4（2027/2/17 截止）。options 只計 premium。</div>
 
-      <div class="ct" style="margin-top:1mm">Nvidia 自家 13F <small>公司戰投 8 倉 · $63.4B → $48.3B</small></div>
+      <div class="ct" style="margin-top:1mm">Nvidia 自家 13F <small>公司戰投 8 倉（細倉從略）· $63.4B → $48.3B</small></div>
       <div class="bars">
         <div class="brow"><div class="bnm">SpaceX <small>第一大・升位</small></div><div class="btrack"><div class="bar g" style="width:100%"></div></div><div class="bnum">$19.68B<small class="nwc">+6.3% 股</small></div></div>
         <div class="brow"><div class="bnm">Intel <small>削減 25%</small></div><div class="btrack"><div class="bar b" style="width:98%"></div></div><div class="bnum">$19.37B<small class="cuc">2.15億→1.61億股</small></div></div>
@@ -217,10 +221,8 @@
         <div class="brow"><div class="bnm">Coherent <small>光模組</small></div><div class="btrack"><div class="bar b" style="width:11%"></div></div><div class="bnum">$2.24B<small>不變</small></div></div>
         <div class="brow"><div class="bnm">Synopsys <small>EDA</small></div><div class="btrack"><div class="bar b" style="width:9.6%"></div></div><div class="bnum">$1.89B<small class="cuc">−10% 股</small></div></div>
         <div class="brow"><div class="bnm">Nokia <small>電訊設備</small></div><div class="btrack"><div class="bar b" style="width:3.8%"></div></div><div class="bnum">$0.74B<small class="cuc">−56% 股</small></div></div>
-        <div class="brow"><div class="bnm">Nebius <small>AI 雲</small></div><div class="btrack"><div class="bar b" style="width:1.6%"></div></div><div class="bnum">$0.28B<small>不變</small></div></div>
-        <div class="brow"><div class="bnm">Generate Bio<small>生物</small></div><div class="btrack"><div class="bar b" style="width:.3%"></div></div><div class="bnum">$12.5M<small>不變</small></div></div>
       </div>
-      <div class="dnote">半導體公司變投資公司：自家現金買晒供應鏈＋客戶——商用循環（invest→buy chips→report growth）喺 13F 層面看得一清二楚。</div>
+      <div class="dnote">半導體公司變投資公司：自家現金買晒供應鏈＋客戶——商用循環（invest→buy chips→report growth）喺 13F 看得一清二楚。餘倉：Nebius $0.28B、Generate Bio $12.5M 不變。</div>
     </div>
 
     <!-- ══════ 右欄：SpaceX + 輪動地圖 ══════ -->
@@ -236,7 +238,7 @@
         <div class="brow"><div class="bnm">Appaloosa <small>新建</small></div><div class="btrack"><div class="bar b" style="width:2.8%"></div></div><div class="bnum">$557M<small class="nwc">NEW</small></div></div>
         <div class="brow"><div class="bnm">Tiger Global <small>持有</small></div><div class="btrack"><div class="bar b" style="width:.9%"></div></div><div class="bnum">$57M<small>375K 股</small></div></div>
       </div>
-      <div class="dnote">SpaceX 未上市——大戶經 secondary 接貨入 13F：估值滯後、無公開流動性，減持屬雙邊協商交易（D1 −7%／Harvard −34% 股數先係決定，價值變幅受估值影響）。另 Point72 +657% 至 $55M 細倉試水。</div>
+      <div class="dnote">SpaceX 未上市——經 secondary 入表，估值滯後：股數先係決定（Point72 +657% 至 $55M 細倉試水）。</div>
 
       <div class="ct" style="margin-top:1mm">輪動地圖 <small>資金由 NVDA 流向邊</small></div>
       <div class="map">
@@ -257,6 +259,19 @@
       </div>
     </div>
   </div>
+
+  <div class="ct" style="margin-top:.4mm">加減倉王 <span class="lg"><span class="sw" style="background:var(--add)"></span>增持　<span class="sw" style="background:var(--cut)"></span>減持</span> <small>Q3 vs Q2 股數淨變 · 集中倉手 19 家口徑 · options／split／改名假訊號已剔 · pod 台（Citadel/DE Shaw/Two Sigma 類）與 FMR 基金流量未計</small></div>
+  <div class="kings">
+    <div class="drow up"><div class="nm">INTEL<small>買入共識之王</small></div><div class="tx">Coatue +3.6M・Soros +2.7M・Maverick +1.5M・Tiger +1.3M・Lone Pine 新 $721M；唯一沽＝Nvidia 自家 −53.7M 股</div><div class="num">+9.1M<small>股</small></div></div>
+    <div class="drow dn"><div class="nm">NOKIA<small>單一最大沽盤</small></div><div class="tx">Nvidia 自家 −56%——戰投減碼自家客戶</div><div class="num">−93.5M<small>股/$1.5B</small></div></div>
+    <div class="drow up"><div class="nm">NVIDIA<small>淨加 6 家</small></div><div class="tx">Tiger・Coatue・Tepper・ARK・Maverick 齊加（Soros 小減）——抱邊佔優</div><div class="num">+4.5M<small>股/$1.7B</small></div></div>
+    <div class="drow dn"><div class="nm">GOOGL<small>沽壓最廣 7 家</small></div><div class="tx">Tiger・Soros・Tepper・Coatue・ARK 減、D1 清倉、Harvard −64%——七雄分化</div><div class="num">−6.8M<small>股/$2.2B</small></div></div>
+    <div class="drow up"><div class="nm">META<small>金額最大增持</small></div><div class="tx">Coatue +2.0M 股・ARK/Soros 加；Tiger −0.6M——AI 廣告受體注</div><div class="num">+$1B<small>淨</small></div></div>
+    <div class="drow dn"><div class="nm">SANDISK<small>金額最大沽</small></div><div class="tx">Situational 清 $5.67B＋Whale Rock −73%——儲存純倉拆倉</div><div class="num">−$6.5B<small>值</small></div></div>
+    <div class="drow up"><div class="nm">TSMC<small>兩邊走淨加</small></div><div class="tx">Lone Pine 股 ×16・Coatue 加 vs Tiger −1.7M・Situational 清 $1.29B</div><div class="num">+3.1M<small>股</small></div></div>
+    <div class="drow dn"><div class="nm">BAC<small>Abel 續減</small></div><div class="tx">Berkshire −27.5M 股（−6%）——銀行持倉持續瘦身</div><div class="num">−27.5M<small>股/$2.7B</small></div></div>
+  </div>
+  <div class="dnote">前列以外：NU 3 家齊加；D1 新追 Compass／Madison Air；Berkshire Lennar +13.2M；MU 清 $5.57B・NBIS 3 家沽・Bloom −5M；SPACEX 淨 −1.4M 股（買 12.3M vs 沽 13.7M）。</div>
 
   <div class="foot">
     <b>讀 13F 四個提醒：</b>① 快照滯後 45 日——倉位屬 9/30，並非今日觀點。② options 計 premium 而非名義值，雙向倉宜只睇趨勢、照抄危險。③ 多策略台（Citadel/Point72/DE Shaw）＝眾 pod 加總＋對沖倉，個人 clone 意義有限。④ 私企倉（SpaceX／Bending Spoons）經 secondary 入表，估值滯後、流動性成疑。<br>
