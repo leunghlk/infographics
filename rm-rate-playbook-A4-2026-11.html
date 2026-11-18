@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>息口情境藍圖 · RM 內部 Playbook</title>
+<style>
+  :root{
+    --surface:#ffffff; --page:#f2f3f5;
+    --ink:#101114; --ink2:#4d5157; --ink3:#8a8d92;
+    --line:#e3e4e7;
+    --cNow:#0a6b3d;  /* 現階段 綠 */
+    --cHawk:#b03434; /* 轉鷹 紅 */
+    --cDove:#1f4bb8; /* 轉鴿 藍 */
+    --cFee:#946200;  /* fee 引擎 琥珀 */
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{background:var(--page);}
+  body{
+    font-family:system-ui,-apple-system,"Segoe UI","PingFang TC","Microsoft JhengHei",sans-serif;
+    color:var(--ink); line-height:1.32;
+    -webkit-print-color-adjust:exact; print-color-adjust:exact;
+  }
+  .sheet{
+    width:297mm; min-height:209mm; margin:6mm auto; background:var(--surface);
+    padding:3.5mm 7mm 1mm; box-shadow:0 2px 14px rgba(0,0,0,.10);
+    display:flex; flex-direction:column; justify-content:space-between; gap:0.9mm;
+  }
+  @media print{
+    body{background:#fff;}
+    .sheet{margin:0; box-shadow:none; width:auto; min-height:202mm;}
+    @page{size:A4 landscape; margin:3mm 5mm;}
+  }
+  @page{size:A4 landscape; margin:3mm 5mm;}
+
+  .hd{display:flex; justify-content:space-between; align-items:flex-end; border-bottom:2.5px solid var(--ink); padding-bottom:1.2mm;}
+  .hd h1{font-size:16.2px; font-weight:800;}
+  .hd h1 .acc{color:var(--cNow);}
+  .hd .sub{font-size:8.6px; color:var(--ink2); margin-top:.7mm;}
+  .hd .sub .warn{color:#b03434; font-weight:700;}
+  .hd .asof{font-size:8.2px; color:var(--ink3); text-align:right; line-height:1.4;}
+
+  .chips{display:grid; grid-template-columns:1.25fr 1.15fr 1.5fr 1.6fr 1.05fr; gap:1.5mm; margin-top:.5mm;}
+  .chip{border:1px solid var(--line); border-radius:1.5mm; padding:.8mm 1.9mm; font-size:6.9px; line-height:1.32; background:#fafafa; color:var(--ink2);}
+  .chip b{display:block; font-size:7.6px; color:var(--ink);}
+  .chip.judge{background:color-mix(in srgb,var(--cNow) 7%,#fff); border-color:color-mix(in srgb,var(--cNow) 35%,#fff);}
+  .chip.judge b{color:var(--cNow);}
+  .chip.line{background:color-mix(in srgb,var(--cFee) 8%,#fff); border-color:color-mix(in srgb,var(--cFee) 35%,#fff);}
+  .chip.line b{color:var(--cFee);}
+
+  .ars{display:grid; grid-template-columns:repeat(3,1fr); gap:1.5mm; margin-top:.4mm;}
+  .ars>div{border:1px solid var(--line); border-left:.9mm solid var(--cNow); border-radius:0 1.5mm 1.5mm 0;
+    background:#fff; padding:.7mm 2mm .65mm; font-size:7.3px; line-height:1.33; color:var(--ink2);}
+  .ars>div b{color:var(--ink);}
+  .ars>div .no{color:var(--cNow); font-weight:800;}
+
+  .grid{display:grid; grid-template-columns:repeat(4,1fr); gap:1.8mm; margin-top:.4mm; align-items:start;}
+  .pcol{border:1px solid var(--line); border-top:1.6mm solid var(--pc); border-radius:2mm; background:#fff;
+    padding:1.1mm 2.2mm .8mm; display:flex; flex-direction:column; gap:.35mm;}
+  .pcol .ph{font-size:9.5px; font-weight:800; color:var(--pc); line-height:1.15;}
+  .pcol .ph small{font-size:6.5px; color:var(--ink3); font-weight:400; display:block; margin-top:.2mm;}
+  .prow{border-bottom:1px dashed var(--line); padding:.75mm 0 .6mm; font-size:7.5px; line-height:1.32;}
+  .pcol .prow:last-child{border-bottom:none;}
+  .prow .pn{font-weight:800; font-size:7.8px; display:flex; justify-content:space-between; align-items:center; gap:1.5mm; color:var(--ink);}
+  .prow .pa{color:var(--ink2); margin-top:.25mm;}
+  .prow .pa b{color:var(--ink);}
+  .fee{flex:none; font-size:6.1px; font-weight:700; border-radius:1mm; padding:.25mm 1.3mm;
+    background:#fff3d6; color:#8a6400; white-space:nowrap;}
+  .fee.big{background:#fbe4e4; color:#b03434; font-weight:800;}
+  .fee.dim{background:#eef0f3; color:var(--ink3);}
+  .tg{display:flex; gap:1mm; margin:.2mm 0 .3mm; flex-wrap:wrap;}
+  .tg span{font-size:6.3px; font-weight:700; color:#fff; background:var(--pc); border-radius:1mm; padding:.3mm 1.5mm; white-space:nowrap;}
+  .stp{font-size:7.5px; line-height:1.34; color:var(--ink2); padding:.5mm 0;}
+  .stp b{color:var(--ink);}
+  .stp .no{color:var(--cHawk); font-weight:800;}
+  .stp .yes{color:var(--cNow); font-weight:800;}
+  .stp .arr{color:var(--pc); font-weight:800;}
+  .q{background:color-mix(in srgb,var(--pc) 6%,#fff); border-left:.9mm solid var(--pc); border-radius:0 1.2mm 1.2mm 0;
+    padding:.7mm 1.9mm; margin-top:.7mm; font-size:7.2px; line-height:1.34; color:var(--ink);}
+  .q .qq{font-size:6.3px; font-weight:800; color:var(--pc); letter-spacing:.04em; display:block; margin-bottom:.2mm;}
+
+  .bar{font-size:7px; font-weight:800; color:var(--ink2); letter-spacing:.05em; margin-top:.2mm; display:flex; align-items:center; gap:2mm;}
+  .bar .rule{flex:1; height:1px; background:var(--line);}
+
+  .tl{display:flex; border:1px solid var(--line); border-radius:1.5mm; overflow:hidden; background:#fff;}
+  .tl>div{flex:1; text-align:center; font-size:6.5px; color:var(--ink2); padding:.55mm 1mm; border-right:1px solid var(--line); line-height:1.3;}
+  .tl>div:last-child{border-right:none;}
+  .tl b{display:block; font-size:7.3px; color:var(--ink);}
+  .tl .key{background:color-mix(in srgb,var(--cFee) 12%,#fff); font-weight:700;}
+  .tl .key b{color:var(--cFee);}
+  .tl .trig{flex:1.6; background:color-mix(in srgb,var(--cHawk) 6%,#fff);}
+  .tl .trig b{color:var(--cHawk);}
+
+  .mtab{border:1px solid var(--line); border-radius:2mm; overflow:hidden; background:#fff;}
+  .mtab .mh{display:grid; grid-template-columns:0.9fr 1.1fr 1.9fr 1.9fr 1fr 1.6fr; background:color-mix(in srgb,var(--ink) 88%,#fff); color:#fff;
+    font-size:6.8px; font-weight:800; letter-spacing:.03em;}
+  .mtab .mh>div{padding:.55mm 1.6mm; border-right:1px solid rgba(255,255,255,.18);}
+  .mtab .mh>div:last-child{border-right:none;}
+  .mtab .mr{display:grid; grid-template-columns:0.9fr 1.1fr 1.9fr 1.9fr 1fr 1.6fr; border-top:1px solid var(--line); font-size:7.0px; line-height:1.28;}
+  .mtab .mr>div{padding:.5mm 1.6mm; border-right:1px solid var(--line); color:var(--ink2);}
+  .mtab .mr>div:last-child{border-right:none;}
+  .mtab .mr b{color:var(--ink);}
+  .mtab .mr>div:first-child{font-weight:800; color:var(--ink); background:#fafafa;}
+  .mtab .fp{font-weight:800; color:var(--cFee); white-space:nowrap;}
+
+  .red{border:1px solid #e8b4b4; background:#fdf3f3; border-radius:1.5mm; padding:.65mm 2.4mm;
+    font-size:7.3px; color:#8a2323; font-weight:600; line-height:1.35;}
+  .red b{font-weight:800;}
+  .ft{border-top:1px solid var(--line); padding-top:.6mm; font-size:5.8px; color:var(--ink3); line-height:1.24; columns:2; column-gap:6mm;}
+
+  .jpgbtn{position:fixed;top:60px;right:18px;z-index:60;background:#2563eb;color:#fff;border:none;border-radius:10px;
+    padding:10px 16px;font-size:13px;font-weight:700;cursor:pointer;box-shadow:0 4px 14px rgba(37,99,235,.4);font-family:inherit}
+  .jpgbtn:hover{background:#1d4ed8}
+  .jpgbtn[disabled]{opacity:.6;cursor:wait}
+  .kbadge{position:fixed;bottom:16px;right:16px;z-index:60;width:36px;height:36px;background:#fff;
+    border-radius:10px;display:flex;align-items:center;justify-content:center;
+    box-shadow:0 2px 8px rgba(0,0,0,.18);text-decoration:none;
+    font:italic 300 21px/1 'Brush Script MT','Segoe Script',cursive;color:#2563eb}
+  @media print{.jpgbtn,.kbadge{display:none!important}}
+</style>
+</head>
+<body>
+<div class="ig-nav" style="background:#1a1d23;padding:8px 16px;display:flex;gap:16px;align-items:center;font-family:system-ui,-apple-system,sans-serif;font-size:12.5px;flex-wrap:wrap">
+  <a href="https://leunghlk.github.io/infographics/" style="color:#9ec5f4;text-decoration:none;font-weight:700">📐 Infographics 入口</a>
+  <a href="https://leunghlk.github.io/infographics/rm-rate-playbook-A4-2026-11.html" style="color:#ffffff;text-decoration:none">息口情境藍圖 · RM 內部</a>
+  <a href="https://leunghlk.github.io/infographics/funds-bond4-1pager-A4-2026-11.html" style="color:#9ca3af;text-decoration:none">債券基金 · A4</a>
+  <a href="https://leunghlk.github.io/infographics/funds-schroder-duo-1pager-A4-2026-11.html" style="color:#9ca3af;text-decoration:none">施羅德雙雄 · A4</a>
+  <span style="color:#6b7280;margin-left:auto">2026-11-19 · 內部文件</span>
+</div>
+<script>
+(function(){try{if(window.self!==window.top){var n=document.querySelector(".ig-nav");if(n)n.style.display="none";}}catch(e){}})();
+</script>
+<style>@media print{.ig-nav{display:none!important}}</style>
+
+<div class="sheet">
+  <div class="hd">
+    <div>
+      <h1>息口情境藍圖：<span class="acc">現階段賣咩</span> × 轉鷹／轉鴿／冇事冇幹 全應對</h1>
+      <div class="sub">三情境一條骨：客棚決定產品 · 錢嘅年期決定 tenor · fee 目標決定 5Y 起步 · 情境決定 flagship——touchpoint 日曆三情境都唔變 <span class="warn">⚠ 內部 playbook：含行方 fee 口徑，唔准對客派發</span></div>
+    </div>
+    <div class="asof">市況數 2026-11-18 close<br>製作 11-19 · FOMC 12/08-09（有 SEP）</div>
+  </div>
+
+  <div class="chips">
+    <div class="chip"><b>政策位</b>Fed 3.75–4.00%（9-16 一加）；12/08-09 高機會最後一加</div>
+    <div class="chip"><b>路徑</b>SEP 2027 零減息；期貨 2027 尾前減息定價 0%</div>
+    <div class="chip"><b>曲線 11-18</b>13wk 4.15 · 5Y 4.89 · 10Y 5.08 · 30Y 5.43（CPI 衝擊後回軟中）</div>
+    <div class="chip judge"><b>現況判決：加息初段</b>start yield 歷史級＝鎖 3-5Y forward return；長存續期承壓 → 一律分注</div>
+    <div class="chip line"><b>客面 YTM 線</b>≥5.5 先開口 · ≥5.8 主單（對 T-bill 4.15 差距 ≥1.4pp）</div>
+  </div>
+
+  <div class="bar">客問「點解而家鎖」——同客解釋嘅三條論證<div class="rule"></div><span class="hint" style="font-weight:400;color:var(--ink3);letter-spacing:0">三條都係 level bet，冇一條靠「見頂」</span></div>
+  <div class="ars">
+    <div><span class="no">論證一</span> · <b>Peak yield＝peak forward return</b>：start YTM 對 forward return R²≈0.9（1981／2000／2007／2023-10 四次先例）——10Y 5 厘頭係歷史級起跳位，鎖 3-5Y 即鎖死 forward return</div>
+    <div><span class="no">論證二</span> · <b>政策見頂在望</b>：12 月加完，SEP 講明 2027 零減息——唔使「等減息先買」（等減息係最自然但錯嘅推論）；2023 年零減息 hold 期 AGG +5.5% 先例</div>
+    <div><span class="no">論證三</span> · <b>Carry 差距客觀存在</b>：鎖 3 年 5.8 vs 短錢 4.15 ≈ 1.65pp/年，要 10Y 真係升到 5.5 先追得返——但追嘅代價係中間嗰段息冇收；所以答案係分注，唔係唔入</div>
+  </div>
+
+  <div class="grid">
+    <!-- ① 現階段 -->
+    <div class="pcol" style="--pc:var(--cNow)">
+      <div class="ph">① 現階段 · 賣咩<small>status quo flagship 板（賣 YTM 鎖定，唔係炒債價）</small></div>
+      <div class="prow"><div class="pn">CL 5Y NC1<span class="fee big">fee 4厘 ★主引擎</span></div>
+        <div class="pa">客 <b>5% 定息鎖 5 年</b>＝「5 年嘅錢拎 20 年級數息」；NC1 起碼鎖足 1 年；誠實位＝發行商信用／流動性／被 call</div></div>
+      <div class="prow"><div class="pn">5Y BBB+ 直債 ladder<span class="fee big">fee 1%+</span></div>
+        <div class="pa">淨 ~5.8 vs 定存 ~4.2＝<b>一年差 1.7 厘、100 萬五年差 8 萬幾</b>；銀行 senior／公用／能源；每 FOMC 落一注</div></div>
+      <div class="prow"><div class="pn">ELN roll<span class="fee big">fee 2–4%/roll</span></div>
+        <div class="pa">高票息／折讓接優質股；vol 驅動唔理息口；<b>月月 roll＝月月 fee</b></div></div>
+      <div class="prow"><div class="pn">債基 U45302<span class="fee">fee 認購費</span></div>
+        <div class="pa">&lt;US$200k 客直債替代；d 2.45 加息減敏；YTM 5.35</div></div>
+      <div class="prow"><div class="pn">6M CD／定存<span class="fee dim">fee 薄 · 節拍</span></div>
+        <div class="pa">T-bill 4.15 基準：無 4 厘頭唔做；短錢保衛＋<b>每半年 turn 位</b></div></div>
+      <div class="prow"><div class="pn">10Y supra<span class="fee">fee 1%+</span></div>
+        <div class="pa">AAA ~5.4 淨：<b>極保守棚專用</b>（信用第一、息第二）；短 supra 輸 IG 唔好做</div></div>
+      <div class="q"><span class="qq">🗣 開場（定存 rollover 客）</span>「而家三個月政府票據息 4 厘 1，三年期投資級直債 5 厘 7、8——一年差成 1 厘半，100 萬三年差 5 萬幾。兩樣講清楚：直債冇存保；中途走係市價。所以筆錢拆開：真係三年唔郁嗰截先轉。」</div>
+    </div>
+
+    <!-- ② 轉鷹 -->
+    <div class="pcol" style="--pc:var(--cHawk)">
+      <div class="ph">② 轉鷹 · 點陣圖 2027 加息<small>方向唔死：level bet 唔係 timing bet；死嘅係一句話術＋CL</small></div>
+      <div class="tg"><span>觸發：點陣圖改口</span><span>CPI／PCE 連熱</span><span>12-10 CPI 會後兩日出</span></div>
+      <div class="stp"><span class="arr">CL</span> → <span class="no">❌ 暫停</span>：「等息口見頂我先攞返出嚟」＝替減息重推<b>埋線</b>；fee 大腿變 suitability 風險</div>
+      <div class="stp"><span class="arr">直債</span> → <span class="yes">追高 ladder</span>：每加一次息入一注（2Y+3Y+5Y 混），YTM 6.3+ 更有肉</div>
+      <div class="stp"><span class="arr">10Y supra</span> → <span class="no">停新做</span>（d 8，鷹化 mark −4% 級數）</div>
+      <div class="stp"><span class="arr">ELN</span> 照 roll（vol↑ spread 闊）· <span class="arr">債基</span>照（d 2.45 抗）</div>
+      <div class="stp"><span class="arr">已鎖息客</span> → 價格管理：中途 −1.4% 係預咗，<b>「我哋買嘅係到期 YTM，唔係炒價」</b></div>
+      <div class="stp">監察：11-27 PCE／12-04 非農熱＝Branch 2 提前活，唔使等 12-8</div>
+      <div class="stp">機械鏈（同客講得通）：Fed 加→短息即跟（T-bill 4.15→4.6-4.7）→新錢揀更高息→舊債減價至 YTM 追市價——<b>「YTM 升＝市價跌」同一件事</b>，3Y yield≈未來三年短息路徑平均，點陣圖日即 re-price</div>
+      <div class="stp">追高 ladder 嘅齒輪：鷹化世界新發行 coupon 重開 6 厘幾——<b>每加一次息，市場就開一格新價俾你鎖</b></div>
+      <div class="q"><span class="qq">🗣 話術（re-pitch）</span>「點陣圖改口，市場即刻俾咗個更好價你——6 厘 X。我哋由頭到尾冇賭過見頂，做嘅係每加一次息、入一注、鎖高一格。1981 年 Volcker 年代，加息途中買嘅債，係之後十年最勁嘅回報。」</div>
+    </div>
+
+    <!-- ③ 轉鴿 -->
+    <div class="pcol" style="--pc:var(--cDove)">
+      <div class="ph">③ 轉鴿 · 提前減息<small>賺到嘅客＝最好嘅再開口藉口；全 plan fee 最好嘅時刻</small></div>
+      <div class="tg"><span>觸發：就業轉弱</span><span>通脹超標回落</span><span>金融事件</span></div>
+      <div class="stp"><span class="arr">直債</span> → <span class="no">急落尾注</span>——鎖息窗口收緊（start yield 由頂回落）</div>
+      <div class="stp"><span class="arr">CL</span> → <span class="yes">✅✅ 重推</span>：「鎖 5 厘等減息」＝佢最威嘅時候</div>
+      <div class="stp"><span class="arr">已鎖客</span> → mark 升（3Y +2.7%／10Y BBB +7.5%／supra +8%）＝<b>獲利 switch 雙邊 fee</b></div>
+      <div class="stp"><span class="arr">定存大軍</span> → 轉化黃金時刻：rollover 越嚟越低息，佢哋自己會問</div>
+      <div class="stp"><span class="arr">債基</span> → 轉長 d＝switch fee；<span class="arr">supra 舊客</span> mark +8%＝轉介引擎</div>
+      <div class="stp">已 sell「鷹化收回」嗰啲客：呢個位兌現承諾， credibility 爆燈</div>
+      <div class="stp">動作順序：①舊客獲利 switch ②定存大軍轉化 ③CL 重推 ④債基轉長 d——<b>一個 scenario 四件 fee 事件</b></div>
+      <div class="q"><span class="qq">🗣 話術（獲利 switch）</span>「恭喜——98 買而家 102。兩個選擇：照揸到到期息照收；或者而家袋 4 個位資本增值，同時轉隻新債照鎖高息。減息初段正係呢個玩法。」</div>
+    </div>
+
+    <!-- ④ 冇事冇幹 -->
+    <div class="pcol" style="--pc:var(--cFee)">
+      <div class="ph">④ 冇事冇幹 · fee 引擎<small>直債＝錨唔係引擎：坐死 5 年 fee 死水位（0.2%/年），fee 由其他棚養</small></div>
+      <div class="prow"><div class="pn">入場結構 100 萬模板</div>
+        <div class="pa"><b>錨</b> 40 萬 5Y BBB（0.2%/年·黏錢＋信任）｜<b>引擎</b> 25 萬 ELN（10–12%/年）｜<b>20 萬 CL</b>（4厘）｜<b>節拍</b> 15 萬 CD（半年 turn 位）——Year-1 ≈ 4–5% → 之後 2–3%/年</div></div>
+      <div class="prow"><div class="pn">Touchpoint 日曆（三情境唔變）</div>
+        <div class="pa">成交日 set 三提醒（<b>coupon 日／到期前 90 日／NC 週年</b>）→ coupon 半年落袋＝開口位 → ELN 月 roll → 到期 redeploy</div></div>
+      <div class="prow"><div class="pn">Switch 觸發器</div>
+        <div class="pa">債價 <b>+3%</b>｜利差 <b>−50bp</b>｜credit upgrade｜情境翻轉——任何一條響＝提案開口</div></div>
+      <div class="prow"><div class="pn">自己養大下一單</div>
+        <div class="pa">coupon 再投累積落短棚，兩三年滾成一單新直債——<b>佢隻債養佢下一單</b></div></div>
+      <div class="prow"><div class="pn">All-or-nothing 客</div>
+        <div class="pa">照做收 1%，接受低 velocity；唔好為 fee 硬塞唔明嘅嘢——一個投訴蝕晒五單 fee</div></div>
+      <div class="prow"><div class="pn">Fee velocity 表</div>
+        <div class="pa">直債坐死 0.2%/年｜CL 0.8–1.3%/年（4厘÷3-5Y）｜ELN slice 10–12%/年｜CD margin 0.2–0.4%×2｜switch 事件 1–2% 雙邊——<b>設計目標：組合 blended 2–3%/年</b></div></div>
+      <div class="q"><span class="qq">🗣 話術（coupon 日開口）</span>「票息 1.1 萬落咗帳。照舊泊現金得，或者我哋將佢滾落你個短棚度，累積多兩季夠做埋下一隻債——你隻債自己養大下一單。」</div>
+    </div>
+  </div>
+
+  <div class="bar">全盤對照：客棚 × 產品 × 客賺到 × 我哋 fee × turn 點<div class="rule"></div><span class="hint" style="font-weight:400;color:var(--ink3);letter-spacing:0">fee 口徑＝行方內部</span></div>
+  <div class="mtab">
+    <div class="mh"><div>客棚</div><div>錢嘅性質</div><div>產品</div><div>客賺到</div><div>fee</div><div>turn 點</div></div>
+    <div class="mr"><div>A 短錢棚</div><div>1 年內可能要用</div><div>6M CD／定存／U45242 超短（d 0.40）</div><div>短息 4 厘頭保衛</div><div class="fp">薄·節拍</div><div>每半年到期＝轉身位</div></div>
+    <div class="mr"><div>B 鎖息 3Y</div><div>3 年唔郁</div><div>3Y IG 直債（開場餌／小注）</div><div>淨 5.5–5.9 鎖死</div><div class="fp">0.4–1%</div><div>coupon 半年＋到期</div></div>
+    <div class="mr"><div>C 主單 5Y</div><div>5 年唔郁</div><div><b>5Y BBB+ ladder</b>／CL 5Y NC1</div><div>淨 5.8／5% 定息鎖 5 年</div><div class="fp">1%+／4厘</div><div>FOMC 分注／NC 週年</div></div>
+    <div class="mr"><div>D 細客</div><div>&lt;US$200k</div><div>債基 U45302（d 2.45）</div><div>YTM 5.35＋加息減敏</div><div class="fp">認購費</div><div>轉換窗＋定期檢視</div></div>
+    <div class="mr"><div>E 極保守</div><div>5-10 年唔郁</div><div>10Y supra（AAA）</div><div>AAA＋~5.4</div><div class="fp">1%+</div><div>coupon＋獲利 switch</div></div>
+    <div class="mr"><div>F 進取</div><div>唔怕股價接貨</div><div>ELN roll（優質 underlier）</div><div>高票息／折讓入貨</div><div class="fp">2–4%/roll</div><div>月 roll＝月月開口</div></div>
+  </div>
+
+  <div class="bar">監察日曆（唔使等點陣圖先郁手）<div class="rule"></div><span class="hint" style="font-weight:400;color:var(--ink3);letter-spacing:0">數據一熱即切 Branch ②</span></div>
+  <div class="tl">
+    <div><b>11-27</b>10月 PCE</div>
+    <div><b>12-04</b>11月非農</div>
+    <div class="key"><b>12-08/09</b>FOMC＋SEP＝分岔點</div>
+    <div class="key"><b>12-10</b>11月 CPI（會後兩日）</div>
+    <div><b>1 月中</b>CPI → 1/27-28 FOMC（無 SEP）</div>
+    <div><b>2027-03</b>下一份 SEP</div>
+    <div class="trig"><b>觸發線：10Y 穿 5.50／5.75</b>＝尾注加碼位（2027 鴿派信號同樣觸發）</div>
+  </div>
+
+  <div class="red">紅線：<b>客面 YTM &lt;5.5 唔開口</b>｜&lt;US$200k 行債基路（直債 PI 門檻）｜<b>suitability &gt; fee</b>——唔為 fee 硬推｜CL desk terms（min size／流程）未到唔出街｜本頁含行方口徑＝內部文件，唔准對客派發／上公開渠道</div>
+
+  <div class="ft">
+    <b>①</b> 市況數＝2026-11-18 close（Yahoo ^IRX/^FVX/^TNX/^TYX）；Fed 路徑＝9-16 SEP＋期貨定價；FOMC 12/08-09 日期＝聯儲局官網日曆。&nbsp;
+    <b>②</b> 5Y BBB 6.0–6.2／10Y supra 5.4–5.6＝wholesale 推算，desk 實價為準；2Y/3Y UST 用 11-13 錨（4.86／~4.85）。&nbsp;
+    <b>③</b> fee 口徑＝行方內部（CL 4厘／直債 1%+／ELN 2–4%/roll／債基認購費）——唔准對客講。&nbsp;
+    <b>④</b> CL 誠實位＝發行商信用、5 年流動性（提前贖回有損）、被 call 再投資風險；NC1＝發行方起碼一年內不可提早收回。&nbsp;
+    <b>⑤</b> 債基 U45302 d 2.45／YTM 5.35（factsheet 2026-09-30）；U45242 超短 d 0.40。&nbsp;
+    <b>⑥</b> 本頁＝2026-11-18/19 情境推演 verdicts 之視覺化；情境改變即重寫 flagship 欄，唔好照抄。
+  </div>
+</div>
+
+<button class="jpgbtn" onclick="exportJPG(this)">📸 匯出 JPEG</button>
+<a class="kbadge" href="https://leunghlk.github.io/all-in-one/" title="leungkathy · 返回主頁">k</a>
+<script type="module">
+  import { domToJpeg } from "https://cdn.jsdelivr.net/npm/modern-screenshot@4/dist/index.mjs";
+  window.modernScreenshot = { domToJpeg };
+</script>
+<script>
+function exportJPG(btn){
+  var target=document.querySelector('.sheet')||document.querySelector('.wrap');
+  if(!target||!window.modernScreenshot){alert('匯出元件未載入，請檢查網絡後重試');return;}
+  btn.disabled=true;var t=btn.textContent;btn.textContent='⏳ 匯出中…';
+  var k=document.createElement('div');
+  k.textContent='k';
+  k.style.cssText="position:absolute;right:8mm;bottom:2mm;z-index:9;font:italic 300 36px/1 'Brush Script MT','Segoe Script',cursive;color:#2563eb;pointer-events:none;";
+  var prevPos=target.style.position, prevPad=target.style.paddingBottom;
+  if(getComputedStyle(target).position==='static') target.style.position='relative';
+  target.style.paddingBottom='13mm';
+  target.appendChild(k);
+  function done(){ k.remove(); target.style.position=prevPos; target.style.paddingBottom=prevPad; }
+  function restore(){ done(); btn.textContent=t; btn.disabled=false; }
+  function fname(){ return (document.title.replace(/[^\w一-鿿-]+/g,'-').replace(/-+/g,'-'))+'.jpg'; }
+  // 📱 大圖防爆記憶體：限制 canvas 總像素；失敗自動降 scale 重試
+  var rg=target.getBoundingClientRect(), MAXPX=16000000;
+  var sc=2; if(rg.width*rg.height*4>MAXPX) sc=Math.max(1,Math.sqrt(MAXPX/(rg.width*rg.height)));
+  function overlay(blob,name){ // 後備路：長按張圖 →「加入照片」貯入相簿
+    var u=URL.createObjectURL(blob);
+    var o=document.createElement('div');
+    o.style.cssText='position:fixed;inset:0;z-index:99999;background:rgba(10,12,16,.88);display:flex;flex-direction:column;align-items:center;gap:12px;padding:18px;overflow:auto;';
+    var tip=document.createElement('div');
+    tip.style.cssText='color:#fff;font:600 14px/1.5 -apple-system,system-ui,sans-serif;text-align:center;';
+    tip.innerHTML='長按下面張圖 → 揀「<b>加入照片</b>」即可貯入相簿<br><span style="font-size:12px;opacity:.65">（或撳「下載」存入檔案 App）</span>';
+    var img=new Image(); img.src=u; img.style.cssText='max-width:100%;background:#fff;box-shadow:0 6px 28px rgba(0,0,0,.5);';
+    var bar=document.createElement('div'); bar.style.cssText='display:flex;gap:10px;';
+    var dl=document.createElement('a'); dl.href=u; dl.download=name; dl.textContent='⬇ 下載';
+    dl.style.cssText='background:#2563eb;color:#fff;font:700 14px -apple-system,system-ui,sans-serif;padding:10px 18px;border-radius:9px;text-decoration:none;';
+    var cl=document.createElement('button'); cl.textContent='✕ 關閉';
+    cl.style.cssText='background:#374151;color:#fff;font:700 14px -apple-system,system-ui,sans-serif;padding:10px 18px;border-radius:9px;border:none;';
+    cl.onclick=function(){ o.remove(); URL.revokeObjectURL(u); };
+    bar.appendChild(dl); bar.appendChild(cl);
+    o.appendChild(tip); o.appendChild(img); o.appendChild(bar);
+    document.body.appendChild(o);
+  }
+  function deliver(url,name){
+    fetch(url).then(function(r){return r.blob();}).then(function(blob){
+      var file=null; try{ file=new File([blob],name,{type:'image/jpeg'}); }catch(e){}
+      var touch=(navigator.maxTouchPoints>0)||/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
+      // 📱 電話首選：系統分享單 →「加入照片」直接貯入相簿
+      if(file&&touch&&navigator.canShare&&navigator.canShare({files:[file]})){
+        navigator.share({files:[file],title:name}).then(function(){ restore(); })
+        .catch(function(err){
+          if(err&&err.name==='AbortError'){ restore(); return; }
+          overlay(blob,name); restore();
+        });
+        return;
+      }
+      // 💻 桌面／其他：照舊 anchor 下載
+      var u=URL.createObjectURL(blob);
+      var a=document.createElement('a'); a.href=u; a.download=name;
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(function(){ URL.revokeObjectURL(u); },4000);
+      if(touch&&/iP(hone|ad|od)/.test(navigator.userAgent)){ overlay(blob,name); }
+      else restore();
+    }).catch(function(e){ restore(); alert('匯出失敗：'+(e&&e.message||e)); });
+  }
+  modernScreenshot.domToJpeg(target,{scale:sc,quality:0.92,backgroundColor:'#ffffff'})
+  .then(function(url){ done(); deliver(url,fname()); })
+  .catch(function(e){
+    if(sc>1){
+      modernScreenshot.domToJpeg(target,{scale:1,quality:0.9,backgroundColor:'#ffffff'})
+      .then(function(url){ done(); deliver(url,fname()); })
+      .catch(function(e2){ restore(); alert('匯出失敗：'+(e2&&e2.message||e2)); });
+    }else{ restore(); alert('匯出失敗：'+(e&&e.message||e)); }
+  });
+}
+</script>
+<script>
+// 📱 電話觀看修正：內容闊過螢幕 → viewport 設做內容闊度，開頁即成頁縮細睇到＋可以較大
+(function(){
+  function go(){
+    try{
+      var sw=Math.min(window.screen.width, window.innerWidth||window.screen.width);
+      var w=Math.max(document.documentElement.scrollWidth, document.body?document.body.scrollWidth:0);
+      var m=document.querySelector('meta[name="viewport"]');
+      if(!m||w>2400||w<=sw+4) return;
+      m.setAttribute('content','width='+Math.ceil(w));
+    }catch(e){}
+  }
+  if(document.readyState==='complete') setTimeout(go,80);
+  else window.addEventListener('load',function(){ setTimeout(go,80); });
+})();
+</script>
+</body>
+</html>
