@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Callable Linear 定息票據銷售速覽 RM內部 2026-11-19</title>
+<style>
+  :root{
+    --surface:#ffffff; --page:#f2f3f5;
+    --ink:#101114; --ink2:#4d5157; --ink3:#8a8d92;
+    --line:#e3e4e7;
+    --blue:#1f4bb8; --green:#0a6b3d; --red:#b03434; --amber:#9a6700; --teal:#00838f;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{background:var(--page);}
+  body{
+    font-family:system-ui,-apple-system,"Segoe UI","PingFang TC","Microsoft JhengHei",sans-serif;
+    color:var(--ink); line-height:1.34;
+    -webkit-print-color-adjust:exact; print-color-adjust:exact;
+  }
+  .sheet{
+    width:297mm; min-height:209mm; margin:6mm auto; background:var(--surface);
+    padding:4.5mm 7mm 1mm; box-shadow:0 2px 14px rgba(0,0,0,.10);
+    display:flex; flex-direction:column; gap:2mm;
+  }
+  @media print{
+    body{background:#fff;}
+    .sheet{margin:0; box-shadow:none; width:auto; min-height:auto;}
+    @page{size:A4 landscape; margin:3mm 5mm;}
+  }
+  @page{size:A4 landscape; margin:3mm 5mm;}
+
+  .hd{display:flex; justify-content:space-between; align-items:flex-end; border-bottom:2.5px solid var(--ink); padding-bottom:1.4mm;}
+  .hd h1{font-size:18.5px; font-weight:800;}
+  .hd h1 .acc{color:var(--blue);}
+  .hd .sub{font-size:9px; color:var(--ink2); margin-top:.8mm;}
+  .hd .asof{font-size:8.4px; color:var(--ink3); text-align:right; line-height:1.45;}
+  .hd .asof b{color:var(--red); font-size:9px;}
+
+  .slab{font-size:8.6px; font-weight:800; color:var(--ink2); letter-spacing:.06em; margin-top:.4mm;
+    display:flex; align-items:center; gap:2mm;}
+  .slab .rule{flex:1; height:1px; background:var(--line);}
+  .slab .hint{font-weight:400; color:var(--ink3); letter-spacing:0; font-size:7.8px;}
+
+  /* Row A：一分鐘識產品 */
+  .rowA{display:grid; grid-template-columns:repeat(4,1fr) 1.55fr; gap:2mm;}
+  .chip{border:1px solid var(--line); border-top:1.4mm solid var(--blue); border-radius:2mm; background:color-mix(in srgb,var(--blue) 5%,#fff); padding:1.4mm 2.4mm 1.2mm;}
+  .chip.verify{border-top-color:var(--amber); background:color-mix(in srgb,var(--amber) 5%,#fff);}
+  .chip .t{font-size:9.4px; font-weight:800; color:var(--blue);}
+  .chip.verify .t{color:var(--amber);}
+  .chip .b{font-size:9.2px; color:var(--ink2); line-height:1.44; margin-top:.8mm;}
+  .chip .b b{color:var(--ink);}
+  .chip .b .em{color:var(--green); font-weight:800;}
+  .chip ol{margin:.8mm 0 0 4mm; font-size:8.9px; color:var(--ink2); line-height:1.48;}
+  .chip ol li{margin-top:.5mm;}
+  .chip ol b{color:var(--ink);}
+
+  /* Row B：主推三行 table */
+  .menu{border:1px solid var(--line); border-radius:2mm; overflow:hidden;}
+  .menu table{width:100%; border-collapse:collapse;}
+  .menu th{background:#1a2f6b; color:#fff; font-size:8.8px; font-weight:700; padding:1.4mm 2mm; text-align:left; letter-spacing:.03em;}
+  .menu td{padding:1.6mm 2mm; border-top:1px solid var(--line); font-size:9.3px; vertical-align:middle; line-height:1.38;}
+  .menu tr.hl{background:color-mix(in srgb,var(--green) 6%,#fff);}
+  .menu .pos{font-weight:800; color:var(--blue); white-space:nowrap;}
+  .menu tr:nth-child(2) .pos{color:var(--teal);}
+  .menu tr:nth-child(3) .pos{color:var(--amber);}
+  .menu .who{font-size:8.8px; color:var(--ink2);}
+  .menu .who b{display:block; font-size:10.2px; color:var(--ink);}
+  .menu .who .r{font-size:7.6px; color:var(--ink3);}
+  .menu .cpn{font-size:17.5px; font-weight:800; white-space:nowrap;}
+  .menu .px{font-variant-numeric:tabular-nums; font-weight:700;}
+  .menu .ret{font-size:9.8px; line-height:1.42;}
+  .menu .ret b{color:var(--green); font-size:11px;}
+  .menu .use{font-size:8.8px; color:var(--ink2);}
+  .menu .use b{color:var(--ink);}
+  .feebar{margin-top:1.2mm; background:color-mix(in srgb,var(--red) 7%,#fff); border:1px dashed var(--red); border-radius:2mm;
+    padding:1.3mm 2.4mm; font-size:8.8px; color:var(--ink2); display:flex; align-items:center; gap:2.5mm;}
+  .feebar .lock{font-weight:800; color:var(--red); white-space:nowrap; font-size:9.2px;}
+  .feebar b{color:var(--ink); font-variant-numeric:tabular-nums;}
+  .feebar .sp{color:var(--ink3);}
+
+  /* Row C：情境 / 年期 / 適合性 */
+  .rowC{display:grid; grid-template-columns:1.25fr .9fr 1.45fr; gap:2mm;}
+  .box{border:1px solid var(--line); border-radius:2mm; background:#fff; padding:1.3mm 2.4mm 1.2mm;}
+  .box .t{font-size:9.4px; font-weight:800; margin-bottom:.9mm; display:flex; align-items:center; gap:1.5mm;}
+  .box .t .ic{width:4.8mm; height:4.8mm; border-radius:1.2mm; display:flex; align-items:center; justify-content:center; font-size:8.2px; color:#fff; flex:none;}
+  .scn .ic{background:var(--blue);} .ten .ic{background:var(--teal);} .suit .ic{background:var(--green);}
+  .box ul{list-style:none;}
+  .box li{position:relative; padding-left:3.2mm; margin-top:.9mm; font-size:9px; color:var(--ink2); line-height:1.46;}
+  .box li::before{content:"▪"; position:absolute; left:.2mm; top:0; color:var(--blue); font-size:8px;}
+  .box li b{color:var(--ink);}
+  .ten li::before{color:var(--teal);}
+  .suit li::before{display:none; padding-left:0;}
+  .suit li{padding-left:0;}
+  .light{display:flex; gap:1.6mm; margin-top:.8mm; align-items:flex-start;}
+  .light .dot{flex:none; width:4.4mm; height:4.4mm; border-radius:50%; margin-top:.4mm; display:flex; align-items:center; justify-content:center; color:#fff; font-size:7.8px; font-weight:800;}
+  .light.g .dot{background:var(--green);} .light.a .dot{background:var(--amber);} .light.r .dot{background:var(--red);}
+  .light .tx{font-size:8.8px; line-height:1.44; color:var(--ink2);}
+  .light .tx b{color:var(--ink);}
+  .light .tx .alt{color:var(--green); font-weight:700;}
+
+  /* Row D：NGO 判決 + 照讀話術 */
+  .rowD{display:grid; grid-template-columns:1fr 2.1fr; gap:2mm;}
+  .ngo{border:1.5px solid var(--red); border-radius:2mm; background:color-mix(in srgb,var(--red) 5%,#fff); padding:1.5mm 2.6mm 1.3mm;}
+  .ngo .t{font-size:10px; font-weight:800; color:var(--red);}
+  .ngo .b{font-size:9.2px; color:var(--ink2); line-height:1.52; margin-top:1mm;}
+  .ngo .b b{color:var(--ink);}
+  .ngo .k{margin-top:1mm; font-size:8.8px; color:var(--ink2); background:#fff; border:1px solid var(--line); border-radius:1.4mm; padding:1mm 1.8mm; line-height:1.44;}
+  .ngo .k b{color:var(--green);}
+  .scripts{border:1px solid var(--line); border-radius:2mm; background:#fafafa; padding:1.3mm 2.6mm 1.1mm;}
+  .scripts .t{font-size:9.4px; font-weight:800; margin-bottom:.6mm;}
+  .say{border-left:2.5px solid var(--blue); background:#fff; border-radius:0 1.4mm 1.4mm 0; padding:.9mm 2mm .8mm 2mm; margin-top:.9mm;}
+  .say .lb{font-size:7.8px; font-weight:800; color:var(--blue); letter-spacing:.04em;}
+  .say .tx{font-size:9.3px; line-height:1.52; color:var(--ink); margin-top:.3mm;}
+  .say.warn{border-left-color:var(--red);}
+  .say.warn .lb{color:var(--red);}
+  .say.no{border-left-color:var(--amber);}
+  .say.no .lb{color:var(--amber);}
+
+  .ft{border-top:1px solid var(--line); padding-top:.9mm; font-size:7.4px; color:var(--ink3); line-height:1.45;}
+  .ft b{color:var(--red);}
+
+  .jpgbtn{position:fixed;top:60px;right:18px;z-index:60;background:#2563eb;color:#fff;border:none;border-radius:10px;
+    padding:10px 16px;font-size:13px;font-weight:700;cursor:pointer;box-shadow:0 4px 14px rgba(37,99,235,.4);font-family:inherit}
+  .jpgbtn:hover{background:#1d4ed8}
+  .jpgbtn[disabled]{opacity:.6;cursor:wait}
+  .kbadge{position:fixed;bottom:16px;right:16px;z-index:60;width:36px;height:36px;background:#fff;
+    border-radius:10px;display:flex;align-items:center;justify-content:center;
+    box-shadow:0 2px 8px rgba(0,0,0,.18);text-decoration:none;
+    font:italic 300 21px/1 'Brush Script MT','Segoe Script',cursive;color:#2563eb}
+  @media print{.jpgbtn,.kbadge{display:none!important}}
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <div class="hd">
+    <div>
+      <h1>Callable Linear <span class="acc">定息票據</span> · 銷售速覽</h1>
+      <div class="sub">一頁讀懂：如何解釋 · 主推哪張 · 年期選擇 · 客戶適合性 · 照讀話術　｜　RM 內部使用，切勿轉發客戶</div>
+    </div>
+    <div class="asof">
+      報價日期：<b>2026-11-19</b>（Barclays／UBS 當日定價）<br>
+      美元結算　·　每張 100 萬美元起　·　可指定發行商
+    </div>
+  </div>
+
+  <div class="slab">① 一分鐘認識本產品<span class="rule"></span><span class="hint">客戶問「這是甚麼」時，照答即可</span></div>
+  <div class="rowA">
+    <div class="chip">
+      <div class="t">結構</div>
+      <div class="b">5 年期<b>定息票據</b>：首 1 年不可提前收回；之後發行商<b>每年一次</b>有權按面值 100 加應計利息提前收回。客戶以折讓價買入。</div>
+    </div>
+    <div class="chip">
+      <div class="t">收益</div>
+      <div class="b">每年按面額<b>收足票息</b>。以主力 6 厘版計：持有 5 年<b>到期收益約 6.5 厘</b>，較同期美國國債（約 4.9 厘）<span class="em">高逾 1.5 厘</span>。</div>
+    </div>
+    <div class="chip">
+      <div class="t">風險性質</div>
+      <div class="b"><b>無抵押優先銀行債券</b>：不是存款、不受存款保障；本金能否全數取回，取決於發行商信用。</div>
+    </div>
+    <div class="chip">
+      <div class="t">門檻及流程</div>
+      <div class="b">每張<b>美元 100 萬起</b>；認購流程<b>如定期存款</b>一樣簡單；可指定發行商。</div>
+    </div>
+    <div class="chip verify">
+      <div class="t">⚠ 落單前兩項核實（向 desk 確認）</div>
+      <ol>
+        <li><b>發行商實體</b>必須是 Barclays <b>Bank PLC</b>（營運子公司，穆迪 A1）；控股公司 Barclays PLC 只有 Baa1，低四級——核對產品條款文件。</li>
+        <li><b>條款款式</b>必須是「每年派息」款；另一款「利息累計、到期一筆過支付」回報低約 0.7 厘。</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="slab">② 主推三行——今日報價（2026-11-19）<span class="rule"></span><span class="hint">預設推 ①；客戶有特殊考慮才用 ② 或 ③</span></div>
+  <div class="menu">
+    <table>
+      <tr>
+        <th style="width:11%">定位</th><th style="width:20%">發行商（評級）</th><th style="width:9%">票息</th>
+        <th style="width:8%">買入價</th><th style="width:27%">客戶年化回報</th><th>何時採用</th>
+      </tr>
+      <tr class="hl">
+        <td><span class="pos">① 主力首選</span></td>
+        <td class="who"><b>Barclays Bank PLC</b><span class="r">穆迪 A1／標普 A+／惠譽 A+</span></td>
+        <td class="cpn">6.00%</td><td class="px">97.89</td>
+        <td class="ret">持有 5 年：<b>約 6.5%</b>　｜　約 1 年被收回：<b>約 8.3%</b></td>
+        <td class="use"><b>預設首選。</b>息口上升則持有五年收 6.5 厘；息口下跌則被收回、袋 8.3% 離場再接新一批——兩種情境都不吃虧。</td>
+      </tr>
+      <tr>
+        <td><span class="pos">② 鎖定版</span></td>
+        <td class="who"><b>Barclays Bank PLC</b><span class="r">同上</span></td>
+        <td class="cpn">5.00%</td><td class="px">94.50</td>
+        <td class="ret">持有 5 年：<b>約 6.3%</b>（發行商收回誘因極低，<b>鎖足五年</b>）</td>
+        <td class="use"><b>客戶怕被提早收回</b>、想真鎖定五年時用。票息 5 厘低於發行商自身資金成本，發行商沒有收回誘因。</td>
+      </tr>
+      <tr>
+        <td><span class="pos">③ 穩信版</span></td>
+        <td class="who"><b>UBS AG</b><span class="r">穆迪 Aa2／標普 A+——三行中最強</span></td>
+        <td class="cpn">5.50%</td><td class="px">98.64</td>
+        <td class="ret">持有 5 年：<b>約 5.8%</b>　｜　約 1 年被收回：<b>約 7.0%</b></td>
+        <td class="use"><b>客戶最重視發行商實力</b>時用。半鎖定、半滾動的平衡選擇。</td>
+      </tr>
+    </table>
+  </div>
+  <div class="feebar">
+    <span class="lock">🔒 內部費用口徑（切勿向客戶披露）</span>
+    每 100 萬美元行方費用：<b>① 約 2.11%</b>　<span class="sp">·</span>　<b>② 約 5.50%</b>　<span class="sp">·</span>　<b>③ 約 1.36%</b>
+    <span class="sp">｜</span>同級報價中，Barclays 給客戶的收益較 UBS 高約 0.7 厘（其集資成本較高）。
+  </div>
+
+  <div class="slab">③ 情境應對 · 年期選擇 · 適合性燈號<span class="rule"></span></div>
+  <div class="rowC">
+    <div class="box scn">
+      <div class="t"><span class="ic">情境</span>息口走向 × 客戶得益</div>
+      <ul>
+        <li><b>轉加息：</b>發行商收回誘因下降——已購 6 厘版大概率持有五年收約 6.5 厘；新造暫緩 ①，改推 ② 或等候更高票息新報價。</li>
+        <li><b>轉減息：</b>發行商大概率第一個收回窗口收回——客戶約一年袋約 8.3% 離場，即時安排<b>續接新一批</b>（滾動收取）。</li>
+        <li><b>利率不變：</b>約一半機會一年後被收回、約一半持有五年——兩個結局年化回報同樣理想。</li>
+      </ul>
+    </div>
+    <div class="box ten">
+      <div class="t"><span class="ic">年期</span>預設 5 年，短年期作後備</div>
+      <ul>
+        <li><b>5 年期（首年不可收回）：</b>預設主推——票息最高、鎖定最完整。</li>
+        <li><b>2 年期：</b>客戶希望先作短期嘗試、或預期再加息時用；到期收益約 5.5 厘，較快重新定價。</li>
+        <li><b>3 年期：</b>過渡選擇，一般毋須使用（到期收益約 5.8 厘）。</li>
+      </ul>
+    </div>
+    <div class="box suit">
+      <div class="t"><span class="ic">燈號</span>哪些客戶適合（suitability）</div>
+      <div class="light g"><div class="dot">✓</div><div class="tx"><b>綠燈——適合：</b>以定息收入為目標；該筆資金<b>五年內沒有動用計劃</b>；理解並接受發行商信用風險；明白可能約一年後被收回，並同意屆時續接新一批。</div></div>
+      <div class="light a"><div class="dot">！</div><div class="tx"><b>黃燈——調整後才做：</b>流動性要求較高→改 2 年期；極重視發行商實力→改 ③ UBS；單一金額佔總資產比例過高→降低認購金額。</div></div>
+      <div class="light r"><div class="dot">✕</div><div class="tx"><b>紅燈——不適合：</b>NGO／慈善團體／信託等不能承受本金損失的資金；五年內有機會動用；不能接受無抵押銀行債券。<span class="alt">替代方案：定期存款／短期政府債券／貨幣基金。</span></div></div>
+    </div>
+  </div>
+
+  <div class="slab">④ NGO 資金判決 · 照讀話術<span class="rule"></span><span class="hint">話術為口語，照讀即可；其餘文字均為書面語</span></div>
+  <div class="rowD">
+    <div class="ngo">
+      <div class="t">NGO 資金：原則上不應認購</div>
+      <div class="b">CL 是<b>無抵押優先債券</b>：發行商一旦出事，本金按債權排序受損；<b>不是存款、不受存款保障、不是保本產品</b>。NGO 這類「不能承受損失」的資金，<b>不論票息多高</b>，都不應認購——這是銷售適合性紅線，並非產品好壞問題。</div>
+      <div class="k"><b>NGO 以外、同樣要婉拒：</b>短於五年的資金（置業、子女學費）、依賴該筆資金生活的退休客戶、明言不接受任何本金風險的客戶。</div>
+    </div>
+    <div class="scripts">
+      <div class="t">🗣 照讀話術（口語）</div>
+      <div class="say">
+        <div class="lb">開場賣點</div>
+        <div class="tx">「你呢筆錢如果五年都唔使郁，而家鎖 6 厘定息，到期收益約莫 6 厘半，高過同期美國國債 1 厘半有多。存款利息會跟住減息一路跌落嚟，呢張係今日鎖實、年年照收。」</div>
+      </div>
+      <div class="say warn">
+        <div class="lb">收回風險——必須講出，不得略過</div>
+        <div class="tx">「一年之後銀行有權收回呢張票，之後每年一次。簡單講：佢減息就會收返，你袋住大約 8 厘 3 一年離場，我哋即刻幫你接返一張新的；佢唔減息，你就坐足五年收 6 厘半。兩個結局你都係贏，分別只係幾時攞返筆錢。」</div>
+      </div>
+      <div class="say no">
+        <div class="lb">NGO／紅燈客婉拒</div>
+        <div class="tx">「呢張係銀行債券，唔係存款，本金有發行商信用風險。你哋呢類資金唔可以承受呢類風險，我建議用定期存款或者短期政府債券，穩陣之餘流動性亦好啲。」</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ft">
+    <b>銷售紅線：</b>① 切勿表示「加息後票息會跟住調高」——票息一經認購即固定不變。② 切勿將本產品表述為存款、保本或受存款保障產品。③ 內部費用口徑切勿向客戶披露。④ JPM／HSBC 暫無報價；獲報價後再入此表。
+    ｜條款以正式產品文件為準；「Callable Linear」市面有每年派息及利息累計兩款條款，本板數字以每年派息款計算。
+  </div>
+
+</div>
+</body>
+</html>
+
+<button class="jpgbtn" onclick="exportJPG(this)">📸 匯出 JPEG</button>
+<a class="kbadge" href="https://leunghlk.github.io/all-in-one/" title="leungkathy · 返回主頁">k</a>
+<script type="module">
+  import { domToJpeg } from "https://cdn.jsdelivr.net/npm/modern-screenshot@4/dist/index.mjs";
+  window.modernScreenshot = { domToJpeg };
+</script>
+<script>
+function exportJPG(btn){
+  var target=document.querySelector('.sheet')||document.querySelector('.wrap');
+  if(!target||!window.modernScreenshot){alert('匯出元件未載入，請檢查網絡後重試');return;}
+  btn.disabled=true;var t=btn.textContent;btn.textContent='⏳ 匯出中…';
+  var k=document.createElement('div');
+  k.textContent='k';
+  k.style.cssText="position:absolute;right:8mm;bottom:2mm;z-index:9;font:italic 300 36px/1 'Brush Script MT','Segoe Script',cursive;color:#2563eb;pointer-events:none;";
+  var prevPos=target.style.position, prevPad=target.style.paddingBottom;
+  if(getComputedStyle(target).position==='static') target.style.position='relative';
+  target.style.paddingBottom='13mm';
+  target.appendChild(k);
+  function done(){ k.remove(); target.style.position=prevPos; target.style.paddingBottom=prevPad; }
+  function restore(){ done(); btn.textContent=t; btn.disabled=false; }
+  function fname(){ return (document.title.replace(/[^\w一-鿿-]+/g,'-').replace(/-+/g,'-'))+'.jpg'; }
+  // 📱 大圖防爆記憶體：限制 canvas 總像素；失敗自動降 scale 重試
+  var rg=target.getBoundingClientRect(), MAXPX=16000000;
+  var sc=2; if(rg.width*rg.height*4>MAXPX) sc=Math.max(1,Math.sqrt(MAXPX/(rg.width*rg.height)));
+  function overlay(blob,name){ // 後備路：長按張圖 →「加入照片」貯入相簿
+    var u=URL.createObjectURL(blob);
+    var o=document.createElement('div');
+    o.style.cssText='position:fixed;inset:0;z-index:99999;background:rgba(10,12,16,.88);display:flex;flex-direction:column;align-items:center;gap:12px;padding:18px;overflow:auto;';
+    var tip=document.createElement('div');
+    tip.style.cssText='color:#fff;font:600 14px/1.5 -apple-system,system-ui,sans-serif;text-align:center;';
+    tip.innerHTML='長按下面張圖 → 揀「<b>加入照片</b>」即可貯入相簿<br><span style="font-size:12px;opacity:.65">（或撳「下載」存入檔案 App）</span>';
+    var img=new Image(); img.src=u; img.style.cssText='max-width:100%;background:#fff;box-shadow:0 6px 28px rgba(0,0,0,.5);';
+    var bar=document.createElement('div'); bar.style.cssText='display:flex;gap:10px;';
+    var dl=document.createElement('a'); dl.href=u; dl.download=name; dl.textContent='⬇ 下載';
+    dl.style.cssText='background:#2563eb;color:#fff;font:700 14px -apple-system,system-ui,sans-serif;padding:10px 18px;border-radius:9px;text-decoration:none;';
+    var cl=document.createElement('button'); cl.textContent='✕ 關閉';
+    cl.style.cssText='background:#374151;color:#fff;font:700 14px -apple-system,system-ui,sans-serif;padding:10px 18px;border-radius:9px;border:none;';
+    cl.onclick=function(){ o.remove(); URL.revokeObjectURL(u); };
+    bar.appendChild(dl); bar.appendChild(cl);
+    o.appendChild(tip); o.appendChild(img); o.appendChild(bar);
+    document.body.appendChild(o);
+  }
+  function deliver(url,name){
+    fetch(url).then(function(r){return r.blob();}).then(function(blob){
+      var file=null; try{ file=new File([blob],name,{type:'image/jpeg'}); }catch(e){}
+      var touch=(navigator.maxTouchPoints>0)||/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
+      // 📱 電話首選：系統分享單 →「加入照片」直接貯入相簿
+      if(file&&touch&&navigator.canShare&&navigator.canShare({files:[file]})){
+        navigator.share({files:[file],title:name}).then(function(){ restore(); })
+        .catch(function(err){
+          if(err&&err.name==='AbortError'){ restore(); return; }
+          overlay(blob,name); restore();
+        });
+        return;
+      }
+      // 💻 桌面／其他：照舊 anchor 下載
+      var u=URL.createObjectURL(blob);
+      var a=document.createElement('a'); a.href=u; a.download=name;
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(function(){ URL.revokeObjectURL(u); },4000);
+      if(touch&&/iP(hone|ad|od)/.test(navigator.userAgent)){ overlay(blob,name); }
+      else restore();
+    }).catch(function(e){ restore(); alert('匯出失敗：'+(e&&e.message||e)); });
+  }
+  modernScreenshot.domToJpeg(target,{scale:sc,quality:0.92,backgroundColor:'#ffffff'})
+  .then(function(url){ done(); deliver(url,fname()); })
+  .catch(function(e){
+    if(sc>1){
+      modernScreenshot.domToJpeg(target,{scale:1,quality:0.9,backgroundColor:'#ffffff'})
+      .then(function(url){ done(); deliver(url,fname()); })
+      .catch(function(e2){ restore(); alert('匯出失敗：'+(e2&&e2.message||e2)); });
+    }else{ restore(); alert('匯出失敗：'+(e&&e.message||e)); }
+  });
+}
+</script>
+<script>
+// 📱 電話觀看修正：內容闊過螢幕 → viewport 設做內容闊度，開頁即成頁縮細睇到＋可以較大
+(function(){
+  function go(){
+    try{
+      var sw=Math.min(window.screen.width, window.innerWidth||window.screen.width);
+      var w=Math.max(document.documentElement.scrollWidth, document.body?document.body.scrollWidth:0);
+      var m=document.querySelector('meta[name="viewport"]');
+      if(!m||w>2400||w<=sw+4) return;
+      m.setAttribute('content','width='+Math.ceil(w));
+    }catch(e){}
+  }
+  if(document.readyState==='complete') setTimeout(go,80);
+  else window.addEventListener('load',function(){ setTimeout(go,80); });
+})();
+</script>
+</body>
+</html>
