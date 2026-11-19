@@ -21,7 +21,7 @@
   .sheet{
     width:297mm; min-height:209mm; margin:6mm auto; background:var(--surface);
     padding:4.5mm 7mm 1mm; box-shadow:0 2px 14px rgba(0,0,0,.10);
-    display:flex; flex-direction:column; gap:2mm;
+    display:flex; flex-direction:column; gap:1.7mm;
   }
   @media print{
     body{background:#fff;}
@@ -101,17 +101,17 @@
 
   /* Row D：NGO 判決 + 照讀話術 */
   .rowD{display:grid; grid-template-columns:1fr 2.1fr; gap:2mm;}
-  .ngo{border:1.5px solid var(--red); border-radius:2mm; background:color-mix(in srgb,var(--red) 5%,#fff); padding:1.5mm 2.6mm 1.3mm;}
-  .ngo .t{font-size:10px; font-weight:800; color:var(--red);}
+  .ngo{border:1.5px solid var(--amber); border-radius:2mm; background:color-mix(in srgb,var(--amber) 5%,#fff); padding:1.5mm 2.6mm 1.3mm;}
+  .ngo .t{font-size:10px; font-weight:800; color:var(--amber);}
   .ngo .b{font-size:9.2px; color:var(--ink2); line-height:1.52; margin-top:1mm;}
   .ngo .b b{color:var(--ink);}
   .ngo .k{margin-top:1mm; font-size:8.8px; color:var(--ink2); background:#fff; border:1px solid var(--line); border-radius:1.4mm; padding:1mm 1.8mm; line-height:1.44;}
-  .ngo .k b{color:var(--green);}
+  .ngo .k b{color:var(--ink);}
   .scripts{border:1px solid var(--line); border-radius:2mm; background:#fafafa; padding:1.3mm 2.6mm 1.1mm;}
   .scripts .t{font-size:9.4px; font-weight:800; margin-bottom:.6mm;}
   .say{border-left:2.5px solid var(--blue); background:#fff; border-radius:0 1.4mm 1.4mm 0; padding:.9mm 2mm .8mm 2mm; margin-top:.9mm;}
   .say .lb{font-size:7.8px; font-weight:800; color:var(--blue); letter-spacing:.04em;}
-  .say .tx{font-size:9.3px; line-height:1.52; color:var(--ink); margin-top:.3mm;}
+  .say .tx{font-size:9.3px; line-height:1.46; color:var(--ink); margin-top:.3mm;}
   .say.warn{border-left-color:var(--red);}
   .say.warn .lb{color:var(--red);}
   .say.no{border-left-color:var(--amber);}
@@ -149,7 +149,7 @@
   <div class="rowA">
     <div class="chip">
       <div class="t">結構</div>
-      <div class="b">5 年期<b>定息票據</b>：首 1 年不可提前收回；之後發行商<b>每年一次</b>有權按面值 100 加應計利息提前收回。客戶以折讓價買入。</div>
+      <div class="b"><b>定息票據</b>，當日報價有 <b>2／3／5 年期</b>：全部<b>首 1 年不可提前收回</b>，之後發行商<b>每年一次</b>有權按面值 100 加應計利息提前收回。客戶以折讓價買入。</div>
     </div>
     <div class="chip">
       <div class="t">收益</div>
@@ -172,7 +172,7 @@
     </div>
   </div>
 
-  <div class="slab">② 主推三行——今日報價（2026-11-19）<span class="rule"></span><span class="hint">預設推 ①；客戶有特殊考慮才用 ② 或 ③</span></div>
+  <div class="slab">② 主推三行——今日報價（2026-11-19）<span class="rule"></span><span class="hint">預設推 ①；表列為 5 年期報價，2／3 年期同款結構、票息較低</span></div>
   <div class="menu">
     <table>
       <tr>
@@ -219,41 +219,41 @@
       </ul>
     </div>
     <div class="box ten">
-      <div class="t"><span class="ic">年期</span>預設 5 年，短年期作後備</div>
+      <div class="t"><span class="ic">年期</span>2／3／5 年可選，全部首年不可收回</div>
       <ul>
-        <li><b>5 年期（首年不可收回）：</b>預設主推——票息最高、鎖定最完整。</li>
+        <li><b>5 年期：</b>預設主推——票息最高（6 厘）、鎖定最完整。</li>
+        <li><b>3 年期：</b>中間選擇，到期收益約 5.8 厘。</li>
         <li><b>2 年期：</b>客戶希望先作短期嘗試、或預期再加息時用；到期收益約 5.5 厘，較快重新定價。</li>
-        <li><b>3 年期：</b>過渡選擇，一般毋須使用（到期收益約 5.8 厘）。</li>
       </ul>
     </div>
     <div class="box suit">
       <div class="t"><span class="ic">燈號</span>哪些客戶適合（suitability）</div>
       <div class="light g"><div class="dot">✓</div><div class="tx"><b>綠燈——適合：</b>以定息收入為目標；該筆資金<b>五年內沒有動用計劃</b>；理解並接受發行商信用風險；明白可能約一年後被收回，並同意屆時續接新一批。</div></div>
-      <div class="light a"><div class="dot">！</div><div class="tx"><b>黃燈——調整後才做：</b>流動性要求較高→改 2 年期；極重視發行商實力→改 ③ UBS；單一金額佔總資產比例過高→降低認購金額。</div></div>
-      <div class="light r"><div class="dot">✕</div><div class="tx"><b>紅燈——不適合：</b>NGO／慈善團體／信託等不能承受本金損失的資金；五年內有機會動用；不能接受無抵押銀行債券。<span class="alt">替代方案：定期存款／短期政府債券／貨幣基金。</span></div></div>
+      <div class="light a"><div class="dot">！</div><div class="tx"><b>黃燈——調整發行商才做：</b><b>NGO／慈善／信託等保守資金→改用 ③ UBS AG（信用風險最低），並控制單一佔比</b>；流動性要求較高→改 2 年期。</div></div>
+      <div class="light r"><div class="dot">✕</div><div class="tx"><b>紅燈——不適合：</b>五年內有機會動用的資金；客戶明言<b>完全不接受</b>無抵押銀行債券或任何本金風險。<span class="alt">替代方案：定期存款／短期政府債券／貨幣基金。</span></div></div>
     </div>
   </div>
 
-  <div class="slab">④ NGO 資金判決 · 照讀話術<span class="rule"></span><span class="hint">話術為口語，照讀即可；其餘文字均為書面語</span></div>
+  <div class="slab">④ NGO／保守資金 · 照讀話術<span class="rule"></span><span class="hint">話術為口語，照讀即可；其餘文字均為書面語</span></div>
   <div class="rowD">
     <div class="ngo">
-      <div class="t">NGO 資金：原則上不應認購</div>
-      <div class="b">CL 是<b>無抵押優先債券</b>：發行商一旦出事，本金按債權排序受損；<b>不是存款、不受存款保障、不是保本產品</b>。NGO 這類「不能承受損失」的資金，<b>不論票息多高</b>，都不應認購——這是銷售適合性紅線，並非產品好壞問題。</div>
-      <div class="k"><b>NGO 以外、同樣要婉拒：</b>短於五年的資金（置業、子女學費）、依賴該筆資金生活的退休客戶、明言不接受任何本金風險的客戶。</div>
+      <div class="t">NGO／保守資金：首選 UBS（信用風險最低）</div>
+      <div class="b">這類資金<b>可以做</b>，但發行商必須選<b>信用風險最低的 ③ UBS AG</b>（Aa2／標普 A+，三行中最強；票息 5.5 厘、持有約 5.8%），單一金額佔總資產比例宜控制。</div>
+      <div class="k"><b>必須向客戶講明：</b>UBS AG 票據仍是<b>無抵押優先債券</b>，不是存款、不受存款保障——只是同級中最穩的選擇。客戶明言<b>完全不接受本金風險</b>時，改推定期存款／短期政府債券／貨幣基金。</div>
     </div>
     <div class="scripts">
       <div class="t">🗣 照讀話術（口語）</div>
       <div class="say">
         <div class="lb">開場賣點</div>
-        <div class="tx">「你呢筆錢如果五年都唔使郁，而家鎖 6 厘定息，到期收益約莫 6 厘半，高過同期美國國債 1 厘半有多。存款利息會跟住減息一路跌落嚟，呢張係今日鎖實、年年照收。」</div>
+        <div class="tx">「你呢筆錢如果五年都唔使郁，而家鎖 6 厘定息，到期收益約莫 6 厘半，高過同期美國國債 1 厘半有多；想短啲亦有兩年、三年版，同樣頭一年唔會被收回。存款利息會跟住減息一路跌落嚟，呢張係今日鎖實、年年照收。」</div>
       </div>
       <div class="say warn">
         <div class="lb">收回風險——必須講出，不得略過</div>
         <div class="tx">「一年之後銀行有權收回呢張票，之後每年一次。簡單講：佢減息就會收返，你袋住大約 8 厘 3 一年離場，我哋即刻幫你接返一張新的；佢唔減息，你就坐足五年收 6 厘半。兩個結局你都係贏，分別只係幾時攞返筆錢。」</div>
       </div>
       <div class="say no">
-        <div class="lb">NGO／紅燈客婉拒</div>
-        <div class="tx">「呢張係銀行債券，唔係存款，本金有發行商信用風險。你哋呢類資金唔可以承受呢類風險，我建議用定期存款或者短期政府債券，穩陣之餘流動性亦好啲。」</div>
+        <div class="lb">NGO／保守客——揀 UBS，誠實披露</div>
+        <div class="tx">「你哋呢類資金要穩陣，我哋揀發行商信用最強嗰張——UBS，Aa2 評級係三張入面最高，五年收 5 厘半。講清楚：呢張係銀行債券唔係存款，有發行商信用風險，但已經係最穩選擇；完全唔接受本金風險的話，就建議用定期存款或短期政府債券。」</div>
       </div>
     </div>
   </div>
