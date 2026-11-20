@@ -20,7 +20,7 @@
   }
   .sheet{
     width:297mm; min-height:209mm; margin:6mm auto; background:var(--surface);
-    padding:2.2mm 7mm .5mm; box-shadow:0 2px 14px rgba(0,0,0,.10);
+    padding:1.5mm 7mm .4mm; box-shadow:0 2px 14px rgba(0,0,0,.10);
     display:flex; flex-direction:column; gap:.2mm;
   }
   @media print{
@@ -30,10 +30,10 @@
   }
   @page{size:A4 landscape; margin:1.5mm 5mm;}
 
-  .hd{display:flex; justify-content:space-between; align-items:flex-end; border-bottom:2.5px solid var(--ink); padding-bottom:.6mm;}
+  .hd{display:flex; justify-content:space-between; align-items:flex-end; border-bottom:2.5px solid var(--ink); padding-bottom:.4mm;}
   .hd h1{font-size:18px; font-weight:800;}
   .hd h1 .acc{color:var(--blue);}
-  .hd .sub{font-size:9px; color:var(--ink2); margin-top:.8mm;}
+  .hd .sub{font-size:9px; color:var(--ink2); margin-top:.5mm;}
   .hd .asof{font-size:8.4px; color:var(--ink3); text-align:right; line-height:1.45;}
   .hd .asof b{color:var(--red); font-size:9px;}
 
@@ -47,34 +47,41 @@
   .pstrip b{color:var(--ink);}
 
   /* ① 見客三問 */
-  .qa{display:grid; grid-template-columns:1.02fr 1.24fr 1fr; gap:1.6mm; margin-top:.5mm;}
-  .qc{border:1px solid var(--line); border-top:1.2mm solid var(--blue); border-radius:2mm; background:#fff; padding:.9mm 2mm .8mm;}
-  .qc .q{font-size:10.5px; font-weight:800; color:var(--blue); margin-bottom:.5mm;}
+  .qa{display:grid; grid-template-columns:1.02fr 1.24fr 1fr; gap:1.4mm; margin-top:.35mm;}
+  .qc{border:1px solid var(--line); border-top:1.2mm solid var(--blue); border-radius:2mm; background:#fff; padding:.6mm 2mm .6mm;}
+  .qc .q{font-size:10.2px; font-weight:800; color:var(--blue); margin-bottom:.4mm;}
   .qc .a{font-size:8.3px; line-height:1.34; color:var(--ink2);}
   .qc .a b{color:var(--ink);}
-  .qc .ev{margin-top:.6mm; font-size:7.9px; color:var(--ink3); border-top:1px dashed var(--line); padding-top:.5mm; line-height:1.32;}
+  .qc .ev{margin-top:.5mm; font-size:7.9px; color:var(--ink3); border-top:1px dashed var(--line); padding-top:.4mm; line-height:1.28;}
   .vs{width:100%; border-collapse:collapse; margin:.4mm 0 .2mm;}
   .vs th{background:#1a2f6b; color:#fff; font-size:8px; padding:.6mm 1mm; font-weight:700;}
-  .vs td{border:1px solid var(--line); font-size:8.2px; padding:.7mm 1.2mm; line-height:1.3;}
+  .vs td{border:1px solid var(--line); font-size:8.2px; padding:.55mm 1.2mm; line-height:1.28;}
   .vs td:first-child{background:#f4f6fb; font-weight:700; width:12mm;}
-  .punch{margin-top:.5mm; font-size:8.5px; font-weight:800; color:var(--green);}
+  .punch{margin-top:.35mm; font-size:8.5px; font-weight:800; color:var(--green);}
 
   /* ①b 證據 strip：成本梯 + OAS */
-  .evbar{display:grid; grid-template-columns:1.4fr 1fr; gap:1.6mm; margin-top:.5mm;}
-  .evbox{border:1px solid var(--line); border-top:1.2mm solid var(--blue); border-radius:2mm; background:#fff; padding:.55mm 2mm .5mm;}
+  .evbar{display:grid; grid-template-columns:1.4fr 1fr; gap:1.4mm; margin-top:.35mm;}
+  .evbox{border:1px solid var(--line); border-top:1.2mm solid var(--blue); border-radius:2mm; background:#fff; padding:.4mm 2mm .4mm;}
   .evbox .t{font-size:9.4px; font-weight:800; color:var(--blue);}
   .ftab{width:100%; border-collapse:collapse; margin-top:.4mm;}
-  .ftab th{background:#1a2f6b; color:#fff; font-size:8px; padding:.45mm 1mm; font-weight:700;}
-  .ftab td{border:1px solid var(--line); font-size:8.2px; padding:.4mm 1mm; line-height:1.24;}
+  .ftab th{background:#1a2f6b; color:#fff; font-size:8px; padding:.35mm 1mm; font-weight:700;}
+  .ftab td{border:1px solid var(--line); font-size:8.2px; padding:.3mm 1mm; line-height:1.22;}
   .ftab td.ir{font-weight:800; background:#f4f6fb; width:16mm;}
-  .oasr{display:flex; align-items:center; gap:1.2mm; margin-top:.55mm;}
+  .oasr{display:flex; align-items:center; gap:1.2mm; margin-top:.45mm;}
   .oasr .nm{font-weight:800; font-size:8.8px; width:12mm; flex:none;}
   .oasr .bar{height:2.4mm; flex:1; background:#e9edf5; border-radius:1mm; overflow:hidden;}
   .oasr .bar i{display:block; height:100%;}
   .oasr .v{font-size:8.4px; font-weight:800; width:20mm; text-align:right; flex:none;}
   .oasr .v small{display:block; font-size:6.9px; color:var(--ink3); font-weight:400; line-height:1.1;}
-  .oasds{font-size:7.6px; color:var(--ink2); margin-top:.4mm; line-height:1.28;}
+  .oasds{font-size:7.6px; color:var(--ink2); margin-top:.3mm; line-height:1.24;}
   .oasds b{color:var(--ink);}
+
+  /* 收回因果鏈 strip */
+  .chain{display:flex; align-items:stretch; gap:1mm; margin-top:.4mm;}
+  .chain .clabel{flex:none; background:#1a2f6b; color:#fff; border-radius:1.6mm; padding:.5mm 1.8mm; font-size:8.2px; font-weight:800; display:flex; align-items:center;}
+  .chain .cs{flex:1; border:1px solid var(--line); border-radius:1.6mm; background:#fff; padding:.4mm 1.6mm; font-size:7.9px; line-height:1.26; color:var(--ink2); display:flex; align-items:center;}
+  .chain .cs b{color:var(--ink);}
+  .chain .cop{align-self:center; flex:none; font-size:10px; font-weight:800; color:var(--ink3);}
   .light.b .dot{background:var(--blue);}
 
   /* ② 判決表 */
@@ -82,7 +89,7 @@
   .menu table{width:100%; border-collapse:collapse;}
   .menu th{background:#1a2f6b; color:#fff; font-size:8.4px; font-weight:700; padding:.8mm 1.6mm; text-align:left; letter-spacing:.02em;}
   .menu th.fee{color:#ffd2d2;}
-  .menu td{padding:.7mm 1.6mm; border-top:1px solid var(--line); font-size:8.9px; vertical-align:middle; line-height:1.3;}
+  .menu td{padding:.5mm 1.6mm; border-top:1px solid var(--line); font-size:8.9px; vertical-align:middle; line-height:1.25;}
   .menu .who{font-size:8.6px; color:var(--ink2);}
   .menu .who b{display:block; font-size:9.2px; color:var(--ink);}
   .menu .who .r{font-size:7.2px; color:var(--ink3);}
@@ -95,7 +102,7 @@
   .menu .verdict .g{color:var(--green); font-weight:800;}
   .menu .verdict .a{color:var(--amber); font-weight:800;}
   .menu tr.g td:first-child{border-left:3px solid var(--green);}
-  .menu tr.bh td{background:#e8edf9; font-weight:800; font-size:8.5px; color:#1a2f6b; padding:.9mm 1.6mm; letter-spacing:.02em;}
+  .menu tr.bh td{background:#e8edf9; font-weight:800; font-size:8.5px; color:#1a2f6b; padding:.7mm 1.6mm; letter-spacing:.02em;}
   .menu td.call{text-align:center;}
   .menu td.call b{font-size:9.4px;}
   .menu td.call span{display:block; font-size:7px; color:var(--ink3); font-weight:400;}
@@ -103,29 +110,29 @@
   .menu td.call.m b{color:var(--amber);}
   .menu td.call.l b{color:var(--green);}
   .menu tr.g{background:color-mix(in srgb,var(--green) 5%,#fff);}
-  .tfoot{border:1px solid var(--line); border-radius:2mm; background:#fafafa; padding:.5mm 2.4mm; font-size:7.8px; color:var(--ink2); line-height:1.3; margin-top:.6mm;}
+  .tfoot{border:1px solid var(--line); border-radius:2mm; background:#fafafa; padding:.4mm 2.4mm; font-size:7.8px; color:var(--ink2); line-height:1.28; margin-top:.45mm;}
   .tfoot b{color:var(--ink);}
   .tfoot .lk{color:var(--red); font-weight:800;}
 
   /* ③ 燈號 */
   .lights{display:grid; grid-template-columns:1fr 1fr; gap:.6mm 2mm;}
-  .light{display:flex; gap:1.6mm; align-items:flex-start; border:1px solid var(--line); border-radius:1.6mm; padding:.6mm 1.8mm; background:#fff;}
+  .light{display:flex; gap:1.6mm; align-items:flex-start; border:1px solid var(--line); border-radius:1.6mm; padding:.5mm 1.8mm; background:#fff;}
   .light .dot{flex:none; width:4.2mm; height:4.2mm; border-radius:50%; margin-top:.3mm; display:flex; align-items:center; justify-content:center; color:#fff; font-size:7.6px; font-weight:800;}
   .light.g .dot{background:var(--green);} .light.a .dot{background:var(--amber);} .light.r .dot{background:var(--red);} .light.y .dot{background:var(--teal);}
   .light .tx{font-size:8px; line-height:1.3; color:var(--ink2);}
   .light .tx b{color:var(--ink);}
 
   /* ④ 話術 */
-  .scripts{border:1px solid var(--line); border-radius:2mm; background:#fafafa; padding:.5mm 2.6mm .4mm;}
-  .say{border-left:2.5px solid var(--blue); background:#fff; border-radius:0 1.4mm 1.4mm 0; padding:.55mm 2mm .45mm 2mm; margin-top:.45mm;}
+  .scripts{border:1px solid var(--line); border-radius:2mm; background:#fafafa; padding:.4mm 2.6mm .3mm;}
+  .say{border-left:2.5px solid var(--blue); background:#fff; border-radius:0 1.4mm 1.4mm 0; padding:.45mm 2mm .35mm 2mm; margin-top:.4mm;}
   .say .lb{font-size:8.2px; font-weight:800; color:var(--blue); letter-spacing:.04em;}
-  .say .tx{font-size:8.7px; line-height:1.3; color:var(--ink); margin-top:.2mm;}
+  .say .tx{font-size:8.7px; line-height:1.26; color:var(--ink); margin-top:.15mm;}
   .say.warn{border-left-color:var(--red);}
   .say.warn .lb{color:var(--red);}
   .say.no{border-left-color:var(--amber);}
   .say.no .lb{color:var(--amber);}
 
-  .ft{border-top:1px solid var(--line); padding-top:.2mm; font-size:6.4px; color:var(--ink3); line-height:1.28; white-space:nowrap; overflow:hidden;}
+  .ft{border-top:1px solid var(--line); padding-top:.1mm; font-size:6.4px; color:var(--ink3); line-height:1.28; white-space:nowrap; overflow:hidden;}
   .ft b{color:var(--red);}
 
   .jpgbtn{position:fixed;top:60px;right:18px;z-index:60;background:#2563eb;color:#fff;border:none;border-radius:10px;
@@ -201,8 +208,19 @@
       <div class="oasr"><span class="nm">HSBC</span><span class="bar"><i style="width:78%;background:var(--green)"></i></span><span class="v">93.5bp<small>＋8 最窄</small></span></div>
       <div class="oasr"><span class="nm">Barclays</span><span class="bar"><i style="width:89%;background:var(--red)"></i></span><span class="v">106.5bp<small>＋28 最闊</small></span></div>
       <div class="oasr"><span class="nm">UBS</span><span class="bar"><i style="width:97%;background:var(--amber)"></i></span><span class="v">116.4bp<small>＋9 CS 溢價</small></span></div>
-      <div class="oasds"><b>HSBC 最易收</b>——93.5 只高年均 8＝已借到平錢，callable 嘅紙佢最快收（想早收→問 desk；想坐到期→避開高 coupon HSBC 紙）；Barclays +28＝借新錢仲貴→壓住 Nov27 首窗；UBS 壓縮向 93 就收——<b>滾動張幾時收，睇呢欄</b></div>
+      <div class="oasds"><b>HSBC 最易收</b>——93.5 只高年均 8＝已借到平錢，callable 嘅紙佢最快收（想早收→問 desk；想坐到期→避開高 coupon HSBC 紙）</div>
     </div>
+  </div>
+
+  <div class="chain">
+    <span class="clabel">🔗 收回因果鏈</span>
+    <span class="cs">① 新借錢成本 ＝ 利率（SOFR）＋ OAS spread</span>
+    <span class="cop">→</span>
+    <span class="cs">② 跌過<b>舊票息</b>先會收</span>
+    <span class="cop">→</span>
+    <span class="cs">③ 鎖定張：<b>永遠唔會</b>（票息低成本 1 厘＋）｜滾動張：spread 一回歸<b>就收</b></span>
+    <span class="cop">→</span>
+    <span class="cs">④ 邊個最快收？<b>HSBC</b>（已到最窄＋MREL 機械式）＞<b>UBS</b>（CS 溢價壓縮就收）＞<b>B</b>（+28 壓住 Nov27）</span>
   </div>
 
   <div class="slab">② 判決——由「坐足到期」入手，再按行方食排序<span class="rule"></span><span class="hint">🥇 鎖定張＝保險對手　⏳ 滾動張＝想彈性先做；客收＝年化計埋折讓</span></div>
@@ -251,7 +269,7 @@
       </tr>
     </table>
   </div>
-  <div class="tfoot"><b>流動性客（3Y／2Y）——唔係保險對手</b>，客數低 0.3–0.4 厘：3Y 認 <b>B 4.80@97.30</b>（食 2.70；棄 5.08@98 僅食 2.00）；UBS 認 <b>4.56@98</b>（食 2.00；棄 4.80@98.53 僅食 1.47）；2Y 認 <b>B 4.39@98</b>（食 2.00）——流動性／短試客專用，唔主動建議。</div>
+  <div class="tfoot"><b>流動性客（3Y／2Y）——唔係保險對手</b>：到期早→再投資風險鎖唔足五年，客數低 0.3–0.4 厘：3Y 認 <b>B 4.80@97.30</b>（食 2.70；棄 5.08@98 僅食 2.00）；UBS 認 <b>4.56@98</b>（食 2.00；棄 4.80@98.53 僅食 1.47）；2Y 認 <b>B 4.39@98</b>（食 2.00）——流動性／短試客專用，唔主動建議。</div>
   <div class="tfoot"><b>後備</b>：UBS 5.50@98.64（食 1.36）勿主動開；想要必定早收→問 desk HSBC（5Y 近必然、現無報價）。<b>客問「點解 UBS 息咁平」</b>：佢最強、機構排隊借錢俾佢，唔使出高息——數靚揀 Barclays、名靚揀 UBS。<span class="lk">行方費用每張全數不年化，🔒 切勿向客戶披露。</span></div>
 
   <div class="slab">③ 客種優先 Sell 對照——跟 HSB 實證<span class="rule"></span><span class="hint">客種→tenor→issuer→客數%→fee；唔適合：五年內動用／唔接受本金風險（見 Q3）</span></div>
