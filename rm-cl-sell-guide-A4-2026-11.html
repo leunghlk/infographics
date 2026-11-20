@@ -21,14 +21,14 @@
   .sheet{
     width:297mm; min-height:209mm; margin:6mm auto; background:var(--surface);
     padding:2.2mm 7mm .5mm; box-shadow:0 2px 14px rgba(0,0,0,.10);
-    display:flex; flex-direction:column; gap:.4mm;
+    display:flex; flex-direction:column; gap:.2mm;
   }
   @media print{
     body{background:#fff;}
     .sheet{margin:0; box-shadow:none; width:auto; min-height:auto;}
-    @page{size:A4 landscape; margin:3mm 5mm;}
+    @page{size:A4 landscape; margin:2mm 5mm;}
   }
-  @page{size:A4 landscape; margin:3mm 5mm;}
+  @page{size:A4 landscape; margin:2mm 5mm;}
 
   .hd{display:flex; justify-content:space-between; align-items:flex-end; border-bottom:2.5px solid var(--ink); padding-bottom:1mm;}
   .hd h1{font-size:18.5px; font-weight:800;}
@@ -109,7 +109,7 @@
   .scripts .t{font-size:9.4px; font-weight:800; margin-bottom:.5mm;}
   .say{border-left:2.5px solid var(--blue); background:#fff; border-radius:0 1.4mm 1.4mm 0; padding:.8mm 2mm .7mm 2mm; margin-top:.7mm;}
   .say .lb{font-size:7.8px; font-weight:800; color:var(--blue); letter-spacing:.04em;}
-  .say .tx{font-size:8.8px; line-height:1.36; color:var(--ink); margin-top:.2mm;}
+  .say .tx{font-size:8.8px; line-height:1.32; color:var(--ink); margin-top:.2mm;}
   .say.warn{border-left-color:var(--red);}
   .say.warn .lb{color:var(--red);}
   .say.no{border-left-color:var(--amber);}
@@ -155,7 +155,7 @@
     </div>
     <div class="chip verify">
       <div class="t">⚠ 風險、發行商信用與落單核實</div>
-      <div class="b"><b>無抵押優先銀行債券</b>：不是存款、不受存款保障。信用排序：<b>UBS AG 最強</b>（Aa2／標普 A+）＞ <b>Barclays Bank PLC</b>（A1／A+）≈ HSBC（A2／A+，實體待 desk 確認）；CDS（9 月）：UBS 約 41 ＜ Barclays 約 47 點。</div>
+      <div class="b"><b>無抵押優先銀行債券</b>：不是存款、不受存款保障。信用排序：<b>UBS AG 最強</b>（Aa2／標普 A+）＞ <b>Barclays Bank PLC</b>（A1／A+）≈ HSBC（A2／A+，實體待 desk 確認）。</div>
       <ol>
         <li><b>發行商實體</b>必須是 Barclays <b>Bank PLC</b>；控股公司 Barclays PLC 只有 Baa1，低四級——核對條款文件。</li>
         <li>✅ <b>已確認</b>利息累計款——本板數字以此計算。</li>
@@ -163,7 +163,7 @@
     </div>
   </div>
 
-  <div class="slab">② 全報價判決表——2026-11-19 當日報價逐行判決<span class="rule"></span><span class="hint">綠＝主推　黃＝按客路可做；兩批分客路（利息行先／Issuer 行先），批內按年期；收回機會＝票息對該行集資成本梯（見③）；行方費用為每張全數（不作年化）</span></div>
+  <div class="slab">② 全報價判決表——2026-11-19 當日報價逐行判決<span class="rule"></span><span class="hint">綠＝主推　黃＝按客路可做；兩批分客路，批內按年期；收回機會＝票息對成本梯＋HSB 實證（見③）；行方費用每張全數不年化</span></div>
   <div class="menu">
     <table>
       <tr>
@@ -185,8 +185,8 @@
         <td class="who"><b>Barclays Bank PLC</b><span class="r">同上</span></td>
         <td class="cpn">6.00%</td><td class="px">97.89</td>
         <td class="ret"><b>約 5.8%</b></td><td class="ret">約 8.3%</td><td class="fee">2.11</td>
-        <td class="call m"><b>中</b><span>45–60%</span></td>
-        <td class="verdict"><span class="g">✅ 滾動版：</span>預期息率向上、或不介意約一年被收回後續接新一批的客用——收回即袋 8.3% 離場。客要求折讓或比價時，改開 5.50@96.19：客數一樣（約 5.8）、行方食 3.81 反多 1.70。</td>
+        <td class="call m"><b>中</b><span>首窗中·四窗中高</span></td>
+        <td class="verdict"><span class="g">✅ 滾動版：</span>預期息率向上、或不介意約一年被收回後續接新一批的客用——收回即袋 8.3% 離場。HSB 實證：首窗屬中、四窗整體中高——隨時第 2/3 窗先收回。客要求折讓或比價時，改開 5.50@96.19：客數一樣（約 5.8）、行方食 3.81 反多 1.70。</td>
       </tr>
       <tr class="a">
         <td><b>3Y</b></td>
@@ -201,8 +201,8 @@
         <td class="who"><b>Barclays Bank PLC</b><span class="r">穆迪 A1／標普 A+</span></td>
         <td class="cpn">4.39%</td><td class="px">98.00</td>
         <td class="ret"><b>約 5.4%</b></td><td class="ret">約 6.5%</td><td class="fee">2.00</td>
-        <td class="call l"><b>低</b><span>要息跌</span></td>
-        <td class="verdict"><span class="a">⚠ 短試或中期有流動性需要才做：</span>票息靠折讓拉高至客數 5.4 厘，較 5 年期少約 0.4 厘——不主動建議。</td>
+        <td class="call l"><b>低</b><span>單窗</span></td>
+        <td class="verdict"><span class="a">⚠ 短試或中期有流動性需要才做：</span>折讓拉高客數至 5.4 厘，少 5 年期約 0.4 厘——不主動建議。</td>
       </tr>
       <tr class="bh"><td colspan="9">批二｜Issuer 行先——客指定 UBS／重發行商實力，收益讓位（UBS AG 穆迪 Aa2／標普 A+ 三行最強｜集資成本梯：2Y 4.0／3Y 4.6／5Y 5.5）</td></tr>
       <tr class="g">
@@ -211,7 +211,7 @@
         <td class="cpn">4.35%</td><td class="px">95.00</td>
         <td class="ret"><b>約 5.1%</b></td><td class="ret">約 9.8%</td><td class="fee">5.00</td>
         <td class="call l"><b>極低</b><span>鎖足五年</span></td>
-        <td class="verdict"><span class="g">✅ 穩信版：</span>重發行商實力／<b>NGO、慈善、信託等保守資金必選</b>，單一佔比宜控制。票息低過自身成本約 1.2 厘，無收回誘因、鎖足五年單一結局。想收回續接→改開 5.281@98（食 2.00）；5.50@98.64 僅食 1.36 勿主動開。</td>
+        <td class="verdict"><span class="g">✅ 穩信版：</span>重發行商實力／<b>NGO、慈善、信託等保守資金必選</b>，單一佔比宜控制。票息低過自身成本約 1.2 厘，無收回誘因、鎖足五年單一結局。想收回續接→改開 5.281@98（食 2.00、四窗高）；5.50@98.64 僅食 1.36 勿主動開。</td>
       </tr>
       <tr class="a">
         <td><b>3Y</b></td>
@@ -226,7 +226,7 @@
         <td class="who"><b>UBS AG</b><span class="r">穆迪 Aa2／標普 A+</span></td>
         <td class="cpn">4.02%</td><td class="px">98.00</td>
         <td class="ret"><b>約 5.0%</b></td><td class="ret">約 6.1%</td><td class="fee">2.00</td>
-        <td class="call l"><b>低</b><span>要息跌</span></td>
+        <td class="call l"><b>低</b><span>單窗</span></td>
         <td class="verdict"><span class="a">⚠ 重實力＋2 年短試的客用：</span>利息行先的 2 年期照揀批一 Barclays。</td>
       </tr>
     </table>
@@ -237,14 +237,15 @@
     <div class="box scn">
       <div class="t"><span class="ic">情境</span>發行商集資成本 × 客戶得益</div>
       <ul>
-        <li><b>兩行集資成本梯</b>（＝當日新造票息梯，11-19）：Barclays 2 年約 4.4／3 年約 4.8–5.1／5 年約 6.0；UBS 2 年約 4.0／3 年約 4.6／5 年約 5.5——UBS 全線平約 0.25–0.5 厘，與評級序相符。</li>
-        <li><b>收回判斷基準＝發行商自身集資成本相對該張票息</b>（非單看市場息口方向）；同一發行商，票息就是收回觸發線——兩行鎖定版票息低過自身成本約 1 厘以上，無誘因收回、鎖足；滾動版貼住成本，要成本回落才收回（機會中等）。同為 Barclays 5Y 收回機會不同，正是觸發線不同，非信用不同。</li>
-        <li><b>成本上升</b>：滾動版收回誘因下降，大概率持有五年收 5.8 厘；<b>成本下降</b>（減息或息差收窄）：滾動版被收回、以更平價再融資——客戶約一年袋約 <b>8.3%</b> 離場，即時續接新一批（滾動收取）；鎖定版兩種情境均不受影響。</li>
+        <li><b>兩行集資成本梯</b>（＝當日新造票息梯，11-19）：Barclays 2 年約 4.4／3 年約 4.8–5.1／5 年約 6.0；UBS 2 年約 4.0／3 年約 4.6／5 年約 5.5——UBS 全線平約 0.25–0.5 厘。</li>
+        <li><b>收回判斷基準＝發行商自身集資成本相對該張票息</b>；同一發行商，票息就是收回觸發線——兩行鎖定版票息低過自身成本約 1 厘以上，無誘因收回、鎖足；滾動版貼住成本，要成本回落才收回（機會中等）。同為 Barclays 5Y 收回機會不同，正是觸發線不同，非信用不同。</li>
+        <li><b>成本上升</b>：滾動版收回誘因降，大概率坐足五年收 5.8 厘；<b>成本下降</b>（減息或息差收窄）：滾動版被收回、客約一年袋 <b>8.3%</b> 即時續接；鎖定版兩種情境不受影響。</li>
+        <li><b>收回實證（HSB 11-20）＝OAS 錯位＋發行商行為＋窗數</b>：Barclays OAS 106.5bp（高年均 28bp）壓抑 Nov27 首窗、歷史 86% 平價；UBS 116.4bp（CS 溢價）95% 平價最紀律、5Y 四窗高；HSBC 93.5bp MREL 機械收回、5Y 近必然——<b>現無報價，想要必定早收問 desk</b>；2Y 單窗最 binary。</li>
       </ul>
     </div>
     <div class="box suit">
       <div class="t"><span class="ic">燈號</span>哪些客戶適合（suitability）</div>
-      <div class="light g"><div class="dot">✓</div><div class="tx"><b>綠燈——適合：</b>以定息收入為目標；該筆資金<b>五年內沒有動用計劃</b>；理解並接受發行商信用風險；明白滾動版約一年後可能被收回（鎖定版不受影響），並同意屆時續接新一批。</div></div>
+      <div class="light g"><div class="dot">✓</div><div class="tx"><b>綠燈——適合：</b>以定息收入為目標；資金<b>五年內不動用</b>；理解並接受發行商信用風險；明白滾動版約一年後可能被收回（鎖定版不受影響）並屆時續接。</div></div>
       <div class="light a"><div class="dot">！</div><div class="tx"><b>黃燈——按客路調整：</b><b>NGO／保守資金、客戶指定發行商或重發行商實力→批二 UBS 照表揀</b>，單一佔比宜控制；純看收益的流動性客→批一 3 年期；想短試→批一 2 年期。</div></div>
       <div class="light g"><div class="dot">¥</div><div class="tx"><b>人民幣資金客——首推本產品：</b>客戶要求高息＋硬貨幣：以 <b>MXI 將人民幣轉為美元</b>後認購批一主力鎖定版 5.00@94.50（想要滾動續接改用 6.00@97.89）。<b>必須披露</b>：本產品非保本存款（發行商信用風險）；到期或收回後兌回人民幣的匯率風險由客戶承擔。</div></div>
       <div class="light r"><div class="dot">✕</div><div class="tx"><b>紅燈——不適合：</b>五年內有機會動用的資金；客戶明言<b>完全不接受</b>無抵押銀行債券或任何本金風險。<span class="alt">替代方案：定期存款／短期政府債券／貨幣基金。</span></div></div>
