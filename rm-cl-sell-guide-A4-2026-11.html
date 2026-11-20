@@ -18,8 +18,8 @@
   }
   .sheet{
     width:297mm; min-height:200mm; margin:6mm auto; background:var(--surface);
-    padding:1.2mm 6mm .7mm; box-shadow:0 2px 14px rgba(0,0,0,.10);
-    display:flex; flex-direction:column; gap:1mm;
+    padding:1mm 6mm .5mm; box-shadow:0 2px 14px rgba(0,0,0,.10);
+    display:flex; flex-direction:column; gap:.8mm;
   }
   @media print{
     body{background:#fff;}
@@ -29,7 +29,7 @@
   @page{size:A4 landscape; margin:1.5mm 5mm;}
 
   /* header */
-  .hd{display:flex; justify-content:space-between; align-items:flex-end; border-bottom:2.5px solid var(--ink); padding-bottom:.9mm;}
+  .hd{display:flex; justify-content:space-between; align-items:flex-end; border-bottom:2.5px solid var(--ink); padding-bottom:.7mm;}
   .hd h1{font-size:15px; letter-spacing:.01em;}
   .hd h1 .thin{color:var(--ink2); font-weight:600; font-size:12.5px;}
   .hd .sub{font-size:10px; color:var(--ink2); margin-top:.6mm;}
@@ -38,9 +38,9 @@
   .hd .asof b{color:var(--red); font-size:9px;}
 
   /* main split */
-  .main{display:grid; grid-template-columns:1fr 1fr; gap:2.2mm; flex:1;}
+  .main{display:grid; grid-template-columns:1fr 1fr; gap:1.8mm; flex:1;}
   .half{border:1px solid var(--line); border-top:1.6mm solid var(--green); border-radius:2.5mm; background:#fff;
-    padding:1.3mm 3mm .9mm; display:flex; flex-direction:column; gap:1mm; justify-content:space-between;}
+    padding:1.1mm 3mm .7mm; display:flex; flex-direction:column; gap:.8mm; justify-content:space-between;}
   .half.r{border-top-color:var(--amber);}
   .chip{display:flex; align-items:center; gap:2mm;}
   .chip .tag{background:var(--green); color:#fff; font-size:8.4px; font-weight:800; border-radius:1.2mm; padding:.6mm 2.2mm; letter-spacing:.05em;}
@@ -50,7 +50,7 @@
   .hh small{font-size:9px; color:var(--ink3); font-weight:600;}
 
   /* 現金流圖（零息制一圖講晒） */
-  .cf{display:flex; align-items:stretch; gap:1.6mm; background:var(--bg); border:1px solid var(--line); border-radius:2mm; padding:1.2mm 2.2mm;}
+  .cf{display:flex; align-items:stretch; gap:1.6mm; background:var(--bg); border:1px solid var(--line); border-radius:2mm; padding:.9mm 2.2mm;}
   .cf .cn{flex:none; border-radius:1.6mm; padding:1mm 2.6mm; display:flex; flex-direction:column; justify-content:center; min-width:26mm;}
   .cf .cn small{font-size:7.8px; font-weight:700; opacity:.85;}
   .cf .cn b{font-size:16px; font-weight:900; line-height:1.15;}
@@ -73,7 +73,7 @@
   /* bar 對比圖 */
   .bars{}
   .bars .bt{font-size:9px; font-weight:800; color:var(--ink2); margin-bottom:.4mm; line-height:1.3;}
-  .brow{display:flex; align-items:center; gap:2mm; margin-top:.6mm;}
+  .brow{display:flex; align-items:center; gap:2mm; margin-top:.5mm;}
   .blab{flex:none; width:28mm; font-size:8.2px; color:var(--ink2); text-align:right; line-height:1.18;}
   .btrack{flex:1; height:5mm; background:#eef1f6; border-radius:1.2mm; position:relative; overflow:hidden;}
   .bfill{height:100%; border-radius:1.2mm; display:flex; align-items:center; justify-content:flex-end; padding-right:2mm; color:#fff; font-size:8.8px; font-weight:800;}
@@ -83,13 +83,13 @@
   .bcap .src{display:block; margin-top:.4mm; padding-top:.4mm; border-top:1px dashed var(--line); font-size:7.8px; color:var(--ink3); line-height:1.3;}
   .bars .sw{display:inline-block; width:2.8mm; height:2.2mm; border-radius:.6mm; vertical-align:-.25mm; margin:0 .8mm 0 .6mm;}
   .bars .sw.dark{background:#1a2f6b;} .bars .sw.green{background:#15803d;}
-  .bgrid{display:grid; grid-template-columns:1fr 1fr; gap:1mm 2.2mm; margin-top:.9mm;}
+  .bgrid{display:grid; grid-template-columns:1fr 1fr; gap:.8mm 2.2mm; margin-top:.7mm;}
   .bcell .bh{font-size:8.2px; font-weight:800; color:var(--ink2); display:flex; align-items:center; justify-content:space-between;}
   .bcell .bh .tag{font-size:7.4px; font-weight:700; color:var(--amber); background:#fdf6ee; border:1px solid #f0d2b8; border-radius:1mm; padding:.05mm 1.3mm;}
   .bcell .bfill{height:3.2mm; border-radius:.9mm; font-size:7.5px; padding-right:1.6mm; margin-top:.5mm;}
 
   /* 結論 banner */
-  .concl{border-radius:2mm; padding:1mm 2.6mm; font-size:11.5px; font-weight:900; display:flex; align-items:center; gap:2.4mm;}
+  .concl{border-radius:2mm; padding:.85mm 2.6mm; font-size:11.5px; font-weight:900; display:flex; align-items:center; gap:2.4mm;}
   .concl .clab{flex:none; font-size:8.6px; font-weight:800; color:#fff; background:var(--green); border-radius:1.2mm; padding:.5mm 2mm;}
   .concl.g{background:#ecfdf3; border:1px solid #bfe8cd; color:var(--green);}
   .concl.r{background:#fdf6ee; border:1px solid #f0d2b8; color:#9a3412;}
@@ -98,35 +98,35 @@
 
   /* 保險對決表 */
   .vs2{width:100%; border-collapse:collapse;}
-  .vs2 th{background:var(--navy); color:#fff; font-size:9px; padding:.7mm 1.6mm; font-weight:700; text-align:left;}
-  .vs2 td{border:1px solid var(--line); font-size:9.7px; padding:.7mm 1.6mm; line-height:1.26; background:#fff;}
+  .vs2 th{background:var(--navy); color:#fff; font-size:9px; padding:.55mm 1.6mm; font-weight:700; text-align:left;}
+  .vs2 td{border:1px solid var(--line); font-size:9.7px; padding:.55mm 1.6mm; line-height:1.26; background:#fff;}
   .vs2 td:first-child{background:#f2f5fa; font-weight:700; font-size:9px; width:15mm; color:var(--ink2);}
   .vs2 .win{color:var(--green); font-weight:800;}
   .punch{font-size:11px; font-weight:800; color:var(--green);}
 
   /* 被收回——蝕定賺 表 */
-  .kt{border:1px solid var(--line); border-radius:2mm; background:var(--bg); padding:1.1mm 2.4mm 1mm;}
+  .kt{border:1px solid var(--line); border-radius:2mm; background:var(--bg); padding:.9mm 2.4mm .8mm;}
   .kt .kt-t{font-size:9.6px; font-weight:800; color:var(--ink);}
-  .kt .krow{display:flex; gap:2mm; align-items:flex-start; margin-top:.75mm; font-size:9.3px; line-height:1.32; color:var(--ink2);}
+  .kt .krow{display:flex; gap:2mm; align-items:flex-start; margin-top:.55mm; font-size:9.3px; line-height:1.32; color:var(--ink2);}
   .kt .krow .ic{flex:none; width:4.2mm; height:4.2mm; border-radius:50%; color:#fff; font-size:9px; font-weight:900; display:flex; align-items:center; justify-content:center; margin-top:.15mm;}
   .kt .krow .ic.g{background:var(--green);} .kt .krow .ic.a{background:var(--amber);}
   .kt .krow b{color:var(--ink);} .kt .krow .num{color:var(--green); font-weight:800;} .kt .krow .rl{color:var(--red); font-weight:800;}
-  .kt .kline{margin-top:.9mm; padding-top:.7mm; border-top:1px dashed var(--line); font-size:8.8px; line-height:1.34; color:var(--ink2);}
+  .kt .kline{margin-top:.7mm; padding-top:.55mm; border-top:1px dashed var(--line); font-size:8.8px; line-height:1.34; color:var(--ink2);}
   .kt .kline .lg{color:var(--green); font-weight:800;} .kt .kline .am{color:var(--amber); font-weight:800;}
   .kt .kline b{color:var(--ink);}
 
   /* 產品列（3/2年並排平權） */
-  .plist{border:1px solid var(--line); border-radius:2mm; background:var(--bg); padding:1.2mm 2.4mm 1mm;}
+  .plist{border:1px solid var(--line); border-radius:2mm; background:var(--bg); padding:1mm 2.4mm .85mm;}
   .plist .pt{font-size:9px; font-weight:800; color:var(--ink2);}
-  .plist .prow{font-size:9.3px; color:var(--ink); margin-top:.7mm; line-height:1.34;}
+  .plist .prow{font-size:9.3px; color:var(--ink); margin-top:.55mm; line-height:1.3;}
   .plist .prow .yr{display:inline-block; background:var(--navy); color:#fff; border-radius:1mm; font-size:8px; font-weight:800; padding:.2mm 1.6mm; margin-right:1.4mm;}
   .plist .prow .seg{display:inline-block; margin-top:.4mm;}
-  .plist .psrc{font-size:7.8px; color:var(--ink3); margin-top:.7mm; padding-top:.5mm; border-top:1px dashed var(--line); line-height:1.35;}
+  .plist .psrc{font-size:7.8px; color:var(--ink3); margin-top:.5mm; padding-top:.4mm; border-top:1px dashed var(--line); line-height:1.35;}
   .plist .psrc b{color:var(--ink2);}
 
   /* 產品卡 */
   .prod{display:grid; grid-template-columns:1fr 1fr; gap:2mm;}
-  .pc{border:1px solid var(--line); border-radius:2mm; background:var(--bg); padding:1.3mm 2.4mm 1.1mm; display:flex; flex-direction:column; gap:.7mm;}
+  .pc{border:1px solid var(--line); border-radius:2mm; background:var(--bg); padding:1.1mm 2.4mm .9mm; display:flex; flex-direction:column; gap:.5mm;}
   .pc .pt{font-size:9px; font-weight:800; color:var(--ink2);}
   .pc .px{font-size:15px; font-weight:900; line-height:1.1;}
   .pc .px small{font-size:8.8px; color:var(--ink3); font-weight:600; margin-left:1mm;}
@@ -138,17 +138,19 @@
   .pc3 .fee{font-size:7.8px; padding:.2mm 1.2mm;}
 
   /* 人民幣 MXI 組合 */
-  .mxi{border:1px solid #c7d6f5; background:#f2f6ff; border-radius:2mm; padding:.8mm 2.4mm;}
+  .mxi{border:1px solid #c7d6f5; background:#f2f6ff; border-radius:2mm; padding:.7mm 2.4mm;}
   .mxi .mt{font-size:8.8px; font-weight:800; color:var(--blue); display:inline;}
   .mxi .mb{font-size:8.7px; color:var(--ink2); line-height:1.3; display:inline;}
   .mxi .mb b{color:var(--ink);}
 
   /* 話術 */
-  .say{border-left:2.5px solid var(--blue); background:var(--bg); border-radius:0 1.8mm 1.8mm 0; padding:.9mm 2.4mm;}
+  .say{border-left:2.5px solid var(--blue); background:var(--bg); border-radius:0 1.8mm 1.8mm 0; padding:.75mm 2.4mm;}
   .say .st{font-size:8.4px; font-weight:800; color:var(--blue); letter-spacing:.05em;}
   .say .tx{font-size:9.4px; line-height:1.3; color:var(--ink); margin-top:.3mm;}
+  .say .src{display:block; margin-top:.5mm; padding-top:.4mm; border-top:1px dashed var(--line); font-size:7.6px; color:var(--ink3); line-height:1.32;}
+  .say .src b{color:var(--ink2);}
 
-  .warn{border:1px solid #f0d2b8; background:#fdf6ee; border-radius:2mm; padding:.8mm 2.4mm; font-size:9.6px; font-weight:700; color:#92400e;}
+  .warn{border:1px solid #f0d2b8; background:#fdf6ee; border-radius:2mm; padding:.7mm 2.4mm; font-size:9.6px; font-weight:700; color:#92400e;}
   .route{font-size:8.8px; color:var(--ink3); line-height:1.4;}
   .route b{color:var(--ink2);}
 
@@ -183,15 +185,15 @@
         <div class="cn win"><small>5 年後到期</small><b>125</b><i>連增值一筆過收回</i></div>
         <div class="cr">
           <span class="g1">五年總回報 <b>+32%</b></span>
-          <span class="g2">年化約 <b>5.8 厘</b> <i>利疊利口徑</i></span>
+          <span class="g2">年化約 <b>5.8 厘</b> <i>IRR</i></span>
         </div>
       </div>
-      <div class="cfsrc">產品文件叫「零息直線增長」制（sample TS 證實）：<b>提早收回都按增長表價（含息）支付</b>——例 Barclays 3 年：首年收回 104.69／兩年 109.38／到期 114.07。5.8 厘＝32% 用利疊利折算（94.50×1.058⁵≈125，同一筆錢）。</div>
+      <div class="cfsrc">sample TS 原文——<b>Zero Coupon</b>；Barclays："linear rate of return is 4.69 per cent per annum"；<b>提早收回亦按增長表價（含息）支付</b>——HSBC："Redemption Amount (Call Option) = Issue Price plus the accreted value"；例 B 3 年 call schedule 104.69／109.38／到期 114.07。IRR＝(125÷94.50)^(1/5)−1≈5.8%＝五年 +32% 同一筆錢。</div>
 
       <table class="vs2">
         <tr><th style="width:15mm"></th><th>保險（5 年回本款）</th><th>CL 鎖定版</th></tr>
         <tr><td>年期</td><td>5 年</td><td>5 年</td></tr>
-        <tr><td>回報</td><td>第 5 年啱啱返到本</td><td class="win">約 5.8 厘/年 · 五年總回報約 32%</td></tr>
+        <tr><td>回報</td><td>第 5 年啱啱返到本</td><td class="win">約 5.8 厘/年（IRR）· 五年總回報約 32%</td></tr>
         <tr><td>中途退錢</td><td>回本前退保罰錢</td><td>無提早贖回權——市價回購，可能低於買入價</td></tr>
       </table>
       <div class="punch">要保障 → 保險｜要息＋五年真回報 → CL</div>
@@ -200,13 +202,13 @@
         <div class="pc">
           <div class="pt">🥇 主力 · Barclays Bank PLC（5 年）</div>
           <div class="px">5.00%<small>息率</small></div>
-          <div class="pk">客收約 5.8 厘/年</div>
+          <div class="pk">客收約 5.8 厘/年（IRR）</div>
           <div class="pf"><span>94.50 買入 · 到期連累計息收回 125</span><span class="fee">🔒 fee 5.50</span></div>
         </div>
         <div class="pc">
           <div class="pt">🥈 穩信版 · UBS（5 年 · Aa2 最強發行商）</div>
           <div class="px">4.35%<small>息率</small></div>
-          <div class="pk">客收約 5.1 厘/年</div>
+          <div class="pk">客收約 5.1 厘/年（IRR）</div>
           <div class="pf"><span>95 買入 · 到期連累計息收回 121.75</span><span class="fee">🔒 fee 5.00</span></div>
         </div>
       </div>
@@ -217,10 +219,10 @@
         <div class="brow"><div class="blab">Barclays 5年主力息率</div><div class="btrack"><div class="bfill green" style="width:83%">5.00%</div></div></div>
         <div class="brow"><div class="blab">UBS 5年借新錢成本</div><div class="btrack"><div class="bfill dark" style="width:92%">5.5%</div></div></div>
         <div class="brow"><div class="blab">UBS 5年穩信息率</div><div class="btrack"><div class="bfill green" style="width:72%">4.35%</div></div></div>
-        <div class="bcap">兩張息率都比自身借貸成本低約 1 厘——<span class="gl">收回＝蝕本，發行商不會這樣做</span>。HSB 十年實證：歷年收回全部跟經濟誘因行；UBS 有權收回的票 <b>95% 照收</b>。<span class="src">借貸成本隨年期不同（新造報價梯）——B：2年約4.4／3年約4.8–5.1／5年約6.0；UBS：4.0／4.6／5.5（HSBC 問 desk）。</span></div>
+        <div class="bcap"><b>今日</b>比對：兩張息率都比自身借貸成本低約 1 厘——今日收回＝蝕本。<span class="rl">日後減息／信貸溢價收窄，條件可以倒轉</span>——屆時按增長表收回，<b>客照收含息</b>（見右半表）。HSB 十年實證收回跟誘因；UBS 有權收回的票 <b>95% 照收</b>。<span class="src">借貸成本隨年期不同（新造報價梯）——B：2年約4.4／3年約4.8–5.1／5年約6.0；UBS：4.0／4.6／5.5（HSBC 問 desk）。</span></div>
       </div>
 
-      <div class="concl g"><span class="clab">結論</span>提早收回機會極低<small>——不是保證，但經濟誘因上無人會做蝕本生意</small></div>
+      <div class="concl g"><span class="clab">結論</span>提早收回機會極低<small>——今日無人做蝕本生意；日後息跌會照收（收返含息）</small></div>
 
       <div class="mxi"><span class="mt">人民幣資金客——MXI ＋ CL 組合：</span><span class="mb">先經 <b>MXI</b> 轉美元再認購，<b>同一筆資金同時滿足高息＋持有多一隻強貨幣</b>。須披露：非存款非保本；兌回人民幣匯率風險客戶承擔。</span></div>
 
@@ -232,6 +234,7 @@
       <div class="say">
         <div class="st">話術 · 客問「中途想沽出點算」</div>
         <div class="tx">「講清楚：呢張冇提早贖回權——中途想走，我幫你問銀行回購，唔保證有得做，價由市價定、未必好睇。所以呢筆錢要真係五年唔會用；唔肯定就買右邊短年期。」</div>
+        <div class="src"><b>三間 TS 原文</b>——UBS："No secondary market…quote on request…might pay/charge"｜Barclays："will endeavour to provide daily indicative bid prices…does not amount to a commitment"｜HSBC："may, but shall not be required to, make a market"</div>
       </div>
 
       <div class="route"><b>不建議銷售：</b>完全不接受本金風險 → 定期存款／短期政府債券；想要短年期流動性 → 轉右半。</div>
@@ -258,24 +261,24 @@
       <div class="kt">
         <div class="kt-t">發行商提早收回——客戶蝕定賺？<b>收得早，年化仲高</b></div>
         <div class="krow"><div class="ic g">✓</div><div><b>即日袋埋累計息</b>——例 Barclays 3 年首年收回：<b>94.50 → 104.69</b>（<span class="num">一年 +10.8%</span>）</div></div>
-        <div class="krow"><div class="ic g">✓</div><div><b>持有期年化仲高</b>——愈早收愈高（5 年梯 4.96% → 4.53%，UBS TS 官方 Accrual Yield 欄）</div></div>
+        <div class="krow"><div class="ic g">✓</div><div><b>持有期年化仲高</b>——直線增長<b>冇複利</b>（利疊利）：第 1 年被 call <b>4.96%／年</b> vs 坐到到期 <b>4.53%／年</b>（UBS TS Accrual Yield 欄；Barclays 同數學 4.69%→4.58%→4.49%）</div></div>
         <div class="krow"><div class="ic a">⚠</div><div><b>唯一代價</b>：佢收回＝市場息已跌——收返的錢再買，<span class="rl">未必有咁高息</span></div></div>
         <div class="kline"><span class="lg">鎖息客（左半）唔想佢收</span> → 揀「佢自己借錢貴、唔想收」嘅 issuer（＝左半極低）｜<span class="am">流動性客（右半）唔怕收</span> → 袋息，幫客揀當時最靚嗰張<b>續購</b></div>
       </div>
 
       <div class="plist">
         <div class="pt">3／2 年期並排——年期由客戶的資金規劃決定（客收差異細，不以行方 fee 排序）</div>
-        <div class="prow"><span class="yr">3 年期</span><span class="seg">Barclays Bank PLC <b>4.80%</b> @97.30 → 客約 <b>5.5 厘/年</b>&nbsp;<span class="fee">🔒 2.70</span></span>　<span class="seg">UBS <b>4.56%</b> @98 → 客約 <b>5.2 厘/年</b>&nbsp;<span class="fee">🔒 2.00</span></span></div>
-        <div class="prow"><span class="yr">2 年期</span><span class="seg">Barclays Bank PLC <b>4.39%</b> @98 → 客約 <b>5.4 厘/年</b>&nbsp;<span class="fee">🔒 2.00</span></span>　<span class="seg">UBS <b>4.02%</b> @98 → 客約 <b>5.0 厘/年</b>&nbsp;<span class="fee">🔒 2.00</span></span></div>
+        <div class="prow"><span class="yr">3 年期</span><span class="seg">Barclays Bank PLC <b>4.80%</b> @97.30 → 客約 <b>5.5 厘/年</b>（IRR）&nbsp;<span class="fee">🔒 2.70</span></span>　<span class="seg">UBS <b>4.56%</b> @98 → 客約 <b>5.2 厘/年</b>（IRR）&nbsp;<span class="fee">🔒 2.00</span></span></div>
+        <div class="prow"><span class="yr">2 年期</span><span class="seg">Barclays Bank PLC <b>4.39%</b> @98 → 客約 <b>5.4 厘/年</b>（IRR）&nbsp;<span class="fee">🔒 2.00</span></span>　<span class="seg">UBS <b>4.02%</b> @98 → 客約 <b>5.0 厘/年</b>（IRR）&nbsp;<span class="fee">🔒 2.00</span></span></div>
         <div class="psrc">客收年化＝折讓買入增值＋息率直線累計，一筆過收回（機制見左半）。兩個年期客收僅差 <b>0.1–0.2 厘</b>——由客戶何時要用錢決定，切勿為行方 fee 引導。<b>回購友善度（sample TS）</b>：Barclays 盡力<b>每日</b>提供參考買入價｜UBS 應要求報價、可收費｜三間均無做市義務——流動性客揀 B 順理。</div>
       </div>
-      <div class="pc3">另有 <b>5 年期滾動版</b> Barclays 6.00% @97.89（客約 5.8 厘/年，<span class="fee">🔒 2.11</span>，首個可收回日 2027-11）——息最高，但屬 5 年期票據：只建議給追求最高息、接受被收回後續購的客戶。</div>
+      <div class="pc3">另有 <b>5 年期滾動版</b> Barclays 6.00% @97.89（客約 5.8 厘/年（IRR），<span class="fee">🔒 2.11</span>，首個可收回日 2027-11）——息最高，但屬 5 年期票據：只建議給追求最高息、接受被收回後續購的客戶。</div>
 
       <div class="warn">⚠ 會被提早收回＝並非保險替代品——此客群不應以「保本」作賣點。</div>
 
       <div class="say">
         <div class="st">話術 · 年期</div>
-        <div class="tx">「客想鎖幾耐，睇佢資金幾時要用：兩年三年都得。兩年期息 4 厘 4、三年期息 4 厘 8（都係 Barclays 高啲），客收約 5 厘 4／5 厘 5。就算行方提早收回，客照袋埋累計息——收得早、年化仲高；我幫佢揀當時最靚嗰張續住食。」</div>
+        <div class="tx">「客想鎖幾耐，睇佢資金幾時要用：兩年三年都得。兩年期息 4 厘 4、三年期息 4 厘 8（都係 Barclays 高啲），客收約 5 厘 4／5 厘 5（IRR 口徑）。就算行方提早收回，客照袋埋累計息——收得早、年化仲高；我幫佢揀當時最靚嗰張續住食。」</div>
       </div>
 
       <div class="route"><b>不建議銷售：</b>想鎖足五年、中途不需取回資金 → 轉左半鎖定張。</div>
