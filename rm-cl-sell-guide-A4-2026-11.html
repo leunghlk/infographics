@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Callable Linear 一版兩半 RM內部 2026-11</title>
+<title>Callable Linear 銷售版 一圖兩半 RM內部 2026-11</title>
 <style>
   *{margin:0;padding:0;box-sizing:border-box;}
   :root{
@@ -18,7 +18,7 @@
   }
   .sheet{
     width:297mm; min-height:209mm; margin:6mm auto; background:var(--surface);
-    padding:2mm 6mm 1.5mm; box-shadow:0 2px 14px rgba(0,0,0,.10);
+    padding:1.6mm 6mm 1.2mm; box-shadow:0 2px 14px rgba(0,0,0,.10);
     display:flex; flex-direction:column; gap:1.4mm;
   }
   @media print{
@@ -40,7 +40,7 @@
   /* main split */
   .main{display:grid; grid-template-columns:1fr 1fr; gap:2.5mm; flex:1;}
   .half{border:1px solid var(--line); border-top:1.6mm solid var(--green); border-radius:2.5mm; background:#fff;
-    padding:1.8mm 3mm 1.4mm; display:flex; flex-direction:column; gap:1.5mm; justify-content:space-between;}
+    padding:1.6mm 3mm 1.2mm; display:flex; flex-direction:column; gap:1.3mm; justify-content:space-between;}
   .half.r{border-top-color:var(--amber);}
   .chip{display:flex; align-items:center; gap:2mm;}
   .chip .tag{background:var(--green); color:#fff; font-size:8.4px; font-weight:800; border-radius:1.2mm; padding:.6mm 2.2mm; letter-spacing:.05em;}
@@ -51,14 +51,14 @@
 
   /* 客問 */
   .ask{display:flex; align-items:center; gap:3mm; background:var(--bg); border:1px solid var(--line); border-radius:2mm; padding:1.4mm 2.8mm;}
-  .ask .q{font-size:10.5px; color:var(--ink2); line-height:1.35;}
+  .ask .q{font-size:10.2px; color:var(--ink2); line-height:1.3;}
   .ask .q b{color:var(--ink);}
 
   /* 逐層解釋 step cards */
   .step{border:1px solid var(--line); border-radius:2mm; padding:1.1mm 2.2mm 1mm; background:#fff; display:flex; gap:2.2mm; align-items:flex-start;}
   .step .no{flex:none; width:4.8mm; height:4.8mm; border-radius:50%; background:var(--navy); color:#fff; font-size:9px; font-weight:800; display:flex; align-items:center; justify-content:center; margin-top:.2mm;}
   .half.r .step .no{background:var(--amber);}
-  .step .body{font-size:9.6px; line-height:1.4; color:var(--ink2); flex:1;}
+  .step .body{font-size:9.4px; line-height:1.38; color:var(--ink2); flex:1;}
   .step .body b{color:var(--ink);}
   .step .body .rl{color:var(--red); font-weight:800;} .step .body .gl{color:var(--green); font-weight:800;}
   .step .body .note{display:block; margin-top:1mm; padding-top:1mm; border-top:1px dashed var(--line); font-size:8.8px; color:var(--ink3); line-height:1.4;}
@@ -68,12 +68,13 @@
   .bars{margin-top:1.2mm;}
   .bars .bt{font-size:9px; font-weight:800; color:var(--ink2); margin-bottom:.4mm;}
   .brow{display:flex; align-items:center; gap:2mm; margin-top:.8mm;}
-  .blab{flex:none; width:24mm; font-size:8.6px; color:var(--ink2); text-align:right; line-height:1.2;}
+  .blab{flex:none; width:28mm; font-size:8.2px; color:var(--ink2); text-align:right; line-height:1.18;}
   .btrack{flex:1; height:5.6mm; background:#eef1f6; border-radius:1.2mm; position:relative; overflow:hidden;}
   .bfill{height:100%; border-radius:1.2mm; display:flex; align-items:center; justify-content:flex-end; padding-right:2mm; color:#fff; font-size:8.8px; font-weight:800;}
   .bfill.dark{background:#1a2f6b;} .bfill.green{background:#15803d;} .bfill.amber{background:#d97706;} .bfill.red{background:#dc2626;}
-  .bcap{font-size:8.8px; color:var(--ink2); margin-top:.9mm; line-height:1.34;}
+  .bcap{font-size:8.6px; color:var(--ink2); margin-top:.8mm; line-height:1.32;}
   .bcap b{color:var(--ink);} .bcap .rl{color:var(--red); font-weight:800;} .bcap .gl{color:var(--green); font-weight:800;}
+  .bcap .src{display:block; margin-top:.4mm; padding-top:.4mm; border-top:1px dashed var(--line); font-size:7.8px; color:var(--ink3); line-height:1.3;}
 
   /* 結論 banner */
   .concl{border-radius:2mm; padding:1.2mm 2.6mm; font-size:11.5px; font-weight:900; display:flex; align-items:center; gap:2.4mm;}
@@ -100,18 +101,18 @@
   .pc .pk{font-size:10.2px; font-weight:800; color:var(--green);}
   .pc .pf{display:flex; justify-content:space-between; align-items:center; font-size:8.4px; color:var(--ink2);}
   .fee{color:var(--red); font-weight:800; font-size:8px; border:1px solid #f3c6c6; background:#fdf1f1; border-radius:1mm; padding:.3mm 1.4mm;}
-  .pc3{font-size:8.7px; color:var(--ink2); line-height:1.42;}
+  .pc3{font-size:8.5px; color:var(--ink2); line-height:1.36;}
   .pc3 b{color:var(--ink);}
   .pc3 .fee{font-size:7.8px; padding:.2mm 1.2mm;}
 
   /* 客收 gloss */
-  .gloss{font-size:8.4px; color:var(--ink2); background:var(--bg); border:1px dashed var(--line); border-radius:2mm; padding:.9mm 2.2mm; line-height:1.42;}
+  .gloss{font-size:8.2px; color:var(--ink2); background:var(--bg); border:1px dashed var(--line); border-radius:2mm; padding:.7mm 2.2mm; line-height:1.36;}
   .gloss b{color:var(--ink);}
 
   /* 人民幣 MXI 組合 */
   .mxi{border:1px solid #c7d6f5; background:#f2f6ff; border-radius:2mm; padding:1.1mm 2.4mm;}
   .mxi .mt{font-size:9px; font-weight:800; color:var(--blue);}
-  .mxi .mb{font-size:9.2px; color:var(--ink2); line-height:1.4; margin-top:.4mm;}
+  .mxi .mb{font-size:8.9px; color:var(--ink2); line-height:1.36; margin-top:.4mm;}
   .mxi .mb b{color:var(--ink);}
 
   /* 話術 */
@@ -132,7 +133,7 @@
 
   <div class="hd">
     <div>
-      <h1>Callable Linear 銷售板 <span class="thin">· 一版兩半</span></h1>
+      <h1>Callable Linear 銷售版 <span class="thin">· 一圖兩半</span></h1>
       <div class="sub">開口前先分客戶類型：想鎖足五年 → <span class="gl">左半</span>｜想要流動性 → <span class="am">右半</span></div>
     </div>
     <div class="asof">報價 <b>2026-11-19</b>（Barclays / UBS 實定報價）<br>收回實證 HSB 2026-11-20 ｜ 內部使用 · 勿外傳</div>
@@ -149,7 +150,7 @@
 
       <div class="step">
         <div class="no">1</div>
-        <div class="body">發行商只有一個原因會提早收回：<b>市場借貸成本已經低過這張票的票息</b>——收回你的票，改用更平的利息重新借入。反過來說：<b class="gl">如果收回要蝕本，就永遠不會發生。</b></div>
+        <div class="body">發行商只有一個原因會提早收回：<b>它自己借新錢的成本</b>已經低過這張票的票息——收回你的票，改用更平的利息重新借入。（借新錢成本＝市場利率＋該發行商自身的借貸溢價，<b>隨年期不同</b>。）反過來說：<b class="gl">如果收回要蝕本，就永遠不會發生。</b></div>
       </div>
 
       <div class="step">
@@ -157,11 +158,11 @@
         <div class="body">
           <div class="bars">
             <div class="bt">第 2 步：把「你的票息」和「發行商借新錢的成本」並排比對——</div>
-            <div class="brow"><div class="blab">Barclays 借新錢成本</div><div class="btrack"><div class="bfill dark" style="width:100%">6.0%</div></div></div>
-            <div class="brow"><div class="blab">Barclays 主力票息</div><div class="btrack"><div class="bfill green" style="width:83%">5.00%</div></div></div>
-            <div class="brow"><div class="blab">UBS 借新錢成本</div><div class="btrack"><div class="bfill dark" style="width:92%">5.5%</div></div></div>
-            <div class="brow"><div class="blab">UBS 穩信版票息</div><div class="btrack"><div class="bfill green" style="width:72%">4.35%</div></div></div>
-            <div class="bcap">兩張票息都比自身借貸成本低約 1 厘——<span class="gl">收回＝蝕本，發行商不會這樣做</span>。HSB 十年實證：歷年收回全部跟經濟誘因行；UBS 有得收回的票據 <b>95% 按同一規則收回</b>。</div>
+            <div class="brow"><div class="blab">Barclays 5年借新錢成本</div><div class="btrack"><div class="bfill dark" style="width:100%">6.0%</div></div></div>
+            <div class="brow"><div class="blab">Barclays 5年主力票息</div><div class="btrack"><div class="bfill green" style="width:83%">5.00%</div></div></div>
+            <div class="brow"><div class="blab">UBS 5年借新錢成本</div><div class="btrack"><div class="bfill dark" style="width:92%">5.5%</div></div></div>
+            <div class="brow"><div class="blab">UBS 5年穩信票息</div><div class="btrack"><div class="bfill green" style="width:72%">4.35%</div></div></div>
+            <div class="bcap">兩張票息都比自身借貸成本低約 1 厘——<span class="gl">收回＝蝕本，發行商不會這樣做</span>。HSB 十年實證：歷年收回全部跟經濟誘因行；UBS 有得收回的票據 <b>95% 按同一規則收回</b>。<span class="src">借貸成本隨年期不同（發行商新造報價梯）——Barclays：2年約4.4／3年約4.8–5.1／5年約6.0；UBS：2年約4.0／3年約4.6／5年約5.5（HSBC 無新造報價，要問 desk）。左半圖用 5 年期梯，右半圖用 3 年期梯。</span></div>
           </div>
         </div>
       </div>
@@ -200,7 +201,7 @@
 
       <div class="say">
         <div class="st">話術 · 開場</div>
-        <div class="tx">「同你買開嗰啲五年回本保險一樣，都係坐五年——保險第五年啱啱返到本，呢張五年袋約 29% 息。一句講晒：佢係銀行債券唔係存款，有信用風險。」</div>
+        <div class="tx">「同你買開嗰啲五年回本保險一樣，都係坐五年——保險第五年啱啱返到本，呢張 Barclays 五年期袋約 29% 息（年收約 5 厘 8）。一句講晒：佢係銀行債券唔係存款，有信用風險。」</div>
       </div>
 
       <div class="route"><b>不建議銷售：</b>完全不接受本金風險 → 定期存款／短期政府債券；想要短年期流動性 → 轉右半。</div>
@@ -211,22 +212,22 @@
       <div class="chip"><span class="tag">右半 · 流動性客</span><span class="who">短年期（2／3 年）收息——誠實披露：會被提早收回</span></div>
       <div class="hh">短年期收息——息高，但會被收回 <small>適合：想流動性、接受「被收回後再續購」的客戶</small></div>
 
-      <div class="ask"><div class="q">客問：<b>「會唔會提早收返我筆錢？」</b>——這一邊的答案是誠實的：<b>有相當機會</b>。照樣先講道理。</div></div>
+      <div class="ask"><div class="q">客問：<b>「會唔會提早收返我筆錢？」</b>——這一邊的產品：<b>會，機會中至中高</b>。以下同樣先講道理。</div></div>
 
       <div class="step">
         <div class="no">1</div>
-        <div class="body">發行商只有一個原因會提早收回：<b>市場借貸成本已經低過這張票的票息</b>——收回你的票，改用更平的利息重新借入。短年期票據的票息貼近市價，<b class="rl">這個條件是會出現的</b>。</div>
+        <div class="body">發行商只有一個原因會提早收回：<b>它自己借新錢的成本</b>已經低過這張票的票息——收回你的票，改用更平的利息重新借入。短年期票據的票息貼近其借貸成本，<b class="rl">這個條件是會出現的</b>。</div>
       </div>
 
       <div class="step">
         <div class="no">2</div>
         <div class="body">
           <div class="bars">
-            <div class="bt">第 2 步：以主力 3 年期票據為例（Barclays 4.80%）——</div>
-            <div class="brow"><div class="blab">你張票息</div><div class="btrack"><div class="bfill dark" style="width:94%">4.80%</div></div></div>
-            <div class="brow"><div class="blab">現時借新錢成本</div><div class="btrack"><div class="bfill amber" style="width:100%">約 4.8–5.1%（貼住）</div></div></div>
-            <div class="brow"><div class="blab">溢價回落至平均後</div><div class="btrack"><div class="bfill red" style="width:91%">約 4.5–4.8%（跌穿）</div></div></div>
-            <div class="bcap">現時成本貼住票息（未跌穿）；借貸溢價一回落便<span class="rl">跌穿 → 發行商收回</span>，改用更平利息重新借入。</div>
+            <div class="bt">第 2 步：以主力 Barclays 3 年期票據為例——</div>
+            <div class="brow"><div class="blab">Barclays 3年票息</div><div class="btrack"><div class="bfill dark" style="width:94%">4.80%</div></div></div>
+            <div class="brow"><div class="blab">Barclays 3年借新錢成本</div><div class="btrack"><div class="bfill amber" style="width:100%">約 4.8–5.1%（貼住）</div></div></div>
+            <div class="brow"><div class="blab">3年成本溢價回落後</div><div class="btrack"><div class="bfill red" style="width:91%">約 4.5–4.8%（跌穿）</div></div></div>
+            <div class="bcap">現時 3 年期成本貼住票息（未跌穿）；借貸溢價一回落便<span class="rl">跌穿 → 發行商收回</span>。<span class="src">借貸成本隨年期不同——Barclays 5年期約6.0（見左半）、3年期約4.8–5.1、2年期約4.4。</span></div>
           </div>
         </div>
       </div>
@@ -254,13 +255,13 @@
           <div class="pf"><span>折讓價 98 買入 · 到期收回 100</span><span class="fee">🔒 fee 2.00</span></div>
         </div>
       </div>
-      <div class="pc3">客收年化＝票息＋折讓攤分（折讓價買入、到期 100 贖回）。2 年 · Barclays 4.39%（客收約 5.4 厘/年，<span class="fee">🔒 2.00</span>）。另有 <b>5 年期滾動版</b> Barclays 6.00%（客收約 5.8 厘/年，<span class="fee">🔒 2.11</span>，首個可收回日 2027-11）——息最高，但屬 5 年期票據：只建議給追求最高息、並接受被收回後續購的客戶。</div>
+      <div class="pc3">客收年化＝票息＋折讓攤分（折讓價買入、到期 100 贖回）。<b>2 年期</b>：Barclays 4.39%（客約 5.4 厘/年，<span class="fee">🔒 2.00</span>）｜UBS 4.02%（客約 5.0 厘/年，<span class="fee">🔒 2.00</span>）。另有 <b>5 年期滾動版</b> Barclays 6.00%（客收約 5.8 厘/年，<span class="fee">🔒 2.11</span>，首個可收回日 2027-11）——息最高，但屬 5 年期票據：只建議給追求最高息、並接受被收回後續購的客戶。</div>
 
       <div class="warn">⚠ 會被提早收回＝並非保險替代品——此客群不應以「保本」作賣點。</div>
 
       <div class="say">
         <div class="st">話術 · 開場</div>
-        <div class="tx">「呢張三年期息好高。就算行方一年後收回，你嗰日已經袋咗約 7 厘 7，我幫你喺當時市場揀最靚嗰張續住食。」</div>
+        <div class="tx">「呢張 Barclays 三年期，票息年年 4 厘 8，計埋折讓客收約 5 厘 5。就算行方一年後提早收回，你嗰日已經袋咗約 7 厘 7，我幫你喺當時市場揀最靚嗰張續住食。」</div>
       </div>
 
       <div class="route"><b>不建議銷售：</b>想鎖足五年、中途不需取回資金 → 轉左半鎖定張。</div>
