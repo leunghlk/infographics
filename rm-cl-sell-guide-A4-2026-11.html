@@ -3,147 +3,105 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Callable Linear 保險對決 RM內部 2026-11</title>
+<title>Callable Linear 一版兩半 RM內部 2026-11</title>
 <style>
-  :root{
-    --surface:#ffffff; --page:#f2f3f5;
-    --ink:#101114; --ink2:#4d5157; --ink3:#8a8d92;
-    --line:#e3e4e7;
-    --blue:#1f4bb8; --green:#0a6b3d; --red:#b03434; --amber:#9a6700; --teal:#00838f;
-  }
   *{margin:0;padding:0;box-sizing:border-box;}
-  html,body{background:var(--page);}
+  :root{
+    --navy:#1a2f6b; --blue:#2563eb; --green:#15803d; --red:#dc2626; --amber:#d97706;
+    --ink:#1e293b; --ink2:#475569; --ink3:#94a3b8; --line:#d8dee9; --bg:#f6f7fa; --surface:#ffffff;
+  }
+  html,body{background:var(--bg);}
   body{
     font-family:system-ui,-apple-system,"Segoe UI","PingFang TC","Microsoft JhengHei",sans-serif;
-    color:var(--ink); line-height:1.34;
+    color:var(--ink); line-height:1.4;
     -webkit-print-color-adjust:exact; print-color-adjust:exact;
   }
   .sheet{
     width:297mm; min-height:209mm; margin:6mm auto; background:var(--surface);
-    padding:1.5mm 7mm .4mm; box-shadow:0 2px 14px rgba(0,0,0,.10);
-    display:flex; flex-direction:column; gap:.2mm;
+    padding:2.5mm 6mm 2mm; box-shadow:0 2px 14px rgba(0,0,0,.10);
+    display:flex; flex-direction:column; gap:1.6mm;
   }
   @media print{
     body{background:#fff;}
     .sheet{margin:0; box-shadow:none; width:auto; min-height:auto;}
-    @page{size:A4 landscape; margin:1.5mm 5mm;}
   }
   @page{size:A4 landscape; margin:1.5mm 5mm;}
 
-  .hd{display:flex; justify-content:space-between; align-items:flex-end; border-bottom:2.5px solid var(--ink); padding-bottom:.4mm;}
-  .hd h1{font-size:18px; font-weight:800;}
-  .hd h1 .acc{color:var(--blue);}
-  .hd .sub{font-size:9px; color:var(--ink2); margin-top:.5mm;}
-  .hd .asof{font-size:8.4px; color:var(--ink3); text-align:right; line-height:1.45;}
+  /* header */
+  .hd{display:flex; justify-content:space-between; align-items:flex-end; border-bottom:2.5px solid var(--ink); padding-bottom:1.2mm;}
+  .hd h1{font-size:17px; letter-spacing:.01em;}
+  .hd h1 .thin{color:var(--ink2); font-weight:600; font-size:13px;}
+  .hd .sub{font-size:10.5px; color:var(--ink2); margin-top:.7mm;}
+  .hd .sub .gl{color:var(--green); font-weight:800;} .hd .sub .am{color:var(--amber); font-weight:800;}
+  .hd .asof{text-align:right; font-size:8px; color:var(--ink3); line-height:1.5;}
   .hd .asof b{color:var(--red); font-size:9px;}
 
-  .slab{font-size:8.6px; font-weight:800; color:var(--ink2); letter-spacing:.06em;
-    display:flex; align-items:center; gap:2mm;}
-  .slab .rule{flex:1; height:1px; background:var(--line);}
-  .slab .hint{font-weight:400; color:var(--ink3); letter-spacing:0; font-size:7.8px;}
+  /* main split */
+  .main{display:grid; grid-template-columns:1fr 1fr; gap:3mm; flex:1;}
+  .half{border:1px solid var(--line); border-top:1.6mm solid var(--green); border-radius:2.5mm; background:#fff;
+    padding:2.6mm 3mm 2.4mm; display:flex; flex-direction:column; gap:2.6mm; justify-content:space-between;}
+  .half.r{border-top-color:var(--amber);}
+  .chip{display:flex; align-items:center; gap:2mm;}
+  .chip .tag{background:var(--green); color:#fff; font-size:8.4px; font-weight:800; border-radius:1.2mm; padding:.6mm 2.2mm; letter-spacing:.05em;}
+  .half.r .chip .tag{background:var(--amber);}
+  .chip .who{font-size:10.5px; color:var(--ink2); font-weight:600;}
+  .hh{font-size:17px; font-weight:900; letter-spacing:.01em; display:flex; align-items:baseline; gap:2.5mm;}
+  .hh small{font-size:9.5px; color:var(--ink3); font-weight:600;}
 
-  .pstrip{border:1px solid var(--line); border-radius:2mm; background:color-mix(in srgb,var(--amber) 4%,#fff);
-    padding:.6mm 2.4mm; font-size:7.8px; color:var(--ink2); line-height:1.32;}
-  .pstrip b{color:var(--ink);}
+  /* 客問 + 大字答 */
+  .ask{display:flex; align-items:center; gap:3mm; background:var(--bg); border:1px solid var(--line); border-radius:2mm; padding:2.2mm 2.8mm;}
+  .ask .q{font-size:11px; color:var(--ink2); flex:1; line-height:1.35;}
+  .ans{font-size:27px; font-weight:900; line-height:1; letter-spacing:.02em;}
+  .ans.g{color:var(--green);} .ans.r{color:var(--red);}
+  .why{font-size:11px; color:var(--ink2); line-height:1.4;}
+  .why b{color:var(--ink);} .why .big{color:var(--red); font-weight:900;}
 
-  /* ① 見客三問 */
-  .qa{display:grid; grid-template-columns:1.02fr 1.24fr 1fr; gap:1.4mm; margin-top:.35mm;}
-  .qc{border:1px solid var(--line); border-top:1.2mm solid var(--blue); border-radius:2mm; background:#fff; padding:.6mm 2mm .6mm;}
-  .qc .q{font-size:10.2px; font-weight:800; color:var(--blue); margin-bottom:.4mm;}
-  .qc .a{font-size:8.3px; line-height:1.34; color:var(--ink2);}
-  .qc .a b{color:var(--ink);}
-  .qc .ev{margin-top:.5mm; font-size:7.9px; color:var(--ink3); border-top:1px dashed var(--line); padding-top:.4mm; line-height:1.28;}
-  .vs{width:100%; border-collapse:collapse; margin:.4mm 0 .2mm;}
-  .vs th{background:#1a2f6b; color:#fff; font-size:8px; padding:.6mm 1mm; font-weight:700;}
-  .vs td{border:1px solid var(--line); font-size:8.2px; padding:.55mm 1.2mm; line-height:1.28;}
-  .vs td:first-child{background:#f4f6fb; font-weight:700; width:12mm;}
-  .punch{margin-top:.35mm; font-size:8.5px; font-weight:800; color:var(--green);}
+  /* bar 對比圖 */
+  .bars{border:1px solid var(--line); border-radius:2mm; padding:2mm 2.8mm 1.8mm; background:#fff;}
+  .bars .bt{font-size:10px; font-weight:800; color:var(--ink2); margin-bottom:.6mm;}
+  .brow{display:flex; align-items:center; gap:2.2mm; margin-top:1.4mm;}
+  .blab{flex:none; width:27mm; font-size:9.5px; color:var(--ink2); text-align:right; line-height:1.2;}
+  .btrack{flex:1; height:7.6mm; background:#eef1f6; border-radius:1.2mm; position:relative; overflow:hidden;}
+  .bfill{height:100%; border-radius:1.2mm; display:flex; align-items:center; justify-content:flex-end; padding-right:2mm; color:#fff; font-size:9.6px; font-weight:800;}
+  .bfill.dark{background:#1a2f6b;} .bfill.green{background:#15803d;} .bfill.amber{background:#d97706;} .bfill.red{background:#dc2626;}
+  .bcap{font-size:9.8px; color:var(--ink2); margin-top:1.4mm; line-height:1.4;}
+  .bcap b{color:var(--ink);} .bcap .rl{color:var(--red); font-weight:800;} .bcap .gl{color:var(--green); font-weight:800;}
 
-  /* ①b 證據 strip：成本梯 + OAS */
-  .evbar{display:grid; grid-template-columns:1.4fr 1fr; gap:1.4mm; margin-top:.35mm;}
-  .evbox{border:1px solid var(--line); border-top:1.2mm solid var(--blue); border-radius:2mm; background:#fff; padding:.4mm 2mm .4mm;}
-  .evbox .t{font-size:9.4px; font-weight:800; color:var(--blue);}
-  .ftab{width:100%; border-collapse:collapse; margin-top:.4mm;}
-  .ftab th{background:#1a2f6b; color:#fff; font-size:8px; padding:.35mm 1mm; font-weight:700;}
-  .ftab td{border:1px solid var(--line); font-size:8.2px; padding:.3mm 1mm; line-height:1.22;}
-  .ftab td.ir{font-weight:800; background:#f4f6fb; width:16mm;}
-  .oasr{display:flex; align-items:center; gap:1.2mm; margin-top:.45mm;}
-  .oasr .nm{font-weight:800; font-size:8.8px; width:12mm; flex:none;}
-  .oasr .bar{height:2.4mm; flex:1; background:#e9edf5; border-radius:1mm; overflow:hidden;}
-  .oasr .bar i{display:block; height:100%;}
-  .oasr .v{font-size:8.4px; font-weight:800; width:20mm; text-align:right; flex:none;}
-  .oasr .v small{display:block; font-size:6.9px; color:var(--ink3); font-weight:400; line-height:1.1;}
-  .oasds{font-size:7.6px; color:var(--ink2); margin-top:.3mm; line-height:1.24;}
-  .oasds b{color:var(--ink);}
+  /* chain-lite 一行 */
+  .chainlite{border:1px dashed var(--line); border-radius:2mm; background:var(--bg); padding:1.6mm 2.4mm; font-size:10.2px; color:var(--ink2); line-height:1.4;}
+  .chainlite b{color:var(--ink);}
 
-  /* 收回因果鏈 strip */
-  .chain{display:flex; align-items:stretch; gap:1mm; margin-top:.4mm;}
-  .chain .clabel{flex:none; background:#1a2f6b; color:#fff; border-radius:1.6mm; padding:.5mm 1.8mm; font-size:8.2px; font-weight:800; display:flex; align-items:center;}
-  .chain .cs{flex:1; border:1px solid var(--line); border-radius:1.6mm; background:#fff; padding:.4mm 1.6mm; font-size:7.9px; line-height:1.26; color:var(--ink2); display:flex; align-items:center;}
-  .chain .cs b{color:var(--ink);}
-  .chain .cop{align-self:center; flex:none; font-size:10px; font-weight:800; color:var(--ink3);}
-  .light.b .dot{background:var(--blue);}
+  /* 保險對決表 */
+  .vs2{width:100%; border-collapse:collapse;}
+  .vs2 th{background:var(--navy); color:#fff; font-size:9.4px; padding:1.2mm 1.8mm; font-weight:700; text-align:left;}
+  .vs2 td{border:1px solid var(--line); font-size:10.8px; padding:1.4mm 1.8mm; line-height:1.32; background:#fff;}
+  .vs2 td:first-child{background:#f2f5fa; font-weight:700; font-size:9.6px; width:17mm; color:var(--ink2);}
+  .vs2 .win{color:var(--green); font-weight:800;}
+  .punch{font-size:12px; font-weight:800; color:var(--green);}
 
-  /* ② 判決表 */
-  .menu{border:1px solid var(--line); border-radius:2mm; overflow:hidden;}
-  .menu table{width:100%; border-collapse:collapse;}
-  .menu th{background:#1a2f6b; color:#fff; font-size:8.4px; font-weight:700; padding:.8mm 1.6mm; text-align:left; letter-spacing:.02em;}
-  .menu th.fee{color:#ffd2d2;}
-  .menu td{padding:.5mm 1.6mm; border-top:1px solid var(--line); font-size:8.9px; vertical-align:middle; line-height:1.25;}
-  .menu .who{font-size:8.6px; color:var(--ink2);}
-  .menu .who b{display:block; font-size:9.2px; color:var(--ink);}
-  .menu .who .r{font-size:7.2px; color:var(--ink3);}
-  .menu .cpn{font-size:12.5px; font-weight:800; white-space:nowrap;}
-  .menu .ret,.menu .fee{font-variant-numeric:tabular-nums;}
-  .menu .ret b{color:var(--green); font-size:9.8px;}
-  .menu .fee{font-weight:800;}
-  .menu .verdict{font-size:8.4px; color:var(--ink2); line-height:1.34;}
-  .menu .verdict b{color:var(--ink);}
-  .menu .verdict .g{color:var(--green); font-weight:800;}
-  .menu .verdict .a{color:var(--amber); font-weight:800;}
-  .menu tr.g td:first-child{border-left:3px solid var(--green);}
-  .menu tr.bh td{background:#e8edf9; font-weight:800; font-size:8.5px; color:#1a2f6b; padding:.7mm 1.6mm; letter-spacing:.02em;}
-  .menu td.call{text-align:center;}
-  .menu td.call b{font-size:9.4px;}
-  .menu td.call span{display:block; font-size:7px; color:var(--ink3); font-weight:400;}
-  .menu td.call.h b{color:var(--red);}
-  .menu td.call.m b{color:var(--amber);}
-  .menu td.call.l b{color:var(--green);}
-  .menu tr.g{background:color-mix(in srgb,var(--green) 5%,#fff);}
-  .tfoot{border:1px solid var(--line); border-radius:2mm; background:#fafafa; padding:.4mm 2.4mm; font-size:7.8px; color:var(--ink2); line-height:1.28; margin-top:.45mm;}
-  .tfoot b{color:var(--ink);}
-  .tfoot .lk{color:var(--red); font-weight:800;}
+  /* 產品卡 */
+  .prod{display:grid; grid-template-columns:1fr 1fr; gap:2mm;}
+  .pc{border:1px solid var(--line); border-radius:2mm; background:var(--bg); padding:2.2mm 2.4mm 1.8mm; display:flex; flex-direction:column; gap:.9mm;}
+  .pc .pt{font-size:9.4px; font-weight:800; color:var(--ink2);}
+  .pc .px{font-size:17px; font-weight:900; line-height:1.1;}
+  .pc .px small{font-size:9px; color:var(--ink3); font-weight:600; margin-left:1mm;}
+  .pc .pk{font-size:11px; font-weight:800; color:var(--green);}
+  .pc .pf{display:flex; justify-content:space-between; align-items:center; font-size:8.6px; color:var(--ink2);}
+  .fee{color:var(--red); font-weight:800; font-size:8.2px; border:1px solid #f3c6c6; background:#fdf1f1; border-radius:1mm; padding:.4mm 1.6mm;}
+  .pc3{font-size:9.4px; color:var(--ink2); line-height:1.4;}
+  .pc3 .fee{font-size:7.8px; padding:.2mm 1.2mm;}
 
-  /* ③ 燈號 */
-  .lights{display:grid; grid-template-columns:1fr 1fr; gap:.6mm 2mm;}
-  .light{display:flex; gap:1.6mm; align-items:flex-start; border:1px solid var(--line); border-radius:1.6mm; padding:.5mm 1.8mm; background:#fff;}
-  .light .dot{flex:none; width:4.2mm; height:4.2mm; border-radius:50%; margin-top:.3mm; display:flex; align-items:center; justify-content:center; color:#fff; font-size:7.6px; font-weight:800;}
-  .light.g .dot{background:var(--green);} .light.a .dot{background:var(--amber);} .light.r .dot{background:var(--red);} .light.y .dot{background:var(--teal);}
-  .light .tx{font-size:8px; line-height:1.3; color:var(--ink2);}
-  .light .tx b{color:var(--ink);}
+  /* 話術 */
+  .say{border-left:2.5px solid var(--blue); background:var(--bg); border-radius:0 1.8mm 1.8mm 0; padding:1.8mm 2.4mm;}
+  .say .st{font-size:8.4px; font-weight:800; color:var(--blue); letter-spacing:.05em;}
+  .say .tx{font-size:11.2px; line-height:1.45; color:var(--ink); margin-top:.4mm;}
 
-  /* ④ 話術 */
-  .scripts{border:1px solid var(--line); border-radius:2mm; background:#fafafa; padding:.4mm 2.6mm .3mm;}
-  .say{border-left:2.5px solid var(--blue); background:#fff; border-radius:0 1.4mm 1.4mm 0; padding:.45mm 2mm .35mm 2mm; margin-top:.4mm;}
-  .say .lb{font-size:8.2px; font-weight:800; color:var(--blue); letter-spacing:.04em;}
-  .say .tx{font-size:8.7px; line-height:1.26; color:var(--ink); margin-top:.15mm;}
-  .say.warn{border-left-color:var(--red);}
-  .say.warn .lb{color:var(--red);}
-  .say.no{border-left-color:var(--amber);}
-  .say.no .lb{color:var(--amber);}
+  .warn{border:1px solid #f0d2b8; background:#fdf6ee; border-radius:2mm; padding:1.8mm 2.4mm; font-size:10.8px; font-weight:700; color:#92400e;}
+  .route{font-size:9.2px; color:var(--ink3); line-height:1.45;}
+  .route b{color:var(--ink2);}
 
-  .ft{border-top:1px solid var(--line); padding-top:.1mm; font-size:6.4px; color:var(--ink3); line-height:1.28; white-space:nowrap; overflow:hidden;}
+  .ft{border-top:1px solid var(--line); padding-top:.9mm; font-size:7.4px; color:var(--ink3); line-height:1.45;}
   .ft b{color:var(--red);}
-
-  .jpgbtn{position:fixed;top:60px;right:18px;z-index:60;background:#2563eb;color:#fff;border:none;border-radius:10px;
-    padding:10px 16px;font-size:13px;font-weight:700;cursor:pointer;box-shadow:0 4px 14px rgba(37,99,235,.4);font-family:inherit}
-  .jpgbtn:hover{background:#1d4ed8}
-  .jpgbtn[disabled]{opacity:.6;cursor:wait}
-  .kbadge{position:fixed;bottom:16px;right:16px;z-index:60;width:36px;height:36px;background:#fff;
-    border-radius:10px;display:flex;align-items:center;justify-content:center;
-    box-shadow:0 2px 8px rgba(0,0,0,.18);text-decoration:none;
-    font:italic 300 21px/1 'Brush Script MT','Segoe Script',cursive;color:#2563eb}
-  @media print{.jpgbtn,.kbadge{display:none!important}}
 </style>
 </head>
 <body>
@@ -151,154 +109,113 @@
 
   <div class="hd">
     <div>
-      <h1>Callable Linear <span class="acc">鎖息票據</span> · 保險對決銷售板</h1>
-      <div class="sub">主打客群＝諗住買儲蓄保險嘅客——賣「坐足五年到期一筆過」；見客三問① → 判決② → 客種對照③ → 話術④　｜　RM 內部使用，切勿轉發客戶</div>
+      <h1>Callable Linear 銷售板 <span class="thin">· 一版兩半</span></h1>
+      <div class="sub">開口前先分客：穩陣想鎖五年 → <span class="gl">左半</span>｜想要流動性 → <span class="am">右半</span></div>
     </div>
-    <div class="asof">
-      報價日期：<b>2026-11-19</b>（Barclays／UBS 當日定價）　·　收回實證：HSB <b>2026-11-20</b><br>
-      美元結算　·　每張 100 萬美元起　·　可指定發行商
-    </div>
+    <div class="asof">報價 <b>2026-11-19</b>（Barclays / UBS 實定報價）<br>收回實證 HSB 2026-11-20 ｜ 內部使用 · 勿外傳</div>
   </div>
 
-  <div class="pstrip">
-    <b>產品 30 秒</b>：定息票據，NC1——首 1 年不可收回；利息按年累計，到期／收回<b>一筆過連本金</b>支付。年化＝[(100＋票息×年數)÷買入價]<sup>1/年數</sup>−1（勿用單利報大數）。<b>無抵押優先銀行債券＝非存款、不保本。</b>　<b>落單核實</b>：發行實體必須 Barclays Bank PLC（控股 Barclays PLC 只有 Baa1、低四級勿用）；本板數字以<b>利息累計款</b>計算。
-  </div>
+  <div class="main">
 
-  <div class="slab">① 見客三問——客會問乜<span class="rule"></span><span class="hint">答得出一張嘴，先有得 sell</span></div>
-  <div class="qa">
+    <!-- ═══════════ 左半：保本／穩陣客 ═══════════ -->
+    <div class="half">
+      <div class="chip"><span class="tag">左半 · 保本／穩陣客</span><span class="who">同保險打：鎖足五年（5 年期鎖定張）</span></div>
+      <div class="hh">鎖足五年，同保險打 <small>主要客群：諗住買儲蓄保險嗰批</small></div>
 
-    <div class="qc">
-      <div class="q">Q1「會唔會提早收返我筆錢？」</div>
-      <div class="a"><b>唔會——蝕本還款冇人做。</b>發行商收回唯一理由：收返再借過<b>平過</b>俾你。主力張票息 <b>5.00</b> vs Barclays 借錢息約 <b>6.0</b>——低成 1 厘；借錢息要跌穿 5.00 先會收。<b>極低機會，坐足五年。</b></div>
-      <div class="ev">HSB 十年實證：收回全部跟經濟誘因行——借錢平嘅年份先收得多；UBS 有得收嘅紙 95% 照規則收（三行合共 1,162 次收回紀錄）</div>
-    </div>
+      <div class="ask">
+        <div class="q">客問：「會唔會提早收返我筆錢？」</div>
+        <div class="ans g">唔會</div>
+      </div>
+      <div class="why">收你張票，行方要再借錢還你——<b>年年蝕本，冇人做蝕本生意。</b></div>
 
-    <div class="qc">
-      <div class="q">Q2「同儲蓄保險比，好喺邊？」</div>
-      <table class="vs">
-        <tr><th></th><th>儲蓄保險</th><th>CL 鎖定張</th></tr>
-        <tr><td>年期</td><td>短至 5 年回本款、長至十幾廿年</td><td><b>5 年</b></td></tr>
-        <tr><td>回報</td><td>5 年回本款＝第 5 年啱啱返到本；長款保證息普遍較低</td><td><b>約 5.8 厘</b>·高過 5Y 國債約 1 厘</td></tr>
-        <tr><td>中途退錢</td><td>回本前退保罰錢</td><td>到期<b>一筆過</b>、無罰則</td></tr>
-        <tr><td>保障</td><td>人壽保障 ✓</td><td>冇 ✗——銀行信用風險係代價</td></tr>
+      <div class="bars">
+        <div class="bt">點解唔會收——兩條數一比就明</div>
+        <div class="brow"><div class="blab">行方借新錢成本</div><div class="btrack"><div class="bfill dark" style="width:100%">6.0%</div></div></div>
+        <div class="brow"><div class="blab">你張票息</div><div class="btrack"><div class="bfill green" style="width:83%">5.00%</div></div></div>
+        <div class="bcap">票息低過成本 <b>1 厘</b> → 收你＝蝕本 → <span class="gl">永遠唔會收</span>。HSB 十年實證：收回全部跟呢條數行；UBS 有得收嘅紙 <b>95% 照規則收</b>。</div>
+      </div>
+
+      <table class="vs2">
+        <tr><th style="width:17mm"></th><th>保險（5 年回本款）</th><th>CL 鎖定版</th></tr>
+        <tr><td>年期</td><td>5 年</td><td>5 年</td></tr>
+        <tr><td>回報</td><td>第 5 年啱啱返到本</td><td class="win">約 5.8 厘/年 · 五年約 29%</td></tr>
+        <tr><td>中途退錢</td><td>回本前退保罰錢</td><td>提早收回機會極低</td></tr>
       </table>
-      <div class="punch">要保障→保險　｜　要息＋五年真回報→CL</div>
+      <div class="punch">要保障 → 保險｜要息＋五年真回報 → CL</div>
+
+      <div class="prod">
+        <div class="pc">
+          <div class="pt">🥇 主力 · Barclays Bank PLC（5 年）</div>
+          <div class="px">5.00%<small>票息</small></div>
+          <div class="pk">客收約 5.8 厘/年</div>
+          <div class="pf"><span>折讓價 94.50 買入</span><span class="fee">🔒 fee 5.50</span></div>
+        </div>
+        <div class="pc">
+          <div class="pt">🥈 穩信版 · UBS（5 年 · Aa2 最強）</div>
+          <div class="px">4.35%<small>票息</small></div>
+          <div class="pk">客收約 5.1 厘/年</div>
+          <div class="pf"><span>折讓價 95 買入</span><span class="fee">🔒 fee 5.00</span></div>
+        </div>
+      </div>
+
+      <div class="say">
+        <div class="st">話術 · 開場</div>
+        <div class="tx">「同你買開嗰啲五年回本保險一樣，都係坐五年——保險第五年啱啱返到本，呢張五年袋約 29% 息。一句講晒：佢係銀行債券唔係存款，有信用風險。」</div>
+      </div>
+
+      <div class="route"><b>唔好 sell 呢隻：</b>完全唔接受本金風險 → 定期存款／短期政府債券。人民幣資金 → MXI 轉美元後認購。</div>
     </div>
 
-    <div class="qc">
-      <div class="q">Q3「風險係咩？」</div>
-      <div class="a"><b>銀行債券＝非存款、不保本</b>——發行商出事先有影響；兩張主力 A1／Aa2 三行最強評級。利息係累計，唔係年年派；人民幣客經 MXI 轉美元，匯率風險由客承擔。</div>
-      <div class="ev">五年內有機會動用→唔好入；完全唔接受風險→定存／政府債券；要人壽保障→保險</div>
+    <!-- ═══════════ 右半：流動性客 ═══════════ -->
+    <div class="half r">
+      <div class="chip"><span class="tag">右半 · 流動性客</span><span class="who">息最高，但誠實披露：會被收回（滾動張）</span></div>
+      <div class="hh">息最高，但會被收回 <small>適合：想食高息、接受「收咗再續」嘅客</small></div>
+
+      <div class="ask">
+        <div class="q">客問：「會唔會提早收返我筆錢？」</div>
+        <div class="ans r">會</div>
+      </div>
+      <div class="why">行方收你，係要<b>重借平錢</b>——但收嗰日你袋 <span class="big">約 8.3%</span>，我再幫你續接最靚一張。</div>
+
+      <div class="bars">
+        <div class="bt">點解會收——成本跌穿票息就收</div>
+        <div class="brow"><div class="blab">你張票息</div><div class="btrack"><div class="bfill dark" style="width:100%">6.00%</div></div></div>
+        <div class="brow"><div class="blab">而家借新錢成本</div><div class="btrack"><div class="bfill amber" style="width:100%">≈6.0%（貼線）</div></div></div>
+        <div class="brow"><div class="blab">spread 回歸後</div><div class="btrack"><div class="bfill red" style="width:95%">≈5.7%（跌穿）</div></div></div>
+        <div class="bcap">新借錢成本＝<b>利率＋OAS spread</b>；回歸唔係「if」，係「幾時」——一跌穿就收。</div>
+      </div>
+
+      <div class="chainlite">邊個最快收：<b>HSBC</b>（已到最窄、最主動）＞ <b>UBS</b>（溢價壓縮中）＞ <b>Barclays</b>（+28bp 暫壓首窗）</div>
+
+      <div class="prod">
+        <div class="pc">
+          <div class="pt">滾動版 · Barclays Bank PLC（5 年）</div>
+          <div class="px">6.00%<small>票息</small></div>
+          <div class="pk">客收約 5.8 厘/年</div>
+          <div class="pf"><span>首窗 2027-11</span><span class="fee">🔒 fee 2.11</span></div>
+        </div>
+        <div class="pc">
+          <div class="pt">收回續接版 · UBS（5 年）</div>
+          <div class="px">5.281%<small>票息</small></div>
+          <div class="pk">客收約 5.2 厘/年</div>
+          <div class="pf"><span>四窗 · 收回機會高</span><span class="fee">🔒 fee 2.00</span></div>
+        </div>
+      </div>
+      <div class="pc3">3Y：B 4.80%（<span class="fee">🔒 2.70</span>）／UBS 4.56%（<span class="fee">🔒 2.00</span>）· 2Y：B 4.39%（<span class="fee">🔒 2.00</span>）——年期短，到期有再投資風險，唔係保險對手。</div>
+
+      <div class="warn">⚠ 會被收回＝唔係保險替代品——呢個客種唔好用「保本」做賣點。</div>
+
+      <div class="say">
+        <div class="st">話術 · 開場</div>
+        <div class="tx">「呢張息最高。萬一年幾後行方收回，你嗰日已經袋咗 8 厘 3，我幫你喺當時市場揀最靚嗰張續住食。」</div>
+      </div>
+
+      <div class="route"><b>唔好 sell 呢隻：</b>想鎖五年唔想攞返嚟嘅客 → 轉左半鎖定張。</div>
     </div>
 
   </div>
 
-  <div class="evbar">
-    <div class="evbox">
-      <div class="t">🏦 證據一——各 issuer 新造集資成本梯（upcoming funding cost，%）</div>
-      <table class="ftab">
-        <tr><th>發行商</th><th>2Y</th><th>3Y</th><th>5Y</th><th>鎖定張誘因檢查（票息 vs 成本）</th></tr>
-        <tr><td class="ir">Barclays</td><td>4.4</td><td>4.8–5.1</td><td>6.0</td><td>主力 5.00 低過 5Y 成本 <b>1.0 厘</b>→收返要蝕→唔會收</td></tr>
-        <tr><td class="ir">UBS</td><td>4.0</td><td>4.6</td><td>5.5</td><td>穩信 4.35 低過 5Y 成本 <b>1.15 厘</b>→極低</td></tr>
-        <tr><td class="ir">HSBC</td><td colspan="3" style="text-align:center;color:var(--ink3)">無新造報價</td><td>想要必定早收→問 desk</td></tr>
-      </table>
-    </div>
-    <div class="evbox">
-      <div class="t">📉 證據二——咩情況會收：新借錢成本（利率＋OAS spread）低過舊票息（11-20）</div>
-      <div class="oasr"><span class="nm">HSBC</span><span class="bar"><i style="width:78%;background:var(--green)"></i></span><span class="v">93.5bp<small>＋8 最窄</small></span></div>
-      <div class="oasr"><span class="nm">Barclays</span><span class="bar"><i style="width:89%;background:var(--red)"></i></span><span class="v">106.5bp<small>＋28 最闊</small></span></div>
-      <div class="oasr"><span class="nm">UBS</span><span class="bar"><i style="width:97%;background:var(--amber)"></i></span><span class="v">116.4bp<small>＋9 CS 溢價</small></span></div>
-      <div class="oasds"><b>HSBC 最易收</b>——93.5 只高年均 8＝已借到平錢，callable 嘅紙佢最快收（想早收→問 desk；想坐到期→避開高 coupon HSBC 紙）</div>
-    </div>
-  </div>
-
-  <div class="chain">
-    <span class="clabel">🔗 收回因果鏈</span>
-    <span class="cs">① 新借錢成本 ＝ 利率（SOFR）＋ OAS spread</span>
-    <span class="cop">→</span>
-    <span class="cs">② 跌過<b>舊票息</b>先會收</span>
-    <span class="cop">→</span>
-    <span class="cs">③ 鎖定張：<b>永遠唔會</b>（票息低成本 1 厘＋）｜滾動張：spread 一回歸<b>就收</b></span>
-    <span class="cop">→</span>
-    <span class="cs">④ 邊個最快收？<b>HSBC</b>（已到最窄＋MREL 機械式）＞<b>UBS</b>（CS 溢價壓縮就收）＞<b>B</b>（+28 壓住 Nov27）</span>
-  </div>
-
-  <div class="slab">② 判決——由「坐足到期」入手，再按行方食排序<span class="rule"></span><span class="hint">🥇 鎖定張＝保險對手　⏳ 滾動張＝想彈性先做；客收＝年化計埋折讓</span></div>
-  <div class="menu">
-    <table>
-      <tr>
-        <th style="width:4%">年期</th><th style="width:11%">發行商（評級）</th><th style="width:6%">票息</th><th style="width:7%">客收（年化）</th><th class="fee" style="width:7%">🔒 行方食/張</th><th style="width:8%">收回機會</th><th>判決 · 邊個客 · 個 logic</th>
-      </tr>
-      <tr class="bh"><td colspan="7">🥇 坐足到期——鎖定張（收回機會極低＝保險嘅對手；行方食由多到少）</td></tr>
-      <tr class="g">
-        <td><b>5Y</b></td>
-        <td class="who"><b>Barclays Bank PLC</b><span class="r">穆迪 A1／標普 A+</span></td>
-        <td class="cpn">5.00%</td>
-        <td class="ret"><b>約 5.8%</b></td>
-        <td class="fee">5.50</td>
-        <td class="call l"><b>極低</b><span>坐足到期</span></td>
-        <td class="verdict"><span class="g">✅ 主力首選：</span>預設推——票息低過佢借錢息 1 厘、冇誘因收回；折讓價 94.50 買入，計埋折讓約 5.8 厘，高過 5Y 國債約 1 厘；行方食 5.50 全表最肥。</td>
-      </tr>
-      <tr class="g">
-        <td><b>5Y</b></td>
-        <td class="who"><b>UBS AG</b><span class="r">穆迪 Aa2／標普 A+——最強</span></td>
-        <td class="cpn">4.35%</td>
-        <td class="ret"><b>約 5.1%</b></td>
-        <td class="fee">5.00</td>
-        <td class="call l"><b>極低</b><span>坐足到期</span></td>
-        <td class="verdict"><span class="g">✅ 穩信版：</span>NGO／指定發行商必選——票息低過自身借錢息 1.15 厘，單一結局坐足五年；Aa2 最強信用。單一佔比宜控。</td>
-      </tr>
-      <tr class="bh"><td colspan="7">⏳ 想彈性先做——滾動張（會被收回＝唔係保險替代品；收回風險必須講明）</td></tr>
-      <tr>
-        <td><b>5Y</b></td>
-        <td class="who"><b>Barclays Bank PLC</b><span class="r">穆迪 A1／標普 A+</span></td>
-        <td class="cpn">6.00%</td>
-        <td class="ret"><b>約 5.8%</b></td>
-        <td class="fee">2.11</td>
-        <td class="call m"><b>中</b><span>首窗中·四窗中高</span></td>
-        <td class="verdict"><span class="a">⏳ 滾動版：</span>想早收續接嘅客——貼住借錢息、有誘因收；收回袋約 8.3 厘離場，隨時第 2/3 窗先收。比價客改開 5.50@96.19（食 3.81 多 1.70）。</td>
-      </tr>
-      <tr>
-        <td><b>5Y</b></td>
-        <td class="who"><b>UBS AG</b><span class="r">穆迪 Aa2／標普 A+</span></td>
-        <td class="cpn">5.281%</td>
-        <td class="ret"><b>約 5.2%</b></td>
-        <td class="fee">2.00</td>
-        <td class="call h"><b>高</b><span>四窗</span></td>
-        <td class="verdict"><span class="a">⏳ 必收梗會率：</span>滾動客要「一定收得返」→認呢張（UBS 95% 照規則收）；棄 5.50@98.64（僅食 1.36）。</td>
-      </tr>
-    </table>
-  </div>
-  <div class="tfoot"><b>流動性客（3Y／2Y）——唔係保險對手</b>：到期早→再投資風險鎖唔足五年，客數低 0.3–0.4 厘：3Y 認 <b>B 4.80@97.30</b>（食 2.70；棄 5.08@98 僅食 2.00）；UBS 認 <b>4.56@98</b>（食 2.00；棄 4.80@98.53 僅食 1.47）；2Y 認 <b>B 4.39@98</b>（食 2.00）——流動性／短試客專用，唔主動建議。</div>
-  <div class="tfoot"><b>後備</b>：UBS 5.50@98.64（食 1.36）勿主動開；想要必定早收→問 desk HSBC（5Y 近必然、現無報價）。<b>客問「點解 UBS 息咁平」</b>：佢最強、機構排隊借錢俾佢，唔使出高息——數靚揀 Barclays、名靚揀 UBS。<span class="lk">行方費用每張全數不年化，🔒 切勿向客戶披露。</span></div>
-
-  <div class="slab">③ 客種優先 Sell 對照——跟 HSB 實證<span class="rule"></span><span class="hint">客種→tenor→issuer→客數%→fee；唔適合：五年內動用／唔接受本金風險（見 Q3）</span></div>
-  <div class="lights">
-    <div class="light g"><div class="dot">保</div><div class="tx"><b>保本客（信用行先）：</b>① <b>UBS 4.35@95</b>——客約 5.1%、fee 5.00：Aa2 最強＋票息低過自身成本 1.15 厘＝極低。② <b>B 5.00@94.50</b>——客約 5.8%、fee 5.50（同樣極低）。</div></div>
-    <div class="light a"><div class="dot">息</div><div class="tx"><b>高息客（數行先）：</b>① <b>B 5.00@94.50</b>——客約 5.8% 全表最高、fee 5.50、一樣極低。② <b>B 6.00@97.89</b>——票面 6.00、一年可袋約 8.3 厘（fee 2.11、收回屬中）。</div></div>
-    <div class="light b"><div class="dot">雙</div><div class="tx"><b>保本＋高息客（兩樣要齊）：</b>① <b>B 5.00@94.50</b> 唯一雙冠——客 5.8%＋極低、fee 5.50。② 指定發行商／NGO→UBS 4.35@95（客 5.1%、fee 5.00）。</div></div>
-    <div class="light y"><div class="dot">¥</div><div class="tx"><b>¥ 人民幣客：</b>MXI 轉美元→主力 5.00@94.50（滾動改 6.00@97.89）；必披露非保本＋匯率風險。<b>唔適合</b>：五年內動用／唔接受本金風險→定存／政府債券／保險。</div></div>
-  </div>
-
-  <div class="slab">④ 照讀話術<span class="rule"></span><span class="hint">話術為口語，其餘均為書面語</span></div>
-  <div class="scripts">
-    <div class="say">
-      <div class="lb">保險對決 · 開場（主力張）</div>
-      <div class="tx">「你哋啲儲蓄保險，短就五年回本、長就鎖十幾廿年。五年回本嗰款，第 5 年啱啱返到本、賺息要再坐；呢張五年就到期：票面 5 厘、折讓價 94.5 買入，坐足五年約莫 5 厘 8，高過 5 年期美國國債約 1 厘。個票息低過銀行自己借錢嘅成本，提早收返嘅機會低，你坐得足五年，到期連本金一筆過。講清楚——佢冇保險嗰份人壽保障，係銀行債券唔係存款；要保障買保險，純粹要錢搵錢、五年唔使郁，呢張係息高嗰個選擇。」</div>
-    </div>
-    <div class="say warn">
-      <div class="lb">收回風險——賣滾動張（6.00 或 UBS 5.281@98）必須講出，不得略過</div>
-      <div class="tx">「一年之後銀行有權收回，之後每年一次。佢減息（或集資成本跌）就會收返——你袋住約 8 厘 3 一年離場，我哋即刻幫你接新嘅；佢唔收，你坐足五年收 5 厘 8。兩個結局都係贏，只係幾時攞返筆錢。」</div>
-    </div>
-    <div class="say no">
-      <div class="lb">NGO／保守客——揀 UBS 穩信版，誠實披露</div>
-      <div class="tx">「你哋要穩陣，我哋揀信用最強嗰張——UBS，Aa2 三張最高。同主力一樣係鎖足五年嗰類：佢個票息低過 UBS 自己借錢嘅成本，提早收返嘅機會低，你坐足五年——折讓價 95 買入，計埋折讓約莫 5 厘 1，到期連本帶息一筆過。講清楚：銀行債券唔係存款，有信用風險；完全唔接受本金風險就用定期存款或短期政府債券。」</div>
-    </div>
-  </div>
-
-  <div class="ft">
-    <b>銷售紅線：</b>① 切勿表示「加息後票息會跟住調高」——票息認購後固定不變。② 切勿將本產品表述為存款或保本產品。③ 內部費用口徑切勿向客戶披露。｜條款以正式產品文件為準；本板數字以<b>利息累計款</b>（一筆過連本金支付）計算。
-  </div>
+  <div class="ft">⚠ 銷售紅線 <b>①</b> 切勿將本產品表述為存款或保本產品　<b>②</b> 票息認購後固定，不會跟加息調高　<b>③</b> 發行商風險：Barclays 指 Barclays Bank PLC　<b>④</b> 🔒 內部費用口徑切勿向客戶披露｜數字以利息累計款（到期一筆過支付）計算，條款以正式產品文件為準｜僅透過私人銀行分發</div>
 
 </div>
 </body>
