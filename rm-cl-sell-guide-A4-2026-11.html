@@ -18,8 +18,8 @@
   }
   .sheet{
     width:297mm; min-height:209mm; margin:6mm auto; background:var(--surface);
-    padding:1.4mm 6mm 1mm; box-shadow:0 2px 14px rgba(0,0,0,.10);
-    display:flex; flex-direction:column; gap:1.1mm;
+    padding:1.3mm 6mm .9mm; box-shadow:0 2px 14px rgba(0,0,0,.10);
+    display:flex; flex-direction:column; gap:1mm;
   }
   @media print{
     body{background:#fff;}
@@ -40,7 +40,7 @@
   /* main split */
   .main{display:grid; grid-template-columns:1fr 1fr; gap:2.5mm; flex:1;}
   .half{border:1px solid var(--line); border-top:1.6mm solid var(--green); border-radius:2.5mm; background:#fff;
-    padding:1.4mm 3mm 1mm; display:flex; flex-direction:column; gap:1.1mm; justify-content:space-between;}
+    padding:1.3mm 3mm .9mm; display:flex; flex-direction:column; gap:1mm; justify-content:space-between;}
   .half.r{border-top-color:var(--amber);}
   .chip{display:flex; align-items:center; gap:2mm;}
   .chip .tag{background:var(--green); color:#fff; font-size:8.4px; font-weight:800; border-radius:1.2mm; padding:.6mm 2.2mm; letter-spacing:.05em;}
@@ -121,7 +121,7 @@
   .pc3 .fee{font-size:7.8px; padding:.2mm 1.2mm;}
 
   /* 客收 gloss */
-  .gloss{font-size:8px; color:var(--ink2); background:var(--bg); border:1px dashed var(--line); border-radius:2mm; padding:.6mm 2.2mm; line-height:1.3;}
+  .gloss{font-size:8px; color:var(--ink2); background:var(--bg); border:1px dashed var(--line); border-radius:2mm; padding:.45mm 2.2mm; line-height:1.24;}
   .gloss b{color:var(--ink);}
 
   /* 人民幣 MXI 組合 */
@@ -187,7 +187,7 @@
       <table class="vs2">
         <tr><th style="width:15mm"></th><th>保險（5 年回本款）</th><th>CL 鎖定版</th></tr>
         <tr><td>年期</td><td>5 年</td><td>5 年</td></tr>
-        <tr><td>回報</td><td>第 5 年啱啱返到本</td><td class="win">約 5.8 厘/年 · 五年約 29%</td></tr>
+        <tr><td>回報</td><td>第 5 年啱啱返到本</td><td class="win">約 5.8 厘/年 · 五年總回報約 32%</td></tr>
         <tr><td>中途退錢</td><td>回本前退保罰錢</td><td>無提早贖回權——市價回購，可能低於買入價</td></tr>
       </table>
       <div class="punch">要保障 → 保險｜要息＋五年真回報 → CL</div>
@@ -197,17 +197,17 @@
           <div class="pt">🥇 主力 · Barclays Bank PLC（5 年）</div>
           <div class="px">5.00%<small>票息</small></div>
           <div class="pk">客收約 5.8 厘/年</div>
-          <div class="pf"><span>折讓價 94.50 買入 · 到期收回 100</span><span class="fee">🔒 fee 5.50</span></div>
+          <div class="pf"><span>94.50 買入 · 到期連累計息收回 125</span><span class="fee">🔒 fee 5.50</span></div>
         </div>
         <div class="pc">
           <div class="pt">🥈 穩信版 · UBS（5 年 · Aa2 最強發行商）</div>
           <div class="px">4.35%<small>票息</small></div>
           <div class="pk">客收約 5.1 厘/年</div>
-          <div class="pf"><span>折讓價 95 買入 · 到期收回 100</span><span class="fee">🔒 fee 5.00</span></div>
+          <div class="pf"><span>95 買入 · 到期連累計息收回 121.75</span><span class="fee">🔒 fee 5.00</span></div>
         </div>
       </div>
 
-      <div class="gloss">ⓘ 點解票息 5%，客收卻約 5.8 厘？票息以<b>票面值 100</b> 計；客戶以折讓價 <b>94.50</b> 買入、到期按 <b>100</b> 贖回——5.50 差價攤落五年，實際年回報<b>高過票息</b>（desk sheet 年化口徑約 5.8 厘；直觀直線計法約 6.1 厘）。</div>
+      <div class="gloss">ⓘ 為何票息 5%、客收約 5.8 厘？<b>零息直線增長制</b>（sample term sheet 證實）：認購 100、不派年息，票價每年直線增長 5%，<b>到期連累計息一筆過收回</b>（每 100 面值收 125）；<b>發行商提早收回亦按增長表價（含息）支付</b>——收得早、年化更高。客戶 94.50 買入、到期收 125 → 年化（複息口徑）約 5.8 厘；直線快算法約 6.1 厘。</div>
 
       <div class="mxi">
         <div class="mt">人民幣資金客——MXI ＋ CL 鎖定版組合</div>
@@ -216,7 +216,7 @@
 
       <div class="say">
         <div class="st">話術 · 開場</div>
-        <div class="tx">「同你買開嗰啲五年回本保險一樣，都係坐五年——保險第五年啱啱返到本，呢張 Barclays 五年期袋約 29% 息（年收約 5 厘 8）。一句講晒：佢係銀行債券唔係存款，有信用風險。」</div>
+        <div class="tx">「同你買開嗰啲五年回本保險一樣，都係坐五年——保險第五年啱啱返到本，呢張 Barclays 五年期總回報約 32%（年收約 5 厘 8）。一句講晒：佢係銀行債券唔係存款，有信用風險。」</div>
       </div>
 
       <div class="say">
@@ -268,7 +268,7 @@
         <div class="pt">3／2 年期並排——年期由客戶的資金規劃決定（客收差異細，不以行方 fee 排序）</div>
         <div class="prow"><span class="yr">3 年期</span><span class="seg">Barclays Bank PLC <b>4.80%</b> @97.30 → 客約 <b>5.5 厘/年</b>&nbsp;<span class="fee">🔒 2.70</span></span>　<span class="seg">UBS <b>4.56%</b> @98 → 客約 <b>5.2 厘/年</b>&nbsp;<span class="fee">🔒 2.00</span></span></div>
         <div class="prow"><span class="yr">2 年期</span><span class="seg">Barclays Bank PLC <b>4.39%</b> @98 → 客約 <b>5.4 厘/年</b>&nbsp;<span class="fee">🔒 2.00</span></span>　<span class="seg">UBS <b>4.02%</b> @98 → 客約 <b>5.0 厘/年</b>&nbsp;<span class="fee">🔒 2.00</span></span></div>
-        <div class="psrc">客收年化＝票息＋折讓攤分（折讓價買入、到期 100 贖回）。兩個年期客收僅差 <b>0.1–0.2 厘</b>——推薦邊個由客戶何時要用錢決定，切勿為行方多食 fee 而引導客戶揀長年期。</div>
+        <div class="psrc">客收年化＝折讓買入增值＋票息直線累計，到期／被收回一筆過收回（含息）。兩個年期客收僅差 <b>0.1–0.2 厘</b>——推薦邊個由客戶何時要用錢決定，切勿為行方多食 fee 而引導客戶揀長年期。</div>
       </div>
       <div class="pc3">另有 <b>5 年期滾動版</b> Barclays 6.00% @97.89（客約 5.8 厘/年，<span class="fee">🔒 2.11</span>，首個可收回日 2027-11）——息最高，但屬 5 年期票據：只建議給追求最高息、並接受被收回後續購的客戶。</div>
 
@@ -276,7 +276,7 @@
 
       <div class="say">
         <div class="st">話術 · 開場</div>
-        <div class="tx">「客想鎖幾耐，睇佢資金幾時要用：兩年三年都得。兩個年期都係 Barclays 息高啲——三年期票息 4 厘 8、客收約 5 厘 5；兩年期 4 厘 4、客收約 5 厘 4。就算行方提早收回，客已經袋咗息，我幫佢揀當時最靚嗰張續住食。」</div>
+        <div class="tx">「客想鎖幾耐，睇佢資金幾時要用：兩年三年都得。兩個年期都係 Barclays 息高啲——三年期票息 4 厘 8、客收約 5 厘 5；兩年期 4 厘 4、客收約 5 厘 4。就算行方提早收回，客照袋埋累計息——收得早、年化仲高；我幫佢揀當時最靚嗰張續住食。」</div>
       </div>
 
       <div class="route"><b>不建議銷售：</b>想鎖足五年、中途不需取回資金 → 轉左半鎖定張。</div>
