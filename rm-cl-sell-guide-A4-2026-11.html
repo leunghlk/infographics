@@ -75,6 +75,7 @@
   .menu .verdict .r{color:var(--red); font-weight:800;}
   .menu tr.g td:first-child{border-left:3px solid var(--green);}
   .menu tr.a td:first-child{border-left:3px solid var(--amber);}
+  .menu tr.bh td{background:#e8edf9; font-weight:800; font-size:8.5px; color:#1a2f6b; padding:.9mm 1.6mm; letter-spacing:.02em;}
   .menu tr.r td:first-child{border-left:3px solid var(--red);}
   .menu tr.g{background:color-mix(in srgb,var(--green) 5%,#fff);}
 
@@ -156,7 +157,7 @@
     </div>
   </div>
 
-  <div class="slab">② 全報價判決表——2026-11-19 當日報價逐行判決<span class="rule"></span><span class="hint">綠＝主推　黃＝按客路可做　紅＝不做；先分客路：收益-first 揀 Barclays、issuer-first（重發行商實力／保守資金）揀 UBS；行方費用為每張全數（不作年化）</span></div>
+  <div class="slab">② 全報價判決表——2026-11-19 當日報價逐行判決<span class="rule"></span><span class="hint">綠＝主推　黃＝按客路可做；表分兩批——利息行先（客要最高收益）／Issuer 行先（客指定大行、重發行商實力），批內按年期細分；行方費用為每張全數（不作年化）</span></div>
   <div class="menu">
     <table>
       <tr>
@@ -164,75 +165,63 @@
         <th style="width:7%">買入價</th><th style="width:9%">客戶持有</th><th style="width:9%">約1年收回</th>
         <th class="fee" style="width:8%">🔒 行方食（每張）</th><th>判斷 · 適合性</th>
       </tr>
+      <tr class="bh"><td colspan="8">批一｜利息行先——客以收益為先，發行商接受 A1 級銀行（Barclays Bank PLC）</td></tr>
       <tr class="g">
         <td><b>5Y</b></td>
         <td class="who"><b>Barclays Bank PLC</b><span class="r">穆迪 A1／標普 A+</span></td>
         <td class="cpn">6.00%</td><td class="px">97.89</td>
         <td class="ret"><b>約 5.8%</b></td><td class="ret">約 8.3%</td><td class="fee">2.11</td>
-        <td class="verdict"><span class="g">✅ 收益-first 主力首選：</span>預設推。發行商集資成本上升則持有五年收 5.8 厘；成本下降則約一年被收回、袋 8.3% 接新一批——兩種情境不吃虧。<b>適合五年不動用的資金。</b></td>
+        <td class="verdict"><span class="g">✅ 主力首選：</span>預設推。集資成本上升→持有五年收 5.8 厘；下降→約一年被收回、袋 8.3% 接新一批——兩種情境不吃虧。客要比價才用 5.50@96.19（客數幾乎相同、行方食 3.81），不主動開。<b>適合五年不動用的資金。</b></td>
       </tr>
       <tr class="g">
         <td><b>5Y</b></td>
         <td class="who"><b>Barclays Bank PLC</b><span class="r">同上</span></td>
         <td class="cpn">5.00%</td><td class="px">94.50</td>
         <td class="ret"><b>約 5.8%</b></td><td class="ret">約 11.1%</td><td class="fee">5.50</td>
-        <td class="verdict"><span class="g">✅ 鎖定版：</span>客戶怕提早收回時用——票息 5 厘低於發行商資金成本、無收回誘因，鎖足五年；行方費用 5.50 全表最肥。</td>
-      </tr>
-      <tr class="a">
-        <td><b>5Y</b></td>
-        <td class="who"><b>Barclays Bank PLC</b><span class="r">同上</span></td>
-        <td class="cpn">5.50%</td><td class="px">96.19</td>
-        <td class="ret"><b>約 5.8%</b></td><td class="ret">約 9.7%</td><td class="fee">3.81</td>
-        <td class="verdict"><span class="a">⚠ 備用：</span>客數與主力幾乎相同而折讓更大——客欲比較價時用；同段 95–97 各張（行方食 3.00–5.00、客均約 5.8 厘）同理，不主動開。</td>
-      </tr>
-      <tr class="g">
-        <td><b>5Y</b></td>
-        <td class="who"><b>UBS AG</b><span class="r">穆迪 Aa2／標普 A+——最強</span></td>
-        <td class="cpn">5.50%</td><td class="px">98.64</td>
-        <td class="ret"><b>約 5.3%</b></td><td class="ret">約 7.0%</td><td class="fee">1.36</td>
-        <td class="verdict"><span class="g">✅ 穩信版：</span>客戶最重視發行商實力／<b>NGO、慈善、信託等保守資金必選</b>（Aa2 三行中最強），單一佔比宜控制；半鎖定半滾動。</td>
-      </tr>
-      <tr class="a">
-        <td><b>5Y</b></td>
-        <td class="who"><b>UBS AG</b><span class="r">同上</span></td>
-        <td class="cpn">6.00%</td><td class="px">99.98</td>
-        <td class="ret"><b>約 5.4%</b></td><td class="ret">約 6.0%</td><td class="fee">0.02</td>
-        <td class="verdict"><span class="a">⚠ issuer-first 可做：</span>客數為 UBS 全表最高（5.4 厘）——指定 UBS／要大行的客先報這張；行方僅食 0.02，屬留客服務張，不主動推。</td>
+        <td class="verdict"><span class="g">✅ 鎖定版：</span>客戶怕提早收回時用——票息 5 厘低於發行商資金成本、無收回誘因，鎖足五年；行方食 5.50 全表最肥，行方最賺一張。</td>
       </tr>
       <tr class="a">
         <td><b>3Y</b></td>
         <td class="who"><b>Barclays Bank PLC</b><span class="r">穆迪 A1／標普 A+</span></td>
         <td class="cpn">4.80%</td><td class="px">97.30</td>
         <td class="ret"><b>約 5.5%</b></td><td class="ret">約 7.7%</td><td class="fee">2.70</td>
-        <td class="verdict"><span class="a">⚠ 3 年期落單揀這張：</span>客數與 5.08@98 相同（約 5.5 厘、1 年收回更高）而行方食 2.70 多 0.70——流動性／預期息率再上的客戶才做；客數較 5 年期少約 0.3 厘。</td>
-      </tr>
-      <tr class="r">
-        <td><b>3Y</b></td>
-        <td class="who"><b>Barclays Bank PLC</b><span class="r">同上</span></td>
-        <td class="cpn">5.08%</td><td class="px">98.00</td>
-        <td class="ret"><b>約 5.5%</b></td><td class="ret">約 7.2%</td><td class="fee">2.00</td>
-        <td class="verdict"><span class="r">❌ 不用：</span>票息較高只是開價面，客數與上表相同而行方食少 0.70——僅作 desk 對價參考，落單用上表 4.80@97.30。</td>
-      </tr>
-      <tr class="a">
-        <td><b>3Y</b></td>
-        <td class="who"><b>UBS AG</b><span class="r">穆迪 Aa2／標普 A+</span></td>
-        <td class="cpn">4.56%</td><td class="px">98.00</td>
-        <td class="ret"><b>約 5.1%</b></td><td class="ret">約 6.7%</td><td class="fee">2.00</td>
-        <td class="verdict"><span class="a">⚠ issuer-first 可做：</span>UBS 3 年期唯一落單張——重發行商實力而要 3 年流動性的客用（客 5.1 厘；同票息 4.80@98.53 客數相同、僅食 1.47，落單用這張）。</td>
+        <td class="verdict"><span class="a">⚠ 流動性／預期息率再上的客戶才做：</span>客數約 5.5 厘、1 年收回 7.7%，較 5 年期少約 0.3 厘，行方食 2.70。落單認這張——同票息 5.08@98 客數相同、行方僅食 2.00，勿用。</td>
       </tr>
       <tr class="a">
         <td><b>2Y</b></td>
         <td class="who"><b>Barclays Bank PLC</b><span class="r">穆迪 A1／標普 A+</span></td>
         <td class="cpn">4.39%</td><td class="px">98.00</td>
         <td class="ret"><b>約 5.4%</b></td><td class="ret">約 6.5%</td><td class="fee">2.00</td>
-        <td class="verdict"><span class="a">⚠ 可做：</span>客戶先作短期嘗試、或中期有流動性需要；票息 4.4 厘靠折讓拉高至客數 5.4 厘，較 5 年期少約 0.4 厘——不主動建議。</td>
+        <td class="verdict"><span class="a">⚠ 短試或中期有流動性需要才做：</span>票息 4.4 厘靠折讓拉高至客數 5.4 厘，較 5 年期少約 0.4 厘，行方食 2.00——不主動建議。</td>
+      </tr>
+      <tr class="bh"><td colspan="8">批二｜Issuer 行先——客指定 UBS／重發行商實力，收益讓位（UBS AG 穆迪 Aa2／標普 A+ 三行最強）</td></tr>
+      <tr class="g">
+        <td><b>5Y</b></td>
+        <td class="who"><b>UBS AG</b><span class="r">穆迪 Aa2／標普 A+——最強</span></td>
+        <td class="cpn">5.50%</td><td class="px">98.64</td>
+        <td class="ret"><b>約 5.3%</b></td><td class="ret">約 7.0%</td><td class="fee">1.36</td>
+        <td class="verdict"><span class="g">✅ 穩信版：</span>重發行商實力／<b>NGO、慈善、信託等保守資金必選</b>，單一佔比宜控制；半鎖定半滾動，行方食 1.36。</td>
+      </tr>
+      <tr class="a">
+        <td><b>5Y</b></td>
+        <td class="who"><b>UBS AG</b><span class="r">同上</span></td>
+        <td class="cpn">6.00%</td><td class="px">99.98</td>
+        <td class="ret"><b>約 5.4%</b></td><td class="ret">約 6.0%</td><td class="fee">0.02</td>
+        <td class="verdict"><span class="a">⚠ 留客服務張：</span>客數為 UBS 全表最高（5.4 厘）——指定 UBS 又想收益極大化的客先報這張；惟行方僅食 0.02，不主動推。</td>
+      </tr>
+      <tr class="a">
+        <td><b>3Y</b></td>
+        <td class="who"><b>UBS AG</b><span class="r">穆迪 Aa2／標普 A+</span></td>
+        <td class="cpn">4.56%</td><td class="px">98.00</td>
+        <td class="ret"><b>約 5.1%</b></td><td class="ret">約 6.7%</td><td class="fee">2.00</td>
+        <td class="verdict"><span class="a">⚠ 重實力＋3 年流動性的客用：</span>UBS 3 年期唯一落單張（客 5.1 厘、行方食 2.00）；同票息 4.80@98.53 客數相同、僅食 1.47，落單認這張。</td>
       </tr>
       <tr class="a">
         <td><b>2Y</b></td>
         <td class="who"><b>UBS AG</b><span class="r">穆迪 Aa2／標普 A+</span></td>
         <td class="cpn">4.02%</td><td class="px">98.00</td>
         <td class="ret"><b>約 5.0%</b></td><td class="ret">約 6.1%</td><td class="fee">2.00</td>
-        <td class="verdict"><span class="a">⚠ issuer-first 可做：</span>重發行商實力而想 2 年短試的客用（客 5.0 厘）；收益-first 的 2 年期照揀 Barclays。</td>
+        <td class="verdict"><span class="a">⚠ 重實力＋2 年短試的客用：</span>客 5.0 厘、行方食 2.00；利息行先的 2 年期照揀批一 Barclays。</td>
       </tr>
     </table>
   </div>
@@ -250,7 +239,7 @@
     <div class="box suit">
       <div class="t"><span class="ic">燈號</span>哪些客戶適合（suitability）</div>
       <div class="light g"><div class="dot">✓</div><div class="tx"><b>綠燈——適合：</b>以定息收入為目標；該筆資金<b>五年內沒有動用計劃</b>；理解並接受發行商信用風險；明白可能約一年後被收回，並同意屆時續接新一批。</div></div>
-      <div class="light a"><div class="dot">！</div><div class="tx"><b>黃燈——按客路調整：</b><b>NGO／保守資金、客戶指定發行商或重發行商實力→UBS 各年期照表揀</b>（5 年穩信版／3 年 4.56@98／2 年 4.02@98），單一佔比宜控制；純看收益的流動性客→3 年期 Barclays；想短試→2 年期 Barclays。</div></div>
+      <div class="light a"><div class="dot">！</div><div class="tx"><b>黃燈——按客路調整：</b><b>NGO／保守資金、客戶指定發行商或重發行商實力→批二 UBS 照表揀</b>（5 年穩信版／3 年 4.56@98／2 年 4.02@98），單一佔比宜控制；純看收益的流動性客→批一 3 年期；想短試→批一 2 年期。</div></div>
       <div class="light r"><div class="dot">✕</div><div class="tx"><b>紅燈——不適合：</b>五年內有機會動用的資金；客戶明言<b>完全不接受</b>無抵押銀行債券或任何本金風險。<span class="alt">替代方案：定期存款／短期政府債券／貨幣基金。</span></div></div>
     </div>
   </div>
