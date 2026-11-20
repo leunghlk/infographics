@@ -92,6 +92,15 @@
   .vs2 .win{color:var(--green); font-weight:800;}
   .punch{font-size:11px; font-weight:800; color:var(--green);}
 
+  /* 產品列（3/2年並排平權） */
+  .plist{border:1px solid var(--line); border-radius:2mm; background:var(--bg); padding:1.2mm 2.4mm 1mm;}
+  .plist .pt{font-size:9px; font-weight:800; color:var(--ink2);}
+  .plist .prow{font-size:9.3px; color:var(--ink); margin-top:.9mm; line-height:1.4;}
+  .plist .prow .yr{display:inline-block; background:var(--navy); color:#fff; border-radius:1mm; font-size:8px; font-weight:800; padding:.2mm 1.6mm; margin-right:1.4mm;}
+  .plist .prow .seg{display:inline-block; margin-top:.4mm;}
+  .plist .psrc{font-size:7.8px; color:var(--ink3); margin-top:.7mm; padding-top:.5mm; border-top:1px dashed var(--line); line-height:1.35;}
+  .plist .psrc b{color:var(--ink2);}
+
   /* 產品卡 */
   .prod{display:grid; grid-template-columns:1fr 1fr; gap:2mm;}
   .pc{border:1px solid var(--line); border-radius:2mm; background:var(--bg); padding:1.3mm 2.4mm 1.1mm; display:flex; flex-direction:column; gap:.7mm;}
@@ -241,27 +250,19 @@
 
       <div class="concl r"><span class="clab">結論</span>提早收回機會中至中高<small>——銷售時必須向客戶清楚說明</small></div>
 
-      <div class="prod">
-        <div class="pc">
-          <div class="pt">🥇 主力 · Barclays Bank PLC（3 年）</div>
-          <div class="px">4.80%<small>票息</small></div>
-          <div class="pk">客收約 5.5 厘/年</div>
-          <div class="pf"><span>折讓價 97.30 買入 · 到期收回 100</span><span class="fee">🔒 fee 2.70</span></div>
-        </div>
-        <div class="pc">
-          <div class="pt">🥈 穩信版 · UBS（3 年 · Aa2 最強發行商）</div>
-          <div class="px">4.56%<small>票息</small></div>
-          <div class="pk">客收約 5.2 厘/年</div>
-          <div class="pf"><span>折讓價 98 買入 · 到期收回 100</span><span class="fee">🔒 fee 2.00</span></div>
-        </div>
+      <div class="plist">
+        <div class="pt">3／2 年期並排——年期由客戶的資金規劃決定（客收差異細，不以行方 fee 排序）</div>
+        <div class="prow"><span class="yr">3 年期</span><span class="seg">Barclays Bank PLC <b>4.80%</b> @97.30 → 客約 <b>5.5 厘/年</b>&nbsp;<span class="fee">🔒 2.70</span></span>　<span class="seg">UBS <b>4.56%</b> @98 → 客約 <b>5.2 厘/年</b>&nbsp;<span class="fee">🔒 2.00</span></span></div>
+        <div class="prow"><span class="yr">2 年期</span><span class="seg">Barclays Bank PLC <b>4.39%</b> @98 → 客約 <b>5.4 厘/年</b>&nbsp;<span class="fee">🔒 2.00</span></span>　<span class="seg">UBS <b>4.02%</b> @98 → 客約 <b>5.0 厘/年</b>&nbsp;<span class="fee">🔒 2.00</span></span></div>
+        <div class="psrc">客收年化＝票息＋折讓攤分（折讓價買入、到期 100 贖回）。兩個年期客收僅差 <b>0.1–0.2 厘</b>——推薦邊個由客戶何時要用錢決定，切勿為行方多食 fee 而引導客戶揀長年期。</div>
       </div>
-      <div class="pc3">客收年化＝票息＋折讓攤分（折讓價買入、到期 100 贖回）。<b>2 年期</b>：Barclays 4.39%（客約 5.4 厘/年，<span class="fee">🔒 2.00</span>）｜UBS 4.02%（客約 5.0 厘/年，<span class="fee">🔒 2.00</span>）。另有 <b>5 年期滾動版</b> Barclays 6.00%（客收約 5.8 厘/年，<span class="fee">🔒 2.11</span>，首個可收回日 2027-11）——息最高，但屬 5 年期票據：只建議給追求最高息、並接受被收回後續購的客戶。</div>
+      <div class="pc3">另有 <b>5 年期滾動版</b> Barclays 6.00% @97.89（客約 5.8 厘/年，<span class="fee">🔒 2.11</span>，首個可收回日 2027-11）——息最高，但屬 5 年期票據：只建議給追求最高息、並接受被收回後續購的客戶。</div>
 
       <div class="warn">⚠ 會被提早收回＝並非保險替代品——此客群不應以「保本」作賣點。</div>
 
       <div class="say">
         <div class="st">話術 · 開場</div>
-        <div class="tx">「呢張 Barclays 三年期，票息年年 4 厘 8，計埋折讓客收約 5 厘 5。就算行方一年後提早收回，你嗰日已經袋咗約 7 厘 7，我幫你喺當時市場揀最靚嗰張續住食。」</div>
+        <div class="tx">「客想鎖幾耐，睇佢資金幾時要用：兩年三年都得。兩個年期都係 Barclays 息高啲——三年期票息 4 厘 8、客收約 5 厘 5；兩年期 4 厘 4、客收約 5 厘 4。就算行方提早收回，客已經袋咗息，我幫佢揀當時最靚嗰張續住食。」</div>
       </div>
 
       <div class="route"><b>不建議銷售：</b>想鎖足五年、中途不需取回資金 → 轉左半鎖定張。</div>
