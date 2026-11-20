@@ -43,14 +43,14 @@
   .slab .hint{font-weight:400; color:var(--ink3); letter-spacing:0; font-size:7.8px;}
 
   .pstrip{border:1px solid var(--line); border-radius:2mm; background:color-mix(in srgb,var(--amber) 4%,#fff);
-    padding:.8mm 2.4mm; font-size:8px; color:var(--ink2); line-height:1.36;}
+    padding:.6mm 2.4mm; font-size:7.8px; color:var(--ink2); line-height:1.32;}
   .pstrip b{color:var(--ink);}
 
   /* ① 見客三問 */
   .qa{display:grid; grid-template-columns:1.02fr 1.24fr 1fr; gap:1.6mm; margin-top:.5mm;}
   .qc{border:1px solid var(--line); border-top:1.2mm solid var(--blue); border-radius:2mm; background:#fff; padding:.9mm 2mm .8mm;}
   .qc .q{font-size:10.5px; font-weight:800; color:var(--blue); margin-bottom:.5mm;}
-  .qc .a{font-size:8.5px; line-height:1.38; color:var(--ink2);}
+  .qc .a{font-size:8.3px; line-height:1.34; color:var(--ink2);}
   .qc .a b{color:var(--ink);}
   .qc .ev{margin-top:.6mm; font-size:7.9px; color:var(--ink3); border-top:1px dashed var(--line); padding-top:.5mm; line-height:1.32;}
   .vs{width:100%; border-collapse:collapse; margin:.4mm 0 .2mm;}
@@ -59,12 +59,30 @@
   .vs td:first-child{background:#f4f6fb; font-weight:700; width:12mm;}
   .punch{margin-top:.5mm; font-size:8.5px; font-weight:800; color:var(--green);}
 
+  /* ①b 證據 strip：成本梯 + OAS */
+  .evbar{display:grid; grid-template-columns:1.4fr 1fr; gap:1.6mm; margin-top:.5mm;}
+  .evbox{border:1px solid var(--line); border-top:1.2mm solid var(--blue); border-radius:2mm; background:#fff; padding:.55mm 2mm .5mm;}
+  .evbox .t{font-size:9.4px; font-weight:800; color:var(--blue);}
+  .ftab{width:100%; border-collapse:collapse; margin-top:.4mm;}
+  .ftab th{background:#1a2f6b; color:#fff; font-size:8px; padding:.45mm 1mm; font-weight:700;}
+  .ftab td{border:1px solid var(--line); font-size:8.2px; padding:.4mm 1mm; line-height:1.24;}
+  .ftab td.ir{font-weight:800; background:#f4f6fb; width:16mm;}
+  .oasr{display:flex; align-items:center; gap:1.2mm; margin-top:.55mm;}
+  .oasr .nm{font-weight:800; font-size:8.8px; width:12mm; flex:none;}
+  .oasr .bar{height:2.4mm; flex:1; background:#e9edf5; border-radius:1mm; overflow:hidden;}
+  .oasr .bar i{display:block; height:100%;}
+  .oasr .v{font-size:8.4px; font-weight:800; width:20mm; text-align:right; flex:none;}
+  .oasr .v small{display:block; font-size:6.9px; color:var(--ink3); font-weight:400; line-height:1.1;}
+  .oasds{font-size:7.6px; color:var(--ink2); margin-top:.4mm; line-height:1.28;}
+  .oasds b{color:var(--ink);}
+  .light.b .dot{background:var(--blue);}
+
   /* ② 判決表 */
   .menu{border:1px solid var(--line); border-radius:2mm; overflow:hidden;}
   .menu table{width:100%; border-collapse:collapse;}
   .menu th{background:#1a2f6b; color:#fff; font-size:8.4px; font-weight:700; padding:.8mm 1.6mm; text-align:left; letter-spacing:.02em;}
   .menu th.fee{color:#ffd2d2;}
-  .menu td{padding:.85mm 1.6mm; border-top:1px solid var(--line); font-size:8.9px; vertical-align:middle; line-height:1.32;}
+  .menu td{padding:.7mm 1.6mm; border-top:1px solid var(--line); font-size:8.9px; vertical-align:middle; line-height:1.3;}
   .menu .who{font-size:8.6px; color:var(--ink2);}
   .menu .who b{display:block; font-size:9.2px; color:var(--ink);}
   .menu .who .r{font-size:7.2px; color:var(--ink3);}
@@ -85,23 +103,23 @@
   .menu td.call.m b{color:var(--amber);}
   .menu td.call.l b{color:var(--green);}
   .menu tr.g{background:color-mix(in srgb,var(--green) 5%,#fff);}
-  .tfoot{border:1px solid var(--line); border-radius:2mm; background:#fafafa; padding:.7mm 2.4mm; font-size:8px; color:var(--ink2); line-height:1.34; margin-top:.8mm;}
+  .tfoot{border:1px solid var(--line); border-radius:2mm; background:#fafafa; padding:.5mm 2.4mm; font-size:7.8px; color:var(--ink2); line-height:1.3; margin-top:.6mm;}
   .tfoot b{color:var(--ink);}
   .tfoot .lk{color:var(--red); font-weight:800;}
 
   /* ③ 燈號 */
   .lights{display:grid; grid-template-columns:1fr 1fr; gap:.6mm 2mm;}
-  .light{display:flex; gap:1.6mm; align-items:flex-start; border:1px solid var(--line); border-radius:1.6mm; padding:.8mm 1.8mm; background:#fff;}
+  .light{display:flex; gap:1.6mm; align-items:flex-start; border:1px solid var(--line); border-radius:1.6mm; padding:.6mm 1.8mm; background:#fff;}
   .light .dot{flex:none; width:4.2mm; height:4.2mm; border-radius:50%; margin-top:.3mm; display:flex; align-items:center; justify-content:center; color:#fff; font-size:7.6px; font-weight:800;}
   .light.g .dot{background:var(--green);} .light.a .dot{background:var(--amber);} .light.r .dot{background:var(--red);} .light.y .dot{background:var(--teal);}
-  .light .tx{font-size:8.2px; line-height:1.34; color:var(--ink2);}
+  .light .tx{font-size:8px; line-height:1.3; color:var(--ink2);}
   .light .tx b{color:var(--ink);}
 
   /* ④ 話術 */
   .scripts{border:1px solid var(--line); border-radius:2mm; background:#fafafa; padding:.5mm 2.6mm .4mm;}
-  .say{border-left:2.5px solid var(--blue); background:#fff; border-radius:0 1.4mm 1.4mm 0; padding:.8mm 2mm .6mm 2mm; margin-top:.6mm;}
+  .say{border-left:2.5px solid var(--blue); background:#fff; border-radius:0 1.4mm 1.4mm 0; padding:.55mm 2mm .45mm 2mm; margin-top:.45mm;}
   .say .lb{font-size:8.2px; font-weight:800; color:var(--blue); letter-spacing:.04em;}
-  .say .tx{font-size:9px; line-height:1.34; color:var(--ink); margin-top:.3mm;}
+  .say .tx{font-size:8.7px; line-height:1.3; color:var(--ink); margin-top:.2mm;}
   .say.warn{border-left-color:var(--red);}
   .say.warn .lb{color:var(--red);}
   .say.no{border-left-color:var(--amber);}
@@ -127,7 +145,7 @@
   <div class="hd">
     <div>
       <h1>Callable Linear <span class="acc">鎖息票據</span> · 保險對決銷售板</h1>
-      <div class="sub">主打客群＝諗住買儲蓄保險嘅客——賣「坐足五年到期一筆過」；見客三問① → 判決② → 燈號③ → 話術④　｜　RM 內部使用，切勿轉發客戶</div>
+      <div class="sub">主打客群＝諗住買儲蓄保險嘅客——賣「坐足五年到期一筆過」；見客三問① → 判決② → 客種對照③ → 話術④　｜　RM 內部使用，切勿轉發客戶</div>
     </div>
     <div class="asof">
       報價日期：<b>2026-11-19</b>（Barclays／UBS 當日定價）　·　收回實證：HSB <b>2026-11-20</b><br>
@@ -152,12 +170,12 @@
       <div class="q">Q2「同儲蓄保險比，好喺邊？」</div>
       <table class="vs">
         <tr><th></th><th>儲蓄保險</th><th>CL 鎖定張</th></tr>
-        <tr><td>年期</td><td>一般十幾廿年</td><td><b>5 年</b></td></tr>
-        <tr><td>回報</td><td>保證息普遍較低</td><td><b>約 5.8 厘</b>·高過 5Y 國債約 1 厘</td></tr>
-        <tr><td>中途退錢</td><td>退保罰錢</td><td>到期<b>一筆過</b>、無罰則</td></tr>
+        <tr><td>年期</td><td>短至 5 年回本款、長至十幾廿年</td><td><b>5 年</b></td></tr>
+        <tr><td>回報</td><td>5 年回本款＝第 5 年啱啱返到本；長款保證息普遍較低</td><td><b>約 5.8 厘</b>·高過 5Y 國債約 1 厘</td></tr>
+        <tr><td>中途退錢</td><td>回本前退保罰錢</td><td>到期<b>一筆過</b>、無罰則</td></tr>
         <tr><td>保障</td><td>人壽保障 ✓</td><td>冇 ✗——銀行信用風險係代價</td></tr>
       </table>
-      <div class="punch">要保障→保險　｜　純要息＋五年唔使郁→CL</div>
+      <div class="punch">要保障→保險　｜　要息＋五年真回報→CL</div>
     </div>
 
     <div class="qc">
@@ -166,6 +184,25 @@
       <div class="ev">五年內有機會動用→唔好入；完全唔接受風險→定存／政府債券；要人壽保障→保險</div>
     </div>
 
+  </div>
+
+  <div class="evbar">
+    <div class="evbox">
+      <div class="t">🏦 證據一——各 issuer 新造集資成本梯（upcoming funding cost，%）</div>
+      <table class="ftab">
+        <tr><th>發行商</th><th>2Y</th><th>3Y</th><th>5Y</th><th>鎖定張誘因檢查（票息 vs 成本）</th></tr>
+        <tr><td class="ir">Barclays</td><td>4.4</td><td>4.8–5.1</td><td>6.0</td><td>主力 5.00 低過 5Y 成本 <b>1.0 厘</b>→收返要蝕→唔會收</td></tr>
+        <tr><td class="ir">UBS</td><td>4.0</td><td>4.6</td><td>5.5</td><td>穩信 4.35 低過 5Y 成本 <b>1.15 厘</b>→極低</td></tr>
+        <tr><td class="ir">HSBC</td><td colspan="3" style="text-align:center;color:var(--ink3)">無新造報價</td><td>想要必定早收→問 desk</td></tr>
+      </table>
+    </div>
+    <div class="evbox">
+      <div class="t">📉 證據二——OAS 錯位（11-20）：借新錢貴幾多＝滾動張時機</div>
+      <div class="oasr"><span class="nm">HSBC</span><span class="bar"><i style="width:78%;background:var(--green)"></i></span><span class="v">93.5bp<small>＋8 最窄</small></span></div>
+      <div class="oasr"><span class="nm">Barclays</span><span class="bar"><i style="width:89%;background:var(--red)"></i></span><span class="v">106.5bp<small>＋28 最闊</small></span></div>
+      <div class="oasr"><span class="nm">UBS</span><span class="bar"><i style="width:97%;background:var(--amber)"></i></span><span class="v">116.4bp<small>＋9 CS 溢價</small></span></div>
+      <div class="oasds">HSBC 最窄＝重融資最順；Barclays +28＝壓住 Nov 2027 vanilla 首窗；UBS 壓縮向 93bp＝觸發收回——<b>滾動張幾時收，睇呢欄</b></div>
+    </div>
   </div>
 
   <div class="slab">② 判決——由「坐足到期」入手，再按行方食排序<span class="rule"></span><span class="hint">🥇 鎖定張＝保險對手　⏳ 滾動張＝想彈性先做；客收＝年化計埋折讓</span></div>
@@ -217,19 +254,19 @@
   <div class="tfoot"><b>流動性客（3Y／2Y）——唔係保險對手</b>，客數低 0.3–0.4 厘：3Y 認 <b>B 4.80@97.30</b>（食 2.70；棄 5.08@98 僅食 2.00）；UBS 認 <b>4.56@98</b>（食 2.00；棄 4.80@98.53 僅食 1.47）；2Y 認 <b>B 4.39@98</b>（食 2.00）——流動性／短試客專用，唔主動建議。</div>
   <div class="tfoot"><b>後備</b>：UBS 5.50@98.64（食 1.36）勿主動開；想要必定早收→問 desk HSBC（5Y 近必然、現無報價）。<b>客問「點解 UBS 息咁平」</b>：佢最強、機構排隊借錢俾佢，唔使出高息——數靚揀 Barclays、名靚揀 UBS。<span class="lk">行方費用每張全數不年化，🔒 切勿向客戶披露。</span></div>
 
-  <div class="slab">③ 適合性燈號<span class="rule"></span></div>
+  <div class="slab">③ 客種優先 Sell 對照——跟 HSB 實證<span class="rule"></span><span class="hint">客種→tenor→issuer→客數%→fee；唔適合：五年內動用／唔接受本金風險（見 Q3）</span></div>
   <div class="lights">
-    <div class="light g"><div class="dot">✓</div><div class="tx"><b>綠燈——適合：</b>定息收入為目標；資金五年內不動用；接受發行商信用風險；原本諗保險、想五年到期攞返筆錢嘅客。</div></div>
-    <div class="light a"><div class="dot">！</div><div class="tx"><b>黃燈——按客路：</b>NGO／指定發行商→UBS 穩信版（單一佔比宜控）；想彈性／早收續接→滾動張（必講收回風險）；3 年流動性→3Y 條。</div></div>
-    <div class="light y"><div class="dot">¥</div><div class="tx"><b>¥ 人民幣客——首推本產品：</b>MXI 轉美元→主力 5.00@94.50（想滾動改 6.00@97.89）。<b>必披露</b>：非保本存款＋兌回人民幣匯率風險由客承擔。</div></div>
-    <div class="light r"><div class="dot">✕</div><div class="tx"><b>紅燈——不適合：</b>五年內有機會動用；完全不接受本金風險→定存／政府債券；要人壽保障→保險產品。</div></div>
+    <div class="light g"><div class="dot">保</div><div class="tx"><b>保本客（信用行先）：</b>① <b>UBS 4.35@95</b>——客約 5.1%、fee 5.00：Aa2 最強＋票息低過自身成本 1.15 厘＝極低。② <b>B 5.00@94.50</b>——客約 5.8%、fee 5.50（同樣極低）。</div></div>
+    <div class="light a"><div class="dot">息</div><div class="tx"><b>高息客（數行先）：</b>① <b>B 5.00@94.50</b>——客約 5.8% 全表最高、fee 5.50、一樣極低。② <b>B 6.00@97.89</b>——票面 6.00、一年可袋約 8.3 厘（fee 2.11、收回屬中）。</div></div>
+    <div class="light b"><div class="dot">雙</div><div class="tx"><b>保本＋高息客（兩樣要齊）：</b>① <b>B 5.00@94.50</b> 唯一雙冠——客 5.8%＋極低、fee 5.50。② 指定發行商／NGO→UBS 4.35@95（客 5.1%、fee 5.00）。</div></div>
+    <div class="light y"><div class="dot">¥</div><div class="tx"><b>¥ 人民幣客：</b>MXI 轉美元→主力 5.00@94.50（滾動改 6.00@97.89）；必披露非保本＋匯率風險。<b>唔適合</b>：五年內動用／唔接受本金風險→定存／政府債券／保險。</div></div>
   </div>
 
   <div class="slab">④ 照讀話術<span class="rule"></span><span class="hint">話術為口語，其餘均為書面語</span></div>
   <div class="scripts">
     <div class="say">
       <div class="lb">保險對決 · 開場（主力張）</div>
-      <div class="tx">「你買開儲蓄保險嗰啲，一鎖就十幾廿年，中途退保仲要罰錢。呢張五年就到期：票面 5 厘、折讓價 94.5 買入，坐足五年約莫 5 厘 8，高過 5 年期美國國債約 1 厘。個票息低過銀行自己借錢嘅成本，提早收返嘅機會低，你坐得足五年，到期連本金一筆過。不過講清楚——佢冇保險嗰份人壽保障，係銀行債券唔係存款；要保障買保險，純粹要錢搵錢、五年唔使郁，呢張係快五年、息高嗰個選擇。」</div>
+      <div class="tx">「你哋啲儲蓄保險，短就五年回本、長就鎖十幾廿年。五年回本嗰款，第 5 年啱啱返到本、賺息要再坐；呢張五年就到期：票面 5 厘、折讓價 94.5 買入，坐足五年約莫 5 厘 8，高過 5 年期美國國債約 1 厘。個票息低過銀行自己借錢嘅成本，提早收返嘅機會低，你坐得足五年，到期連本金一筆過。講清楚——佢冇保險嗰份人壽保障，係銀行債券唔係存款；要保障買保險，純粹要錢搵錢、五年唔使郁，呢張係息高嗰個選擇。」</div>
     </div>
     <div class="say warn">
       <div class="lb">收回風險——賣滾動張（6.00 或 UBS 5.281@98）必須講出，不得略過</div>
