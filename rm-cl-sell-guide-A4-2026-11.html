@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Callable Linear 收回實證 × 策略判決 RM內部 2026-11</title>
+<title>Callable Linear 保險對決 RM內部 2026-11</title>
 <style>
   :root{
     --surface:#ffffff; --page:#f2f3f5;
@@ -37,75 +37,46 @@
   .hd .asof{font-size:8.4px; color:var(--ink3); text-align:right; line-height:1.45;}
   .hd .asof b{color:var(--red); font-size:9px;}
 
-  .slab{font-size:8.6px; font-weight:800; color:var(--ink2); letter-spacing:.06em; margin-top:0;
+  .slab{font-size:8.6px; font-weight:800; color:var(--ink2); letter-spacing:.06em;
     display:flex; align-items:center; gap:2mm;}
   .slab .rule{flex:1; height:1px; background:var(--line);}
   .slab .hint{font-weight:400; color:var(--ink3); letter-spacing:0; font-size:7.8px;}
 
-  /* 產品 30 秒 strip */
   .pstrip{border:1px solid var(--line); border-radius:2mm; background:color-mix(in srgb,var(--amber) 4%,#fff);
-    padding:.6mm 2.4mm; font-size:7.7px; color:var(--ink2); line-height:1.34;}
+    padding:.8mm 2.4mm; font-size:8px; color:var(--ink2); line-height:1.36;}
   .pstrip b{color:var(--ink);}
 
-  /* Row E：實證三卡 */
-  .rowE{display:grid; grid-template-columns:1.02fr 1.02fr 1.16fr; gap:2mm;}
-  .chip{border:1px solid var(--line); border-top:1.4mm solid var(--blue); border-radius:2mm;
-    background:color-mix(in srgb,var(--blue) 4%,#fff); padding:.9mm 2.4mm .8mm;}
-  .chip .t{font-size:9.6px; font-weight:800; color:var(--blue);}
-  .chip .fn{margin-top:.7mm; font-size:7.7px; color:var(--ink2); border-top:1px dashed var(--line); padding-top:.5mm; line-height:1.3;}
-  .chip .fn b{color:var(--red);}
+  /* ① 見客三問 */
+  .qa{display:grid; grid-template-columns:1.02fr 1.24fr 1fr; gap:1.6mm; margin-top:.5mm;}
+  .qc{border:1px solid var(--line); border-top:1.2mm solid var(--blue); border-radius:2mm; background:#fff; padding:.9mm 2mm .8mm;}
+  .qc .q{font-size:10.5px; font-weight:800; color:var(--blue); margin-bottom:.5mm;}
+  .qc .a{font-size:8.5px; line-height:1.38; color:var(--ink2);}
+  .qc .a b{color:var(--ink);}
+  .qc .ev{margin-top:.6mm; font-size:7.9px; color:var(--ink3); border-top:1px dashed var(--line); padding-top:.5mm; line-height:1.32;}
+  .vs{width:100%; border-collapse:collapse; margin:.4mm 0 .2mm;}
+  .vs th{background:#1a2f6b; color:#fff; font-size:8px; padding:.6mm 1mm; font-weight:700;}
+  .vs td{border:1px solid var(--line); font-size:8.2px; padding:.7mm 1.2mm; line-height:1.3;}
+  .vs td:first-child{background:#f4f6fb; font-weight:700; width:12mm;}
+  .punch{margin-top:.5mm; font-size:8.5px; font-weight:800; color:var(--green);}
 
-  .ir{display:flex; align-items:center; gap:1.4mm; margin-top:1mm;}
-  .ir .nm{font-weight:800; font-size:9px; width:13mm; flex:none;}
-  .ir .cnt{font-size:7.6px; color:var(--ink3); width:12mm; flex:none;}
-  .ir .hbar{height:2.3mm; flex:1; background:#e9edf5; border-radius:1mm; overflow:hidden;}
-  .ir .hbar i{display:block; height:100%;}
-  .ir .pc{font-size:10px; font-weight:800; width:15mm; text-align:right; flex:none;}
-  .ir .pc small{font-size:6.8px; color:var(--ink3); font-weight:400; display:block; line-height:1.1;}
-  .ds{font-size:7.5px; color:var(--ink2); margin-left:13mm; line-height:1.26; margin-top:.15mm;}
-
-  .obar{display:flex; align-items:center; gap:1.4mm; margin-top:1mm;}
-  .obar .nm{font-weight:800; font-size:9px; width:13mm; flex:none;}
-  .obar .bar{height:2.7mm; flex:1; background:#e9edf5; border-radius:1mm; position:relative; overflow:hidden;}
-  .obar .bar i{position:absolute; left:0; top:0; bottom:0; border-radius:1mm;}
-  .obar .v{font-size:8.6px; font-weight:800; width:25mm; flex:none; text-align:right;}
-  .obar .v small{font-size:6.8px; color:var(--ink3); font-weight:400; display:block; line-height:1.1;}
-
-  .score{width:100%; border-collapse:collapse; margin-top:.7mm;}
-  .score th{background:#1a2f6b; color:#fff; font-size:7.6px; padding:.7mm .6mm; text-align:center; font-weight:700;}
-  .score th:first-child{width:15mm;}
-  .score td{border:1px solid var(--line); text-align:center; padding:1.1mm .6mm; font-size:8.2px;}
-  .score td.ir{background:#f4f6fb; font-weight:800; font-size:8.8px;}
-  .lv{display:inline-block; min-width:10mm; padding:.35mm 1.4mm; border-radius:1mm; color:#fff; font-size:8px; font-weight:800;}
-  .lv.m{background:var(--amber);} .lv.mh{background:#b45d00;} .lv.h{background:var(--red);} .lv.vh{background:#7c1d1d;}
-
-  .flow{display:flex; align-items:stretch; gap:1.2mm; margin-top:.6mm;}
-  .fbox{flex:1; border:1px solid var(--line); border-radius:1.6mm; background:#fff; padding:.8mm 1.8mm .6mm;}
-  .fbox .fh{font-size:9.2px; font-weight:800;}
-  .fbox .fterm{font-size:8.2px; font-weight:700; color:var(--blue); margin-top:.2mm;}
-  .fbox .fx{font-size:7.3px; color:var(--ink3); line-height:1.3; margin-top:.3mm;}
-  .fop{align-self:center; flex:none; font-size:11px; font-weight:800; color:var(--ink3);}
-  .fres{flex:none; align-self:center; background:#1a2f6b; color:#fff; border-radius:1.6mm; padding:1mm 2mm; font-size:8.8px; font-weight:800; text-align:center; line-height:1.25;}
-
-  /* 策略判決表 */
+  /* ② 判決表 */
   .menu{border:1px solid var(--line); border-radius:2mm; overflow:hidden;}
   .menu table{width:100%; border-collapse:collapse;}
   .menu th{background:#1a2f6b; color:#fff; font-size:8.4px; font-weight:700; padding:.8mm 1.6mm; text-align:left; letter-spacing:.02em;}
   .menu th.fee{color:#ffd2d2;}
-  .menu td{padding:.55mm 1.6mm; border-top:1px solid var(--line); font-size:8.7px; vertical-align:middle; line-height:1.28;}
+  .menu td{padding:.85mm 1.6mm; border-top:1px solid var(--line); font-size:8.9px; vertical-align:middle; line-height:1.32;}
   .menu .who{font-size:8.6px; color:var(--ink2);}
   .menu .who b{display:block; font-size:9.2px; color:var(--ink);}
   .menu .who .r{font-size:7.2px; color:var(--ink3);}
   .menu .cpn{font-size:12.5px; font-weight:800; white-space:nowrap;}
-  .menu .px,.menu .ret,.menu .fee{font-variant-numeric:tabular-nums;}
-  .menu .ret b{color:var(--green); font-size:9.6px;}
+  .menu .ret,.menu .fee{font-variant-numeric:tabular-nums;}
+  .menu .ret b{color:var(--green); font-size:9.8px;}
   .menu .fee{font-weight:800;}
-  .menu .verdict{font-size:8.2px; color:var(--ink2); line-height:1.3;}
+  .menu .verdict{font-size:8.4px; color:var(--ink2); line-height:1.34;}
   .menu .verdict b{color:var(--ink);}
   .menu .verdict .g{color:var(--green); font-weight:800;}
   .menu .verdict .a{color:var(--amber); font-weight:800;}
   .menu tr.g td:first-child{border-left:3px solid var(--green);}
-  .menu tr.a td:first-child{border-left:3px solid var(--amber);}
   .menu tr.bh td{background:#e8edf9; font-weight:800; font-size:8.5px; color:#1a2f6b; padding:.9mm 1.6mm; letter-spacing:.02em;}
   .menu td.call{text-align:center;}
   .menu td.call b{font-size:9.4px;}
@@ -114,22 +85,23 @@
   .menu td.call.m b{color:var(--amber);}
   .menu td.call.l b{color:var(--green);}
   .menu tr.g{background:color-mix(in srgb,var(--green) 5%,#fff);}
-  .tfoot{border:1px solid var(--line); border-radius:2mm; background:#fafafa; padding:.5mm 2.4mm; font-size:7.7px; color:var(--ink2); line-height:1.3; margin-top:.6mm;}
-  .tfoot b{color:var(--red);}
+  .tfoot{border:1px solid var(--line); border-radius:2mm; background:#fafafa; padding:.7mm 2.4mm; font-size:8px; color:var(--ink2); line-height:1.34; margin-top:.8mm;}
+  .tfoot b{color:var(--ink);}
+  .tfoot .lk{color:var(--red); font-weight:800;}
 
-  /* 燈號 2×2 */
+  /* ③ 燈號 */
   .lights{display:grid; grid-template-columns:1fr 1fr; gap:.6mm 2mm;}
-  .light{display:flex; gap:1.6mm; align-items:flex-start; border:1px solid var(--line); border-radius:1.6mm; padding:.5mm 1.8mm; background:#fff;}
+  .light{display:flex; gap:1.6mm; align-items:flex-start; border:1px solid var(--line); border-radius:1.6mm; padding:.8mm 1.8mm; background:#fff;}
   .light .dot{flex:none; width:4.2mm; height:4.2mm; border-radius:50%; margin-top:.3mm; display:flex; align-items:center; justify-content:center; color:#fff; font-size:7.6px; font-weight:800;}
   .light.g .dot{background:var(--green);} .light.a .dot{background:var(--amber);} .light.r .dot{background:var(--red);} .light.y .dot{background:var(--teal);}
-  .light .tx{font-size:7.9px; line-height:1.3; color:var(--ink2);}
+  .light .tx{font-size:8.2px; line-height:1.34; color:var(--ink2);}
   .light .tx b{color:var(--ink);}
 
-  /* 照讀話術 */
+  /* ④ 話術 */
   .scripts{border:1px solid var(--line); border-radius:2mm; background:#fafafa; padding:.5mm 2.6mm .4mm;}
-  .say{border-left:2.5px solid var(--blue); background:#fff; border-radius:0 1.4mm 1.4mm 0; padding:.5mm 2mm .4mm 2mm; margin-top:.4mm;}
-  .say .lb{font-size:7.8px; font-weight:800; color:var(--blue); letter-spacing:.04em;}
-  .say .tx{font-size:8.6px; line-height:1.28; color:var(--ink); margin-top:.2mm;}
+  .say{border-left:2.5px solid var(--blue); background:#fff; border-radius:0 1.4mm 1.4mm 0; padding:.8mm 2mm .6mm 2mm; margin-top:.6mm;}
+  .say .lb{font-size:8.2px; font-weight:800; color:var(--blue); letter-spacing:.04em;}
+  .say .tx{font-size:9px; line-height:1.34; color:var(--ink); margin-top:.3mm;}
   .say.warn{border-left-color:var(--red);}
   .say.warn .lb{color:var(--red);}
   .say.no{border-left-color:var(--amber);}
@@ -154,156 +126,117 @@
 
   <div class="hd">
     <div>
-      <h1>Callable Linear <span class="acc">定息票據</span> · 收回實證 × 策略判決</h1>
-      <div class="sub">先讀實證（HSB 11-20）：十年 call history · OAS 動態 · 收回機會 → 再揀 issuer／tenor　｜　RM 內部使用，切勿轉發客戶</div>
+      <h1>Callable Linear <span class="acc">鎖息票據</span> · 保險對決銷售板</h1>
+      <div class="sub">主打客群＝諗住買儲蓄保險嘅客——賣「坐足五年到期一筆過」；見客三問① → 判決② → 燈號③ → 話術④　｜　RM 內部使用，切勿轉發客戶</div>
     </div>
     <div class="asof">
-      報價日期：<b>2026-11-19</b>（Barclays／UBS 當日定價）　·　收回實證：<b>2026-11-20</b><br>
+      報價日期：<b>2026-11-19</b>（Barclays／UBS 當日定價）　·　收回實證：HSB <b>2026-11-20</b><br>
       美元結算　·　每張 100 萬美元起　·　可指定發行商
     </div>
   </div>
 
   <div class="pstrip">
-    <b>產品 30 秒</b>：定息票據 2／3／5 年期，全部 NC1——首 1 年不可收回，之後每年一次收回權；利息按年累計，到期／收回<b>一筆過連本金</b>支付。年化＝[(100＋票息×年數)÷買入價]<sup>1/年數</sup>−1（勿用單利報大數）。<b>無抵押優先銀行債券＝非存款、不保本。</b>　<b>落單核實</b>：發行實體必須 Barclays Bank PLC（控股 Barclays PLC 只有 Baa1、低四級勿用）；本板數字已確認以<b>利息累計款</b>計算。
+    <b>產品 30 秒</b>：定息票據，NC1——首 1 年不可收回；利息按年累計，到期／收回<b>一筆過連本金</b>支付。年化＝[(100＋票息×年數)÷買入價]<sup>1/年數</sup>−1（勿用單利報大數）。<b>無抵押優先銀行債券＝非存款、不保本。</b>　<b>落單核實</b>：發行實體必須 Barclays Bank PLC（控股 Barclays PLC 只有 Baa1、低四級勿用）；本板數字以<b>利息累計款</b>計算。
   </div>
 
-  <div class="slab">① 收回機會點計——四個因素 × 三行十年實證（HSB）<span class="rule"></span><span class="hint">專業詞全部有白話版——唔識 finance 都跟到</span></div>
-  <div class="flow">
-    <div class="fbox"><div class="fh">🎯 誘因</div><div class="fterm">票息 vs 集資成本梯</div><div class="fx">白話：收返再借過平過俾你先會收——蝕本還款冇人做</div></div>
-    <div class="fop">×</div>
-    <div class="fbox"><div class="fh">🤝 性格</div><div class="fterm">Call 歷史（%par）</div><div class="fx">白話：有得收嘅話，呢間行係咪真係收</div></div>
-    <div class="fop">×</div>
-    <div class="fbox"><div class="fh">📉 時機</div><div class="fterm">OAS 錯位</div><div class="fx">白話：銀行借新錢比平日貴幾多；貴＝唔會收</div></div>
-    <div class="fop">＋</div>
-    <div class="fbox"><div class="fh">🚪 窗數</div><div class="fterm">NC1 後 1／2／4 次</div><div class="fx">白話：每年一次骰，窗多易中</div></div>
-    <div class="fop">→</div>
-    <div class="fres">收回機會<br>矩陣 ↓</div>
-  </div>
-  <div class="rowE">
+  <div class="slab">① 見客三問——客會問乜<span class="rule"></span><span class="hint">答得出一張嘴，先有得 sell</span></div>
+  <div class="qa">
 
-    <div class="chip">
-      <div class="t">🤝 性格——十年 Call 歷史 <span style="font-weight:400;color:var(--ink3);font-size:7.4px">%par＝收回時照 100 面值贖回</span></div>
-      <div class="ir"><span class="nm">Barclays</span><span class="cnt">875 次</span><span class="hbar"><i style="width:86%;background:var(--blue)"></i></span><span class="pc">86%<small>平價收回</small></span></div>
-      <div class="ds">零售結構票多、最活躍最波動（14% 高於 par）——vanilla 盤最睇息口</div>
-      <div class="ir"><span class="nm">HSBC</span><span class="cnt">196 次</span><span class="hbar"><i style="width:74%;background:var(--amber)"></i></span><span class="pc">74%<small>平價收回</small></span></div>
-      <div class="ds">MREL 機械式 call-and-reissue；2026 已 68 次 YTD、加速中</div>
-      <div class="ir"><span class="nm">UBS</span><span class="cnt">91 次</span><span class="hbar"><i style="width:95%;background:var(--green)"></i></span><span class="pc">95%<small>平價收回</small></span></div>
-      <div class="ds">全場最紀律——機構 TLAC 盤，話收就收、照規則辦事</div>
-      <div class="fn">規律：OAS 最窄年份＝call 最多（2020 QE）；2022 息震最闊＝最少 call——<b>收回時機由 spread 主導</b></div>
+    <div class="qc">
+      <div class="q">Q1「會唔會提早收返我筆錢？」</div>
+      <div class="a"><b>唔會——蝕本還款冇人做。</b>發行商收回唯一理由：收返再借過<b>平過</b>俾你。主力張票息 <b>5.00</b> vs Barclays 借錢息約 <b>6.0</b>——低成 1 厘；借錢息要跌穿 5.00 先會收。<b>極低機會，坐足五年。</b></div>
+      <div class="ev">HSB 十年實證：收回全部跟經濟誘因行——借錢平嘅年份先收得多；UBS 95% 照規則辦事（三行合共 1,162 次收回紀錄）</div>
     </div>
 
-    <div class="chip">
-      <div class="t">📉 時機——OAS 錯位（11-20）<span style="font-weight:400;color:var(--ink3);font-size:7.4px">越闊＝借新錢越貴＝越唔會收</span></div>
-      <div class="obar"><span class="nm">HSBC</span><span class="bar"><i style="width:78%;background:var(--green)"></i></span><span class="v">93.5bp<small>＋8 vs 年均</small></span></div>
-      <div class="ds">錯位最細——call 經濟最順，MREL 照收</div>
-      <div class="obar"><span class="nm">Barclays</span><span class="bar"><i style="width:89%;background:var(--red)"></i></span><span class="v">106.5bp<small>＋28 vs 年均</small></span></div>
-      <div class="ds">錯位最大——壓抑 Nov 2027 vanilla 首窗</div>
-      <div class="obar"><span class="nm">UBS</span><span class="bar"><i style="width:97%;background:var(--amber)"></i></span><span class="v">116.4bp<small>＋9 · CS 溢價</small></span></div>
-      <div class="ds">CS 整合溢價——整合完成壓縮向 93bp＝觸發收回</div>
-      <div class="fn">曲線 flat（SOFR 2/3/5Y＝4.57／4.54／4.51）——再融資慳唔多，<b>等 OAS 回歸先有得收</b></div>
-    </div>
-
-    <div class="chip">
-      <div class="t">🎯 收回機會矩陣——issuer × tenor <span style="font-weight:400;color:var(--ink3);font-size:7.4px">誘因×性格＋時機＋窗數</span></div>
-      <table class="score">
-        <tr><th></th><th>2Y（1 窗）</th><th>3Y（2 窗）</th><th>5Y（4 窗）</th></tr>
-        <tr><td class="ir">Barclays</td><td><span class="lv m">中</span></td><td><span class="lv m">中</span></td><td><span class="lv mh">中高</span></td></tr>
-        <tr><td class="ir">UBS</td><td><span class="lv mh">中高</span></td><td><span class="lv mh">中高</span></td><td><span class="lv h">高</span></td></tr>
-        <tr><td class="ir">HSBC</td><td><span class="lv h">高</span></td><td><span class="lv h">高</span></td><td><span class="lv vh">非常高</span></td></tr>
+    <div class="qc">
+      <div class="q">Q2「同儲蓄保險比，好喺邊？」</div>
+      <table class="vs">
+        <tr><th></th><th>儲蓄保險</th><th>CL 鎖定張</th></tr>
+        <tr><td>年期</td><td>一般十幾廿年</td><td><b>5 年</b></td></tr>
+        <tr><td>回報</td><td>保證息普遍較低</td><td><b>約 5.8 厘</b>·高過 5Y 國債約 1 厘</td></tr>
+        <tr><td>中途退錢</td><td>退保罰錢</td><td>到期<b>一筆過</b>、無罰則</td></tr>
+        <tr><td>保障</td><td>人壽保障 ✓</td><td>冇 ✗——銀行信用風險係代價</td></tr>
       </table>
-      <div class="fn">全部 NC1、首窗 Nov 2027；2Y 一鎚定音、5Y 四窗易中。<b>HSBC 5Y 近必然——無報價，想要必收問 desk</b>。板上鎖定張票息低過成本 1 厘＋，誘因層已判極低（②）</div>
+      <div class="punch">要保障→保險　｜　純要息＋五年唔使郁→CL</div>
+    </div>
+
+    <div class="qc">
+      <div class="q">Q3「風險係咩？」</div>
+      <div class="a"><b>銀行債券＝非存款、不保本</b>——發行商出事先有影響；兩張主力 A1／Aa2 三行最強評級。利息係累計，唔係年年派；人民幣客經 MXI 轉美元，匯率風險由客承擔。</div>
+      <div class="ev">五年內有機會動用→唔好入；完全唔接受風險→定存／政府債券；要人壽保障→保險</div>
     </div>
 
   </div>
 
-  <div class="slab">② 策略判決表——咩客做咩 issuer／tenor<span class="rule"></span><span class="hint">🟢 綠＝主推　🟡 黃＝按客路；收回機會＝①四因素；成本梯＝該行借錢嘅息口</span></div>
+  <div class="slab">② 判決——由「坐足到期」入手，再按行方食排序<span class="rule"></span><span class="hint">🥇 鎖定張＝保險對手　⏳ 滾動張＝想彈性先做；客收＝年化計埋折讓</span></div>
   <div class="menu">
     <table>
       <tr>
-        <th style="width:4%">年期</th><th style="width:11%">發行商（評級）</th><th style="width:6%">票息</th><th style="width:6%">買入價</th><th style="width:8%">客戶持有</th><th style="width:8%">約1年收回</th><th class="fee" style="width:7%">🔒 行方食/張</th><th style="width:7%">收回機會</th><th>判斷 · 適合性</th>
+        <th style="width:4%">年期</th><th style="width:11%">發行商（評級）</th><th style="width:6%">票息</th><th style="width:7%">客收（年化）</th><th class="fee" style="width:7%">🔒 行方食/張</th><th style="width:8%">收回機會</th><th>判決 · 邊個客 · 個 logic</th>
       </tr>
-      <tr class="bh"><td colspan="9">批一｜利息行先——客以收益為先（Barclays Bank PLC｜成本梯＝佢借錢息：2Y 4.4／3Y 4.8–5.1／5Y 6.0）</td></tr>
+      <tr class="bh"><td colspan="7">🥇 坐足到期——鎖定張（收回機會極低＝保險嘅對手；行方食由多到少）</td></tr>
       <tr class="g">
         <td><b>5Y</b></td>
         <td class="who"><b>Barclays Bank PLC</b><span class="r">穆迪 A1／標普 A+</span></td>
-        <td class="cpn">5.00%</td><td class="px">94.50</td>
-        <td class="ret"><b>約 5.8%</b></td><td class="ret">約 11.1%</td><td class="fee">5.50</td>
-        <td class="call l"><b>極低</b><span>鎖足五年</span></td>
-        <td class="verdict"><span class="g">✅ 主力首選：</span>預設推——客數約 5.8、極低收回鎖足五年；行方食 5.50 全表最肥。</td>
+        <td class="cpn">5.00%</td>
+        <td class="ret"><b>約 5.8%</b></td>
+        <td class="fee">5.50</td>
+        <td class="call l"><b>極低</b><span>坐足到期</span></td>
+        <td class="verdict"><span class="g">✅ 主力首選：</span>預設推——票息低過佢借錢息 1 厘、冇誘因收回；折讓價 94.50 買入，計埋折讓約 5.8 厘，高過 5Y 國債約 1 厘；行方食 5.50 全表最肥。</td>
       </tr>
-      <tr class="g">
-        <td><b>5Y</b></td>
-        <td class="who"><b>Barclays Bank PLC</b><span class="r">同上</span></td>
-        <td class="cpn">6.00%</td><td class="px">97.89</td>
-        <td class="ret"><b>約 5.8%</b></td><td class="ret">約 8.3%</td><td class="fee">2.11</td>
-        <td class="call m"><b>中</b><span>首窗中·四窗中高</span></td>
-        <td class="verdict"><span class="g">✅ 滾動版：</span>想早收續接的客——收回袋 8.3% 離場；首窗屬中、隨時第 2/3 窗先收。比價客改開 5.50@96.19（食 3.81 多 1.70）。</td>
-      </tr>
-      <tr class="a">
-        <td><b>3Y</b></td>
-        <td class="who"><b>Barclays Bank PLC</b><span class="r">穆迪 A1／標普 A+</span></td>
-        <td class="cpn">4.80%</td><td class="px">97.30</td>
-        <td class="ret"><b>約 5.5%</b></td><td class="ret">約 7.7%</td><td class="fee">2.70</td>
-        <td class="call l"><b>低</b><span>要息跌</span></td>
-        <td class="verdict"><span class="a">⚠ 3 年流動性客：</span>客數少 5Y 0.3 厘（為食 0.59 叫客棄 0.3＝違反客戶先行）；認這張、棄 5.08@98（僅食 2.00）。</td>
-      </tr>
-      <tr class="a">
-        <td><b>2Y</b></td>
-        <td class="who"><b>Barclays Bank PLC</b><span class="r">穆迪 A1／標普 A+</span></td>
-        <td class="cpn">4.39%</td><td class="px">98.00</td>
-        <td class="ret"><b>約 5.4%</b></td><td class="ret">約 6.5%</td><td class="fee">2.00</td>
-        <td class="call l"><b>低</b><span>單窗</span></td>
-        <td class="verdict"><span class="a">⚠ 短試／流動性：</span>單窗＝一鎚定音、收回屬中低——不主動建議。</td>
-      </tr>
-      <tr class="bh"><td colspan="9">批二｜Issuer 行先——客重發行商實力（UBS AG Aa2／A+ 三行最強｜成本梯＝佢借錢息：2Y 4.0／3Y 4.6／5Y 5.5）</td></tr>
       <tr class="g">
         <td><b>5Y</b></td>
         <td class="who"><b>UBS AG</b><span class="r">穆迪 Aa2／標普 A+——最強</span></td>
-        <td class="cpn">4.35%</td><td class="px">95.00</td>
-        <td class="ret"><b>約 5.1%</b></td><td class="ret">約 9.8%</td><td class="fee">5.00</td>
-        <td class="call l"><b>極低</b><span>鎖足五年</span></td>
-        <td class="verdict"><span class="g">✅ 穩信版：</span>NGO／保守資金必選——鎖足五年單一結局；棄 5.50@98.64（僅食 1.36）。</td>
+        <td class="cpn">4.35%</td>
+        <td class="ret"><b>約 5.1%</b></td>
+        <td class="fee">5.00</td>
+        <td class="call l"><b>極低</b><span>坐足到期</span></td>
+        <td class="verdict"><span class="g">✅ 穩信版：</span>NGO／指定發行商必選——票息低過自身借錢息 1.15 厘，單一結局坐足五年；Aa2 最強信用。單一佔比宜控。</td>
       </tr>
-      <tr class="a">
-        <td><b>3Y</b></td>
-        <td class="who"><b>UBS AG</b><span class="r">穆迪 Aa2／標普 A+</span></td>
-        <td class="cpn">4.56%</td><td class="px">98.00</td>
-        <td class="ret"><b>約 5.1%</b></td><td class="ret">約 6.7%</td><td class="fee">2.00</td>
-        <td class="call l"><b>低</b><span>要息跌</span></td>
-        <td class="verdict"><span class="a">⚠ 重實力＋3 年流動性：</span>認 4.56@98、棄同票息 4.80@98.53（僅食 1.47）。</td>
+      <tr class="bh"><td colspan="7">⏳ 想彈性先做——滾動張（會被收回＝唔係保險替代品；收回風險必須講明）</td></tr>
+      <tr>
+        <td><b>5Y</b></td>
+        <td class="who"><b>Barclays Bank PLC</b><span class="r">穆迪 A1／標普 A+</span></td>
+        <td class="cpn">6.00%</td>
+        <td class="ret"><b>約 5.8%</b></td>
+        <td class="fee">2.11</td>
+        <td class="call m"><b>中</b><span>首窗中·四窗中高</span></td>
+        <td class="verdict"><span class="a">⏳ 滾動版：</span>想早收續接嘅客——貼住借錢息、有誘因收；收回袋約 8.3 厘離場，隨時第 2/3 窗先收。比價客改開 5.50@96.19（食 3.81 多 1.70）。</td>
       </tr>
-      <tr class="a">
-        <td><b>2Y</b></td>
+      <tr>
+        <td><b>5Y</b></td>
         <td class="who"><b>UBS AG</b><span class="r">穆迪 Aa2／標普 A+</span></td>
-        <td class="cpn">4.02%</td><td class="px">98.00</td>
-        <td class="ret"><b>約 5.0%</b></td><td class="ret">約 6.1%</td><td class="fee">2.00</td>
-        <td class="call l"><b>低</b><span>單窗</span></td>
-        <td class="verdict"><span class="a">⚠ 重實力短試：</span>2Y 照揀批一 Barclays。</td>
+        <td class="cpn">5.281%</td>
+        <td class="ret"><b>約 5.2%</b></td>
+        <td class="fee">2.00</td>
+        <td class="call h"><b>高</b><span>四窗</span></td>
+        <td class="verdict"><span class="a">⏳ 必收梗會率：</span>滾動客要「一定收得返」→認呢張（UBS 95% 照規則收）；棄 5.50@98.64（僅食 1.36）。</td>
       </tr>
     </table>
   </div>
-  <div class="tfoot"><b>後備路由</b>：滾動客要「必收」梗會率→UBS 5.281@98（食 2.00、四窗高）；想要必定早收→問 desk HSBC（5Y 近必然、現無報價）。行方費用每張全數不年化，🔒 切勿向客戶披露。</div>
+  <div class="tfoot"><b>流動性客（3Y／2Y）——唔係保險對手</b>，客數低 0.3–0.4 厘：3Y 認 <b>B 4.80@97.30</b>（食 2.70；棄 5.08@98 僅食 2.00）；UBS 認 <b>4.56@98</b>（食 2.00；棄 4.80@98.53 僅食 1.47）；2Y 認 <b>B 4.39@98</b>（食 2.00）——流動性／短試客專用，唔主動建議。</div>
+  <div class="tfoot"><b>後備</b>：UBS 5.50@98.64（食 1.36）勿主動開；想要必定早收→問 desk HSBC（5Y 近必然、現無報價）。<b>客問「點解 UBS 息咁平」</b>：佢最強、機構排隊借錢俾佢，唔使出高息——數靚揀 Barclays、名靚揀 UBS。<span class="lk">行方費用每張全數不年化，🔒 切勿向客戶披露。</span></div>
 
   <div class="slab">③ 適合性燈號<span class="rule"></span></div>
   <div class="lights">
-    <div class="light g"><div class="dot">✓</div><div class="tx"><b>綠燈——適合：</b>定息收入為目標；資金五年內不動用；接受發行商信用風險；滾動客明白約一年可能被收回並屆時續接。</div></div>
-    <div class="light a"><div class="dot">！</div><div class="tx"><b>黃燈——按客路：</b>NGO／保守／指定發行商→批二 UBS 照表揀（單一佔比宜控）；純收益流動性客→批一 3Y；短試→批一 2Y。</div></div>
-    <div class="light y"><div class="dot">¥</div><div class="tx"><b>¥ 人民幣客——首推本產品：</b>高息＋硬貨幣：MXI 轉美元→批一主力 5.00@94.50（想滾動改 6.00@97.89）。<b>必披露</b>：非保本存款＋兌回人民幣匯率風險由客承擔。</div></div>
-    <div class="light r"><div class="dot">✕</div><div class="tx"><b>紅燈——不適合：</b>五年內有機會動用；完全不接受本金風險。替代：定期存款／短期政府債券／貨幣基金。</div></div>
+    <div class="light g"><div class="dot">✓</div><div class="tx"><b>綠燈——適合：</b>定息收入為目標；資金五年內不動用；接受發行商信用風險；原本諗保險、想五年到期攞返筆錢嘅客。</div></div>
+    <div class="light a"><div class="dot">！</div><div class="tx"><b>黃燈——按客路：</b>NGO／指定發行商→UBS 穩信版（單一佔比宜控）；想彈性／早收續接→滾動張（必講收回風險）；3 年流動性→3Y 條。</div></div>
+    <div class="light y"><div class="dot">¥</div><div class="tx"><b>¥ 人民幣客——首推本產品：</b>MXI 轉美元→主力 5.00@94.50（想滾動改 6.00@97.89）。<b>必披露</b>：非保本存款＋兌回人民幣匯率風險由客承擔。</div></div>
+    <div class="light r"><div class="dot">✕</div><div class="tx"><b>紅燈——不適合：</b>五年內有機會動用；完全不接受本金風險→定存／政府債券；要人壽保障→保險產品。</div></div>
   </div>
 
   <div class="slab">④ 照讀話術<span class="rule"></span><span class="hint">話術為口語，其餘均為書面語</span></div>
   <div class="scripts">
     <div class="say">
-      <div class="lb">開場賣點</div>
-      <div class="tx">「你呢筆錢五年唔使郁，而家鎖 5 厘定息——票面 5 厘、折讓價 94.5 買入，計埋折讓坐足五年約莫 5 厘 8，高過 5 年期美國國債約 1 厘；呢個票息低過銀行自己借錢嘅成本，提早收返嘅機會低，你穩坐五年。利息唔係年年派，係累計，到期連本金<b>一筆過</b>過你。存款利息跟減息一路跌，呢張係今日鎖實。」</div>
+      <div class="lb">保險對決 · 開場（主力張）</div>
+      <div class="tx">「你買開儲蓄保險嗰啲，一鎖就十幾廿年，中途退保仲要罰錢。呢張五年就到期：票面 5 厘、折讓價 94.5 買入，坐足五年約莫 5 厘 8，高過 5 年期美國國債約 1 厘。個票息低過銀行自己借錢嘅成本，提早收返嘅機會低，你坐得足五年，到期連本金一筆過。不過講清楚——佢冇保險嗰份人壽保障，係銀行債券唔係存款；要保障買保險，純粹要錢搵錢、五年唔使郁，呢張係快五年、息高嗰個選擇。」</div>
     </div>
     <div class="say warn">
-      <div class="lb">收回風險——賣滾動版（6.00）或 UBS 5.281@98 必須講出，不得略過</div>
+      <div class="lb">收回風險——賣滾動張（6.00 或 UBS 5.281@98）必須講出，不得略過</div>
       <div class="tx">「一年之後銀行有權收回，之後每年一次。佢減息（或集資成本跌）就會收返——你袋住約 8 厘 3 一年離場，我哋即刻幫你接新嘅；佢唔收，你坐足五年收 5 厘 8。兩個結局都係贏，只係幾時攞返筆錢。」</div>
     </div>
     <div class="say no">
-      <div class="lb">NGO／保守客——揀 UBS，誠實披露</div>
+      <div class="lb">NGO／保守客——揀 UBS 穩信版，誠實披露</div>
       <div class="tx">「你哋要穩陣，我哋揀信用最強嗰張——UBS，Aa2 三張最高。同主力一樣係鎖足五年嗰類：佢個票息低過 UBS 自己借錢嘅成本，提早收返嘅機會低，你坐足五年——折讓價 95 買入，計埋折讓約莫 5 厘 1，到期連本帶息一筆過。講清楚：銀行債券唔係存款，有信用風險；完全唔接受本金風險就用定期存款或短期政府債券。」</div>
     </div>
   </div>
