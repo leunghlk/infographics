@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<title>Callable Linear Term Sheet 三行對讀 RM內部 2026-11</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  :root{
+    --navy:#1a2f6b; --blue:#2563eb; --green:#15803d; --red:#dc2626; --amber:#d97706;
+    --ink:#1e293b; --ink2:#475569; --ink3:#94a3b8; --line:#d8dee9; --bg:#f6f7fa; --surface:#ffffff;
+  }
+  html,body{background:var(--bg);}
+  body{font-family:-apple-system,'PingFang TC','Helvetica Neue',sans-serif;
+    color:var(--ink); line-height:1.4;
+    -webkit-print-color-adjust:exact; print-color-adjust:exact;}
+  @media print{.jpgbtn,.kbadge{display:none !important;}}
+  @page{size:A4 landscape; margin:1mm;}
+  @media print{.sheet{margin:0 auto; box-shadow:none;}}
+  .sheet{
+    width:297mm; min-height:170mm; margin:6mm auto; background:var(--surface);
+    padding:1.2mm 6mm 1mm; box-shadow:0 2px 14px rgba(0,0,0,.10);
+    display:flex; flex-direction:column; gap:1mm;
+  }
+  /* header */
+  .hd{display:flex; justify-content:space-between; align-items:flex-end; border-bottom:2.5px solid var(--ink); padding-bottom:.8mm;}
+  .hd h1{font-size:15px; letter-spacing:.01em;}
+  .hd h1 .thin{color:var(--ink2); font-weight:600; font-size:12.5px;}
+  .hd .asof{text-align:right; font-size:8px; color:var(--ink3); line-height:1.5;}
+  .hd .asof b{color:var(--red); font-size:9px;}
+  /* three issuer columns */
+  .cols{display:grid; grid-template-columns:1fr 1fr 1fr; gap:2mm; flex:1;}
+  .col{border:1px solid var(--line); border-top:1.6mm solid var(--navy); border-radius:2.2mm; background:#fff;
+    padding:1.1mm 2.4mm .9mm; display:flex; flex-direction:column; gap:.7mm;}
+  .col.u{border-top-color:var(--blue);} .col.h{border-top-color:var(--red);}
+  .ch{display:flex; align-items:baseline; gap:1.6mm; border-bottom:1px solid var(--line); padding-bottom:.5mm;}
+  .ch .nm{font-size:11.5px; font-weight:900; color:var(--navy);}
+  .col.u .ch .nm{color:var(--blue);} .col.h .ch .nm{color:var(--red);}
+  .ch .rt{font-size:8px; font-weight:800; color:#fff; background:var(--green); border-radius:1mm; padding:.2mm 1.4mm;}
+  .samp{font-size:8px; color:var(--ink3); font-weight:600;}
+  .kv{font-size:8.5px; color:var(--ink2); line-height:1.36;}
+  .kv b{color:var(--ink);}
+  .kv .hl{background:#fff7e6; border-radius:.8mm; padding:0 .8mm; font-weight:800; color:#92400e;}
+  .kv .rd{color:var(--red); font-weight:800;}
+  .kv .gn{color:var(--green); font-weight:800;}
+  .tbl{width:100%; border-collapse:collapse; margin-top:.2mm;}
+  .tbl th{background:var(--navy); color:#fff; font-size:7.6px; padding:.35mm 1.2mm; text-align:left; font-weight:700;}
+  .tbl td{border:1px solid var(--line); font-size:8px; padding:.35mm 1.2mm; line-height:1.22;}
+  .tbl td:first-child{background:#f2f5fa; color:var(--ink2); font-weight:700; width:24mm;}
+  .tbl .acc{font-weight:800; color:var(--navy);}
+  /* bottom band */
+  .band{display:grid; grid-template-columns:1.35fr 1fr; gap:2mm;}
+  .bx{border:1px solid var(--line); border-radius:2.2mm; background:var(--bg); padding:1.2mm 2.6mm 1mm;}
+  .bx .bt{font-size:9.5px; font-weight:900; color:var(--navy); margin-bottom:.5mm;}
+  .bx.warnx .bt{color:#92400e;} .bx.qx .bt{color:var(--red);}
+  .bx li{font-size:8.3px; color:var(--ink2); line-height:1.36; margin-left:3.6mm; margin-top:.35mm;}
+  .bx li b{color:var(--ink);}
+  .bx .ok{color:var(--green); font-weight:900;} .bx .wn{color:#92400e; font-weight:900;}
+  .ft{border-top:1px solid var(--line); padding-top:.6mm; font-size:7.3px; color:var(--ink3); line-height:1.35;}
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <div class="hd">
+    <h1>Callable Linear Term Sheet 三行對讀 <span class="thin">· RM 內部參考 · 樣板條款（INDICATIVE，個別發行以 Pricing Supplement 為準）</span></h1>
+    <div class="asof">三份 sample term sheet 對讀（2026-11-21）<br><b>🔒 fee／成本口徑切勿向客戶披露</b></div>
+  </div>
+
+  <div class="cols">
+
+    <div class="col u">
+      <div class="ch"><span class="nm">UBS AG, London Branch</span><span class="rt">Aa2 / A+ / AA</span></div>
+      <div class="samp">樣板：USD 1,000,000 Callable Zero Coupon Note due 2031（2026-05-19 起息 · 5 年）</div>
+      <div class="kv">零息票：<b>認購價 100、唔派年息</b>——票價直線增長 <b class="hl">LAR 4.96%/年</b>，連本帶息到期一筆過收。增長表（Amortised Face Amount）：</div>
+      <table class="tbl">
+        <tr><td>2027-05-19 call</td><td class="acc">104.96</td></tr>
+        <tr><td>2028／2029／2030 call</td><td class="acc">109.92 / 114.88 / 119.84</td></tr>
+        <tr><td>2031-05-19 到期</td><td class="acc">124.80</td></tr>
+      </table>
+      <div class="kv"><b>Issuer call</b>：NC1，之後每年 5/19 可全數收回；<span class="rd">call 價＝增長表當年數（包息），唔係 100</span>。</div>
+      <div class="kv">⭐ TS 仲列埋 <b>Accrual Yield 4.96%→4.53% 遞減</b>＝真 IRR：<b>早收年化高過坐到尾</b>（直線增長嘅數學，5年真 IRR 得 4.53%，唔係 4.96%）。</div>
+      <div class="kv"><b>回購</b>：TS 白紙黑字「<b>No secondary market currently exists, nor is one likely to develop</b>」；UBS 標明係 arranger——on request 先報價、<b>報價唔係承諾</b>、<span class="rd">提早終止可能收客手續費（might pay or charge）</span>。</div>
+      <div class="kv"><b>稅務等事件提早贖回</b>＝公允價 <span class="rd">減 unwind／對沖成本</span>；min transfer USD 100,000；僅限專業投資者。</div>
+    </div>
+
+    <div class="col">
+      <div class="ch"><span class="nm">Barclays Bank PLC</span><span class="rt">A1 / A+ / A-</span></div>
+      <div class="samp">樣板：Zero Coupon Callable Notes（2026-10-19 起息 · 2029-10-19 到期 ＝ 3 年）</div>
+      <div class="kv">零息票：認購價 100，直線回報 <b class="hl">4.69%/年</b>；到期收 <b>114.07</b>（=100+4.69×3）。Call schedule 白紙黑字：</div>
+      <table class="tbl">
+        <tr><td>2027-10-19 call</td><td class="acc">104.69</td></tr>
+        <tr><td>2028-10-19 call</td><td class="acc">109.38</td></tr>
+        <tr><td>2029-10-19 到期</td><td class="acc">114.07</td></tr>
+      </table>
+      <div class="kv">⭐ <b>Third Party Fees</b>：「<b>Issue Price includes a commission element shared with a third party</b>」——fee 內嵌買價、同分銷方分帳（＝分俾我哋行）。</div>
+      <div class="kv"><b>回購</b>：Barclays「盡力」每日俾 indicative bid——<span class="rd">sole discretion、唔係承諾、未必反映內部帶、可以大幅偏離、模型極端下可以係零</span>。</div>
+      <div class="kv">⭐ 白紙黑字：<b>唔屬 MREL 合資格債</b>；<b>Bail-in（BRRD）風險</b>明列；稅務/對沖事件提早贖回＝市值減 unwind cost；5 個營業日 call 通知；min tradable USD 100,000。</div>
+    </div>
+
+    <div class="col h">
+      <div class="ch"><span class="nm">HSBC Bank plc</span><span class="rt">A1 / A+ / AA</span></div>
+      <div class="samp">樣板：Callable Linear Zero Coupon Notes template（12 頁，實數留空 [ ]）</div>
+      <div class="kv">同名寫到明：<b>Linear 零息</b>——認購 100、LAR [ ]%/年、到期收 [ ]%（=100+LAR×年）。官方定位句：「Aims to return 100% of the principal <b>at maturity</b>, subject to early redemption at <b>fair market value</b>」。</div>
+      <div class="kv"><b>Call</b>：NC1、之後每年；5 個營業日通知；call 價 [ ]%（模板位，照 linear 增長邏輯）。票本身 unrated。</div>
+      <div class="kv">⭐ <b>買回價敏感度表</b>（三份中最量化）：funding spread <b>+1% → 買回價 93</b>｜<b>+3% → 74</b>（5 年後 85）；<span class="rd">利率 +5% → 63.39</span>。直接量化「提早沽出可以好蝕」。</div>
+      <div class="kv"><b>回購</b>：「may, but shall <b>NOT be required</b> to, make a market」——sole &amp; absolute discretion。</div>
+      <div class="kv">⭐ 投資者自我聲明（HSBC 模板原文）：「<b>I am prepared to hold my Notes for the full investment tenor without the need for liquidity</b>」——產品文件自己寫明：買呢張要預坐到尾。min USD 100,000（50,000 倍數）。</div>
+    </div>
+
+  </div>
+
+  <div class="band">
+    <div class="bx warnx">
+      <div class="bt">對返我哋之前理解——兩個 ✅、兩個 ⚠️ 要修</div>
+      <li><span class="ok">✅ 收回機制無錯</span>：三份都係 issuer call option、NC1 年 call、5 營業日通知——「借新錢平過舊票就收」嘅經濟邏輯不變。</li>
+      <li><span class="ok">✅ 「客無提早贖回權、回購不保證」三份直接證實</span>：UBS 加多條「可能收費」；HSBC 量化埋最壞 63%；Barclays「盡力」每日 bid 但模型極端下可以係零。</li>
+      <li><span class="wn">⚠️ 「到期按 100 贖回」要修</span>：TS 現實＝到期收 <b>100＋累計利息一筆過</b>（例 114.07 / 124.80）；<b>call 收增長表價（包息）</b>——客被收回唔單止唔會冇息，<b>年化仲高過坐到尾</b>（UBS yield 欄 4.96→4.53% 就係證明）。張板 gloss「94.50 買入、100 贖回」要照 TS 改寫。</li>
+      <li><span class="wn">⚠️ 「票息」一詞：TS 世界冇 coupon、只有 LAR</span>——我哋報價簿「票息 5%」＝LAR 口徑。兩條客收數同 TS 邏輯完全脗合：IRR＝(125/94.50)^⅕−1＝<b>5.757%≈sheet 口徑 5.75／板面約 5.8</b>；直線混合＝5%＋折讓攤分 1.16%＝<b>約 6.1</b>。⭐ 被收回嗰日客收增長表價（例 1 年 call 收 105），短持有 IRR 仲靚——右半「被收回後續購」話術有數撑。</li>
+    </div>
+    <div class="bx qx">
+      <div class="bt">問 desk／銀行清單（6 條）</div>
+      <li>1️⃣ 客 confirmation 係照 TS 增長表（call 收 accreted）定另一套？有冇 amortised schedule 版俾客？</li>
+      <li>2️⃣ 客收約 5.8 嘅年化公式釘死：IRR 5.757 定直線 6.1？sheet 口徑 5.75 邊條式？</li>
+      <li>3️⃣ 🔒fee（5.50/2.70/2.00…）係行方 <b>gross</b> 定已扣 bank cost？bank cost 佔幾多？</li>
+      <li>4️⃣ 客買價（94.50/97.30/98）對應 issuer TS 邊個數——issue 100 折讓俾行，行再定客價？</li>
+      <li>5️⃣ 客戶提早沽出：行方 own-book 回購用邊個模型、buy-sell spread 幾多、min size 幾多？</li>
+      <li>6️⃣ Barclays Fitch A-（2026-05-28 更新）——板面評級口徑要唔要跟新？</li>
+    </div>
+  </div>
+
+  <div class="ft">⚠ RM 內部參考——三份均為 INDICATIVE 樣板 term sheet；個別發行條款以 Pricing Supplement／客戶確認書為準。🔒 fee／成本口徑切勿向客戶披露。三份產品均：非存款、非保本、發行商無擔保債（Barclays 另列 Bail-in 風險）、僅限專業投資者、不受任何補償計劃保障。</div>
+
+</div>
+</body>
+</html>
+
+<button class="jpgbtn" onclick="exportJPG(this)">📸 匯出 JPEG</button>
+<a class="kbadge" href="https://leunghlk.github.io/all-in-one/" title="leungkathy · 返回主頁">k</a>
+<script type="module">
+  import { domToJpeg } from "https://cdn.jsdelivr.net/npm/modern-screenshot@4/dist/index.mjs";
+  window.modernScreenshot = { domToJpeg };
+</script>
+<script>
+function exportJPG(btn){
+  var target=document.querySelector('.sheet')||document.querySelector('.wrap');
+  if(!target||!window.modernScreenshot){alert('匯出元件未載入，請檢查網絡後重試');return;}
+  btn.disabled=true;var t=btn.textContent;btn.textContent='⏳ 匯出中…';
+  var k=document.createElement('div');
+  k.textContent='k';
+  k.style.cssText="position:absolute;right:8mm;bottom:2mm;z-index:9;font:italic 300 36px/1 'Brush Script MT','Segoe Script',cursive;color:#2563eb;pointer-events:none;";
+  var prevPos=target.style.position, prevPad=target.style.paddingBottom;
+  if(getComputedStyle(target).position==='static') target.style.position='relative';
+  target.style.paddingBottom='13mm';
+  target.appendChild(k);
+  function done(){ k.remove(); target.style.position=prevPos; target.style.paddingBottom=prevPad; }
+  function restore(){ done(); btn.textContent=t; btn.disabled=false; }
+  function fname(){ return (document.title.replace(/[^\w一-鿿-]+/g,'-').replace(/-+/g,'-'))+'.jpg'; }
+  // 📱 大圖防爆記憶體：限制 canvas 總像素；失敗自動降 scale 重試
+  var rg=target.getBoundingClientRect(), MAXPX=16000000;
+  var sc=2; if(rg.width*rg.height*4>MAXPX) sc=Math.max(1,Math.sqrt(MAXPX/(rg.width*rg.height)));
+  function overlay(blob,name){ // 後備路：長按張圖 →「加入照片」貯入相簿
+    var u=URL.createObjectURL(blob);
+    var o=document.createElement('div');
+    o.style.cssText='position:fixed;inset:0;z-index:99999;background:rgba(10,12,16,.88);display:flex;flex-direction:column;align-items:center;gap:12px;padding:18px;overflow:auto;';
+    var tip=document.createElement('div');
+    tip.style.cssText='color:#fff;font:600 14px/1.5 -apple-system,system-ui,sans-serif;text-align:center;';
+    tip.innerHTML='長按下面張圖 → 揀「<b>加入照片</b>」即可貯入相簿<br><span style="font-size:12px;opacity:.65">（或撳「下載」存入檔案 App）</span>';
+    var img=new Image(); img.src=u; img.style.cssText='max-width:100%;background:#fff;box-shadow:0 6px 28px rgba(0,0,0,.5);';
+    var bar=document.createElement('div'); bar.style.cssText='display:flex;gap:10px;';
+    var dl=document.createElement('a'); dl.href=u; dl.download=name; dl.textContent='⬇ 下載';
+    dl.style.cssText='background:#2563eb;color:#fff;font:700 14px -apple-system,system-ui,sans-serif;padding:10px 18px;border-radius:9px;text-decoration:none;';
+    var cl=document.createElement('button'); cl.textContent='✕ 關閉';
+    cl.style.cssText='background:#374151;color:#fff;font:700 14px -apple-system,system-ui,sans-serif;padding:10px 18px;border-radius:9px;border:none;';
+    cl.onclick=function(){ o.remove(); URL.revokeObjectURL(u); };
+    bar.appendChild(dl); bar.appendChild(cl);
+    o.appendChild(tip); o.appendChild(img); o.appendChild(bar);
+    document.body.appendChild(o);
+  }
+  function deliver(url,name){
+    fetch(url).then(function(r){return r.blob();}).then(function(blob){
+      var file=null; try{ file=new File([blob],name,{type:'image/jpeg'}); }catch(e){}
+      var touch=(navigator.maxTouchPoints>0)||/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
+      // 📱 電話首選：系統分享單 →「加入照片」直接貯入相簿
+      if(file&&touch&&navigator.canShare&&navigator.canShare({files:[file]})){
+        navigator.share({files:[file],title:name}).then(function(){ restore(); })
+        .catch(function(err){
+          if(err&&err.name==='AbortError'){ restore(); return; }
+          overlay(blob,name); restore();
+        });
+        return;
+      }
+      // 💻 桌面／其他：照舊 anchor 下載
+      var u=URL.createObjectURL(blob);
+      var a=document.createElement('a'); a.href=u; a.download=name;
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(function(){ URL.revokeObjectURL(u); },4000);
+      if(touch&&/iP(hone|ad|od)/.test(navigator.userAgent)){ overlay(blob,name); }
+      else restore();
+    }).catch(function(e){ restore(); alert('匯出失敗：'+(e&&e.message||e)); });
+  }
+  modernScreenshot.domToJpeg(target,{scale:sc,quality:0.92,backgroundColor:'#ffffff'})
+  .then(function(url){ done(); deliver(url,fname()); })
+  .catch(function(e){
+    if(sc>1){
+      modernScreenshot.domToJpeg(target,{scale:1,quality:0.9,backgroundColor:'#ffffff'})
+      .then(function(url){ done(); deliver(url,fname()); })
+      .catch(function(e2){ restore(); alert('匯出失敗：'+(e2&&e2.message||e2)); });
+    }else{ restore(); alert('匯出失敗：'+(e&&e.message||e)); }
+  });
+}
+</script>
+<script>
+// 📱 電話觀看修正：內容闊過螢幕 → viewport 設做內容闊度，開頁即成頁縮細睇到＋可以較大
+(function(){
+  function go(){
+    try{
+      var sw=Math.min(window.screen.width, window.innerWidth||window.screen.width);
+      var w=Math.max(document.documentElement.scrollWidth, document.body?document.body.scrollWidth:0);
+      var m=document.querySelector('meta[name="viewport"]');
+      if(!m||w>2400||w<=sw+4) return;
+      m.setAttribute('content','width='+Math.ceil(w));
+    }catch(e){}
+  }
+  if(document.readyState==='complete') setTimeout(go,80);
+  else window.addEventListener('load',function(){ setTimeout(go,80); });
+})();
+</script>
+</body>
+</html>
