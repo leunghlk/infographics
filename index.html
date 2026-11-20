@@ -25,6 +25,12 @@
     padding:6px 12px;border-radius:999px;white-space:nowrap;}
   @media (max-width:768px){.hdrow{flex-direction:column;text-align:center;}.corner{display:none;}}
   /* 單行橫滑 tab strip：永遠得一row，闊都唔會疊層霸位 */
+  .folders{display:flex;gap:6px;flex-wrap:nowrap;align-items:center;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin-bottom:6px;}
+  .folders::-webkit-scrollbar{display:none;}
+  .folders a.fl{font-size:13px;font-weight:700;padding:7px 14px;border-radius:999px;white-space:nowrap;flex:0 0 auto;text-decoration:none;
+    color:rgba(255,255,255,.85);background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.22);}
+  .folders a.fl:hover{background:rgba(255,255,255,.2);}
+  .folders a.fl.on{color:var(--primary);background:#fff;border-color:#fff;}
   nav{display:flex;gap:2px;flex-wrap:nowrap;align-items:center;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
   nav::-webkit-scrollbar{display:none;}
   nav a.tab{font-size:13.5px;font-weight:600;padding:9px 14px;border-radius:10px 10px 0 0;text-decoration:none;white-space:nowrap;flex:0 0 auto;
@@ -59,6 +65,7 @@
     </div>
     <div class="corner">📐 Infographics 圖表館</div>
   </div>
+  <div class="folders" id="folders"></div>
   <nav id="tabs"></nav>
   </div>
 </header>
@@ -67,53 +74,87 @@
 <script>
 // ⬇️  出新圖：喺呢個 list 頂部加一行（排第一 = main page 顯示，其餘自動變 tab）
 const PAGES = [
-  {f:"rm-cl-sell-guide-A4-2026-11.html", t:"Callable Linear 銷售速覽 · 一頁讀懂（如何解釋 · 主推三行 6厘/5厘鎖定/UBS穩信 · 年期選擇 · 適合性燈號＋NGO 判決 · 照讀話術 · 含行方費用口徑）", d:"2026-11-19"},
-  {f:"rm-top3-final-A4-2026-11.html", t:"Top 3 終榜 · 賣點×情境×輪動（P1 CL 6厘版／P2 ELN／P3 CL 5.5厘版 · 客賺×費用雙過線 · 轉鷹轉鴿對策 · 輪動地圖含低波四強轉倉 · 含行方費用口徑）", d:"2026-11-19"},
-  {f:"rm-fee-top3-A4-2026-11.html", t:"費用三主力 · 現階段最值得買 × 費用最大 Top 3（P1 CL／P2 ELN／P3 5Y 直債 · 分優先順序 × 三情境應對 · 含行方費用口徑）", d:"2026-11-19"},
-  {f:"rm-rate-playbook-A4-2026-11.html", t:"息口情境藍圖 · RM 內部 Playbook（現階段賣咩 × 轉鷹／轉鴿／冇事冇幹全應對 · 含行方 fee 口徑）", d:"2026-11-19"},
-  {f:"13f-season-q3-2026.html", t:"13F 風向球 Q3 2026（20 大管理人檢閱：AI 輪動・SpaceX・NVDA 對決・避險訊號）", d:"2026-11-17"},
-  {f:"week-calendar-2026-11-16-v2.html", t:"本週重點日曆 11-16→20（業績週＋地緣週：NVDA・700/9988・APEC・法案）", d:"2026-11-16"},
-  {f:"funds-schroder-duo-1pager-A4-2026-11.html", t:"施羅德雙雄透視 · A4 一頁對比（MAGI×彈性總回報，客用）", d:"2026-11-13"},
-  {f:"funds-bond4-1pager-A4-2026-11.html", t:"債券基金部署指南 · A4 橫向一頁對比（五隻含 PIMCO Income II）", d:"2026-11-13"},
-  {f:"funds-schroder-duo-2026-11-v2.html", t:"施羅德雙雄透視（MAGI×彈性總回報 · data 欄跟齊低波動四強＋賣點分工）", d:"2026-11-13"},
-  {f:"funds-bond4-deploy-2026-11.html", t:"債券基金部署指南（四隻點處理：持有·換馬·時機）", d:"2026-11-13"},
-  {f:"funds-lowvol-income-1pager-A4-2026-11.html", t:"低波動四強 · A4 一頁對比（四欄並排，客用）", d:"2026-11-12"},
-  {f:"funds-lowvol-income-four-2026-11.html", t:"收息基金低波動四強（富蘭克林×GMADI×東方匯理×PIMCO）", d:"2026-11-12"},
-  {f:"sp500-equalweight-rsp-2026-11.html", t:"S&P 500 等權 SPW × RSP ETF 一頁睇（集中度·板塊·年度回報）", d:"2026-11-03"},
-  {f:"m7-financing-2026-10-v6.html", t:"M7＋Broadcom 2026 融資排行 · RPO 版（AMZN Q3＋TTM FCF）", d:"2026-10-30"},
-  {f:"skhynix-q3-2026-v2.html", t:"SK海力士 Q3 業績一頁睇（超預期·盤後+2.7%）", d:"2026-10-28"},
-  {f:"watchlist-2026-10-26-v2.html", t:"下週觀察名單 10-26→30（政策·業績·利率）", d:"2026-10-26"},
-  {f:"meta-tsla-q3-2026.html", t:"META × TESLA Q3 業績與指引（客用）", d:"2026-10-22"},
-  {f:"funds-income-1pager-A4-2026-10.html", t:"四基金對比 · A4 1-pager（客用）", d:"2026-10-22"},
-  {f:"funds-highyield-client-2026-11.html", t:"高息四強 · 客戶精簡版（財息兼收一頁）", d:"2026-11-12"},
-  {f:"funds-highyield-compare-2026-11.html", t:"高息收息基金四強對比（財息兼收版：富達×摩根×宏利×東方匯理）", d:"2026-11-12"},
-  {f:"funds-income-compare-2026-10.html", t:"多元資產入息基金四強對比（詳細版）", d:"2026-10-22"},
-  {f:"spacex-q3-2026.html", t:"SpaceX Q3 2026 業績", d:"2026-10-21"},
+  {g:"rm", f:"rm-cl-sell-guide-A4-2026-11.html", t:"Callable Linear 銷售速覽 · 一頁讀懂（如何解釋 · 主推三行 6厘/5厘鎖定/UBS穩信 · 年期選擇 · 適合性燈號＋NGO 判決 · 照讀話術 · 含行方費用口徑）", d:"2026-11-19"},
+  {g:"rm", f:"rm-cl-termsheet-summary-A4-2026-11.html", t:"Callable Linear Sample Term Sheet 三行對讀（UBS×Barclays×HSBC · 零息直線增長制實證 · 早收年化遞減曲線 · 回購條款逐間列 · desk 問題清單 · RM內部）", d:"2026-11-21"},
+  {g:"rm", f:"rm-top3-final-A4-2026-11.html", t:"Top 3 終榜 · 賣點×情境×輪動（P1 CL 6厘版／P2 ELN／P3 CL 5.5厘版 · 客賺×費用雙過線 · 轉鷹轉鴿對策 · 輪動地圖含低波四強轉倉 · 含行方費用口徑）", d:"2026-11-19"},
+  {g:"rm", f:"rm-fee-top3-A4-2026-11.html", t:"費用三主力 · 現階段最值得買 × 費用最大 Top 3（P1 CL／P2 ELN／P3 5Y 直債 · 分優先順序 × 三情境應對 · 含行方費用口徑）", d:"2026-11-19"},
+  {g:"rm", f:"rm-rate-playbook-A4-2026-11.html", t:"息口情境藍圖 · RM 內部 Playbook（現階段賣咩 × 轉鷹／轉鴿／冇事冇幹全應對 · 含行方 fee 口徑）", d:"2026-11-19"},
+  {g:"mkt", f:"13f-season-q3-2026.html", t:"13F 風向球 Q3 2026（20 大管理人檢閱：AI 輪動・SpaceX・NVDA 對決・避險訊號）", d:"2026-11-17"},
+  {g:"mkt", f:"week-calendar-2026-11-16-v2.html", t:"本週重點日曆 11-16→20（業績週＋地緣週：NVDA・700/9988・APEC・法案）", d:"2026-11-16"},
+  {g:"fund", f:"funds-schroder-duo-1pager-A4-2026-11.html", t:"施羅德雙雄透視 · A4 一頁對比（MAGI×彈性總回報，客用）", d:"2026-11-13"},
+  {g:"fund", f:"funds-bond4-1pager-A4-2026-11.html", t:"債券基金部署指南 · A4 橫向一頁對比（五隻含 PIMCO Income II）", d:"2026-11-13"},
+  {g:"fund", f:"funds-schroder-duo-2026-11-v2.html", t:"施羅德雙雄透視（MAGI×彈性總回報 · data 欄跟齊低波動四強＋賣點分工）", d:"2026-11-13"},
+  {g:"fund", f:"funds-bond4-deploy-2026-11.html", t:"債券基金部署指南（四隻點處理：持有·換馬·時機）", d:"2026-11-13"},
+  {g:"fund", f:"funds-lowvol-income-1pager-A4-2026-11.html", t:"低波動四強 · A4 一頁對比（四欄並排，客用）", d:"2026-11-12"},
+  {g:"fund", f:"funds-lowvol-income-four-2026-11.html", t:"收息基金低波動四強（富蘭克林×GMADI×東方匯理×PIMCO）", d:"2026-11-12"},
+  {g:"mkt", f:"sp500-equalweight-rsp-2026-11.html", t:"S&P 500 等權 SPW × RSP ETF 一頁睇（集中度·板塊·年度回報）", d:"2026-11-03"},
+  {g:"mkt", f:"m7-financing-2026-10-v6.html", t:"M7＋Broadcom 2026 融資排行 · RPO 版（AMZN Q3＋TTM FCF）", d:"2026-10-30"},
+  {g:"mkt", f:"skhynix-q3-2026-v2.html", t:"SK海力士 Q3 業績一頁睇（超預期·盤後+2.7%）", d:"2026-10-28"},
+  {g:"mkt", f:"watchlist-2026-10-26-v2.html", t:"下週觀察名單 10-26→30（政策·業績·利率）", d:"2026-10-26"},
+  {g:"mkt", f:"meta-tsla-q3-2026.html", t:"META × TESLA Q3 業績與指引（客用）", d:"2026-10-22"},
+  {g:"fund", f:"funds-income-1pager-A4-2026-10.html", t:"四基金對比 · A4 1-pager（客用）", d:"2026-10-22"},
+  {g:"fund", f:"funds-highyield-client-2026-11.html", t:"高息四強 · 客戶精簡版（財息兼收一頁）", d:"2026-11-12"},
+  {g:"fund", f:"funds-highyield-compare-2026-11.html", t:"高息收息基金四強對比（財息兼收版：富達×摩根×宏利×東方匯理）", d:"2026-11-12"},
+  {g:"fund", f:"funds-income-compare-2026-10.html", t:"多元資產入息基金四強對比（詳細版）", d:"2026-10-22"},
+  {g:"mkt", f:"spacex-q3-2026.html", t:"SpaceX Q3 2026 業績", d:"2026-10-21"},
 ];
-const tabs=document.getElementById("tabs"), box=document.getElementById("framebox"),
-      frame=document.getElementById("frame"), hint=document.getElementById("hint"), links=[];
-let cur=0;
+const GROUPS=[
+  {k:"rm",n:"💼 RM 銷售·息口"},
+  {k:"fund",n:"🏦 基金對比"},
+  {k:"mkt",n:"📊 市場·公司"},
+];
+const tabs=document.getElementById("tabs"), folders=document.getElementById("folders"),
+      box=document.getElementById("framebox"), frame=document.getElementById("frame"),
+      hint=document.getElementById("hint"), flinks=[];
+let cur=0, curG=null;
+const openA=document.createElement("a");
+openA.className="open"; openA.target="_blank"; openA.rel="noopener"; openA.textContent="↗ 開獨立頁";
+function renderTabs(){
+  tabs.innerHTML=""; tabs.appendChild(openA);
+  PAGES.forEach((p,i)=>{
+    if(p.g!==curG) return;
+    const a=document.createElement("a");
+    a.className="tab"; a.href="#"+i;
+    a.textContent=p.t+(i===0?"  ★新":"");
+    a.onclick=(e)=>{e.preventDefault(); show(i); history.replaceState(null,"","#"+i);};
+    tabs.appendChild(a);
+  });
+}
 document.getElementById("tapopen").onclick=()=>window.open(PAGES[cur].f,"_blank");
 function show(i){
   cur=i;
   frame.style.height="150px"; box.style.height="150px"; frame.style.transform="none"; // 切頁先歸零，防上一頁高度閃殘留
   frame.src=PAGES[i].f;
-  s.href=PAGES[i].f;
-  links.forEach((x,j)=>x.classList.toggle("on",j===i));
-  links[i].scrollIntoView({inline:"center",block:"nearest",behavior:"smooth"}); // active tab 喺單行 strip 自動捲到中間
-  hint.textContent = `共 ${PAGES.length} 張 · 而家睇緊：${PAGES[i].t}（${PAGES[i].d}）· 撳上方 tab 切換${matchMedia("(max-width:700px)").matches?" · 電話睇靚圖：撳預覽開全頁":""}`;
+  openA.href=PAGES[i].f;
+  tabs.querySelectorAll("a.tab").forEach(x=>x.classList.toggle("on",x.href.endsWith("#"+i)));
+  const act=[...tabs.querySelectorAll("a.tab")].find(x=>x.classList.contains("on"));
+  if(act) act.scrollIntoView({inline:"center",block:"nearest",behavior:"smooth"}); // active tab 喺單行 strip 自動捲到中間
+  hint.textContent = `共 ${PAGES.length} 張 · 而家睇緊：${PAGES[i].t}（${PAGES[i].d}）· 撳上方 folder 分組再揀 tab${matchMedia("(max-width:700px)").matches?" · 電話睇靚圖：撳預覽開全頁":""}`;
 }
-PAGES.forEach((p,i)=>{
+function setG(k, i){
+  curG=k;
+  flinks.forEach((x,j)=>x.classList.toggle("on",GROUPS[j].k===k));
+  renderTabs();
+  if(i!=null) show(i);
+}
+GROUPS.forEach((g,j)=>{
   const a=document.createElement("a");
-  a.className="tab"; a.href="#"+i;
-  a.textContent=p.t+(i===0?"  ★新":"");
-  a.onclick=(e)=>{e.preventDefault(); show(i); history.replaceState(null,"","#"+i);};
-  tabs.appendChild(a); links.push(a);
+  a.className="fl"; a.href="#"+g.k;
+  a.textContent=g.n;
+  a.onclick=(e)=>{e.preventDefault(); setG(g.k, PAGES.findIndex(p=>p.g===g.k)); history.replaceState(null,"","#"+g.k);};
+  folders.appendChild(a); flinks.push(a);
 });
-const s=document.createElement("a");
-s.className="open"; s.target="_blank"; s.rel="noopener"; s.href=PAGES[0].f; s.textContent="↗ 開獨立頁";
-tabs.appendChild(s);
-show(0);
+// 入場：記住上次揀過嘅 folder（session 內），否則開新度最高嗰組
+const lastG=(()=>{try{return sessionStorage.getItem("tsG")}catch(e){return null}})();
+const startG=(lastG && GROUPS.some(g=>g.k===lastG))?lastG:GROUPS[0].k;
+const startHash=location.hash;
+if(startHash && startHash.length>1 && !isNaN(+startHash.slice(1))){
+  const i=Math.max(0,Math.min(PAGES.length-1,+startHash.slice(1)));
+  setG(PAGES[i].g, i);
+}else{
+  setG(startG, PAGES.findIndex(p=>p.g===startG));
+}
+setInterval(()=>{ try{ if(curG) sessionStorage.setItem("tsG",curG); }catch(e){} },1500);
 
 // 自動 scale-to-fit：內容闊過框就縮放，唔會裁走任何欄
 function fit(){
