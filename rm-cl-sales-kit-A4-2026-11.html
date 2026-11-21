@@ -54,8 +54,11 @@
   .cfmid{flex:1; text-align:center; font-size:10px; font-weight:800; color:var(--ink2); line-height:1.3;}
   .cfmid .ar{display:block; color:var(--ink3); font-size:13px; letter-spacing:-.12em;}
   .cfmid .plus{color:var(--green);}
-  .cfyrs{display:flex; gap:1mm; justify-content:center;}
-  .cfyrs span{background:var(--bg); border:1px solid var(--line); border-radius:1.2mm; font-size:8.4px; color:var(--ink2); padding:.3mm 1.4mm; font-weight:700;}
+  .sched{display:flex; flex-direction:column; gap:.4mm; margin-top:.5mm;}
+  .sched>div{display:flex; align-items:baseline; gap:1.2mm; font-size:8.2px;}
+  .sched .sn{flex:0 0 auto; background:var(--bg); border:1px solid var(--line); border-radius:1.2mm; padding:.15mm 1.2mm; font-weight:800; color:var(--ink); white-space:nowrap;}
+  .sched b{color:var(--ink); font-weight:800; white-space:nowrap;}
+  .sched .cap{font-size:7.6px; color:var(--ink3);}
   .hr{border-left:1px dashed var(--line); padding-left:3mm; display:flex; flex-direction:column; justify-content:center; gap:1.3mm;}
   .onesay{font-size:12px; font-weight:900; line-height:1.32;}
   .onesay .gn{color:var(--green);} .onesay .rd{color:var(--red);}
@@ -138,7 +141,11 @@
         <div class="cfmid"><span class="ar">──▶</span><span class="plus">利息每年計 5 厘，但唔會年年派</span><br>拖到最尾／提早收回日先一筆過找</div>
         <div class="cfbox win"><small>5 年後收</small><b>125</b></div>
       </div>
-      <div class="cfyrs"><span>例：3 年版 第1年收回＝104.69</span><span>第2年＝109.38</span><span>到期＝114.07</span><span>5 年主力到期＝125</span></div>
+      <div class="sched">
+        <div><span class="sn">B 主力 5.00%</span><b>105.00 → 110.00 → 115.00 → 120.00 → 125.00</b></div>
+        <div><span class="sn">UBS 穩信 4.35%</span><b>104.35 → 108.70 → 113.05 → 117.40 → 121.75</b></div>
+        <div class="cap">收回時間表：第 1→5 年提早收回價（票面 100 起、每年直線＋）——幾時收都照表連息一筆過收</div>
+      </div>
     </div>
     <div class="hr">
       <div class="onesay">一張<span class="gn">五年期銀行票據</span>：利息高過定期一大截——代價係<span class="rd">唔係存款</span>、<span class="rd">利息拖尾先收</span>。</div>
@@ -165,7 +172,7 @@
     </div>
     <div class="qcard">
       <div class="qq"><span class="qb">客問</span><span class="qt2">「銀行提早收回，我會唔會蝕？」</span></div>
-      <div class="ans"><span class="gn">唔會。</span>幾時收回都<b>照上面條數連本帶息一筆過賠</b>——例：第一年收回＝收 <span class="num">104.69</span>，即一年袋 <span class="num">+10.8%</span>；<b>收得早，年年化其實仲高</b>。</div>
+      <div class="ans"><span class="gn">唔會。</span>幾時收回都<b>照上面張表連本帶息一筆過賠</b>——例：主力第一年收回＝收 <span class="num">105.00</span>（100＋5.00），對 94.50 買入即一年袋 <span class="num">+11.1%</span>；<b>收得早，年年化其實仲高</b>。</div>
       <div class="ans">唯一代價：<span class="rd">收返嗰筆錢，當時未必有咁高息再投</span>——所以想鎖死息嘅客，揀 5 年鎖定線。</div>
     </div>
   </div>
@@ -202,7 +209,7 @@
   <div class="says">
     <div class="say"><div class="st">開場 · 對定期／保險客</div><div class="tx">「同你買開嗰啲五年回本保險一樣，都係坐五年——保險第五年啱啱返到本，呢張 Barclays 五年期總回報約 32%（年收約 5 厘 8）。一句講晒：佢係銀行債券唔係存款，有信用風險。」</div></div>
     <div class="say"><div class="st">客問「中途想走點算」</div><div class="tx">「講清楚：呢張冇提早贖回權——中途想走，我幫你問銀行回購，唔保證有得做，價由市價定、未必好睇。所以呢筆錢要真係五年唔會用；唔肯定就買短年期。」</div></div>
-    <div class="say"><div class="st">客問「俾人收回蝕唔蝕」</div><div class="tx">「唔會蝕本——發行商提早收回，照張表連本帶利一筆過賠你，例如第一年收你 104.69，一年袋 10.8%。唯一代價係收返嗰筆錢再投資，未必有咁高息。」</div></div>
+    <div class="say"><div class="st">客問「俾人收回蝕唔蝕」</div><div class="tx">「唔會蝕本——發行商提早收回，照張表連本帶利一筆過賠你，例如第一年收你 105，一年袋 11%。唯一代價係收返嗰筆錢再投資，未必有咁高息。」</div></div>
   </div>
 
   <!-- ⑥ 必講 -->
