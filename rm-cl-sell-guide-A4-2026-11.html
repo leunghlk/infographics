@@ -29,10 +29,10 @@
   @page{size:A4 landscape; margin:1.5mm 5mm;}
 
   /* header */
-  .hd{display:flex; justify-content:space-between; align-items:flex-end; border-bottom:2.5px solid var(--ink); padding-bottom:.5mm;}
-  .hd h1{font-size:14px; letter-spacing:.01em;}
-  .hd h1 .thin{color:var(--ink2); font-weight:600; font-size:12.5px;}
-  .hd .sub{font-size:10px; color:var(--ink2); margin-top:.6mm;}
+  .hd{display:flex; justify-content:space-between; align-items:flex-end; border-bottom:3px solid var(--ink); padding-bottom:.55mm;}
+  .hd h1{font-size:16.5px; font-weight:900; letter-spacing:.01em;}
+  .hd h1 .thin{color:var(--ink2); font-weight:600; font-size:13.5px;}
+  .hd .sub{font-size:10.5px; color:var(--ink2); margin-top:.6mm;}
   .hd .sub .gl{color:var(--green); font-weight:800;} .hd .sub .am{color:var(--amber); font-weight:800;}
   .hd .asof{text-align:right; font-size:8px; color:var(--ink3); line-height:1.5;}
   .hd .asof b{color:var(--red); font-size:9px;}
@@ -46,8 +46,8 @@
   .chip .tag{background:var(--green); color:#fff; font-size:8.4px; font-weight:800; border-radius:1.2mm; padding:.5mm 2.2mm; letter-spacing:.05em;}
   .half.r .chip .tag{background:var(--amber);}
   .chip .who{font-size:10px; color:var(--ink2); font-weight:600;}
-  .hh{font-size:13.5px; font-weight:900; letter-spacing:.01em; display:flex; align-items:baseline; gap:2.5mm;}
-  .hh small{font-size:8.6px; color:var(--ink3); font-weight:600;}
+  .hh{font-size:15.5px; font-weight:900; letter-spacing:.01em; display:flex; align-items:baseline; gap:2.5mm;}
+  .hh small{font-size:9px; color:var(--ink3); font-weight:600;}
 
   /* 現金流圖（零息制一圖講晒） */
   .cf{display:flex; align-items:stretch; gap:1.6mm; background:var(--bg); border:1px solid var(--line); border-radius:2mm; padding:.7mm 2.2mm;}
@@ -106,7 +106,7 @@
   .kt .kq b{color:var(--ink);}
 
   /* 結論 banner */
-  .concl{border-radius:2mm; padding:.65mm 2.6mm; font-size:10.8px; font-weight:900; display:flex; align-items:center; gap:2.4mm;}
+  .concl{border-radius:2mm; padding:.65mm 2.6mm; font-size:11.5px; font-weight:900; display:flex; align-items:center; gap:2.4mm;}
   .concl .clab{flex:none; font-size:8.6px; font-weight:800; color:#fff; background:var(--green); border-radius:1.2mm; padding:.5mm 2mm;}
   .concl.g{background:#ecfdf3; border:1px solid #bfe8cd; color:var(--green);}
   .concl.r{background:#fdf6ee; border:1px solid #f0d2b8; color:#9a3412;}
@@ -119,12 +119,12 @@
   .vs2 td{border:1px solid var(--line); font-size:9.4px; padding:.44mm 1.6mm; line-height:1.24; background:#fff;}
   .vs2 td:first-child{background:#f2f5fa; font-weight:700; font-size:9px; width:15mm; color:var(--ink2);}
   .vs2 .win{color:var(--green); font-weight:800;}
-  .punch{font-size:10px; font-weight:800; color:var(--green);}
+  .punch{font-size:10.5px; font-weight:800; color:var(--green);}
 
   /* 被收回——蝕定賺 表 */
   .kt{border:1px solid var(--line); border-radius:2mm; background:var(--bg); padding:.75mm 2.4mm .65mm;}
-  .kt .kt-t{font-size:9.6px; font-weight:800; color:var(--ink);}
-  .kt .krow{display:flex; gap:2mm; align-items:flex-start; margin-top:.45mm; font-size:9px; line-height:1.28; color:var(--ink2);}
+  .kt .kt-t{font-size:10px; font-weight:800; color:var(--ink);}
+  .kt .krow{display:flex; gap:2mm; align-items:flex-start; margin-top:.42mm; font-size:9px; line-height:1.26; color:var(--ink2);}
   .kt .krow .ic{flex:none; width:4.2mm; height:4.2mm; border-radius:50%; color:#fff; font-size:9px; font-weight:900; display:flex; align-items:center; justify-content:center; margin-top:.15mm;}
   .kt .krow .ic.g{background:var(--green);} .kt .krow .ic.a{background:var(--amber);}
   .kt .krow b{color:var(--ink);} .kt .krow .num{color:var(--green); font-weight:800;} .kt .krow .rl{color:var(--red); font-weight:800;}
@@ -135,17 +135,17 @@
   /* 產品列（3/2年並排平權） */
   .plist{border:1px solid var(--line); border-radius:2mm; background:var(--bg); padding:.85mm 2.4mm .7mm;}
   .plist .pt{font-size:9px; font-weight:800; color:var(--ink2);}
-  .plist .prow{font-size:9px; color:var(--ink); margin-top:.45mm; line-height:1.26;}
+  .plist .prow{font-size:9px; color:var(--ink); margin-top:.4mm; line-height:1.25;}
   .plist .prow .yr{display:inline-block; background:var(--navy); color:#fff; border-radius:1mm; font-size:8px; font-weight:800; padding:.2mm 1.6mm; margin-right:1.4mm;}
   .plist .prow .seg{display:inline-block; margin-top:.4mm;}
-  .plist .psrc{font-size:7.8px; color:var(--ink3); margin-top:.5mm; padding-top:.4mm; border-top:1px dashed var(--line); line-height:1.35;}
+  .plist .psrc{font-size:7.8px; color:var(--ink3); margin-top:.45mm; padding-top:.35mm; border-top:1px dashed var(--line); line-height:1.3;}
   .plist .psrc b{color:var(--ink2);}
 
   /* 產品卡 */
   .prod{display:grid; grid-template-columns:1fr 1fr; gap:1.2mm;}
   .pc{border:1px solid var(--line); border-radius:2mm; background:var(--bg); padding:.9mm 2.4mm .75mm; display:flex; flex-direction:column; gap:.5mm;}
   .pc .pt{font-size:8.8px; font-weight:800; color:var(--ink2);}
-  .pc .px{font-size:13.5px; font-weight:900; line-height:1.1;}
+  .pc .px{font-size:14.5px; font-weight:900; line-height:1.1;}
   .pc .px small{font-size:8.8px; color:var(--ink3); font-weight:600; margin-left:1mm;}
   .pc .pk{font-size:9.8px; font-weight:800; color:var(--green);}
   .pc .pf{display:flex; justify-content:space-between; align-items:center; font-size:8.4px; color:var(--ink2);}
@@ -163,11 +163,11 @@
   /* 話術 */
   .say{border-left:2.5px solid var(--blue); background:var(--bg); border-radius:0 1.8mm 1.8mm 0; padding:.55mm 2.4mm;}
   .say .st{font-size:8.4px; font-weight:800; color:var(--blue); letter-spacing:.05em;}
-  .say .tx{font-size:9.1px; line-height:1.26; color:var(--ink); margin-top:.3mm;}
+  .say .tx{font-size:9.1px; line-height:1.24; color:var(--ink); margin-top:.25mm;}
   .say .src{display:block; margin-top:.5mm; padding-top:.4mm; border-top:1px dashed var(--line); font-size:7.6px; color:var(--ink3); line-height:1.32;}
   .say .src b{color:var(--ink2);}
 
-  .warn{border:1px solid #f0d2b8; background:#fdf6ee; border-radius:2mm; padding:.5mm 2.4mm; font-size:9.2px; font-weight:700; color:#92400e;}
+  .warn{border:1px solid #f0d2b8; background:#fdf6ee; border-radius:2mm; padding:.45mm 2.4mm; font-size:9px; font-weight:700; color:#92400e;}
   .route{font-size:8.5px; color:var(--ink3); line-height:1.35;}
   .route b{color:var(--ink2);}
 
@@ -209,7 +209,6 @@
 
       <table class="vs2">
         <tr><th style="width:15mm"></th><th>保險（5 年回本款）</th><th>CL 鎖定版</th></tr>
-        <tr><td>年期</td><td>5 年</td><td>5 年</td></tr>
         <tr><td>回報</td><td>第 5 年啱啱返到本</td><td class="win">約 5.8 厘/年（IRR）· 五年總回報約 32%</td></tr>
         <tr><td>中途退錢</td><td>回本前退保罰錢</td><td>無提早贖回權——市價回購，可能低於買入價</td></tr>
       </table>
@@ -231,7 +230,7 @@
       </div>
 
       <div class="bars">
-        <div class="bt">客問「會唔會提早收回？幾時收？」——只有一個原因會收：<b>佢自己借新錢平過這張票的息率</b>　<span class="sw dark"></span>借新錢成本 <span class="sw green"></span>息率｜結論＝<b>距離 × 頻率 × 窗數</b></div>
+        <div class="bt">客問「會唔會提早收回？幾時收？」——只有一個原因會收：<b>佢自己借新錢平過這張票的息率</b>　<span class="sw dark"></span>借新錢成本 <span class="sw green"></span>息率｜<span style="white-space:nowrap">結論＝<b>距離 × 頻率 × 窗數</b></span></div>
         <div class="frow fhead"><div class="fl">票據</div><div class="fb">息率 vs 借新錢成本（今日）</div><div class="fd">尚差多少</div><div class="fw">窗數＝可收回的日期數</div><div class="fv">今日結論</div></div>
         <div class="frow"><div class="fl">B 5年 主力</div><div class="fb"><i class="d" style="width:88%"></i><i class="g" style="width:73%">5.00</i><u style="left:88%">6.0</u></div><div class="fd">▼1.0厘</div><div class="fw">●●●● 4</div><div class="fv g">極低</div></div>
         <div class="frow"><div class="fl">UBS 5年 穩信</div><div class="fb"><i class="d" style="width:81%"></i><i class="g" style="width:64%">4.35</i><u style="left:81%">5.5</u></div><div class="fd">▼1.15厘</div><div class="fw">●●●● 4</div><div class="fv g">極低</div></div>
