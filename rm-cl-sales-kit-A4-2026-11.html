@@ -18,32 +18,32 @@
   }
   .sheet{
     width:297mm; min-height:200mm; margin:6mm auto; background:var(--surface);
-    padding:4mm 6mm .5mm; box-shadow:0 2px 14px rgba(0,0,0,.10);
-    display:flex; flex-direction:column; gap:1mm;
+    padding:2mm 6mm 0; box-shadow:0 2px 14px rgba(0,0,0,.10);
+    display:flex; flex-direction:column; gap:0.65mm;
   }
   @media print{
     body{background:#fff;}
     .sheet{margin:0; box-shadow:none; width:auto; min-height:auto;}
     .jpgbtn,.kbadge{display:none !important;}
   }
-  @page{size:A4 landscape; margin:1.5mm 5mm;}
+  @page{size:A4 landscape; margin:0.5mm 5mm;}
 
   /* header */
-  .hd{display:flex; justify-content:space-between; align-items:flex-end; border-bottom:3px solid var(--ink); padding-bottom:1.2mm;}
+  .hd{display:flex; justify-content:space-between; align-items:flex-end; border-bottom:3px solid var(--ink); padding-bottom:0.8mm;}
   .hd h1{font-size:16.5px; font-weight:900; letter-spacing:.01em;}
   .hd h1 .thin{color:var(--ink2); font-weight:600; font-size:13.5px;}
-  .hd .sub{font-size:9.5px; color:var(--ink2); margin-top:.5mm;}
-  .hd .asof{text-align:right; font-size:8px; color:var(--ink3); line-height:1.45;}
+  .hd .sub{font-size:9.5px; color:var(--ink2); margin-top:.3mm;}
+  .hd .asof{text-align:right; font-size:8px; color:var(--ink3); line-height:1.3;}
   .hd .asof b{color:var(--red); font-size:9px;}
 
   /* 帶標題：①②③…故事步驟 */
-  .band-t{display:flex; align-items:baseline; gap:1.8mm; margin-top:.3mm;}
-  .band-t .n{flex:none; width:4.2mm; height:4.2mm; border-radius:50%; background:var(--navy); color:#fff; font-size:9px; font-weight:900; display:flex; align-items:center; justify-content:center; align-self:center;}
-  .band-t .t{font-size:10.8px; font-weight:900;}
+  .band-t{display:flex; align-items:baseline; gap:1.8mm; margin-top:0;}
+  .band-t .n{flex:none; width:3.6mm; height:3.6mm; border-radius:50%; background:var(--navy); color:#fff; font-size:9px; font-weight:900; display:flex; align-items:center; justify-content:center; align-self:center;}
+  .band-t .t{font-size:10.2px; font-weight:900;}
   .band-t small{font-size:8.5px; color:var(--ink3); font-weight:600;}
 
   /* 帶1 係乜 */
-  .hero{display:grid; grid-template-columns:100mm 1fr; gap:2.6mm; border:1px solid var(--line); border-radius:2.5mm; background:#fff; padding:1.2mm 2.6mm;}
+  .hero{display:grid; grid-template-columns:100mm 1fr; gap:2.6mm; border:1px solid var(--line); border-radius:2.5mm; background:#fff; padding:0.9mm 2.6mm;}
   .cf{display:flex; flex-direction:column; justify-content:center; gap:1.2mm;}
   .cfrow{display:flex; align-items:center; gap:1.6mm;}
   .cfbox{border-radius:2mm; padding:1mm 2.4mm; text-align:center; flex:none;}
@@ -54,15 +54,22 @@
   .cfmid{flex:1; text-align:center; font-size:10px; font-weight:800; color:var(--ink2); line-height:1.3;}
   .cfmid .ar{display:block; color:var(--ink3); font-size:13px; letter-spacing:-.12em;}
   .cfmid .plus{color:var(--green);}
-  .sched{display:flex; flex-direction:column; gap:.4mm; margin-top:.5mm;}
+  .sched{display:flex; flex-direction:column; gap:.3mm; margin-top:.3mm;}
   .sched>div{display:flex; align-items:baseline; gap:1.2mm; font-size:8.2px;}
   .sched .sn{flex:0 0 auto; background:var(--bg); border:1px solid var(--line); border-radius:1.2mm; padding:.15mm 1.2mm; font-weight:800; color:var(--ink); white-space:nowrap;}
   .sched b{color:var(--ink); font-weight:800; white-space:nowrap;}
   .sched .cap{font-size:7.6px; color:var(--ink3);}
-  .hr{border-left:1px dashed var(--line); padding-left:3mm; display:flex; flex-direction:column; justify-content:center; gap:1.3mm;}
-  .onesay{font-size:12px; font-weight:900; line-height:1.32;}
+  .charts2{display:grid; grid-template-columns:1fr 1fr; gap:.6mm 2.4mm; margin-top:.2mm;}
+  .charts2 .ct{font-size:8.6px; font-weight:900; color:var(--navy);}
+  .charts2 svg{width:100%; height:auto; display:block;}
+  .c2src{grid-column:1/-1; font-size:7.7px; color:var(--ink2); line-height:1.22;}
+  .c2src b{color:var(--ink);}
+  .swl{display:inline-block; width:4.5mm; height:0; border-top:2px solid #2563eb; vertical-align:middle; margin:0 .5mm;}
+  .swl.b{border-top-color:#d97706;}
+  .hr{border-left:1px dashed var(--line); padding-left:3mm; display:flex; flex-direction:column; justify-content:center; gap:1mm;}
+  .onesay{font-size:11.5px; font-weight:900; line-height:1.28;}
   .onesay .gn{color:var(--green);} .onesay .rd{color:var(--red);}
-  .simile{font-size:9.8px; color:var(--ink2); line-height:1.36;}
+  .simile{font-size:9.8px; color:var(--ink2); line-height:1.3;}
   .simile b{color:var(--ink);}
   .chips{display:flex; gap:1.4mm;}
   .chip{flex:1; background:var(--bg); border:1px solid var(--line); border-radius:1.8mm; padding:.7mm 1.6mm; font-size:8.5px; line-height:1.3; color:var(--ink2);}
@@ -71,50 +78,50 @@
   .chip.a{background:#fdf6ee; border-color:#f0d2b8;} .chip.a b{color:#9a3412;}
 
   /* 帶2 兩條Q */
-  .qs{display:grid; grid-template-columns:1fr 1fr; gap:2.4mm;}
-  .qcard{border:1px solid var(--line); border-radius:2.5mm; background:#fff; padding:1mm 2.4mm; display:flex; flex-direction:column; gap:1mm;}
+  .qs{display:grid; grid-template-columns:1fr 1fr; gap:2mm;}
+  .qcard{border:1px solid var(--line); border-radius:2.5mm; background:#fff; padding:0.8mm 2.4mm; display:flex; flex-direction:column; gap:0.8mm;}
   .qq{display:flex; align-items:center; gap:1.8mm;}
   .qq .qb{flex:none; background:var(--blue); color:#fff; border-radius:1.4mm; font-size:8.6px; font-weight:800; padding:.5mm 2mm;}
   .qq .qt2{font-size:11px; font-weight:900;}
-  .ans{font-size:9.7px; line-height:1.36; color:var(--ink2);}
+  .ans{font-size:9.7px; line-height:1.3; color:var(--ink2);}
   .ans b{color:var(--ink);} .ans .gn{color:var(--green); font-weight:800;} .ans .num{color:var(--green); font-weight:800;} .ans .rd{color:var(--red); font-weight:800;}
   .route{display:flex; gap:1.4mm; margin-top:.4mm;}
-  .route .rt{flex:1; border-radius:1.6mm; padding:.65mm 1.6mm; font-size:8.5px; line-height:1.28;}
+  .route .rt{flex:1; border-radius:1.6mm; padding:.5mm 1.6mm; font-size:8.5px; line-height:1.24;}
   .route .rt b{display:block; font-size:8.8px;}
   .route .rt.g{background:#ecfdf3; border:1px solid #bfe8cd;} .route .rt.g b{color:var(--green);}
   .route .rt.b{background:#f2f6ff; border:1px solid #c7d6f5;} .route .rt.b b{color:var(--blue);}
   .route .rt.a{background:#fdf6ee; border:1px solid #f0d2b8;} .route .rt.a b{color:#9a3412;}
 
   /* 帶3 憑咩贏 */
-  .vs{display:grid; grid-template-columns:1fr 1fr 1fr; gap:2.4mm;}
-  .vcard{border:1px solid var(--line); border-top:1.2mm solid var(--green); border-radius:2.5mm; background:#fff; padding:1.2mm 2.6mm;}
+  .vs{display:grid; grid-template-columns:1fr 1fr 1fr; gap:2mm;}
+  .vcard{border:1px solid var(--line); border-top:1.2mm solid var(--green); border-radius:2.5mm; background:#fff; padding:0.9mm 2.6mm;}
   .vcard .vt{font-size:9.5px; font-weight:900;}
-  .vcard .win2{font-size:9.2px; line-height:1.32; color:var(--ink2); margin-top:.5mm;}
+  .vcard .win2{font-size:9.2px; line-height:1.28; color:var(--ink2); margin-top:.35mm;}
   .vcard .win2 b{color:var(--green);}
-  .vcard .but{font-size:8.5px; line-height:1.28; color:var(--ink3); border-top:1px dashed var(--line); margin-top:.5mm; padding-top:.5mm;}
+  .vcard .but{font-size:8.5px; line-height:1.24; color:var(--ink3); border-top:1px dashed var(--line); margin-top:.35mm; padding-top:.35mm;}
   .vcard .but b{color:var(--amber);}
 
   /* 帶4 貨源 */
   .qt{width:100%; border-collapse:collapse;}
-  .qt th{background:var(--navy); color:#fff; font-size:8.6px; padding:.55mm 2mm; font-weight:700; text-align:left;}
-  .qt td{border:1px solid var(--line); font-size:9.4px; padding:.5mm 2mm; line-height:1.2; background:#fff;}
-  .qt td:first-child{background:#f2f5fa; font-weight:800; color:var(--ink2); font-size:9.2px; white-space:nowrap;}
+  .qt th{background:var(--navy); color:#fff; font-size:8.6px; padding:.45mm 2mm; font-weight:700; text-align:left;}
+  .qt td{border:1px solid var(--line); font-size:9.2px; padding:.36mm 2mm; line-height:1.18; background:#fff;}
+  .qt td:first-child{background:#f2f5fa; font-weight:800; color:var(--ink2); font-size:9px; white-space:nowrap;}
   .qt .win{color:var(--green); font-weight:800;}
   .qt .fee{color:var(--red); font-weight:800; font-size:9px;}
   .qt tr.roll td{background:#fdf6ee;}
-  .qnotes{display:grid; grid-template-columns:1fr 1fr; gap:.5mm 3.5mm; font-size:8.8px; color:var(--ink2); line-height:1.3;}
+  .qnotes{display:grid; grid-template-columns:1fr 1fr; gap:.4mm 3.5mm; font-size:8.7px; color:var(--ink2); line-height:1.24;}
   .qnotes b{color:var(--ink);}
   .qnotes .lock{color:var(--red); font-weight:800;}
 
   /* 帶5 話術 */
-  .says{display:grid; grid-template-columns:1fr 1fr 1fr; gap:2.4mm;}
-  .say{border-left:3px solid var(--blue); background:var(--bg); border-radius:0 2mm 2mm 0; padding:.8mm 2.2mm;}
+  .says{display:grid; grid-template-columns:1fr 1fr 1fr; gap:2mm;}
+  .say{border-left:3px solid var(--blue); background:var(--bg); border-radius:0 2mm 2mm 0; padding:.6mm 2.2mm;}
   .say .st{font-size:8.5px; font-weight:800; color:var(--blue); letter-spacing:.05em;}
-  .say .tx{font-size:9.1px; line-height:1.3; color:var(--ink); margin-top:.4mm;}
+  .say .tx{font-size:9.1px; line-height:1.26; color:var(--ink); margin-top:.3mm;}
 
   /* 帶6 必講 */
-  .musts{display:grid; grid-template-columns:1fr 1fr; gap:.8mm 2.4mm;}
-  .must{display:flex; gap:1.6mm; align-items:flex-start; background:#fdf3f3; border:1px solid #e8b4b4; border-radius:1.8mm; padding:.65mm 1.8mm; font-size:9px; line-height:1.3; color:#7c2d2d;}
+  .musts{display:grid; grid-template-columns:1fr 1fr; gap:.6mm 2.4mm;}
+  .must{display:flex; gap:1.6mm; align-items:flex-start; background:#fdf3f3; border:1px solid #e8b4b4; border-radius:1.8mm; padding:.5mm 1.8mm; font-size:8.8px; line-height:1.26; color:#7c2d2d;}
   .must .mn{flex:none; width:3.6mm; height:3.6mm; border-radius:50%; background:var(--red); color:#fff; font-size:8.4px; font-weight:900; display:flex; align-items:center; justify-content:center; margin-top:.15mm;}
   .must b{color:var(--red);}
   .ft{font-size:7.3px; color:var(--ink3); line-height:1.3;}
@@ -143,8 +150,8 @@
       </div>
       <div class="sched">
         <div><span class="sn">B 主力 5.00%</span><b>105.00 → 110.00 → 115.00 → 120.00 → 125.00</b></div>
-        <div><span class="sn">UBS 穩信 4.35%</span><b>104.35 → 108.70 → 113.05 → 117.40 → 121.75</b></div>
-        <div class="cap">收回時間表：第 1→5 年提早收回價（票面 100 起、每年直線＋）——幾時收都照表連息一筆過收</div>
+        <div><span class="sn">UBS 穩信 4.35%</span><b>104.35 → 108.70 → 113.05 → 117.40 → 121.75</b><i style="margin-left:auto;font-style:normal;font-size:7.4px;color:var(--ink3)">第1→5年收回價</i></div>
+
       </div>
     </div>
     <div class="hr">
@@ -175,6 +182,75 @@
       <div class="ans"><span class="gn">唔會。</span>幾時收回都<b>照上面張表連本帶息一筆過賠</b>——例：主力第一年收回＝收 <span class="num">105.00</span>（100＋5.00），對 94.50 買入即一年袋 <span class="num">+11.1%</span>；<b>收得早，年年化其實仲高</b>。</div>
       <div class="ans">唯一代價：<span class="rd">收返嗰筆錢，當時未必有咁高息再投</span>——所以想鎖死息嘅客，揀 5 年鎖定線。</div>
     </div>
+  </div>
+
+  <div class="charts2">
+    <div>
+      <div class="ct">① 票價——直線增長，每年加的錢一樣多（沒有跌息）</div>
+      <svg viewBox="0 -4 300 42" role="img" aria-label="票價直線增長圖">
+        <g stroke="#e2e8f0" stroke-width="1">
+          <line x1="28" y1="32" x2="296" y2="32"/>
+          <line x1="28" y1="20.8" x2="296" y2="20.8"/>
+          <line x1="28" y1="9.6" x2="296" y2="9.6"/>
+        </g>
+        <g font-size="6.8" fill="#94a3b8">
+          <text x="25" y="34" text-anchor="end">100</text>
+          <text x="25" y="22.8" text-anchor="end">110</text>
+          <text x="25" y="11.6" text-anchor="end">120</text>
+        </g>
+        <polyline fill="none" stroke="#2563eb" stroke-width="2" points="30,32 83.2,26.44 136.4,20.89 189.6,15.33 242.8,9.78 296,4.22"/>
+        <polyline fill="none" stroke="#d97706" stroke-width="2" points="30,32 83.2,26.75 136.4,21.49 189.6,16.24"/>
+        <g fill="#2563eb" stroke="#fff" stroke-width="1.4">
+          <circle cx="30" cy="32" r="2.6"/><circle cx="296" cy="4.22" r="2.6"/>
+        </g>
+        <g fill="#d97706" stroke="#fff" stroke-width="1.4">
+          <circle cx="30" cy="32" r="2.6"/><circle cx="189.6" cy="16.24" r="2.6"/>
+        </g>
+        <g font-size="7" font-weight="700" fill="#1e293b">
+          <text x="296" y="1.5" text-anchor="end">124.80</text>
+          <text x="189.6" y="12.5" text-anchor="middle">114.07</text>
+        </g>
+        <text x="33" y="26.5" font-size="6.2" fill="#64748b">認購 100</text>
+        <g font-size="6.2" fill="#94a3b8" text-anchor="middle">
+          <text x="30" y="39.5">0</text><text x="83.2" y="39.5">1</text><text x="136.4" y="39.5">2</text>
+          <text x="189.6" y="39.5">3</text><text x="242.8" y="39.5">4</text><text x="296" y="39.5">5</text>
+        </g>
+      </svg>
+    </div>
+    <div>
+      <div class="ct">② 年化回報率（複息口徑）——坐得越耐越薄；跌的是年化、不是票價</div>
+      <svg viewBox="0 -4 300 42" role="img" aria-label="年化回報遞減曲線">
+        <g stroke="#e2e8f0" stroke-width="1">
+          <line x1="28" y1="27.33" x2="296" y2="27.33"/>
+          <line x1="28" y1="18" x2="296" y2="18"/>
+          <line x1="28" y1="8.67" x2="296" y2="8.67"/>
+        </g>
+        <g font-size="6.8" fill="#94a3b8">
+          <text x="25" y="29.3" text-anchor="end">4.5%</text>
+          <text x="25" y="20" text-anchor="end">4.7%</text>
+          <text x="25" y="10.7" text-anchor="end">4.9%</text>
+        </g>
+        <polyline fill="none" stroke="#2563eb" stroke-width="2" points="83.2,6.13 136.4,11.73 189.6,16.85 242.8,21.52 296,26.19"/>
+        <polyline fill="none" stroke="#d97706" stroke-width="2" points="83.2,14.13 136.4,19.27 189.6,23.47"/>
+        <g fill="#2563eb" stroke="#fff" stroke-width="1.4">
+          <circle cx="83.2" cy="6.13" r="2.6"/><circle cx="296" cy="26.19" r="2.6"/>
+        </g>
+        <g fill="#d97706" stroke="#fff" stroke-width="1.4">
+          <circle cx="83.2" cy="14.13" r="2.6"/><circle cx="189.6" cy="23.47" r="2.6"/>
+        </g>
+        <g font-size="7" font-weight="700" fill="#1e293b">
+          <text x="87" y="5">4.96%</text>
+          <text x="294" y="23.5" text-anchor="end">4.53%</text>
+          <text x="87" y="17.5">4.69%</text>
+          <text x="186" y="30.5" text-anchor="end">4.49%</text>
+        </g>
+        <g font-size="6.2" fill="#94a3b8" text-anchor="middle">
+          <text x="83.2" y="39.5">第1年走</text><text x="136.4" y="39.5">2</text>
+          <text x="189.6" y="39.5">3</text><text x="242.8" y="39.5">4</text><text x="296" y="39.5">坐到尾</text>
+        </g>
+      </svg>
+    </div>
+    <div class="c2src"><span class="swl"></span>UBS 5年樣板（LAR 4.96）　<span class="swl b"></span>Barclays 3年樣板（LAR 4.69）——兩份 sample term sheet 對讀。票價直線上＝每年加的錢一樣多；跌的只是年化——直線增長沒有複利（利疊利），所以<b>收回越早、年化越高</b>。</div>
   </div>
 
   <!-- ③ 憑咩贏 -->
