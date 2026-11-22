@@ -7,7 +7,7 @@
 <style>
   *{margin:0;padding:0;box-sizing:border-box;}
   :root{
-    --navy:#1a2f6b; --blue:#2563eb; --green:#15803d; --red:#dc2626; --amber:#d97706;
+    --navy:#1a2f6b; --blue:#2563eb; --green:#15803d; --red:#dc2626; --amber:#d97706; --gold:#C29214;
     --ink:#1e293b; --ink2:#475569; --ink3:#94a3b8; --line:#d8dee9; --bg:#f6f7fa; --surface:#ffffff;
   }
   html,body{background:var(--bg);}
@@ -86,6 +86,9 @@
   .bgrid{display:grid; grid-template-columns:1fr 1fr; gap:.6mm 2mm; margin-top:.6mm;}
   .bcell .bh{font-size:8.2px; font-weight:800; color:var(--ink2); display:flex; align-items:center; justify-content:space-between;}
   .bcell .bh .tag{font-size:7.4px; font-weight:700; color:var(--amber); background:#fdf6ee; border:1px solid #f0d2b8; border-radius:1mm; padding:.05mm 1.3mm;}
+  .bcell .bh .tag.g{color:var(--green); background:#ecfdf3; border-color:#bfe8cd;}
+  .rk{color:var(--gold); font-weight:900; font-style:normal;}
+  .plist .bk{color:var(--ink3); font-weight:800; font-size:8px; border:1px solid var(--line); border-radius:1mm; padding:0 1.2mm; margin-right:.8mm;}
   .bcell .bfill{height:3mm; border-radius:.9mm; font-size:7.5px; padding-right:1.6mm; margin-top:.5mm;}
   /* 門檻梯（距離×頻率×窗數） */
   .frow{display:flex; align-items:center; gap:1.6mm; margin-top:.32mm;}
@@ -183,7 +186,7 @@
   <div class="hd">
     <div>
       <h1>Callable Linear 銷售版 <span class="thin">· 一圖兩半</span></h1>
-      <div class="sub">開口前先分客戶類型：想鎖足五年 → <span class="gl">左半</span>｜想要流動性 → <span class="am">右半</span></div>
+      <div class="sub">開口前先分客戶類型：想鎖足五年（同保險競爭）→ <span class="gl">左半</span>｜會用／想收息 → <span class="am">右半</span></div>
     </div>
     <div class="asof">報價 <b>2026-11-19</b>（Barclays / UBS 實定報價）<br>收回實證 HSB 2026-11-20 ｜ 樣板 TS 對讀 2026-11-21 ｜ 內部使用 · 勿外傳</div>
   </div>
@@ -218,13 +221,13 @@
 
       <div class="prod">
         <div class="pc">
-          <div class="pt">🥇 主力 · Barclays Bank PLC（5 年）</div>
+          <div class="pt"><span class="rk">①</span> 主力 · Barclays Bank PLC（5 年）</div>
           <div class="px">5.00%<small>息率</small></div>
           <div class="pk">客收約 5.8 厘/年（IRR）</div>
           <div class="pf"><span>94.50 買入 · 到期連累計息收回 125</span><span class="fee">🔒 fee 5.50</span></div>
         </div>
         <div class="pc">
-          <div class="pt">🥈 穩信版 · UBS（5 年 · Aa2 最強發行商）</div>
+          <div class="pt"><span class="rk">②</span> 穩信版 · UBS（5 年 · Aa2 最強發行商）</div>
           <div class="px">4.35%<small>息率</small></div>
           <div class="pk">客收約 5.1 厘/年（IRR）</div>
           <div class="pf"><span>95 買入 · 到期連累計息收回 121.75</span><span class="fee">🔒 fee 5.00</span></div>
@@ -235,10 +238,10 @@
       <div class="bars">
         <div class="bt">客問「會唔會提早收回？幾時收？」——只有一個原因會收：<b>佢自己借新錢平過這張票的息率</b>　<span class="sw dark"></span>借新錢成本 <span class="sw green"></span>息率｜<span style="white-space:nowrap">結論＝<b>距離 × 頻率 × 窗數</b></span></div>
         <div class="frow fhead"><div class="fl">票據</div><div class="fb">息率 vs 借新錢成本（今日）</div><div class="fd">尚差多少</div><div class="fw">窗數＝可收回的日期數</div><div class="fv">今日結論</div></div>
-        <div class="frow"><div class="fl">B 5年 主力</div><div class="fb"><i class="d" style="width:88%"></i><i class="g" style="width:73%">5.00</i><u style="left:88%">6.0</u></div><div class="fd">▼1.0厘</div><div class="fw">●●●● 4</div><div class="fv g">極低</div></div>
-        <div class="frow"><div class="fl">UBS 5年 穩信</div><div class="fb"><i class="d" style="width:81%"></i><i class="g" style="width:64%">4.35</i><u style="left:81%">5.5</u></div><div class="fd">▼1.15厘</div><div class="fw">●●●● 4</div><div class="fv g">極低</div></div>
-        <div class="frow"><div class="fl">B 5年 滾動</div><div class="fb"><i class="d" style="width:88%"></i><i class="g" style="width:87%">6.00</i></div><div class="fd">貼線</div><div class="fw">●●●● 4</div><div class="fv a">中 45–60%</div></div>
-        <div class="frow"><div class="fl">2／3年 四張</div><div class="fb"><i class="d" style="width:74%"></i><i class="g" style="width:66%">4.02–4.80</i><u style="left:74%">成本4.4–5.1</u></div><div class="fd">貼住</div><div class="fw">●／●● 1–2</div><div class="fv a">中至中高</div></div>
+        <div class="frow"><div class="fl">B 5年 主力</div><div class="fb"><i class="d" style="width:88%"></i><i class="g" style="width:73%">5.00</i><u style="left:88%">6.0</u></div><div class="fd">＋0.4~＋1.1厘</div><div class="fw">●●●● 4</div><div class="fv g">極低</div></div>
+        <div class="frow"><div class="fl">UBS 5年 穩信</div><div class="fb"><i class="d" style="width:81%"></i><i class="g" style="width:64%">4.35</i><u style="left:81%">5.5</u></div><div class="fd">＋0.7~＋1.3厘</div><div class="fw">●●●● 4</div><div class="fv g">極低</div></div>
+        <div class="frow"><div class="fl">B 5年 滾動</div><div class="fb"><i class="d" style="width:88%"></i><i class="g" style="width:87%">6.00</i></div><div class="fd">−0.3~＋0.3厘</div><div class="fw">●●●● 4</div><div class="fv a">中｜28窗高</div></div>
+        <div class="frow"><div class="fl">2／3年 四張</div><div class="fb"><i class="d" style="width:74%"></i><i class="g" style="width:66%">4.02–4.80</i><u style="left:74%">成本4.6–5.1</u></div><div class="fd">＋0.3~＋0.9厘</div><div class="fw">●／●● 1–2</div><div class="fv a">中低→極低</div></div>
         <div class="fstep">倒轉條件：發行商借新錢成本 <b>6.0</b>──減息／信貸溢價收窄──▶ <b>低於息率 5.00</b>──▶ 收回——按增長表<b>連本帶息</b>一筆過支付</div>
         <div class="bcap"><b>今日</b>比對：兩張息率都比自身借貸成本低約 1 厘——今日收回＝蝕本。<span class="rl">日後減息／信貸溢價收窄，條件可以倒轉</span>——屆時按增長表收回，<b>客戶照收含息</b>（見右半「蝕定賺」表）。倒轉需時多久？十年內兩次同級大擺動——2020 年借貸成本最低（收回最多）、2022 年最貴（收回最少）——並非不會發生，而是<b>需等待並適逢上表其中一個窗口</b>。HSB 十年實證：歷年收回跟經濟誘因行；UBS 歷年收回 91 次，<b>95% 按面值收</b>——定價最紀律。<span class="src">結論評級跟 HSB 矩陣／文獻：典型貼線票據 call 率低、全樣本純定息 callable 現代約 10%——此兩張低自身成本約 1 厘＝最低帶。HSBC 無新造報價，欲詢問 desk。</span></div>
       </div>
@@ -267,17 +270,17 @@
       <div class="hh">短年期收息——息高，但會被收回 <small>被收回你蝕定賺？睇下面張表</small></div>
 
       <div class="bars">
-        <div class="bt">四張短年期：<b>息率全部貼住借新錢成本</b>——溢價一回落便<span class="rl">跌穿 → 收回</span>　<span class="sw dark"></span>借新錢成本 <span class="sw green"></span>息率</div>
+        <div class="bt">四張短年期：<b>成本＝SOFR 曲線平＋發行商 OAS</b>——同發行商跨 2／3 年成本同級；3 年貼住、2 年遠啲，溢價一回落便<span class="rl">跌穿 → 收回</span>　<span class="sw dark"></span>借新錢成本 <span class="sw green"></span>息率</div>
         <div class="bgrid">
-          <div class="bcell"><div class="bh">Barclays 3 年<span class="tag">貼住</span></div><div class="bfill dark" style="width:97%">借新錢成本約 4.8–5.1%</div><div class="bfill green" style="width:94%">息率 4.80%</div></div>
-          <div class="bcell"><div class="bh">UBS 3 年<span class="tag">貼住</span></div><div class="bfill dark" style="width:90%">借新錢成本約 4.6%</div><div class="bfill green" style="width:89%">息率 4.56%</div></div>
-          <div class="bcell"><div class="bh">Barclays 2 年<span class="tag">貼住</span></div><div class="bfill dark" style="width:86%">借新錢成本約 4.4%</div><div class="bfill green" style="width:86%">息率 4.39%</div></div>
-          <div class="bcell"><div class="bh">UBS 2 年<span class="tag">貼住</span></div><div class="bfill dark" style="width:78%">借新錢成本約 4.0%</div><div class="bfill green" style="width:79%">息率 4.02%</div></div>
+          <div class="bcell"><div class="bh">Barclays 3 年<span class="tag">中低・＋0.3~＋0.5厘</span></div><div class="bfill dark" style="width:98%">借新錢成本約 4.8–5.1%</div><div class="bfill green" style="width:96%">息率 4.80%</div></div>
+          <div class="bcell"><div class="bh">UBS 3 年<span class="tag">中低・＋0.3~＋0.6厘</span></div><div class="bfill dark" style="width:93%">借新錢成本約 4.6–4.9%</div><div class="bfill green" style="width:91%">息率 4.56%</div></div>
+          <div class="bcell"><div class="bh">Barclays 2 年<span class="tag g">低・＋0.5~＋0.7厘</span></div><div class="bfill dark" style="width:96%">借新錢成本約 4.8–5.1%</div><div class="bfill green" style="width:88%">息率 4.39%</div></div>
+          <div class="bcell"><div class="bh">UBS 2 年<span class="tag g">極低・＋0.8~＋0.9厘</span></div><div class="bfill dark" style="width:93%">借新錢成本約 4.6–4.9%</div><div class="bfill green" style="width:80%">息率 4.02%</div></div>
         </div>
-        <div class="bcap">邊個最快收回（<b>OAS</b>＝市場向它收的借貸溢價，現時 vs 十年平均，發行商層面）：<b>HSBC</b> 高 0.08 厘（最快）＞ <b>UBS</b>（回落中）＞ <b>Barclays</b> 高 0.28 厘（首收回日 2027-11 壓住）。HSB 矩陣：貼線張＝今日低；溢價常態化後＝中至中高。</div>
+        <div class="bcap">邊個最快收回（<b>OAS</b>＝市場向它收的借貸溢價，現時 vs 十年平均，發行商層面）：<b>HSBC</b> 高 0.08 厘（最快）＞ <b>UBS</b>（回落中）＞ <b>Barclays</b> 高 0.28 厘（首收回日 2027-11 壓住）——成本兩級：B 約 4.8–5.1%｜UBS 約 4.6–4.9%（SOFR 2／3／5 年＝4.570／4.542／4.509，曲線平；OAS 未經 desk 確認，講相對）。</div>
       </div>
 
-      <div class="concl r"><span class="clab">結論</span>提早收回機會中至中高<small>——銷售時必須向客戶清楚說明</small></div>
+      <div class="concl r"><span class="clab">結論</span>經濟尺：3 年中低｜2 年低／極低<small>——研究 band（計發行商行為・MREL）中至中高；兩個口徑都照講會被收回</small></div>
 
       <div class="kt">
         <div class="kt-t">發行商提早收回——客戶蝕定賺？<b>收得早，年化仲高</b></div>
@@ -288,13 +291,13 @@
         <div class="kq">客聽法：「呢張票唔派息，但個價年年升——發行商遲收早收都好，都係照張表<b>連本帶利一次過賠你</b>，你唔會因為佢收得早而蝕；唯一代價係<b>嗰筆錢要再投資</b>。」</div>
       </div>
 
+      <div class="pc3"><span class="rk">①</span> <b>5 年滾動版</b> Barclays 6.00% @97.89（客約 5.8 厘/年（IRR），<span class="fee">🔒 2.11</span>，首窗 2027-11 · first-call 約 45–60%、2028 窗起已過線）——息全場最高；預期 2028 前後被收回＝實質 1–2 年，收回後協助 refire 續購。屬 5 年期票據：只建議給追求最高息、接受被收回後續購的客戶。</div>
       <div class="plist">
-        <div class="pt">3／2 年期並排——年期由客戶的資金規劃決定（客收差異細，不以行方 fee 排序）</div>
-        <div class="prow"><span class="yr">3 年期</span><span class="seg">Barclays Bank PLC <b>4.80%</b> @97.30 → 客約 <b>5.5 厘/年</b>（IRR）&nbsp;<span class="fee">🔒 2.70</span></span>　<span class="seg">UBS <b>4.56%</b> @98 → 客約 <b>5.06 厘/年</b>（IRR）&nbsp;<span class="fee">🔒 2.00</span></span></div>
-        <div class="prow"><span class="yr">2 年期</span><span class="seg">Barclays Bank PLC <b>4.39%</b> @98 → 客約 <b>5.4 厘/年</b>（IRR）&nbsp;<span class="fee">🔒 2.00</span></span>　<span class="seg">UBS <b>4.02%</b> @98 → 客約 <b>5.0 厘/年</b>（IRR）&nbsp;<span class="fee">🔒 2.00</span></span></div>
+        <div class="pt">②③ 短年期並排——年期由客戶的資金規劃決定（客收差異細，不以行方 fee 排序）；UBS＝credit 備選</div>
+        <div class="prow"><span class="yr">3 年期</span><span class="seg"><span class="rk">②</span> Barclays Bank PLC <b>4.80%</b> @97.30 → 客約 <b>5.5 厘/年</b>（IRR）&nbsp;<span class="fee">🔒 2.70</span></span>　<span class="seg"><span class="bk">備選</span> UBS <b>4.56%</b> @98 → 客約 <b>5.06 厘/年</b>（IRR）&nbsp;<span class="fee">🔒 2.00</span></span></div>
+        <div class="prow"><span class="yr">2 年期</span><span class="seg"><span class="rk">③</span> Barclays Bank PLC <b>4.39%</b> @98 → 客約 <b>5.4 厘/年</b>（IRR）&nbsp;<span class="fee">🔒 2.00</span></span>　<span class="seg"><span class="bk">備選</span> UBS <b>4.02%</b> @98 → 客約 <b>5.0 厘/年</b>（IRR）&nbsp;<span class="fee">🔒 2.00</span></span></div>
         <div class="psrc">客收年化＝折讓買入增值＋息率直線累計，一筆過收回（機制見左半）。兩個年期客收僅差 <b>0.1–0.2 厘</b>——由客戶何時要用錢決定，切勿為行方 fee 引導。<b>回購友善度（sample TS）</b>：Barclays 盡力<b>每日</b>提供參考買入價｜UBS 應要求報價、可收費｜三間均無做市義務——流動性客揀 B 順理。</div>
       </div>
-      <div class="pc3">另有 <b>5 年期滾動版</b> Barclays 6.00% @97.89（客約 5.8 厘/年（IRR），<span class="fee">🔒 2.11</span>，首窗 2027-11 · first-call 約 45–60%）——息最高，但屬 5 年期票據：只建議給追求最高息、接受被收回後續購的客戶。</div>
 
       <div class="warn">⚠ 會被提早收回＝並非保險替代品——此客群不應以「保本」作賣點。</div>
 
