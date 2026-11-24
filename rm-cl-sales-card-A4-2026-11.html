@@ -19,8 +19,8 @@
   }
   .sheet{
     width:297mm; min-height:198mm; margin:6mm auto; background:var(--surface);
-    padding:2.5mm 5mm 2.5mm; box-shadow:0 2px 14px rgba(0,0,0,.10);
-    display:flex; flex-direction:column; gap:4mm;
+    padding:2.2mm 5mm 2.2mm; box-shadow:0 2px 14px rgba(0,0,0,.10);
+    display:flex; flex-direction:column; gap:2.8mm;
   }
   @media print{
     body{background:#fff;}
@@ -86,15 +86,15 @@
   .slim .fee{color:var(--red); font-weight:800;}
 
   /* ③ FAQ */
-  .faq{display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:2mm;}
-  .fq{border:1px solid var(--line); border-radius:2mm; background:#fff; padding:2mm 2mm 1.7mm; display:flex; flex-direction:column; gap:.8mm;}
+  .faq{display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:1.6mm;}
+  .fq{border:1px solid var(--line); border-radius:2mm; background:#fff; padding:1.7mm 1.8mm 1.4mm; display:flex; flex-direction:column; gap:.6mm;}
   .fq .qq{font-size:11px; font-weight:900; color:var(--ink);}
   .fq .qq .ic{color:var(--gold); margin-right:.6mm;}
-  .fq .qa{font-size:9.4px; line-height:1.32; color:var(--ink2);}
+  .fq .qa{font-size:9px; line-height:1.27; color:var(--ink2);}
   .fq .qa b{color:var(--green);}
 
   /* 紅線 */
-  .must{background:#fdf1f1; border:1.5px solid #e5b1b1; border-radius:2mm; padding:2mm 2.8mm; display:flex; align-items:center; gap:2mm;}
+  .must{background:#fdf1f1; border:1.5px solid #e5b1b1; border-radius:2mm; padding:1.7mm 2.8mm; display:flex; align-items:center; gap:2mm;}
   .must .mt{flex:none; font-size:11px; font-weight:900; color:var(--red); letter-spacing:.03em;}
   .must .mi{flex:1; display:grid; grid-template-columns:1fr 1fr 1.3fr 1.3fr; gap:1.4mm;}
   .must .m{font-size:9.3px; line-height:1.28; color:#7c2d2d;}
@@ -110,7 +110,6 @@
   <div class="hd">
     <div>
       <h1>Callable Linear 銷售速查卡 <span class="thin">· 三步識賣：① 點開口 → ② 賣哪張 → ③ 客問怎擋</span></h1>
-      <div class="sub">最少字版——見客前 30 秒掃一眼｜逐窗實數／TS 原文／話術全文：見「銷售 Kit 一頁識賣」及「銷售版 · 一圖兩半」</div>
     </div>
     <div class="asof">報價 <b>2026-11-19</b>｜內部使用 · 勿外傳</div>
   </div>
@@ -160,8 +159,8 @@
   <!-- ③ 客問點擋 -->
   <div class="bt"><span class="n">3</span><span class="t">客問怎擋——一句擋法</span><small>照讀 · 全部唔會因「收得早」而蝕</small></div>
   <div class="faq">
-    <div class="fq"><div class="qq"><span class="ic">❓</span>唔派息，息喺邊？</div><div class="qa">94.50 買面值 100，票價直線升到 125——<b>差價就係息</b>，到期／收回一筆過收。</div></div>
-    <div class="fq"><div class="qq"><span class="ic">❓</span>會唔會蝕本？</div><div class="qa">唔會——照增長表<b>連本帶息一筆過</b>。唯一風險＝發行商信用，所以只揀 A 級大行。</div></div>
+    <div class="fq"><div class="qq"><span class="ic">❓</span>唔派息，息喺邊？</div><div class="qa">94.50 買、票價逐年升：<b>94.50 →105 →110 →115 →120 →125</b>（首年由 94.50 升上 105＝折讓連息一齊收，之後每年 +5.00）——<b>差價就係息</b>，到期／收回一筆過收。<br>年化點計：總回報 <b>125÷94.50−1＝+32.3%</b>，開 5 年方根 → <b>(1.3228)<sup>1/5</sup>−1＝5.75%/年</b>（驗算：94.50×1.0575⁵≈125）。</div></div>
+    <div class="fq"><div class="qq"><span class="ic">❓</span>會唔會蝕本？</div><div class="qa">增長表<b>白紙黑字逐年列明</b>，到期／提早收回均按表支付——<b>唔會因收得早而收少</b>。例：投 <b>US$100 萬</b>（買價 94.5 萬）——第 1 年收回收 <b>105 萬（+11.1%）</b>、第 3 年 115 萬、到期收 <b>125 萬（+32.3%）</b>，邊年收都高過買價。唯一風險＝發行商信用，所以只揀 A 級大行。</div></div>
     <div class="fq"><div class="qq"><span class="ic">❓</span>佢會唔會提早收？</div><div class="qa">只有一個原因：<b>佢借新錢平過張票息</b>。主力差 1 厘以上＝機會極低；滾動貼線＝中。</div></div>
     <div class="fq"><div class="qq"><span class="ic">❓</span>被收回我蝕乜？</div><div class="qa">唔蝕本——收得早、年化仲高（直線無複利）。唯一代價：再投資<b>未必有咁高息</b>。</div></div>
     <div class="fq"><div class="qq"><span class="ic">❓</span>中途想攞錢走？</div><div class="qa">冇提早贖回權——回購唔保證有得做、價可能低於買入價。<b>入場前講明鎖幾耐</b>。</div></div>
