@@ -80,15 +80,15 @@
     <div class="col u">
       <div class="ch"><span class="nm">UBS AG, London Branch</span><span class="rt">Aa2 / A+ / AA</span></div>
       <div class="samp">樣板：USD 1,000,000 Callable Zero Coupon Note due 2031（2026-05-19 起息 · 5 年）</div>
-      <div class="kv">零息票：<b>認購價 100、唔派年息</b>——票價直線增長 <b class="hl">LAR 4.96%/年</b>，連本帶息到期一筆過收。增長表（Amortised Face Amount）：</div>
+      <div class="kv">零息票：<b>認購價 100、不派年息</b>——票價直線增長 <b class="hl">LAR 4.96%/年</b>，連本帶息到期一筆過收。增長表（Amortised Face Amount）：</div>
       <table class="tbl">
         <tr><td>2027-05-19 call</td><td class="acc">104.96</td></tr>
         <tr><td>2028／2029／2030 call</td><td class="acc">109.92 / 114.88 / 119.84</td></tr>
         <tr><td>2031-05-19 到期</td><td class="acc">124.80</td></tr>
       </table>
-      <div class="kv"><b>Issuer call</b>：NC1，之後每年 5/19 可全數收回；<span class="rd">call 價＝增長表當年數（包息），唔係 100</span>。</div>
-      <div class="kv">⭐ TS 仲列埋 <b>Accrual Yield 4.96%→4.53% 遞減</b>＝真 IRR：<b>早收年化高過坐到尾</b>（直線增長嘅數學，5年真 IRR 得 4.53%，唔係 4.96%）。</div>
-      <div class="kv"><b>回購</b>：TS 白紙黑字「<b>No secondary market currently exists, nor is one likely to develop</b>」；UBS 標明係 arranger——on request 先報價、<b>報價唔係承諾</b>、<span class="rd">提早終止可能收客手續費（might pay or charge）</span>。</div>
+      <div class="kv"><b>Issuer call</b>：NC1，之後每年 5/19 可全數收回；<span class="rd">call 價＝增長表當年數（包息），並非 100</span>。</div>
+      <div class="kv">⭐ TS 另列 <b>Accrual Yield 4.96%→4.53% 遞減</b>＝真 IRR：<b>早收年化高於坐到尾</b>（直線增長的數學，5年真 IRR 僅 4.53%，並非 4.96%）。</div>
+      <div class="kv"><b>回購</b>：TS 白紙黑字「<b>No secondary market currently exists, nor is one likely to develop</b>」；UBS 標明為 arranger——on request 方報價、<b>報價並非承諾</b>、<span class="rd">提早終止可能向客戶收取手續費（might pay or charge）</span>。</div>
       <div class="kv"><b>稅務等事件提早贖回</b>＝公允價 <span class="rd">減 unwind／對沖成本</span>；min transfer USD 100,000；僅限專業投資者。</div>
     </div>
 
@@ -102,8 +102,8 @@
         <tr><td>2029-10-19 到期</td><td class="acc">114.07</td></tr>
       </table>
       <div class="kv">⭐ <b>Third Party Fees</b>：「<b>Issue Price includes a commission element shared with a third party</b>」——fee 內嵌買價、同分銷方分帳（＝分俾我哋行）。</div>
-      <div class="kv"><b>回購</b>：Barclays「盡力」每日俾 indicative bid——<span class="rd">sole discretion、唔係承諾、未必反映內部帶、可以大幅偏離、模型極端下可以係零</span>。</div>
-      <div class="kv">⭐ 白紙黑字：<b>唔屬 MREL 合資格債</b>；<b>Bail-in（BRRD）風險</b>明列；稅務/對沖事件提早贖回＝市值減 unwind cost；5 個營業日 call 通知；min tradable USD 100,000。</div>
+      <div class="kv"><b>回購</b>：Barclays「盡力」每日提供 indicative bid——<span class="rd">sole discretion、並非承諾、未必反映內部帶、可以大幅偏離、模型極端下可以為零</span>。</div>
+      <div class="kv">⭐ 白紙黑字：<b>不屬 MREL 合資格債</b>；<b>Bail-in（BRRD）風險</b>明列；稅務/對沖事件提早贖回＝市值減 unwind cost；5 個營業日 call 通知；min tradable USD 100,000。</div>
     </div>
 
     <div class="col h">
@@ -189,35 +189,35 @@
 
   <div class="band">
     <div class="bx warnx">
-      <div class="bt">對返我哋之前理解——兩個 ✅、兩個 ⚠️ 要修</div>
-      <li><span class="ok">✅ 收回機制無錯</span>：三份都係 issuer call option、NC1 年 call、5 營業日通知——「借新錢平過舊票就收」嘅經濟邏輯不變。</li>
-      <li><span class="ok">✅ 「客無提早贖回權、回購不保證」三份直接證實</span>：UBS 加多條「可能收費」；HSBC 量化埋最壞 63%；Barclays「盡力」每日 bid 但模型極端下可以係零。</li>
-      <li><span class="wn">⚠️ 「到期按 100 贖回」要修</span>：TS 現實＝到期收 <b>100＋累計利息一筆過</b>（例 114.07 / 124.80）；<b>call 收增長表價（包息）</b>——客被收回唔單止唔會冇息，<b>年化仲高過坐到尾</b>（UBS yield 欄 4.96→4.53% 就係證明）。張板 gloss「94.50 買入、100 贖回」要照 TS 改寫。</li>
-      <li><span class="wn">⚠️ 「票息」一詞：TS 世界冇 coupon、只有 LAR</span>——我哋報價簿「票息 5%」＝LAR 口徑。兩條客收數同 TS 邏輯完全脗合：IRR＝(125/94.50)^⅕−1＝<b>5.757%≈sheet 口徑 5.75／板面約 5.8</b>；直線混合＝5%＋折讓攤分 1.16%＝<b>約 6.1</b>。⭐ 被收回嗰日客收增長表價（例 1 年 call 收 105），短持有 IRR 仲靚——右半「被收回後續購」話術有數撑。</li>
+      <div class="bt">對照我們之前理解——兩個 ✅、兩個 ⚠️ 待修</div>
+      <li><span class="ok">✅ 收回機制無誤</span>：三份均為 issuer call option、NC1 年 call、5 營業日通知——「借新錢平過舊票就收回」的經濟邏輯不變。</li>
+      <li><span class="ok">✅ 「客無提早贖回權、回購不保證」三份直接證實</span>：UBS 另加「可能收費」條款；HSBC 量化最壞 63%；Barclays「盡力」每日 bid 但模型極端下可以為零。</li>
+      <li><span class="wn">⚠️ 「到期按 100 贖回」要修</span>：TS 現實＝到期收 <b>100＋累計利息一筆過</b>（例 114.07 / 124.80）；<b>call 收增長表價（包息）</b>——客戶被收回不但不會沒有息，<b>年化更高於坐到尾</b>（UBS yield 欄 4.96→4.53% 就係證明）。板面 gloss「94.50 買入、100 贖回」須照 TS 改寫。</li>
+      <li><span class="wn">⚠️ 「票息」一詞：TS 世界沒有 coupon、只有 LAR</span>——我們報價簿「票息 5%」＝LAR 口徑。兩條客收數同 TS 邏輯完全脗合：IRR＝(125/94.50)^⅕−1＝<b>5.757%≈sheet 口徑 5.75／板面約 5.8</b>；直線混合＝5%＋折讓攤分 1.16%＝<b>約 6.1</b>。⭐ 被收回當日客戶收增長表價（例 1 年 call 收 105），短持有 IRR 更高——右半「被收回後續購」話術有數據支持。</li>
     </div>
     <div class="bx qx">
       <div class="bt">問 desk／銀行清單（6 條）</div>
-      <li>1️⃣ 客 confirmation 係照 TS 增長表（call 收 accreted）定另一套？有冇 amortised schedule 版俾客？</li>
-      <li>2️⃣ 客收約 5.8 嘅年化公式釘死：IRR 5.757 定直線 6.1？sheet 口徑 5.75 邊條式？</li>
-      <li>3️⃣ 🔒fee（5.50/2.70/2.00…）係行方 <b>gross</b> 定已扣 bank cost？bank cost 佔幾多？</li>
-      <li>4️⃣ 客買價（94.50/97.30/98）對應 issuer TS 邊個數——issue 100 折讓俾行，行再定客價？</li>
-      <li>5️⃣ 客戶提早沽出：行方 own-book 回購用邊個模型、buy-sell spread 幾多、min size 幾多？</li>
-      <li>6️⃣ Barclays Fitch A-（2026-05-28 更新）——板面評級口徑要唔要跟新？</li>
+      <li>1️⃣ 客 confirmation 是照 TS 增長表（call 收 accreted）還是另一套？有否 amortised schedule 版給客？</li>
+      <li>2️⃣ 客收約 5.8 的年化公式確認：IRR 5.757 抑或直線 6.1？sheet 口徑 5.75 對應哪條式？</li>
+      <li>3️⃣ 🔒fee（5.50/2.70/2.00…）是行方 <b>gross</b> 抑或已扣 bank cost？bank cost 佔多少？</li>
+      <li>4️⃣ 客買價（94.50/97.30/98）對應 issuer TS 哪個數——issue 100 折讓予行，行再定客價？</li>
+      <li>5️⃣ 客戶提早沽出：行方 own-book 回購用哪個模型、buy-sell spread 多少、min size 多少？</li>
+      <li>6️⃣ Barclays Fitch A-（2026-05-28 更新）——板面評級口徑是否跟新？</li>
     </div>
   </div>
 
   <div class="band" style="margin-top:0.6mm">
     <div class="bx" style="flex:1.1">
-      <div class="bt">MREL／TLAC 咩嚟（收回機械式嘅底因）</div>
+      <div class="bt">MREL／TLAC 是什麼（收回機械式的底因）</div>
       <li><b>TLAC</b>＝FSB 對全球系統重要性銀行的總損失吸收能力要求（≥16% RWA）；<b>MREL</b>＝歐盟／英國同類（BRRD）。</li>
-      <li>合資格債剩餘年期短過 1 年<b>唔再計數</b>＋票息 step-up——銀行慣性首個 call date <b>收回再發行（call-and-reissue）</b>：維持比率兼滾動融資成本。</li>
-      <li><span class="ok">⭐ 釐清</span>：呢張 CL 票本身<b>唔屬 MREL 合資格債</b>（TS 白紙黑字）——MREL/TLAC 讀嘅係<b>發行商自己融資債</b>嘅滾動習性。</li>
+      <li>合資格債剩餘年期短於 1 年<b>不再計數</b>＋票息 step-up——銀行慣性首個 call date <b>收回再發行（call-and-reissue）</b>：維持比率兼滾動融資成本。</li>
+      <li><span class="ok">⭐ 釐清</span>：這張 CL 票本身<b>不屬 MREL 合資格債</b>（TS 白紙黑字）——MREL/TLAC 讀的是<b>發行商自身融資債</b>的滾動習性。</li>
     </div>
     <div class="bx" style="flex:1">
       <div class="bt">27–30 經濟誘因展望（定性 · 板面凍結數為錨）</div>
       <li><b>利率背景</b>：加息初段（2026-9 已加、12 月或再加）；2027–28 共識恢復減息｜SOFR 微倒掛 2/3/5 年 4.57/4.54/4.51。</li>
-      <li><b>27 首窗</b>：要「減息＋溢價收窄」兩樣同步（未到位）＝鎖定貨企得住｜<b>28–30</b>：減息落地漸近觸發帶——滾動／2／3 年貼線貨入收復區｜HSBC 有貨即收。</li>
-      <li>B 對溢價最敏感（+28bp）；UBS CS 整合溢價 116bp＝收窄最大變數；B 零售結構票照 schedule 收、唔跟經濟。</li>
+      <li><b>27 首個 call date</b>：要「減息＋溢價收窄」兩者同步（未到位）＝鎖定貨站得住｜<b>28–30</b>：減息落地漸近觸發帶——滾動／2／3 年貼線貨入收復區｜HSBC 有貨即收。</li>
+      <li>B 對溢價最敏感（+28bp）；UBS CS 整合溢價 116bp＝收窄最大變數；B 零售結構票照 schedule 收、不跟經濟。</li>
     </div>
   </div>
 

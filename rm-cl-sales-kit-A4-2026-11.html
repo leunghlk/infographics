@@ -213,7 +213,7 @@
   </div>
 
   <!-- ③ 幾時收 -->
-  <div class="band-t"><span class="n">3</span><span class="stp">STEP 3</span><span class="t">銀行何時會提早收回？一條數：收回線 vs 借新錢成本</span><small>逐窗實數 · 上半 Barclays／下半 UBS</small></div>
+  <div class="band-t"><span class="n">3</span><span class="stp">STEP 3</span><span class="t">銀行何時會提早收回？一條數：收回線 vs 借新錢成本</span><small>逐 call date 實數 · 上半 Barclays／下半 UBS</small></div>
   <div class="cal">
     <div><b>收回線</b>＝(到期值÷該窗收回值)<sup>(1/剩餘年期)</sup>−1（凍結實數）｜<b>借新錢成本</b>＝SOFR＋OAS 約數（2／3／5 年 SOFR＝4.570／4.542／4.509，曲線大致平——分開發行商的主要是信貸溢價 OAS）｜OAS 未經 desk 確認，客戶面前講相對、不講絕對點數</div>
     <div><b>差距</b>＝借新錢成本−收回線：<span class="gn2">正＝借貴過照付→無誘因收回</span>｜<span class="rd2">負＝借平過照付→有誘因收回</span>。色尺：綠＝極低／低（未過線，鎖得住）｜橙＝中低／中（貼線）｜紅＝高（已過線）｜<span style="color:var(--green);font-weight:900">✓</span>＝以「不收回」為基準之建議</div>
@@ -280,8 +280,8 @@
   <div class="cap">右欄 27／28／29／30＝2027-11／2028-11／2029-11／2030-11 各 call date；色尺同上：綠＝極低／低｜橙＝中低／中｜紅＝高</div>
   <div class="qnotes">
     <div><b>①</b> 今日買入＝100−fee（desk 報價口徑）｜desk min <b>US$1M／張</b>｜人民幣資金 → MXI 轉美元再認購（須披露：非存款非保本；匯率風險客戶承擔）</div>
-    <div><b>②</b> A 組揀法：收益優先＝主力（5.75）；credit 優先＝UBS 5 年（5.09，Aa2）——同年期不同票面息，到期 IRR 相約，揀的是收回預期</div>
-    <div class="full"><b>③</b> B 組揀法：息高優先＝滾動（5.84，預期 2028 收回，收回後協助 refire）；UBS 3／2 年（5.06／5.00）＝credit 優先備選（逐窗實數見 band ③ 矩陣）</div>
+    <div><b>②</b> A 組選法：收益優先＝主力（5.75）；credit 優先＝UBS 5 年（5.09，Aa2）——同年期不同票面息，到期 IRR 相約，選的是收回預期</div>
+    <div class="full"><b>③</b> B 組選法：息高優先＝滾動（5.84，預期 2028 收回，收回後協助 refire）；UBS 3／2 年（5.06／5.00）＝credit 優先備選（逐 call date 實數見 band ③ 矩陣）</div>
   </div>
 
   <!-- ⑤ 憑咩贏 -->
