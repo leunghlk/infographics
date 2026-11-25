@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Callable Linear 銷售全攻略 · 一頁講完點 sell（RM內部 2026-11）</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  :root{
+    --navy:#0d6c29; --gold:#C29214;
+    --green:#15803d; --red:#dc2626; --amber:#d97706; --blue:#2563eb;
+    --ink:#1e293b; --ink2:#475569; --ink3:#94a3b8; --line:#d8dee9; --bg:#f6f7fa; --surface:#ffffff;
+    --ambt:#92400e; --grnt:#15803d; --redt:#b91c1c;
+  }
+  html,body{background:var(--bg);}
+  body{
+    font-family:system-ui,-apple-system,"Segoe UI","PingFang TC","Microsoft JhengHei",sans-serif;
+    color:var(--ink); line-height:1.3;
+    -webkit-print-color-adjust:exact; print-color-adjust:exact;
+  }
+  .sheet{
+    width:297mm; min-height:198mm; margin:6mm auto; background:var(--surface);
+    padding:2mm 5mm; box-shadow:0 2px 14px rgba(0,0,0,.10);
+    display:flex; flex-direction:column; gap:2mm;
+  }
+  @media print{
+    body{background:#fff;}
+    .sheet{margin:0; box-shadow:none; width:auto; min-height:auto;}
+    .jpgbtn,.kbadge{display:none !important;}
+  }
+  @page{size:A4 landscape; margin:0.5mm 5mm;}
+
+  .hd{display:flex; justify-content:space-between; align-items:flex-end; border-bottom:3px solid var(--navy); padding-bottom:0.8mm;}
+  .hd h1{font-size:18px; font-weight:900; letter-spacing:.01em; color:var(--navy);}
+  .hd h1 .thin{color:var(--ink2); font-weight:600; font-size:11px;}
+  .hd .asof{text-align:right; font-size:8.8px; color:var(--ink3); line-height:1.3;}
+  .hd .asof b{color:var(--red); font-size:9px;}
+
+  .bt{display:flex; align-items:center; gap:1.6mm;}
+  .bt .n{flex:none; width:5.2mm; height:5.2mm; border-radius:50%; background:var(--navy); color:#fff; font-size:11px; font-weight:900; display:flex; align-items:center; justify-content:center;}
+  .bt .t{font-size:13px; font-weight:900; color:var(--navy); letter-spacing:.02em;}
+  .bt small{font-size:9px; color:var(--ink3); font-weight:600;}
+
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:2.6mm;}
+  .card{border:1px solid var(--line); border-radius:2.2mm; background:#fff; padding:2mm 2.4mm 1.7mm; display:flex; flex-direction:column; gap:1mm;}
+  .card .ct{font-size:11.5px; font-weight:900; color:var(--navy);}
+  .card .cs{font-size:9.3px; line-height:1.32; color:var(--ink2);}
+  .card .cs b{color:var(--ink);}
+  .card .cs .g{color:var(--grnt); font-weight:800;}
+  .card .cs .r{color:var(--redt); font-weight:800;}
+  .big{font-size:21px; font-weight:900; color:var(--navy); line-height:1.1;}
+  .big .u{font-size:11px; font-weight:700; color:var(--ink2);}
+  .krow{display:flex; gap:1.6mm;}
+  .kchip{flex:1; background:var(--bg); border:1px solid var(--line); border-radius:1.6mm; padding:1.1mm 1.6mm; font-size:9.2px; color:var(--ink2); text-align:center;}
+  .kchip b{color:var(--navy); display:block; font-size:10px;}
+
+  table{width:100%; border-collapse:collapse;}
+  th{background:var(--navy); color:#fff; font-size:9.6px; font-weight:800; padding:1mm 1.2mm; text-align:center;}
+  td{font-size:9.8px; color:var(--ink); padding:0.65mm 1.2mm; text-align:center; border-bottom:1px solid var(--line);}
+  tr:nth-child(even) td{background:var(--bg);}
+  td.l{text-align:left;}
+  td.b{font-weight:800; color:var(--navy);}
+  tr.mat td{background:var(--bg); font-weight:800;}
+  tr.mat td.b{color:var(--navy); font-size:10.4px;}
+
+  .strip{background:var(--bg); border:1px solid var(--line); border-radius:1.8mm; padding:1.3mm 2mm; font-size:9.4px; color:var(--ink2); line-height:1.34;}
+  .strip b{color:var(--ink);}
+  .strip .r{color:var(--redt); font-weight:800;}
+  .strip .g{color:var(--grnt); font-weight:800;}
+  .quote{border-left:1.2mm solid var(--gold); background:var(--bg); border-radius:0 1.6mm 1.6mm 0; padding:1.2mm 1.8mm; font-size:9.6px; color:var(--ink); line-height:1.35;}
+  .quote b{color:var(--grnt);}
+  .win{display:grid; grid-template-columns:repeat(4,1fr); gap:1.4mm;}
+  .wcard{background:var(--bg); border:1px solid var(--line); border-radius:1.6mm; padding:1mm 1.2mm; text-align:center; font-size:8.8px; color:var(--ink2); line-height:1.3;}
+  .wcard b{display:block; color:var(--ink); font-size:9.3px;}
+  .wcard .v{font-weight:900;}
+  .wcard .lo{color:var(--grnt);} .wcard .mid{color:var(--ambt);} .wcard .hi{color:var(--redt);}
+
+  .must{background:#fdf1f1; border:1.5px solid #e5b1b1; border-radius:2mm; padding:1.6mm 2.4mm; display:flex; align-items:center; gap:2mm;}
+  .must .mt{flex:none; font-size:11px; font-weight:900; color:var(--red); letter-spacing:.03em;}
+  .must .mi{flex:1; display:grid; grid-template-columns:1fr 1fr 1.3fr 1.3fr; gap:1.4mm;}
+  .must .m{font-size:9.2px; line-height:1.28; color:#7c2d2d;}
+  .must .m b{font-weight:900;}
+
+  .ft{font-size:7.8px; color:var(--ink3); line-height:1.25;}
+  .ft b{color:var(--ink2);}
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <div class="hd">
+    <div>
+      <h1>Callable Linear 銷售全攻略 <span class="thin">· 一頁講完點 sell：買入價 → 攞返幾多 → issuer 賺咩 → call decision → 打保險 → 被 call 後點 sell</span></h1>
+    </div>
+    <div class="asof">報價 <b>2026-11-25</b>｜收回判決已計摩擦 0.40｜內部使用 · 勿外傳</div>
+  </div>
+
+  <!-- ① 點 sell 一句 + 客買入價 -->
+  <div class="bt"><span class="n">1</span><span class="t">點 SELL 一句＋客買入價（at discount，內含銀行收入）</span><small>對客：增長表的數就是客戶的數</small></div>
+  <div class="duo">
+    <div class="card">
+      <div class="ct">一句 sell（照讀）</div>
+      <div class="cs">「呢張係<b>零票息、票價直線增長</b>嘅銀行票據：折讓價買入，個價每年照<b>增長表</b>直線上升——到期或者發行商提早收回，都按表<b>連本帶息一筆過</b>支付。利息冇少，只係延後一次過收。」</div>
+      <div class="krow">
+        <div class="kchip"><b>息率固定</b>認購後不隨加息調高</div>
+        <div class="kchip"><b>NC1＋發行商 call</b>首 12 個月不許收回</div>
+        <div class="kchip"><b>客戶無提早贖回權</b>中途退出＝市價回購</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ct">客買入價——at discount（fee 內藏折讓）｜5 年鎖息主打 Barclays 4.95%</div>
+      <div class="krow">
+        <div class="kchip"><b>每 100 面值付 95.00</b>= 100 − fee <span style="color:var(--red);font-weight:800;">5.00 🔒</span></div>
+        <div class="kchip"><b>US$1M 面值 → 付 US$950,000</b>買得平過面值</div>
+        <div class="kchip"><b>增長率 4.95 全數入表</b>息冇被扣減，IRR 已淨</div>
+      </div>
+      <div class="cs">對比 CD／債券：<b>價上加成</b>（客付 ≥100、息被壓低）；CL：<b>價下讓</b>（客付 95、增長率全數）——銀行收入來自價差，而非息差；<span class="g">客收 5.60% 已是扣除一切後的淨數</span>。Barclays TS 白紙黑字："Issue Price includes a commission element"。</div>
+    </div>
+  </div>
+
+  <!-- ② 被收回／到期攞返幾多 -->
+  <div class="bt"><span class="n">2</span><span class="t">買入後被 call／到期——攞返幾多錢（增長表＝白紙黑字）</span><small>任何一年收回都照表支付；收得早、年化更高</small></div>
+  <table>
+    <tr><th style="width:16%">時點</th><th>贖回價值（每 100 面值）</th><th>US$1,000,000 面值客收</th><th>總回報</th><th>年化回報</th><th style="width:30%">讀法</th></tr>
+    <tr><td class="l">第 1 年收回</td><td class="b">104.95</td><td>US$1,049,500</td><td>+10.5%</td><td class="b">10.47%</td><td class="l" rowspan="5" style="font-size:9.2px; color:var(--ink2);">增長表逐年列明——<b style="color:var(--ink)">無論到期或提早收回均按表支付</b>，收回早不會收少。第 1 年最高（折讓＋息一齊收），之後每年 +4.95 直線遞減年化——<b style="color:var(--navy)">收得早、年化更高</b>（直線無複利）。</td></tr>
+    <tr><td class="l">第 2 年收回</td><td class="b">109.90</td><td>US$1,099,000</td><td>+15.7%</td><td class="b">7.62%</td></tr>
+    <tr><td class="l">第 3 年收回</td><td class="b">114.85</td><td>US$1,148,500</td><td>+20.9%</td><td class="b">6.53%</td></tr>
+    <tr><td class="l">第 4 年收回</td><td class="b">119.80</td><td>US$1,198,000</td><td>+26.1%</td><td class="b">5.97%</td></tr>
+    <tr class="mat"><td class="l">到期（第 5 年）</td><td class="b">124.75</td><td>US$1,247,500</td><td>+31.3%</td><td class="b">5.60%</td></tr>
+  </table>
+
+  <!-- ③ issuer 賺咩 + ④ call decision -->
+  <div class="duo">
+    <div class="card">
+      <div class="ct">issuer 賺什麼？——不是賺錢，是借錢</div>
+      <div class="cs">發行商<b>實收 95、到期還 124.75</b>＝有效融資成本 <span class="g">≈5.60%</span>——與其市場融資水平相若。換到的是：<b>零售資金分散＋五年鎖定＋call option 重借彈性</b>。</div>
+      <div class="cs"><span class="r">客戶的「划算」是風險補償</span>：發行商信用風險＋call option（息跌即被收回）＋無流動性——三項代價全寫在紅線內，<b>不是免費午餐</b>。</div>
+      <div class="cs">對比銀行角色：銀行收入藏在折讓（fee 5.00 🔒），<b>不由息差攞</b>——客收 IRR 5.60% 已是淨數。</div>
+    </div>
+    <div class="card">
+      <div class="ct">call decision 睇咩——一條式（簡單版）</div>
+      <div class="cs"><b>距離 = 借新錢成本 −（張票剩餘年化 bar ＋ 摩擦 0.40）</b>　｜　負數＝過線→有誘因收回｜尺：極低≥+0.7／低≥+0.3／中低≥+0.1／中≥−0.1／高</div>
+      <div class="win">
+        <div class="wcard"><b>窗1 2027-11</b>bar 4.42＋0.40<br>fund 4.84<br><span class="v mid">距離 +0.02 → 中</span></div>
+        <div class="wcard"><b>窗2 2028-11</b>bar 4.32＋0.40<br>fund 4.95<br><span class="v mid">距離 +0.23 → 中低</span></div>
+        <div class="wcard"><b>窗3 2029-11</b>bar 4.22＋0.40<br>fund 5.03<br><span class="v lo">距離 +0.41 → 低</span></div>
+        <div class="wcard"><b>窗4 2030-11</b>bar 4.13＋0.40<br>fund 4.75<br><span class="v mid">距離 +0.22 → 中低</span></div>
+      </div>
+      <div class="cs"><span class="g">四窗距離全部正數＝四窗都不過線</span>——4.95@95 極可能坐到尾。NC1：首 12 個月不許收回，2027-11 解禁兼首個 call date。十年實證：收回跟誘因行（2020 最平收最多、2022 最貴收最少）。</div>
+    </div>
+  </div>
+
+  <!-- ⑤ 打保險 + ⑥ 被 call 後點 sell -->
+  <div class="duo">
+    <div class="card">
+      <div class="ct">同保險比較——同坐五年的對決</div>
+      <table>
+        <tr><th style="width:22%">維度</th><th>五年儲蓄保險（保證回本類）</th><th>CL 5年鎖息（4.95@95）</th></tr>
+        <tr><td class="l">回報</td><td>保證年回報 4.10%（USD 年繳）；回本 113–119.7%</td><td class="b">客收 5.60%；回本 124.75%</td></tr>
+        <tr><td class="l">勝差</td><td>—</td><td class="b">每年多賺約 1.50 厘</td></tr>
+        <tr><td class="l">保障</td><td>身故／危疾保障功能</td><td>沒有——純回報工具</td></tr>
+        <tr><td class="l">短年競品</td><td>「進息保」3 年回本 4.14%，但 10 年月息鎖死</td><td class="b">2／3 年客收 5.2–4.9% 一筆過＝真短鎖</td></tr>
+      </table>
+      <div class="cs"><b>一句對決：</b>要全保證＋保障 → 保險｜要最高鎖定回報 → CL。「極蓄賞 1 年」＝定存替代品，不是直接對手。</div>
+    </div>
+    <div class="card">
+      <div class="ct">被 call 後，屆時息率或已下跌——仲可以點 sell？</div>
+      <div class="cs"><span class="r">客問：「被收回後要再投資，屆時息低咗點算？」</span>數答三步（RM 照講）：<b>①</b> 第 1 年被收回：每 100 面值收 <b>104.95</b>（買入 95 的 1.1047 倍）<b>②</b> 之後 4 年以年息 r 再投資：期末＝104.95×(1+r)⁴ <b>③</b> 與保證打和：104.95×(1+r)⁴＝95×(1.041)⁵ → <b>r≈2.6%</b></div>
+      <div class="cs">結論：<b>再投資息要連續 4 年低於約 2.6%</b>（今日 5 年融資約 4.5–5.0、須跌逾一半）CL 才會輸；過去十年只有 2020–21 零息期出現過該水平。且 4.95@95 四窗無一「高」——被收回機會極低。</div>
+      <div class="cs"><b>續接 sell：</b>收回當日資金即時回籠——我哋立刻幫客挑選當時最合適一張續購，<b>年年滾動鎖息、唔斷纜</b>；第一年已袋 10.47% 高息補償。</div>
+      <div class="quote">客聽法：「發行商遲收早收都好，都係照張表連本帶利一次過賠你——你唔會因為佢收得早而蝕。真係第一年收 10 厘 5，之後 4 年要跌穿 2 厘 6 先輸俾保證；而且我幫你年年續住鎖息，唔會斷纜。」</div>
+    </div>
+  </div>
+
+  <!-- 紅線 -->
+  <div class="must">
+    <span class="mt">🚨 賣前必講</span>
+    <span class="mi">
+      <span class="m"><b>1 非存款、非保本</b>——勿以「保本」作賣點</span>
+      <span class="m"><b>2 息率固定</b>——不會跟加息調高</span>
+      <span class="m"><b>3 無提早贖回權</b>——中途變現＝市價回購，可能低於買入價</span>
+      <span class="m"><b>4 發行商風險</b>——「Barclays」＝Barclays Bank PLC 銀行實體</span>
+    </span>
+  </div>
+
+  <div class="ft">條款以正式產品文件（Pricing Supplement）為準｜報價 2026-11-25 實定｜距離判決已計 reissue 摩擦 0.40｜desk min US$1M／張｜🔒 fee 口徑切勿向客戶披露｜© Hang Seng Bank</div>
+
+</div>
+</body>
+</html>
+
+<style>
+  /* 浮動匯出掣＋k badge（對齊 suite chrome） */
+  .jpgbtn{position:fixed;top:60px;right:18px;z-index:60;background:#2563eb;color:#fff;border:none;border-radius:10px;
+    padding:10px 16px;font-size:13px;font-weight:700;cursor:pointer;box-shadow:0 4px 14px rgba(37,99,235,.4);font-family:inherit}
+  .jpgbtn:hover{background:#1d4ed8}
+  .jpgbtn[disabled]{opacity:.6;cursor:wait}
+  .kbadge{position:fixed;bottom:16px;right:16px;z-index:60;width:36px;height:36px;background:#fff;
+    border-radius:10px;display:flex;align-items:center;justify-content:center;
+    box-shadow:0 2px 8px rgba(0,0,0,.18);text-decoration:none;
+    font:italic 300 21px/1 'Brush Script MT','Segoe Script',cursive;color:#2563eb}
+</style>
+<button class="jpgbtn" onclick="exportJPG(this)">📸 匯出 JPEG</button>
+<a class="kbadge" href="https://leunghlk.github.io/all-in-one/" title="leungkathy · 返回主頁">k</a>
+<script type="module">
+  import { domToJpeg } from "https://cdn.jsdelivr.net/npm/modern-screenshot@4/dist/index.mjs";
+  window.modernScreenshot = { domToJpeg };
+</script>
+<script>
+function exportJPG(btn){
+  var target=document.querySelector('.sheet')||document.querySelector('.wrap');
+  if(!target||!window.modernScreenshot){alert('匯出元件未載入，請檢查網絡後重試');return;}
+  btn.disabled=true;var t=btn.textContent;btn.textContent='⏳ 匯出中…';
+  var k=document.createElement('div');
+  k.textContent='k';
+  k.style.cssText="position:absolute;right:8mm;bottom:2mm;z-index:9;font:italic 300 36px/1 'Brush Script MT','Segoe Script',cursive;color:#2563eb;pointer-events:none;";
+  var prevPos=target.style.position, prevPad=target.style.paddingBottom;
+  if(getComputedStyle(target).position==='static') target.style.position='relative';
+  target.style.paddingBottom='13mm';
+  target.appendChild(k);
+  function done(){ k.remove(); target.style.position=prevPos; target.style.paddingBottom=prevPad; }
+  function restore(){ done(); btn.textContent=t; btn.disabled=false; }
+  function fname(){ return (document.title.replace(/[^\w一-鿿-]+/g,'-').replace(/-+/g,'-'))+'.jpg'; }
+  var rg=target.getBoundingClientRect(), MAXPX=16000000;
+  var sc=2; if(rg.width*rg.height*4>MAXPX) sc=Math.max(1,Math.sqrt(MAXPX/(rg.width*rg.height)));
+  function overlay(blob,name){
+    var u=URL.createObjectURL(blob);
+    var o=document.createElement('div');
+    o.style.cssText='position:fixed;inset:0;z-index:99999;background:rgba(10,12,16,.88);display:flex;flex-direction:column;align-items:center;gap:12px;padding:18px;overflow:auto;';
+    var tip=document.createElement('div');
+    tip.style.cssText='color:#fff;font:600 14px/1.5 -apple-system,system-ui,sans-serif;text-align:center;';
+    tip.innerHTML='長按下面張圖 → 揀「<b>加入照片</b>」即可貯入相簿<br><span style="font-size:12px;opacity:.65">（或撳「下載」存入檔案 App）</span>';
+    var img=new Image(); img.src=u; img.style.cssText='max-width:100%;background:#fff;box-shadow:0 6px 28px rgba(0,0,0,.5);';
+    var bar=document.createElement('div'); bar.style.cssText='display:flex;gap:10px;';
+    var dl=document.createElement('a'); dl.href=u; dl.download=name; dl.textContent='⬇ 下載';
+    dl.style.cssText='background:#2563eb;color:#fff;font:700 14px -apple-system,system-ui,sans-serif;padding:10px 18px;border-radius:9px;text-decoration:none;';
+    var cl=document.createElement('button'); cl.textContent='✕ 關閉';
+    cl.style.cssText='background:#374151;color:#fff;font:700 14px -apple-system,system-ui,sans-serif;padding:10px 18px;border-radius:9px;border:none;';
+    cl.onclick=function(){ o.remove(); URL.revokeObjectURL(u); };
+    bar.appendChild(dl); bar.appendChild(cl);
+    o.appendChild(tip); o.appendChild(img); o.appendChild(bar);
+    document.body.appendChild(o);
+  }
+  function deliver(url,name){
+    fetch(url).then(function(r){return r.blob();}).then(function(blob){
+      var file=null; try{ file=new File([blob],name,{type:'image/jpeg'}); }catch(e){}
+      var touch=(navigator.maxTouchPoints>0)||/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
+      if(file&&touch&&navigator.canShare&&navigator.canShare({files:[file]})){
+        navigator.share({files:[file],title:name}).then(function(){ restore(); })
+        .catch(function(err){
+          if(err&&err.name==='AbortError'){ restore(); return; }
+          overlay(blob,name); restore();
+        });
+        return;
+      }
+      var u=URL.createObjectURL(blob);
+      var a=document.createElement('a'); a.href=u; a.download=name;
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(function(){ URL.revokeObjectURL(u); },4000);
+      if(touch&&/iP(hone|ad|od)/.test(navigator.userAgent)){ overlay(blob,name); }
+      else restore();
+    }).catch(function(e){ restore(); alert('匯出失敗：'+(e&&e.message||e)); });
+  }
+  modernScreenshot.domToJpeg(target,{scale:sc,quality:0.92,backgroundColor:'#ffffff'})
+  .then(function(url){ done(); deliver(url,fname()); })
+  .catch(function(e){
+    if(sc>1){
+      modernScreenshot.domToJpeg(target,{scale:1,quality:0.9,backgroundColor:'#ffffff'})
+      .then(function(url){ done(); deliver(url,fname()); })
+      .catch(function(e2){ restore(); alert('匯出失敗：'+(e2&&e2.message||e2)); });
+    }else{ restore(); alert('匯出失敗：'+(e&&e.message||e)); }
+  });
+}
+</script>
+<script>
+(function(){
+  function go(){
+    try{
+      var sw=Math.min(window.screen.width, window.innerWidth||window.screen.width);
+      var w=Math.max(document.documentElement.scrollWidth, document.body?document.body.scrollWidth:0);
+      var m=document.querySelector('meta[name="viewport"]');
+      if(!m||w>2400||w<=sw+4) return;
+      m.setAttribute('content','width='+Math.ceil(w));
+    }catch(e){}
+  }
+  if(document.readyState==='complete') setTimeout(go,80);
+  else window.addEventListener('load',function(){ setTimeout(go,80); });
+})();
+</script>
