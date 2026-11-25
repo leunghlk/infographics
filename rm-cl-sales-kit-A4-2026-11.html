@@ -131,7 +131,7 @@
       <h1>Callable Linear 銷售 Kit <span class="thin">· 一頁速覽（不懂 finance 也明白）</span></h1>
       <div class="sub">跟著六步行：<b>①是什麼 → ②如何運作 → ③何時會被提早收回（收回線 vs 借新錢成本）→ ④今日賣哪一張 → ⑤憑什麼勝出 → ⑥必講＋話術</b>｜技術細節／TS 原文：見「銷售版 · 一圖兩半」及「Term Sheet 對讀」</div>
     </div>
-    <div class="asof">報價 <b>2026-11-19</b>｜內部使用 · 勿外傳</div>
+    <div class="asof">報價 <b>2026-11-25</b>（desk sheet＋Bloomberg forward funding）｜內部使用 · 勿外傳</div>
   </div>
 
   <!-- ① 係乜 -->
@@ -215,83 +215,83 @@
   <!-- ③ 幾時收 -->
   <div class="band-t"><span class="n">3</span><span class="stp">STEP 3</span><span class="t">銀行何時會提早收回？一條數：收回線 vs 借新錢成本</span><small>逐 call date 實數 · 上半 Barclays／下半 UBS</small></div>
   <div class="cal">
-    <div><b>收回線</b>＝(到期值÷該窗收回值)<sup>(1/剩餘年期)</sup>−1（凍結實數）｜<b>借新錢成本</b>＝SOFR＋OAS 約數（2／3／5 年 SOFR＝4.570／4.542／4.509，曲線大致平——分開發行商的主要是信貸溢價 OAS）｜OAS 未經 desk 確認，客戶面前講相對、不講絕對點數</div>
+    <div><b>收回線</b>＝(到期值÷該窗收回值)<sup>(1/剩餘年期)</sup>−1（凍結實數）｜<b>借新錢成本</b>＝<b>forward SOFR＋G-spread（Bloomberg 11-25 desk sheet 實數）</b>：B 5年窗 4.84／4.95／5.03／4.75｜UBS 5.21／5.02／4.84／4.95｜2–3年窗 4.71–5.08｜信貸溢價按今日企住，客戶面前講相對、不講絕對點數</div>
     <div><b>差距</b>＝借新錢成本−收回線：<span class="gn2">正＝借貴過照付→無誘因收回</span>｜<span class="rd2">負＝借平過照付→有誘因收回</span>。色尺：綠＝極低／低（未過線，鎖得住）｜橙＝中低／中（貼線）｜紅＝高（已過線）｜<span style="color:var(--green);font-weight:900">✓</span>＝以「不收回」為基準之建議</div>
   </div>
   <table class="qt mat">
     <tr><th style="text-align:left">結構（票面息）</th><th>2027-11</th><th>2028-11</th><th>2029-11</th><th>2030-11</th></tr>
     <tr class="sect"><td colspan="5" class="ib-b">Barclays Bank PLC（A1／A+／A−）</td></tr>
-    <tr><td><span class="ck">✓ </span>B 5年 主力 5.00%</td>
-        <td><b class="tg G">極低</b><span class="gp">｜＋0.7~＋1.1 厘</span></td>
-        <td><b class="tg G">低</b><span class="gp">｜＋0.4~＋0.7 厘</span></td>
-        <td><b class="tg G">低</b><span class="gp">｜＋0.5~＋0.8 厘</span></td>
-        <td><b class="tg G">低</b><span class="gp">｜＋0.5~＋0.7 厘</span></td></tr>
+    <tr><td><span class="ck">✓ </span>B 5年 主力 4.95%</td>
+        <td><b class="tg G">低</b><span class="gp">｜＋0.4 厘</span></td>
+        <td><b class="tg G">低</b><span class="gp">｜＋0.6 厘</span></td>
+        <td><b class="tg G">極低</b><span class="gp">｜＋0.8 厘</span></td>
+        <td><b class="tg G">低</b><span class="gp">｜＋0.6 厘</span></td></tr>
     <tr class="rf"><td>B 5年 滾動 6.00%</td>
-        <td><b class="tg A">中</b><span class="gp">｜−0.1~＋0.3 厘</span></td>
-        <td><b class="tg R">高</b><span class="gp">｜−0.3~0.0 厘</span></td>
-        <td><b class="tg A">中</b><span class="gp">｜−0.2~＋0.1 厘</span></td>
-        <td><b class="tg A">中</b><span class="gp">｜−0.2~0.0 厘</span></td></tr>
-    <tr><td>B 3年 4.80%</td>
-        <td><b class="tg A">中低</b><span class="gp">｜＋0.3~＋0.5 厘</span></td>
-        <td><b class="tg A">中低</b><span class="gp">｜＋0.3~＋0.5 厘</span></td>
+        <td><b class="tg A">中</b><span class="gp">｜−0.4（計摩擦貼平）</span></td>
+        <td><b class="tg A">中低</b><span class="gp">｜−0.1 厘</span></td>
+        <td><b class="tg A">中</b><span class="gp">｜＋0.1 厘</span></td>
+        <td><b class="tg A">中低</b><span class="gp">｜−0.1 厘</span></td></tr>
+    <tr><td>B 3年 4.90%</td>
+        <td><b class="tg G">低</b><span class="gp">｜＋0.5 厘</span></td>
+        <td><b class="tg A">中低</b><span class="gp">｜＋0.25 厘（最薄）</span></td>
         <td>—</td><td>—</td></tr>
-    <tr><td>B 2年 4.39%</td>
-        <td><b class="tg G">低</b><span class="gp">｜＋0.5~＋0.7 厘</span></td>
+    <tr><td>B 2年 4.23%</td>
+        <td><b class="tg G">極低</b><span class="gp">｜＋0.8 厘</span></td>
         <td>—</td><td>—</td><td>—</td></tr>
     <tr class="sect"><td colspan="5" class="ib-u">UBS AG（Aa2／A+／AA）</td></tr>
-    <tr><td><span class="ck">✓ </span>UBS 5年 穩信 4.35%</td>
-        <td><b class="tg G">極低</b><span class="gp">｜＋1.0~＋1.3 厘</span></td>
-        <td><b class="tg G">極低</b><span class="gp">｜＋0.7~＋1.0 厘</span></td>
-        <td><b class="tg G">極低</b><span class="gp">｜＋0.8~＋1.1 厘</span></td>
-        <td><b class="tg G">極低</b><span class="gp">｜＋1.0~＋1.1 厘</span></td></tr>
-    <tr><td>UBS 3年 4.56%</td>
-        <td><b class="tg A">中低</b><span class="gp">｜＋0.3~＋0.6 厘</span></td>
-        <td><b class="tg G">低</b><span class="gp">｜＋0.5~＋0.6 厘</span></td>
+    <tr><td><span class="ck">✓ </span>UBS 5年 穩信 4.44%</td>
+        <td><b class="tg G">極低</b><span class="gp">｜＋1.2 厘</span></td>
+        <td><b class="tg G">極低</b><span class="gp">｜＋1.1 厘</span></td>
+        <td><b class="tg G">極低</b><span class="gp">｜＋1.0 厘</span></td>
+        <td><b class="tg G">極低</b><span class="gp">｜＋1.2 厘</span></td></tr>
+    <tr><td>UBS 3年 4.39%</td>
+        <td><b class="tg G">極低</b><span class="gp">｜＋0.8 厘</span></td>
+        <td><b class="tg G">極低</b><span class="gp">｜＋0.9 厘</span></td>
         <td>—</td><td>—</td></tr>
-    <tr><td>UBS 2年 4.02%</td>
-        <td><b class="tg G">極低</b><span class="gp">｜＋0.8~＋0.9 厘</span></td>
+    <tr><td>UBS 2年 3.87%</td>
+        <td><b class="tg G">極低</b><span class="gp">｜＋1.3 厘</span></td>
         <td>—</td><td>—</td><td>—</td></tr>
   </table>
   <div class="strip res"><b>研究 band 照錄（計入發行商行為，較經濟尺進取）：</b>B 各張 中 至 中高｜UBS 5／3 年 中高 至 高｜UBS 2 年 中高｜HSBC（今日無報價）高 至 非常高——按負債規則機械式收回</div>
 
   <!-- ④ 揀邊張 -->
-  <div class="band-t"><span class="n">4</span><span class="stp">STEP 4</span><span class="t">今日賣哪一張？</span><small>報價 2026-11-19 · 客收（IRR）＝折讓買入、連本帶息一筆過計算的年化回報率</small></div>
-  <div class="tint">開口第一問：<span class="q">「呢筆錢五年內會唔會要用？」</span>不會 → <b>A 組：鎖足 5 年（同保險競爭）</b>｜會用／想收息 → <b>B 組：短年期收息——息高，但預期會被提早收回</b></div>
+  <div class="band-t"><span class="n">4</span><span class="stp">STEP 4</span><span class="t">今日賣哪一張？</span><small>報價 2026-11-25 · 客收（IRR）＝折讓買入、連本帶息一筆過計算的年化回報率</small></div>
+  <div class="tint">開口第一問：<span class="q">「呢筆錢五年內會唔會要用？」</span>不會 → <b>A 組：鎖足 5 年（同保險競爭）</b>｜會用／想收息 → <b>B 組：短年期收息——息高，但滾動版首窗貼線、預期會被提早收回</b></div>
   <table class="qt">
     <tr><th style="text-align:left">年期</th><th>發行商</th><th>票面息</th><th>今日買入</th><th>客收約（IRR）</th><th>🔒 fee</th><th>收回機會（各 call date）</th></tr>
     <tr class="sect trk"><td colspan="7"><b>A 組</b>鎖足 5 年——五年內不需動用，與保險競爭（真鎖息）</td></tr>
-    <tr><td><i class="rk">①</i>5 年 主力鎖定</td><td>Barclays</td><td><b>5.00%</b></td><td>94.50</td><td class="win">5.75 厘/年</td><td class="fee">5.50</td>
-        <td class="pcd"><i class="yy">27 </i><b class="tg G">極低</b><span class="gp">｜</span><i class="yy">28 </i><b class="tg G">低</b><span class="gp">｜</span><i class="yy">29 </i><b class="tg G">低</b><span class="gp">｜</span><i class="yy">30 </i><b class="tg G">低</b></td></tr>
-    <tr><td><i class="rk">②</i>5 年 穩信（評級最高）</td><td>UBS</td><td>4.35%</td><td>95</td><td class="win">5.09 厘/年</td><td class="fee">5.00</td>
+    <tr><td><i class="rk">①</i>5 年 主力鎖定</td><td>Barclays</td><td><b>4.95%</b></td><td>95.0</td><td class="win">5.60 厘/年</td><td class="fee">5.00</td>
+        <td class="pcd"><i class="yy">27 </i><b class="tg G">低</b><span class="gp">｜</span><i class="yy">28 </i><b class="tg G">低</b><span class="gp">｜</span><i class="yy">29 </i><b class="tg G">極低</b><span class="gp">｜</span><i class="yy">30 </i><b class="tg G">低</b></td></tr>
+    <tr><td><i class="rk">②</i>5 年 穩信（評級最高）</td><td>UBS</td><td>4.44%</td><td>96</td><td class="win">4.94 厘/年</td><td class="fee">4.00</td>
         <td class="pcd"><i class="yy">27 </i><b class="tg G">極低</b><span class="gp">｜</span><i class="yy">28 </i><b class="tg G">極低</b><span class="gp">｜</span><i class="yy">29 </i><b class="tg G">極低</b><span class="gp">｜</span><i class="yy">30 </i><b class="tg G">極低</b></td></tr>
-    <tr class="sect trk"><td colspan="7"><b>B 組</b>短年期收息——息高，但預期會被提早收回（收回後協助 refire 續購）</td></tr>
-    <tr class="rf"><td><i class="rk">①</i>5 年滾動（息全場最高）</td><td>Barclays</td><td><b>6.00%</b></td><td>97.89</td><td class="win">5.84 厘/年</td><td class="fee">2.11</td>
-        <td class="pcd"><i class="yy">27 </i><b class="tg A">中</b><span class="gp">｜</span><i class="yy">28 </i><b class="tg R">高</b><span class="gp">｜</span><i class="yy">29 </i><b class="tg A">中</b><span class="gp">｜</span><i class="yy">30 </i><b class="tg A">中</b></td></tr>
-    <tr><td><i class="rk">②</i>3 年</td><td>Barclays</td><td><b>4.80%</b></td><td>97.30</td><td class="win">5.54 厘/年</td><td class="fee">2.70</td>
-        <td class="pcd"><i class="yy">27 </i><b class="tg A">中低</b><span class="gp">｜</span><i class="yy">28 </i><b class="tg A">中低</b></td></tr>
-    <tr><td><i class="rk">③</i>2 年</td><td>Barclays</td><td><b>4.39%</b></td><td>98</td><td class="win">5.36 厘/年</td><td class="fee">2.00</td>
-        <td class="pcd"><i class="yy">27 </i><b class="tg G">低</b></td></tr>
-    <tr><td>3 年（credit 備選）</td><td>UBS</td><td>4.56%</td><td>98</td><td class="win">5.06 厘/年</td><td class="fee">2.00</td>
-        <td class="pcd"><i class="yy">27 </i><b class="tg A">中低</b><span class="gp">｜</span><i class="yy">28 </i><b class="tg G">低</b></td></tr>
-    <tr><td>2 年（credit 備選）</td><td>UBS</td><td>4.02%</td><td>98</td><td class="win">5.00 厘/年</td><td class="fee">2.00</td>
+    <tr class="sect trk"><td colspan="7"><b>B 組</b>短年期收息——息高，但滾動版首窗貼線（收回後協助 refire 續購）</td></tr>
+    <tr class="rf"><td><i class="rk">①</i>5 年滾動（息全場最高）</td><td>Barclays</td><td><b>6.00%</b></td><td>98.7</td><td class="win">5.67 厘/年</td><td class="fee">1.35</td>
+        <td class="pcd"><i class="yy">27 </i><b class="tg A">中</b><span class="gp">｜</span><i class="yy">28 </i><b class="tg A">中低</b><span class="gp">｜</span><i class="yy">29 </i><b class="tg A">中</b><span class="gp">｜</span><i class="yy">30 </i><b class="tg A">中低</b></td></tr>
+    <tr><td><i class="rk">②</i>3 年</td><td>Barclays</td><td><b>4.90%</b></td><td>98.0</td><td class="win">5.39 厘/年</td><td class="fee">2.00</td>
+        <td class="pcd"><i class="yy">27 </i><b class="tg G">低</b><span class="gp">｜</span><i class="yy">28 </i><b class="tg A">中低</b></td></tr>
+    <tr><td><i class="rk">③</i>2 年</td><td>Barclays</td><td><b>4.23%</b></td><td>98.0</td><td class="win">5.20 厘/年</td><td class="fee">2.00</td>
+        <td class="pcd"><i class="yy">27 </i><b class="tg G">極低</b></td></tr>
+    <tr><td>3 年（credit 備選）</td><td>UBS</td><td>4.39%</td><td>98</td><td class="win">4.91 厘/年</td><td class="fee">2.00</td>
+        <td class="pcd"><i class="yy">27 </i><b class="tg G">極低</b><span class="gp">｜</span><i class="yy">28 </i><b class="tg G">極低</b></td></tr>
+    <tr><td>2 年（credit 備選）</td><td>UBS</td><td>3.87%</td><td>98</td><td class="win">4.85 厘/年</td><td class="fee">2.00</td>
         <td class="pcd"><i class="yy">27 </i><b class="tg G">極低</b></td></tr>
   </table>
-  <div class="strip con"><b>結論：</b>A 組：<span class="ck">✓</span>① 主力＝真鎖息首選（5.75，四窗極低）；② UBS＝次選（5.09，Aa2 最強，credit 優先）｜B 組：<span class="ck">✓</span>① 滾動＝首選（5.84 息全場最高；預期 2028 收回＝實質 1–2 年＋refire）；② B 3 年 5.54；③ B 2 年 5.36</div>
+  <div class="strip con"><b>結論：</b>A 組：<span class="ck">✓</span>① 主力＝真鎖息首選（5.60，四窗低／極低）；② UBS＝次選（4.94，Aa2 最強＋距離＋1.0~1.2 最實，credit 優先）｜B 組：<span class="ck">✓</span>① 滾動＝首選（5.67 息全場最高；首窗 2027-11 貼線＝「1 年定 5 年」二揀一＋refire）；② B 3 年 5.39；③ B 2 年 5.20</div>
   <div class="cap">右欄 27／28／29／30＝2027-11／2028-11／2029-11／2030-11 各 call date；色尺同上：綠＝極低／低｜橙＝中低／中｜紅＝高</div>
   <div class="qnotes">
     <div><b>①</b> 今日買入＝100−fee（desk 報價口徑）｜desk min <b>US$1M／張</b>｜人民幣資金 → MXI 轉美元再認購（須披露：非存款非保本；匯率風險客戶承擔）</div>
-    <div><b>②</b> A 組選法：收益優先＝主力（5.75）；credit 優先＝UBS 5 年（5.09，Aa2）——同年期不同票面息，到期 IRR 相約，選的是收回預期</div>
-    <div class="full"><b>③</b> B 組選法：息高優先＝滾動（5.84，預期 2028 收回，收回後協助 refire）；UBS 3／2 年（5.06／5.00）＝credit 優先備選（逐 call date 實數見 band ③ 矩陣）</div>
+    <div><b>②</b> A 組選法：收益優先＝主力（5.60）；credit 優先＝UBS 5 年（4.94，Aa2）——同年期不同票面息，到期 IRR 相約，選的是收回預期</div>
+    <div class="full"><b>③</b> B 組選法：息高優先＝滾動（5.67，首窗貼線，收回後協助 refire）；UBS 3／2 年（4.91／4.85）＝credit 優先備選（逐 call date 實數見 band ③ 矩陣）</div>
   </div>
 
   <!-- ⑤ 憑咩贏 -->
   <div class="band-t"><span class="n">5</span><span class="stp">STEP 5</span><span class="t">憑什麼勝出？</span><small>同坐五年的產品比——五年真回報</small></div>
   <div class="cmp">
     <div class="crow"><span class="cn">精選五年·行方</span><span class="cb"><i style="width:71%;background:var(--amber)"></i><b style="right:2mm;color:var(--ink)">保證年回報 <span style="font-size:9.5px">4.10%</span>｜期滿＝總保費 <span style="font-size:9.5px">119.7%</span>（供 2 年）</b></span></div>
-    <div class="crow"><span class="cn">CL 鎖定版</span><span class="cb"><i style="width:100%"></i><b style="right:2mm">客收 <span style="font-size:9.5px">5.75</span> 厘（IRR）｜期滿＝成本 <span style="font-size:9.5px">132%</span>（125÷94.50）</b></span></div>
-    <div class="punch2">要全保證 → 精選五年<span class="b2">（4.10）</span>｜要最高鎖定回報 → <span class="g">CL 5.75</span>｜要保障功能（身故／危疾）→ 保險<span class="b2">（CL 沒有）</span></div>
+    <div class="crow"><span class="cn">CL 鎖定版</span><span class="cb"><i style="width:100%"></i><b style="right:2mm">客收 <span style="font-size:9.5px">5.60</span> 厘（IRR）｜期滿＝成本 <span style="font-size:9.5px">131%</span>（124.75÷95.0）</b></span></div>
+    <div class="punch2">要全保證 → 精選五年<span class="b2">（4.10）</span>｜要最高鎖定回報 → <span class="g">CL 5.60</span>｜要保障功能（身故／危疾）→ 保險<span class="b2">（CL 沒有）</span></div>
   </div>
-  <div class="cap"><b>流動性客競品＝「進息保」Coupon Power（全保證）</b>：3 年保證回本、保證年回報 3.56–4.14%——但 10 年期月入息形式（資金實際鎖 10 年）；CL 2／3 年客收 5.36–5.54、到期一筆過收返＝回報高 1.2–2 厘＋真短鎖。要每月現金流→進息保；要一筆過＋高息→CL 短年。</div>
+  <div class="cap"><b>流動性客競品＝「進息保」Coupon Power（全保證）</b>：3 年保證回本、保證年回報 3.56–4.14%——但 10 年期月入息形式（資金實際鎖 10 年）；CL 2／3 年客收 4.85–5.39、到期一筆過收返＝回報高 0.7–1.8 厘＋真短鎖。要每月現金流→進息保；要一筆過＋高息→CL 短年。</div>
 
   <!-- ⑥ 必講＋話術 -->
   <div class="band-t"><span class="n">6</span><span class="stp">STEP 6</span><span class="t">賣前必講＋照讀話術</span><small>紅線一句不能漏 · 話術以粵語照讀</small></div>
@@ -303,12 +303,12 @@
       <div class="must"><span class="mn">4</span><span><b>發行商風險</b>——「Barclays」指 Barclays Bank PLC（銀行實體，不是控股公司）。</span></div>
     </div>
     <div class="says">
-      <div class="say"><div class="st">開場 · 對定期／保險客</div><div class="tx">「同『精選五年』都係坐五年——佢保證年回報 4 厘 1，呢張 Barclays 五年期客收約 5 厘 8，每年多賺成 1 厘 7。一句講晒：佢係銀行債券唔係存款，有信用風險。」</div></div>
-      <div class="say"><div class="st">客問「俾人收回蝕唔蝕」</div><div class="tx">「唔會蝕本——發行商提早收回，照張表連本帶利一筆過賠你，例如第一年收你 105，一年袋 11%。唯一代價係收返嗰筆錢再投資，未必有咁高息。」</div></div>
+      <div class="say"><div class="st">開場 · 對定期／保險客</div><div class="tx">「同『精選五年』都係坐五年——佢保證年回報 4 厘 1，呢張 Barclays 五年期客收約 5 厘 6，每年多賺成 1 厘 5。一句講晒：佢係銀行債券唔係存款，有信用風險。」</div></div>
+      <div class="say"><div class="st">客問「俾人收回蝕唔蝕」</div><div class="tx">「唔會蝕本——發行商提早收回，照張表連本帶利一筆過賠你，例如第一年收你 104.95，一年袋 10.5%。唯一代價係收返嗰筆錢再投資，未必有咁高息。」</div></div>
     </div>
   </div>
 
-  <div class="ft">條款以正式產品文件（Pricing Supplement）為準｜報價 2026-11-19｜🔒 內部費用口徑（fee）切勿向客戶披露｜© Hang Seng Bank｜不建議銷售予：完全不接受本金風險（→ 定期／短債）或未肯定資金年期（→ 賣短年期版）的客戶</div>
+  <div class="ft">條款以正式產品文件（Pricing Supplement）為準｜報價 2026-11-25｜🔒 內部費用口徑（fee）切勿向客戶披露｜© Hang Seng Bank｜不建議銷售予：完全不接受本金風險（→ 定期／短債）或未肯定資金年期（→ 賣短年期版）的客戶</div>
 
 </div>
 </body>
