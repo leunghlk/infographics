@@ -19,14 +19,14 @@
   .sheet{
     width:297mm; min-height:200mm; margin:6mm auto; background:var(--surface);
     padding:2mm 6mm 0; box-shadow:0 2px 14px rgba(0,0,0,.10);
-    display:flex; flex-direction:column; gap:.6mm;
+    display:flex; flex-direction:column; gap:.4mm;
   }
   @media print{
     body{background:#fff;}
     .sheet{margin:0; box-shadow:none; width:auto; min-height:auto;}
     .jpgbtn,.kbadge{display:none !important;}
   }
-  @page{size:A4 landscape; margin:0.5mm 5mm;}
+  @page{size:A4 landscape; margin:0mm 4mm;}
 
   /* header */
   .hd{display:flex; justify-content:space-between; align-items:flex-end; border-bottom:3px solid var(--ink); padding-bottom:0.9mm;}
@@ -240,10 +240,10 @@
         <div class="frow fhead"><div class="fl">票據</div><div class="fb">增長率 vs 借新錢成本（Bloomberg 11-25 實數）</div><div class="fd">尚差多少</div><div class="fw">窗數＝可收回的日期數</div><div class="fv">今日結論</div></div>
         <div class="frow"><div class="fl">B 5年 主力</div><div class="fb"><i class="d" style="width:71%"></i><i class="g" style="width:65%">4.42</i><u style="left:71%">4.84</u></div><div class="fd">＋0.4~＋0.8厘</div><div class="fw">●●●● 4</div><div class="fv g">低／極低</div></div>
         <div class="frow"><div class="fl">UBS 5年 穩信</div><div class="fb"><i class="d" style="width:77%"></i><i class="g" style="width:59%">4.00</i><u style="left:77%">5.21</u></div><div class="fd">＋1.0~＋1.2厘</div><div class="fw">●●●● 4</div><div class="fv g">極低</div></div>
-        <div class="frow"><div class="fl">B 5年 滾動</div><div class="fb"><i class="g" style="width:77%"></i><i class="d" style="width:71%">4.84</i><u style="left:77%;color:var(--green)">5.24</u></div><div class="fd">首窗貼平（計摩擦）</div><div class="fw">●●●● 4</div><div class="fv a">中｜首窗擲硬幣</div></div>
+        <div class="frow"><div class="fl">B 5年 滾動</div><div class="fb"><i class="g" style="width:77%"></i><i class="d" style="width:71%">4.84</i><u style="left:77%;color:var(--green)">5.24</u></div><div class="fd">首窗貼平（計reissuance cost）</div><div class="fw">●●●● 4</div><div class="fv a">中｜首窗擲硬幣</div></div>
         <div class="frow"><div class="fl">2／3年 四張</div><div class="fb"><i class="d" style="width:74%"></i><i class="g" style="width:62%">增長率3.7–4.6</i><u style="left:74%">4.86–5.08</u></div><div class="fd">＋0.3~＋1.3厘</div><div class="fw">●／●● 1–2</div><div class="fv a">低→極低</div></div>
         <div class="fstep">倒轉條件：發行商借新錢成本 <b>4.84</b>──減息／信貸溢價收窄──▶ <b>低於增長率 4.42</b>──▶ 收回——按增長表<b>連本帶息</b>一筆過支付</div>
-        <div class="bcap"><b>今日</b>兩張收回＝蝕本生意。<span class="rl">日後減息／溢價收窄，條件可以倒轉</span>——屆時照增長表收回，<b>客戶照收含息</b>。十年兩次同級大擺動（2020 收回最多、2022 最少）；UBS 歷年收回 91 次、<b>95% 按面值收</b>。<b>27–30 點陣圖路徑：</b>加息初段（2026-9 已加），2027–28 共識恢復減息——27 首個 call date 要「減息＋溢價收窄」兩者同步（未到位）＝鎖定貨站得住；28–30 貼線貨漸入收復區；HSBC（無報價）MREL/TLAC 機械式＝有貨即收。<br>距離口徑＝Bloomberg forward SOFR＋G-spread（B 5年窗 4.84→4.75｜UBS 5.21→4.95）vs 增長表餘下年期增長率（主力 4.42→4.13）；摩擦 0.4 厘未計（主力四窗仍 keep）。<b>難度排位：2 年（1 窗）＞3 年＞5 年（4 窗）</b>；UBS 距離含 CS 整合溢價——整合完成收窄（估計仍 keep）。</div>
+        <div class="bcap"><b>今日</b>兩張收回＝蝕本生意。<span class="rl">日後減息／溢價收窄，條件可以倒轉</span>——屆時照增長表收回，<b>客戶照收含息</b>。十年兩次同級大擺動（2020 收回最多、2022 最少）；UBS 歷年收回 91 次、<b>95% 按面值收</b>。<b>27–30 點陣圖路徑：</b>加息初段，2027–28 共識恢復減息——27 首個 call date 要「減息＋溢價收窄」兩者同步（未到位）＝鎖定貨站得住；28–30 貼線貨漸入收復區；HSBC（無報價）MREL/TLAC 機械式＝有貨即收。<br>距離口徑＝Bloomberg forward SOFR＋G-spread（B 4.84→4.75｜UBS 5.21→4.95）vs 增長表餘下年化（主力 4.42→4.13）；reissuance cost 0.4 未計（主力四窗仍 keep）。<b>難度排位：2 年（1 窗）＞3 年＞5 年（4 窗）</b>；UBS 距離含 CS 整合溢價——整合完成收窄（估計仍 keep）。</div>
       </div>
 
       <div class="concl g"><span class="clab">結論</span>提早收回機會極低<small>——今日無人做蝕本生意；日後息跌會照收（收返含息）</small></div>
@@ -291,7 +291,7 @@
         <div class="kq">客聽法：「呢張票唔派息，但個價年年升——發行商遲收早收都好，都係照張表<b>連本帶利一次過賠你</b>，你唔會因為佢收得早而蝕；唯一代價係<b>嗰筆錢要再投資</b>。」</div>
       </div>
 
-      <div class="pc3"><span class="rk">①</span> <b>5 年滾動版</b> Barclays 6.00% @98.7（客坐到尾約 5.7 厘/年（IRR），<span class="fee">🔒 1.35</span>）——息全場最高；<b>首窗 2027-11 融資成本＋摩擦＝貼平增長率＝擲硬幣</b>，過咗首窗其餘三窗全部 keep＝坐到 2031——「1 年定 5 年」二揀一，收回後協助 refire 續購。<b>逐 call date 年化：</b>27 收 <b>7.45</b>｜28 收 <b>6.55</b>｜29 收 <b>6.15</b>｜30 收 <b>5.88</b>｜到期 5.67 厘——收得早、年化更高（若 2027 真收：一年收 106＝+7.4%）。只建議給追求最高息、接受收回後續購的客戶。</div>
+      <div class="pc3"><span class="rk">①</span> <b>5 年滾動版</b> Barclays 6.00% @98.7（客坐到尾約 5.7 厘/年（IRR），<span class="fee">🔒 1.35</span>）——息全場最高；<b>首窗 2027-11 融資成本＋reissuance cost＝貼平增長率＝擲硬幣</b>，過咗首窗其餘三窗全部 keep＝坐到 2031——「1 年定 5 年」二揀一，收回後協助 refire 續購。<b>逐 call date 年化：</b>27 收 <b>7.45</b>｜28 收 <b>6.55</b>｜29 收 <b>6.15</b>｜30 收 <b>5.88</b>｜到期 5.67 厘——收得早、年化更高（若 2027 真收：一年收 106＝+7.4%）。只建議給追求最高息、接受收回後續購的客戶。</div>
       <div class="plist">
         <div class="pt">②③ 短年期並排——年期由客戶的資金規劃決定（客收差異細，不以行方 fee 排序）；UBS＝credit 備選</div>
         <div class="prow"><span class="yr">3 年期</span><span class="seg"><span class="rk">②</span> Barclays Bank PLC <b>4.90%</b> @98.0 → 客約 <b>5.4 厘/年</b>（IRR）&nbsp;<span class="fee">🔒 2.00</span></span>　<span class="seg"><span class="bk">備選</span> UBS <b>4.39%</b> @98 → 客約 <b>4.9 厘/年</b>（IRR）&nbsp;<span class="fee">🔒 2.00</span></span></div>
