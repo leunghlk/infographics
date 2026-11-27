@@ -96,11 +96,11 @@
   </div>
 
   <!-- ① 點 sell 一句 + 客買入價 -->
-  <div class="bt"><span class="n">1</span><span class="t">點 SELL 一句＋客買入價（at discount，內含銀行收入）</span><small>對客：增長表的數就是客戶的數</small></div>
+  <div class="bt"><span class="n">1</span><span class="t">點 SELL 一句＋客買入價（面值價 100；fee＝銀行向發行商折讓認購嘅價差🔒）</span><small>對客：增長表的數就是客戶的數</small></div>
   <div class="duo">
     <div class="card">
       <div class="ct">一句 sell（照讀）</div>
-      <div class="cs">「呢張係<b>零票息、票價直線增長</b>嘅銀行票據：折讓價買入，個價每年照<b>增長表</b>直線上升——到期或者發行商提早收回，都按表<b>連本帶息一筆過</b>支付。利息冇少，只係延後一次過收。」</div>
+      <div class="cs">「呢張係<b>零票息、票價直線增長</b>嘅銀行票據：以面值價 100 買入，個價每年照<b>增長表</b>直線上升——到期或者發行商提早收回，都按表<b>連本帶息一筆過</b>支付。利息冇少，只係延後一次過收。」</div>
       <div class="krow">
         <div class="kchip"><b>息率固定</b>認購後不隨加息調高</div>
         <div class="kchip"><b>NC1＋發行商 call</b>首 12 個月不許收回</div>
@@ -108,13 +108,13 @@
       </div>
     </div>
     <div class="card">
-      <div class="ct">客買入價——at discount（fee 內藏折讓）｜5 年鎖息主打 Barclays 4.95%</div>
+      <div class="ct">客買入價——面值價 100（fee＝銀行向發行商折讓認購嘅價差🔒）｜5 年鎖息主打 Barclays 4.95%</div>
       <div class="krow">
-        <div class="kchip"><b>每 100 面值付 95.00</b>= 100 − fee <span style="color:var(--red);font-weight:800;">5.00 🔒</span></div>
+        <div class="kchip"><b>每 100 面值付 100.00</b>＝面值價，無加成（fee＝價差🔒）</div>
         <div class="kchip"><b>US$1M 面值 → 付 US$1,000,000</b>買得平過面值</div>
         <div class="kchip"><b>票價直線增長率 4.95（非複利）</b>每年每 100 面值 +4.95；息冇被扣減，IRR 已淨</div>
       </div>
-      <div class="cs">對比 CD／債券：<b>價上加成</b>（客付 ≥100、息被壓低）；CL：<b>價下讓</b>（客付 95、增長率全數）——銀行收入來自價差，而非息差；<span class="g">客收 4.53% 已是淨數（面值價買入）</span>。Barclays TS 白紙黑字："Issue Price includes a commission element"。</div>
+      <div class="cs">對比 CD／債券：<b>價上加成</b>（客付 ≥100、息被壓低）；CL：<b>客付面值價 100</b>（增長率全數）——銀行收入來自價差，而非息差；<span class="g">客收 4.53% 已是淨數（面值價買入）</span>。Barclays TS 白紙黑字："Issue Price includes a commission element"。</div>
     </div>
   </div>
 
@@ -122,10 +122,10 @@
   <div class="bt"><span class="n">2</span><span class="t">買入後被 call／到期——攞返幾多錢（增長表＝白紙黑字）</span><small>任何一年收回都照表支付；收得早、年化更高</small></div>
   <table>
     <tr><th style="width:16%">時點</th><th>贖回價值（每 100 面值）</th><th>US$1,000,000 面值客收</th><th>總回報</th><th>年化回報</th><th style="width:30%">讀法</th></tr>
-    <tr><td class="l">第 1 年收回</td><td class="b">104.95</td><td>US$1,049,500</td><td>+4.95%</td><td class="b">4.95%</td><td class="l" rowspan="5" style="font-size:9.2px; color:var(--ink2);">增長表逐年列明——<b style="color:var(--ink)">無論到期或提早收回均按表支付</b>，收回早不會收少。第 1 年最高（折讓＋息一齊收），之後每年 +4.95 直線遞減年化——<b style="color:var(--navy)">收得早、年化更高</b>（直線無複利）。</td></tr>
+    <tr><td class="l">第 1 年收回</td><td class="b">104.95</td><td>US$1,049,500</td><td>+4.95%</td><td class="b">4.95%</td><td class="l" rowspan="5" style="font-size:9.2px; color:var(--ink2);">增長表逐年列明——<b style="color:var(--ink)">無論到期或提早收回均按表支付</b>，收回早不會收少。第 1 年最高（息全數入表），之後每年 +4.95 直線遞減年化——<b style="color:var(--navy)">收得早、年化更高</b>（直線無複利）。</td></tr>
     <tr><td class="l">第 2 年收回</td><td class="b">109.90</td><td>US$1,099,000</td><td>+9.9%</td><td class="b">4.83%</td></tr>
-    <tr><td class="l">第 3 年收回</td><td class="b">114.85</td><td>US$1,148,500</td><td>+14.9%</td><td class="b">6.53%</td></tr>
-    <tr><td class="l">第 4 年收回</td><td class="b">119.80</td><td>US$1,198,000</td><td>+19.8%</td><td class="b">5.97%</td></tr>
+    <tr><td class="l">第 3 年收回</td><td class="b">114.85</td><td>US$1,148,500</td><td>+14.9%</td><td class="b">4.71%</td></tr>
+    <tr><td class="l">第 4 年收回</td><td class="b">119.80</td><td>US$1,198,000</td><td>+19.8%</td><td class="b">4.62%</td></tr>
     <tr class="mat"><td class="l">到期（第 5 年）</td><td class="b">124.75</td><td>US$1,247,500</td><td>+24.75%</td><td class="b">4.53%</td></tr>
   </table>
 
@@ -157,18 +157,18 @@
       <table>
         <tr><th style="width:22%">維度</th><th>五年儲蓄保險（保證回本類）</th><th>CL 5年鎖息（4.95@95）</th></tr>
         <tr><td class="l">回報</td><td>保證年回報 4.10%（USD 年繳）；回本 113–119.7%</td><td class="b">客收 4.53%；回本 124.75%</td></tr>
-        <tr><td class="l">勝差</td><td>—</td><td class="b">每年多賺約 1.50 厘</td></tr>
+        <tr><td class="l">勝差</td><td>—</td><td class="b">每年多賺約 0.43 厘</td></tr>
         <tr><td class="l">保障</td><td>身故／危疾保障功能</td><td>沒有——純回報工具</td></tr>
-        <tr><td class="l">短年競品</td><td>「進息保」3 年回本 4.14%，但 10 年月息鎖死</td><td class="b">2／3 年客收 5.2–4.9% 一筆過＝真短鎖</td></tr>
+        <tr><td class="l">短年競品</td><td>「進息保」3 年回本 4.14%，但 10 年月息鎖死</td><td class="b">2／3 年客收 4.14–4.24% 一筆過＝真短鎖</td></tr>
       </table>
       <div class="cs"><b>一句對決：</b>要全保證＋保障 → 保險｜要最高鎖定回報 → CL。「極蓄賞 1 年」＝定存替代品，不是直接對手。</div>
     </div>
     <div class="card">
       <div class="ct">被 call 後，屆時息率或已下跌——客會卻步，可以點 sell 客？</div>
-      <div class="cs"><span class="r">客問：「被收回後要再投資，屆時息低咗點算？」</span>數答三步（RM 照講）：<b>①</b> 第 1 年被收回：每 100 面值收 <b>104.95</b>（買入 95 的 1.1047 倍）<b>②</b> 之後 4 年以年息 r 再投資：期末＝104.95×(1+r)⁴ <b>③</b> 與保證打和：104.95×(1+r)⁴＝95×(1.041)⁵ → <b>r≈2.6%</b></div>
-      <div class="cs">結論：<b>再投資息要連續 4 年低於約 2.6%</b>（今日 5 年融資約 4.5–5.0、須跌逾一半）CL 才會輸；過去十年只有 2020–21 零息期出現過該水平。且 4.95@95 四個 call date 無一「高」——被收回機會極低。</div>
+      <div class="cs"><span class="r">客問：「被收回後要再投資，屆時息低咗點算？」</span>數答三步（RM 照講）：<b>①</b> 第 1 年被收回：每 100 面值收 <b>104.95</b>（＝面值價 100 的 1.0495 倍）<b>②</b> 之後 4 年以年息 r 再投資：期末＝104.95×(1+r)⁴ <b>③</b> 與保證打和：104.95×(1+r)⁴＝100×(1.041)⁵ → <b>r≈3.9%</b></div>
+      <div class="cs">結論：<b>再投資息要連續 4 年低於約 3.9%</b>（今日 5 年融資約 4.5–5.0、須回落約 0.6–1.1 厘）CL 才會輸；過去十年只有 2020–21 零息期出現過該水平。且 4.95@95 四個 call date 無一「高」——被收回機會極低。</div>
       <div class="cs"><b>續接 sell：</b>收回當日資金即時回籠——我哋立刻幫客挑選當時最合適一張續購，<b>年年滾動鎖息、唔斷纜</b>；第一年已袋 4.95% 高息補償。</div>
-      <div class="quote">客聽法：「發行商遲收早收都好，都係照張表連本帶利一次過賠你——你唔會因為佢收得早而蝕。真係第一年收 10 厘 5，之後 4 年要跌穿 2 厘 6 先輸俾保證；而且我幫你年年續住鎖息，唔會斷纜。」</div>
+      <div class="quote">客聽法：「發行商遲收早收都好，都係照張表連本帶利一次過賠你——你唔會因為佢收得早而蝕。真係第一年袋 4 厘 9，之後 4 年要跌穿 3 厘 9 先輸俾保證；而且我幫你年年續住鎖息，唔會斷纜。」</div>
     </div>
   </div>
 
